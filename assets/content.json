@@ -1,0 +1,1548 @@
+{
+  "_meta": {
+    "purpose": "Repeating content extracted from the Tenthpin MC client pages so the React build can loop over data instead of hardcoding cards. Handover artefact only: the HTML is unchanged and remains the visual source of truth until the React build replaces it.",
+    "generated": "2026-08-07",
+    "sourcePages": [
+      "index-v2.html",
+      "about.html",
+      "services.html",
+      "cases.html",
+      "industries.html",
+      "news.html",
+      "partners.html",
+      "contact.html",
+      "event.html"
+    ],
+    "conventions": {
+      "zh": "Present only where the HTML carries a data-zh attribute on that string. Absence of zh means no Mandarin exists in the markup yet.",
+      "_pending": "The value is a placeholder or is gated on client content. The field it describes is null. Never fill these by inference.",
+      "_note": "A factual observation about the source markup, not a gap.",
+      "paths": "Image and href values are relative, exactly as the HTML carries them, so the static build stays portable."
+    }
+  },
+  "nav": [
+    {
+      "key": "about",
+      "label": "About us",
+      "zh": "关于我们",
+      "href": "about.html"
+    },
+    {
+      "key": "services",
+      "label": "Services",
+      "zh": "服务",
+      "href": "services.html",
+      "children": [
+        {
+          "key": "grow",
+          "label": "SAP Grow",
+          "zh": "SAP Grow",
+          "href": "services.html#grow"
+        },
+        {
+          "key": "rise",
+          "label": "Rise · Move",
+          "zh": "Rise · Move",
+          "href": "services.html#rise"
+        },
+        {
+          "key": "s4",
+          "label": "S/4HANA transition",
+          "zh": "S/4HANA 转型",
+          "href": "services.html#s4"
+        },
+        {
+          "key": "ams",
+          "label": "AMS · run support",
+          "zh": "AMS · 运维",
+          "href": "services.html#ams"
+        },
+        {
+          "key": "all",
+          "label": "All services →",
+          "zh": "全部服务",
+          "href": "services.html",
+          "isViewAll": true
+        }
+      ]
+    },
+    {
+      "key": "cases",
+      "label": "Case studies",
+      "zh": "案例",
+      "href": "cases.html"
+    },
+    {
+      "key": "industries",
+      "label": "Industries",
+      "zh": "行业",
+      "href": "industries.html"
+    },
+    {
+      "key": "ai",
+      "label": "AI in SAP",
+      "zh": "SAP 中的 AI",
+      "href": "ai-in-sap.html"
+    },
+    {
+      "key": "portal",
+      "label": "Consultant login",
+      "zh": "顾问登录",
+      "href": "portal.html",
+      "isIconOnly": true,
+      "_note": "Padlock icon link, no visible text label. portal.html is out of the client page set."
+    },
+    {
+      "key": "cta",
+      "label": "Contact",
+      "zh": "联系我们",
+      "href": "contact.html",
+      "isCta": true
+    }
+  ],
+  "navLanguages": [
+    {
+      "code": "en",
+      "label": "EN",
+      "default": true
+    },
+    {
+      "code": "zh",
+      "label": "中文",
+      "default": false
+    }
+  ],
+  "services": [
+    {
+      "key": "grow",
+      "name": "SAP Grow",
+      "zh": "SAP Grow",
+      "href": "services.html#grow",
+      "eyebrow": "01 · SAP Grow",
+      "headline": "The fast path for a smaller entity.",
+      "blurb": "Standard-first, cloud, and quick to live. Grow suits an entity that has outgrown its current system and does not want a two-year programme to fix it.",
+      "homeCard": {
+        "title": "You have outgrown your system",
+        "blurb": "Standard-first and quick to live, for an entity that does not want a two-year programme to fix a two-quarter problem.",
+        "bullets": [
+          "Fit-to-standard against a running system",
+          "Prototype in the first weeks, not month four",
+          "Fewer decisions, and the ones left actually matter"
+        ],
+        "vizKey": "grow",
+        "vizCaption": "Standard modules, assembled fast"
+      },
+      "points": [
+        {
+          "k": "Scope",
+          "title": "Standard, then the delta",
+          "body": "We run fit-to-standard against a working system, then document only what genuinely has to differ."
+        },
+        {
+          "k": "Speed",
+          "title": "Prototype in week one",
+          "body": "Pre-built content means workshops are run against something you can click, not a requirements sheet."
+        },
+        {
+          "k": "Risk",
+          "title": "Fewer decisions, taken earlier",
+          "body": "The standard makes most choices for you. The ones left are the ones that matter to your business."
+        }
+      ],
+      "relatedCase": "grow-1"
+    },
+    {
+      "key": "rise",
+      "name": "Rise and Move",
+      "zh": "Rise · Move",
+      "href": "services.html#rise",
+      "eyebrow": "02 · Rise and Move",
+      "headline": "Private SAP, on a rehearsed cutover.",
+      "blurb": "For landscapes with real history: custom code, integrations, and a business that cannot stop while the migration happens.",
+      "homeCard": {
+        "title": "You are moving to private SAP",
+        "blurb": "For landscapes with real history: custom code, integrations, and a business that cannot pause while the migration happens.",
+        "bullets": [
+          "Seven-step approach, from insight to safeguard",
+          "Migration from multiple legacy systems, tested first",
+          "Cutover rehearsed, freeze window minimised"
+        ],
+        "badge": "Most common",
+        "vizKey": "rise",
+        "vizCaption": "Every piece tested in flight"
+      },
+      "points": [
+        {
+          "k": "Approach 01",
+          "title": "Insight",
+          "body": "Roadmap and deployment approach, target business model, application and system landscape documented."
+        },
+        {
+          "k": "Approach 02",
+          "title": "Rapid prototype",
+          "body": "Best-practice industry solutions stood up as a prototype rather than described in a blueprint."
+        },
+        {
+          "k": "Approach 03",
+          "title": "Accelerated build",
+          "body": "Accelerated build with automated testing, and the solution matured against real business scenarios."
+        },
+        {
+          "k": "Approach 04",
+          "title": "Optimised testing",
+          "body": "Risk-focused testing, automated where it repeats, with go-live situations simulated in advance."
+        },
+        {
+          "k": "Approach 05",
+          "title": "Accelerated migration",
+          "body": "Data migration from multiple legacy systems, prepared and executed against a tested plan."
+        },
+        {
+          "k": "Approach 06",
+          "title": "Rapid deployment",
+          "body": "Cut-over optimisation, minimised business impact, and reduced hypercare because the surprises were found earlier."
+        },
+        {
+          "k": "Approach 07",
+          "title": "Safeguard",
+          "body": "Business safeguarding through the transition, with the delivery accelerating value rather than absorbing it."
+        },
+        {
+          "k": "Project type",
+          "title": "Upgrade, transform or new",
+          "body": "Technical upgrade, business transformation, or a greenfield build. The approach adapts, the discipline does not."
+        }
+      ],
+      "relatedCase": "rise-1"
+    },
+    {
+      "key": "s4",
+      "name": "S/4HANA transition",
+      "zh": "S/4HANA 转型",
+      "href": "services.html#s4",
+      "eyebrow": "03 · S/4HANA transition",
+      "headline": "Getting ECC out without stopping the plant.",
+      "blurb": "The deadline is doing the arguing for us. The real question is sequence: what moves first, what runs in parallel, and how long the freeze window is.",
+      "homeCard": {
+        "title": "ECC has to go",
+        "blurb": "The deadline decides the timing. We decide the sequence, and the plant keeps running while it happens.",
+        "bullets": [
+          "Pre-built S/4HANA content and accelerators",
+          "Validated environments for regulated work",
+          "Hypercare, then AMS run support"
+        ],
+        "vizKey": "s4",
+        "vizCaption": "The line never stops"
+      },
+      "points": [
+        {
+          "k": "01",
+          "title": "Insight",
+          "body": "Where you stand, what the AI layer is worth, and the honest options."
+        },
+        {
+          "k": "02",
+          "title": "Prototype",
+          "body": "A working S/4HANA company for demos, fit-to-standard and training."
+        },
+        {
+          "k": "03",
+          "title": "Build",
+          "body": "Templates and accelerators over custom work, with the delta documented."
+        },
+        {
+          "k": "04",
+          "title": "Test",
+          "body": "Validated environments, automated regression, cutover rehearsed."
+        },
+        {
+          "k": "05",
+          "title": "Go-live",
+          "body": "Hypercare, then run support. Zero-defect ambition, minimised impact."
+        }
+      ],
+      "media": {
+        "type": "video",
+        "ratio": "16:9",
+        "length": "30 to 45s",
+        "caption": "A cutover weekend, condensed",
+        "src": null,
+        "_pending": "assets/media/cutover-film.mp4 does not exist yet. The page renders a labelled placeholder slot."
+      },
+      "relatedCase": "rise-2"
+    },
+    {
+      "key": "ams",
+      "name": "AMS and run support",
+      "zh": "AMS · 运维",
+      "href": "services.html#ams",
+      "eyebrow": "04 · AMS and run support",
+      "headline": "After go-live is where most value is won or lost.",
+      "blurb": "Ongoing operational support, including local issues at overseas sites, so the system keeps improving instead of slowly drifting from the business.",
+      "homeCard": null,
+      "_pending": "AMS has no dedicated card in the index-v2.html offers grid. The home page links to it only through the \"wider portfolio\" line under the three route cards.",
+      "points": [
+        {
+          "k": "Run",
+          "title": "Application management",
+          "body": "Incidents, changes and releases handled by people who know your landscape rather than a queue."
+        },
+        {
+          "k": "Improve",
+          "title": "Continuous optimisation",
+          "body": "Backlog worked down against business value, not ticket volume."
+        },
+        {
+          "k": "Extend",
+          "title": "Local rollouts",
+          "body": "New entities and countries added to the template, with localisation analysed rather than assumed."
+        }
+      ],
+      "relatedCase": null
+    }
+  ],
+  "portfolio": [
+    {
+      "key": "transformation-management",
+      "k": "Transformation management",
+      "name": "Programme and change",
+      "blurb": "Programme and project management, change management and communication, RFP and vendor selection, post-merger integration and divestments, quality assurance."
+    },
+    {
+      "key": "it-operation-management",
+      "k": "IT operation management",
+      "name": "Strategy and data",
+      "blurb": "Strategy advisory, industry-focused transformation services, enterprise data management, transition and change management."
+    },
+    {
+      "key": "health-supply-network",
+      "k": "Health supply network",
+      "name": "Supply chain",
+      "blurb": "Patient-centric supply chains, SCM operating model advisory, SAP IBP, S/4HANA and APO solutions, self-driving supply chains."
+    },
+    {
+      "key": "digital",
+      "k": "Digital",
+      "name": "IoT, RPA and advisory",
+      "blurb": "Digital strategy and transformation support, Internet of Things, robotic process automation applied where it pays back."
+    },
+    {
+      "key": "industries-innovation",
+      "k": "Industries innovation",
+      "name": "Built for regulated work",
+      "blurb": "Clinical Trial Supply Management, clinical e-labelling, Batch Release Hub, personalised medicine, patient experience, Internet of Medical Things."
+    },
+    {
+      "key": "malaysia-einvoice",
+      "k": "Malaysia",
+      "name": "Government e-invoice",
+      "blurb": "A named service line in our portfolio, handled inside the ERP rather than in a spreadsheet beside it."
+    },
+    {
+      "key": "successfactors",
+      "k": "People",
+      "name": "SuccessFactors, full suite",
+      "blurb": "Implementation across the modules, BTP and Analytics Cloud integration, AMS support, and HR Link integrations to Teams, ATS and payroll."
+    },
+    {
+      "key": "assurance",
+      "k": "Assurance",
+      "name": "Validation and CSV",
+      "blurb": "GAMP5 with ASAP, GMP, GLP and GCP compliance, and a validation package on SAP BTP."
+    }
+  ],
+  "industries": [
+    {
+      "key": "automotive",
+      "name": "Automotive",
+      "href": "industries.html#automotive",
+      "eyebrow": "01 · Automotive",
+      "headline": "Line-rate or nothing.",
+      "blurb": "Tiered supply, sequencing pressure, and traceability that has to survive an audit.",
+      "lede": "Tiered supply, sequencing pressure and traceability that has to survive an audit. When the line stops, the cost is measured in minutes.",
+      "image": "assets/media/industry-automotive-hf.jpg",
+      "imageAlt": "Line-side · parts checked against the system",
+      "accent": "#2536F5",
+      "proofstrip": "Tiered supply, sequencing",
+      "pressures": [
+        {
+          "title": "Sequencing and call-off",
+          "body": "Just-in-sequence delivery to the OEM, with penalties attached. The ERP has to hold the schedule the plant actually runs."
+        },
+        {
+          "title": "Quality traceability",
+          "body": "Component genealogy from goods receipt to shipped vehicle, retrievable years later when a recall question lands."
+        },
+        {
+          "title": "Multi-plant, multi-country",
+          "body": "One template, many sites, local statutory requirements. Rollouts fail on localisation, not on the template."
+        }
+      ],
+      "whatWeDo": [
+        {
+          "title": "S/4HANA on a proven template",
+          "body": "Pre-built industry content stood up early so the plant sees a running system in workshops, not a slide."
+        },
+        {
+          "title": "Rehearsed cutover",
+          "body": "Cutover simulated before it is real, with the freeze window minimised and hypercare planned in."
+        },
+        {
+          "title": "Supplier integration",
+          "body": "EDI, call-off handling and 3PL warehouses brought into the same landscape rather than bolted beside it."
+        }
+      ],
+      "gallery": [
+        {
+          "src": "assets/media/industry-manufacturing.jpg",
+          "alt": "Production supervisor and process engineer at a live production dashboard",
+          "caption": "Automotive · sequencing and traceability, read off the system"
+        },
+        {
+          "src": "assets/media/industry-automotive-2.jpg",
+          "alt": "A line-side quality engineer at a laptop beside the assembly line",
+          "caption": "Automotive · component traceability, checked line-side"
+        }
+      ],
+      "relatedCase": null,
+      "_pending": "Named automotive references exist in the company profile; publication needs written client clearance, so no story is linked from this sector yet."
+    },
+    {
+      "key": "manufacturing",
+      "name": "Manufacturing",
+      "href": "industries.html#manufacturing",
+      "eyebrow": "02 · Manufacturing",
+      "headline": "The plant, in one system.",
+      "blurb": "Planning, maintenance and cost visibility joined up, so the floor and finance see one plan.",
+      "lede": "Planning, maintenance and cost visibility joined up, so the plan the floor runs is the plan finance sees. Most manufacturers have both, in different systems, disagreeing.",
+      "image": "assets/media/industry-manufacturing-hf.jpg",
+      "imageAlt": "The floor · production reviewed on the system",
+      "accent": "#0E7490",
+      "proofstrip": "Plants, planning, cost",
+      "pressures": [
+        {
+          "title": "Plan versus reality",
+          "body": "Production plans that assume capacity the floor does not have, reconciled monthly by hand in spreadsheets."
+        },
+        {
+          "title": "Maintenance and uptime",
+          "body": "Unplanned downtime absorbed as a cost of doing business, because the data to predict it sits in three places."
+        },
+        {
+          "title": "Global expansion",
+          "body": "New entities added faster than the ERP template can absorb them, so each one becomes a local variant."
+        }
+      ],
+      "whatWeDo": [
+        {
+          "title": "One template, disciplined localisation",
+          "body": "Group template first, then a documented localisation analysis per country. This is exactly the pattern we run on global rollouts."
+        },
+        {
+          "title": "IoT and RPA where they pay",
+          "body": "Machine signals and robotic process automation applied to the steps that actually cost money, not to a demo."
+        },
+        {
+          "title": "Run support that stays",
+          "body": "Ongoing operational support for local issues after go-live, including overseas sites in different time zones."
+        }
+      ],
+      "gallery": [
+        {
+          "src": "assets/media/industry-manufacturing.jpg",
+          "alt": "Plant floor production dashboard review",
+          "caption": "Manufacturing · one plan for the floor and for finance"
+        },
+        {
+          "src": "assets/media/industry-manufacturing-2.jpg",
+          "alt": "A process engineer checks line data on a tablet beside CNC machines",
+          "caption": "Manufacturing · the line checked from a tablet, not a binder"
+        }
+      ],
+      "relatedCase": "grow-1"
+    },
+    {
+      "key": "lifesciences",
+      "name": "Life sciences",
+      "href": "industries.html#lifesciences",
+      "eyebrow": "03 · Life sciences",
+      "headline": "Validated, and still fast.",
+      "blurb": "Batch integrity, serialisation and validated change control, without stalling the roadmap.",
+      "lede": "Batch integrity, serialisation and validated change control, delivered without stalling the roadmap. Our validation team has led and taken part in over one hundred regulatory and client audits.",
+      "image": "assets/media/industry-lifesciences.jpg",
+      "imageAlt": "The validated room · batch record entered",
+      "accent": "#12A150",
+      "proofstrip": "Validated, audited",
+      "segments": [
+        {
+          "title": "Innovative drugs",
+          "body": "High R&D investment, long uncertain cycles, strict approval for market access, and patent protection to manage."
+        },
+        {
+          "title": "Biopharmaceuticals",
+          "body": "Long development cycles, GMP and FDA certification processes, high-cost production and equipment maintenance."
+        },
+        {
+          "title": "Medical devices",
+          "body": "Certification and regulatory requirements worldwide, supply chain efficiency, and fast technological change."
+        },
+        {
+          "title": "API and chemical drugs",
+          "body": "Raw material stability and price movement, environmental control in production, highly standardised quality."
+        },
+        {
+          "title": "Pharmaceutical retail",
+          "body": "Multiple distribution channels under strict regulation, inventory and anti-counterfeit tracking, shifting demand."
+        },
+        {
+          "title": "Animal health",
+          "body": "R&D and market access for animal pharmaceuticals, quality and cost control, demand-driven production planning."
+        },
+        {
+          "title": "Traditional medicine",
+          "body": "Variability in the source and quality of medicinal materials, and traditional methods combined with modern production."
+        }
+      ],
+      "whatWeDo": [
+        {
+          "title": "Validation as standard",
+          "body": "CSV on GAMP5 with ASAP, compliant with GMP, GLP and GCP, plus a validation package on SAP BTP."
+        }
+      ],
+      "gallery": [
+        {
+          "src": "assets/media/industry-lifesciences.jpg",
+          "alt": "Gowned operators at a validated terminal",
+          "caption": "Life sciences · validated change control, inspectable by design"
+        },
+        {
+          "src": "assets/media/industry-lifesciences-2.jpg",
+          "alt": "A gowned scientist enters batch data on a tablet beside bioreactors",
+          "caption": "Life sciences · batch data entered once, at the line"
+        }
+      ],
+      "relatedCase": "rise-1"
+    },
+    {
+      "key": "newenergy",
+      "name": "New energy & chemical",
+      "href": "industries.html#newenergy",
+      "eyebrow": "04 · New energy & chemical",
+      "headline": "One template, many plants.",
+      "blurb": "Global roll-outs with local statutory detail, and long-running run support after go-live.",
+      "lede": "We also deliver across new energy and the chemical industry, including global roll-outs and long-running operational support. If your sector is not named here, the assessment is still the fastest way to find out whether we are the right partner.",
+      "image": "assets/media/industry-newenergy.jpg",
+      "imageAlt": "New energy · the night shift, still connected",
+      "accent": "#B07A12",
+      "proofstrip": "Global rollouts",
+      "pressures": [],
+      "whatWeDo": [],
+      "gallery": [
+        {
+          "src": "assets/media/industry-newenergy.jpg",
+          "alt": "A technician walks a battery plant vessel row with a tablet at night",
+          "caption": "New energy · the night shift, still connected"
+        }
+      ],
+      "relatedCase": null,
+      "_note": "This sector renders as a closing CTA band on industries.html rather than a full section, so it carries no pressure or capability cards."
+    }
+  ],
+  "caseStudies": [
+    {
+      "key": "grow-1",
+      "href": "cases.html#grow-1",
+      "lane": "SAP Grow · story 01",
+      "sector": null,
+      "headline": "Outgrowing the spreadsheet",
+      "homeCardHeadline": "The entity that outgrew its spreadsheets",
+      "homeCardBlurb": "A regional producer moving from disconnected tools to one standard-first core, live in weeks.",
+      "labels": [
+        "Story 01 · SAP Grow",
+        "Smaller entity · speed"
+      ],
+      "context": null,
+      "stuckPoint": null,
+      "process": null,
+      "outcome": null,
+      "outcomeTeaser": "Outcome: go-live on schedule · story publishing on clearance",
+      "image": "assets/media/industry-manufacturing-hf.jpg",
+      "imageAlt": "A production supervisor and process engineer reviewing a live plant dashboard",
+      "imageCaption": "Regional producer · the floor on one system",
+      "_pending": "Story not available yet, with Tenthpin. Sector, context, stuckPoint, process and outcome are all gated on written client clearance; cases.html renders the five template blocks as labelled slots. Do not fill from the home-page teaser."
+    },
+    {
+      "key": "grow-2",
+      "href": "cases.html#grow-2",
+      "lane": "SAP Grow · story 02",
+      "sector": null,
+      "headline": "Live before the next quarter",
+      "homeCardHeadline": "Finance out of the copy-paste era",
+      "homeCardBlurb": "E-invoice and reporting handled inside the ERP, so compliance became configuration.",
+      "labels": [
+        "Story 02 · SAP Grow",
+        "Standard, fast"
+      ],
+      "context": null,
+      "stuckPoint": null,
+      "process": null,
+      "outcome": null,
+      "outcomeTeaser": "Outcome: manual work retired · story publishing on clearance",
+      "image": "assets/media/deadline-einvoice.jpg",
+      "imageAlt": "A finance manager working invoices beside a digital invoice form",
+      "imageCaption": "Finance · e-invoice inside the ERP",
+      "_pending": "Story not available yet, with Tenthpin. Sector, context, stuckPoint, process and outcome are gated on written client clearance."
+    },
+    {
+      "key": "rise-1",
+      "href": "cases.html#rise-1",
+      "lane": "Rise · Move · story 01",
+      "sector": null,
+      "headline": "ECC out, without stopping the plant",
+      "homeCardHeadline": "A global pharma group, 29 subsidiaries, one template",
+      "homeCardBlurb": "ECC to S/4HANA greenfield, phased across regions, validated the whole way.",
+      "labels": [
+        "Story 03 · Rise / Move",
+        "Private SAP"
+      ],
+      "context": null,
+      "stuckPoint": null,
+      "process": null,
+      "outcome": null,
+      "outcomeTeaser": "Outcome: waves live on plan · story publishing on clearance",
+      "image": "assets/media/industry-lifesciences.jpg",
+      "imageAlt": "Gowned operators entering a batch record at a validated terminal",
+      "imageCaption": "Life sciences · validated, audit intact",
+      "_pending": "Story not available yet, with Tenthpin. The home card describes the programme listed in trackRecord.ls-global, but the client is unnamed and the numbers are uncleared."
+    },
+    {
+      "key": "rise-2",
+      "href": "cases.html#rise-2",
+      "lane": "Rise · Move · story 02",
+      "sector": null,
+      "headline": "Validated migration, audit intact",
+      "homeCardHeadline": "The divestment with a hard deadline",
+      "homeCardBlurb": "Business and application transfer ahead of TSA dates, GxP compliant throughout.",
+      "labels": [
+        "Story 04 · Rise / Move",
+        "Regulated"
+      ],
+      "context": null,
+      "stuckPoint": null,
+      "process": null,
+      "outcome": null,
+      "outcomeTeaser": "Outcome: deadline held · story publishing on clearance",
+      "image": "assets/media/case-team.jpg",
+      "imageAlt": "A mixed delivery team working a migration plan at the whiteboard",
+      "imageCaption": "Delivery workshop · phase by phase",
+      "_pending": "Story not available yet, with Tenthpin. Sector, context, stuckPoint, process and outcome are gated on written client clearance."
+    }
+  ],
+  "caseTemplate": [
+    {
+      "key": "block-1",
+      "k": "Block 1",
+      "title": "Context",
+      "body": "Sector, size, systems landscape. Anonymised is fine, specific is better. The reader has to find themselves in it."
+    },
+    {
+      "key": "block-2",
+      "k": "Block 2",
+      "title": "The stuck point",
+      "body": "Legacy ECC, a failed rollout, AI pressure, a compliance deadline. Pain named accurately means expertise assumed."
+    },
+    {
+      "key": "block-3",
+      "k": "Block 3 · the differentiator",
+      "title": "The delivery process",
+      "body": "Workshops, build, cutover, hypercare. This is the block a competitor cannot fake, because they were not there."
+    },
+    {
+      "key": "block-4",
+      "k": "Block 4",
+      "title": "The outcome",
+      "body": "Go-live time, downtime avoided, adoption, cost. The numbers a champion pastes into a board deck."
+    },
+    {
+      "key": "block-5",
+      "k": "Block 5",
+      "title": "The visual",
+      "body": "One SAP-in-context scene from that industry. The experience of using it, not a screenshot of it."
+    },
+    {
+      "key": "the-rule",
+      "k": "The rule",
+      "title": "Nothing published unverified",
+      "body": "Names, numbers and logos appear only with written client clearance. Until then the story runs anonymised or not at all."
+    }
+  ],
+  "trackRecord": [
+    {
+      "key": "ls-apac-rollout",
+      "k": "Life sciences · APAC rollout",
+      "title": "Nine countries, nine sites",
+      "body": "Four manufacturing plants, three sales offices, two sales support entities and a 3PL warehouse integrated, with validation on a lean V-model."
+    },
+    {
+      "key": "ls-global",
+      "k": "Life sciences · global",
+      "title": "ECC to S/4HANA, 29 subsidiaries",
+      "body": "A greenfield conversion with historic data migrated, phased template through EMEA, the US, Asia and Japan."
+    },
+    {
+      "key": "pharma-group",
+      "k": "Pharma · group",
+      "title": "Nineteen legal entities, one template",
+      "body": "Standard operating processes across the group, from FICO to BPC, with CSV and Fiori, improving financial governance across all entities."
+    },
+    {
+      "key": "meddev-multisystem",
+      "k": "Medical devices · multi-system",
+      "title": "ERP, CRM, HR and distribution",
+      "body": "S/4HANA with C4C, SuccessFactors and a distributor management system across China, Europe, Russia, India, Africa and Latin America."
+    },
+    {
+      "key": "chemical-global",
+      "k": "Chemical · global",
+      "title": "One platform for global expansion",
+      "body": "Standardised processes across countries, localisation analysed per region, and ongoing operational support for overseas sites."
+    },
+    {
+      "key": "pharma-divestment",
+      "k": "Pharma · divestment",
+      "title": "Carve-out ahead of the TSA deadline",
+      "body": "Business and application systems transferred between two owners, GxP compliant, with change and communication managed across both sides."
+    }
+  ],
+  "credentials": [
+    {
+      "key": "sap-gold-partner",
+      "image": "assets/sap/sap-gold-partner.svg",
+      "imageAlt": "SAP Gold Partner",
+      "name": "Gold Partner",
+      "sub": "541 partnership points",
+      "group": "SAP partnership",
+      "fullName": "SAP Gold Partner",
+      "body": "The partnership tier SAP grants on delivery record and certified consultants, 541 partnership points.",
+      "answers": "Answers: is this firm real to SAP itself",
+      "_pending": "The exact legal entity holding the Gold credential is being confirmed with Tenthpin before it is printed against the Malaysian practice."
+    },
+    {
+      "key": "successfactors-qualified",
+      "image": "assets/sap/sap-sf-qualified.svg",
+      "imageAlt": "SAP SuccessFactors qualified partner",
+      "name": "SuccessFactors Qualified",
+      "sub": "Partner-packaged solution",
+      "group": "SAP qualification",
+      "fullName": "SuccessFactors Qualified",
+      "body": "A partner-packaged SuccessFactors solution reviewed and listed by SAP.",
+      "answers": "Answers: can they deliver the people stack"
+    },
+    {
+      "key": "cloud-qualified",
+      "image": "assets/sap/sap-cloud-qualified.svg",
+      "imageAlt": "SAP S/4HANA Cloud qualified",
+      "name": "Cloud Qualified",
+      "sub": "S/4HANA Cloud",
+      "group": "SAP qualification",
+      "fullName": "Cloud Qualified · S/4HANA Cloud",
+      "body": "The S/4HANA Cloud delivery qualification, reviewed by SAP.",
+      "answers": "Answers: are they current on cloud delivery"
+    },
+    {
+      "key": "iso-9001",
+      "image": "assets/iso/iso-9001.svg",
+      "imageAlt": "ISO 9001:2015 certified",
+      "name": "9001:2015",
+      "sub": "Quality · certified by SQS",
+      "group": "Quality",
+      "fullName": "ISO 9001:2015",
+      "body": "Quality management, certified by SQS. The audit trail behind how engagements are run.",
+      "answers": "Answers: is the delivery process governed"
+    },
+    {
+      "key": "iso-27001",
+      "image": "assets/iso/iso-27001.svg",
+      "imageAlt": "ISO 27001:2022 certified",
+      "name": "27001:2022",
+      "sub": "Information security · SQS",
+      "group": "Security",
+      "fullName": "ISO/IEC 27001:2022",
+      "body": "Information security management, certified by SQS. Your data inside a certified regime.",
+      "answers": "Answers: can they hold our data safely"
+    },
+    {
+      "key": "aaa-rated",
+      "image": "assets/misc/aaa-rated.svg",
+      "imageAlt": "AAA financial standing",
+      "name": "Rated",
+      "sub": "Financial standing",
+      "group": "Financial standing",
+      "fullName": "AAA rated",
+      "body": "The highest credit rating band, the standing behind a multi-year engagement.",
+      "answers": "Answers: will they still be here at go-live",
+      "_note": "The home-page badge reads \"Rated\" with the sub \"Financial standing\"; partners.html spells it out as \"AAA rated\"."
+    }
+  ],
+  "clientMarks": [
+    {
+      "key": "bmw",
+      "name": "BMW",
+      "image": "assets/clients/bmw.svg",
+      "sector": "Automotive group"
+    },
+    {
+      "key": "mercedes",
+      "name": "Mercedes-Benz",
+      "image": "assets/clients/mercedes.svg",
+      "sector": "Automotive group"
+    },
+    {
+      "key": "honda",
+      "name": "Honda",
+      "image": "assets/clients/honda.svg",
+      "sector": "Automotive group"
+    },
+    {
+      "key": "roche",
+      "name": "Roche",
+      "image": "assets/clients/roche.svg",
+      "sector": "Life sciences"
+    },
+    {
+      "key": "amgen",
+      "name": "Amgen",
+      "image": "assets/clients/amgen.svg",
+      "sector": "Life sciences"
+    },
+    {
+      "key": "lilly",
+      "name": "Eli Lilly",
+      "image": "assets/clients/lilly.svg",
+      "sector": "Life sciences"
+    }
+  ],
+  "clientMarksNote": {
+    "en": "Client marks shown as delivery references. Named case studies publish as each written clearance lands; the stories behind them are on the case studies page.",
+    "headline": "More than 50 enterprises, across three continents.",
+    "zh": "50 多家国际与区域企业。",
+    "lede": "Automotive groups, global pharmaceutical manufacturers, medical device makers, and new energy and chemical producers, served across Europe, the Americas and Asia Pacific."
+  },
+  "leadership": [
+    {
+      "key": "lead-01",
+      "name": null,
+      "role": "Managing Partner",
+      "city": "Kuala Lumpur",
+      "image": "assets/team/lead-01.jpg",
+      "_pending": "Name withheld: no name appears in the HTML. The portrait is art direction only and is replaced frame for frame once Tenthpin photography lands."
+    },
+    {
+      "key": "lead-02",
+      "name": null,
+      "role": "Delivery Lead · S/4HANA",
+      "city": "Singapore",
+      "image": "assets/team/lead-02.jpg",
+      "_pending": "Name withheld: no name appears in the HTML. Portrait is art direction only."
+    },
+    {
+      "key": "lead-03",
+      "name": null,
+      "role": "Life Sciences Practice Lead",
+      "city": "Kuala Lumpur",
+      "image": "assets/team/lead-03.jpg",
+      "_pending": "Name withheld: no name appears in the HTML. Portrait is art direction only."
+    },
+    {
+      "key": "lead-04",
+      "name": null,
+      "role": "AI & Automation Lead",
+      "city": "Singapore",
+      "image": "assets/team/lead-04.jpg",
+      "_pending": "Name withheld: no name appears in the HTML. Portrait is art direction only."
+    }
+  ],
+  "leadershipNote": {
+    "en": "Art direction only. Real Tenthpin portraits replace these frame for frame once the photography lands.",
+    "zh": "以上为版面示意，正式照片由 Tenthpin 提供后逐一替换。",
+    "aboutPageNote": "Named leadership profiles and careers are in build · September"
+  },
+  "stats": [
+    {
+      "key": "consultants",
+      "value": 1500,
+      "suffix": "+",
+      "display": "1,500+",
+      "label": "Consultants worldwide",
+      "heroLabel": "SAP consultants worldwide"
+    },
+    {
+      "key": "asia",
+      "value": 400,
+      "suffix": "+",
+      "display": "400+",
+      "label": "Across Asia",
+      "heroLabel": "Across Asia"
+    },
+    {
+      "key": "retention",
+      "value": 95,
+      "suffix": "%+",
+      "display": "95%+",
+      "label": "Long-term client relationships",
+      "heroLabel": "Long-term client relationships"
+    },
+    {
+      "key": "cities",
+      "value": 25,
+      "suffix": "+",
+      "display": "25+",
+      "label": "Cities delivered from",
+      "heroLabel": "Cities delivered from"
+    }
+  ],
+  "offices": [
+    {
+      "key": "basel",
+      "city": "Basel",
+      "isHQ": true,
+      "country": "Switzerland",
+      "region": "Europe",
+      "entity": "Tenthpin Management Consultants AG",
+      "address": [
+        "Peter Merian-Strasse 45",
+        "4052 Basel"
+      ],
+      "image": "assets/media/office-basel.jpg",
+      "imageCaption": "Basel · group headquarters"
+    },
+    {
+      "key": "kuala-lumpur",
+      "city": "Kuala Lumpur",
+      "isHQ": false,
+      "country": "Malaysia",
+      "region": "Asia Pacific",
+      "entity": "Tenthpin Management Consultant Sdn Bhd",
+      "address": [
+        "No. 28-3A, Menara 1, Strata Office",
+        "No. 3, Jalan Bangsar, KL Eco City",
+        "59200 Kuala Lumpur"
+      ],
+      "image": "assets/media/office-kl.jpg",
+      "imageCaption": "Kuala Lumpur · KL Eco City"
+    },
+    {
+      "key": "singapore",
+      "city": "Singapore",
+      "isHQ": false,
+      "country": "Singapore",
+      "region": "Asia Pacific",
+      "entity": "Tenthpin Management Consultants Pte. Ltd.",
+      "address": [
+        "128 Tanjong Pagar Road",
+        "Singapore 088535"
+      ],
+      "image": "assets/media/office-sg.jpg",
+      "imageCaption": "Singapore · Tanjong Pagar",
+      "district": "Tanjong Pagar"
+    },
+    {
+      "key": "hong-kong",
+      "city": "Hong Kong",
+      "isHQ": false,
+      "region": "Asia Pacific",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "shanghai",
+      "city": "Shanghai",
+      "isHQ": false,
+      "region": "Asia Pacific",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "beijing",
+      "city": "Beijing",
+      "isHQ": false,
+      "region": "Asia Pacific",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "osaka",
+      "city": "Osaka",
+      "isHQ": false,
+      "region": "Asia Pacific",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "bangalore",
+      "city": "Bangalore",
+      "isHQ": false,
+      "region": "Asia Pacific",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "london",
+      "city": "London",
+      "isHQ": false,
+      "region": "Europe",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "frankfurt",
+      "city": "Frankfurt",
+      "isHQ": false,
+      "region": "Europe",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "lisbon",
+      "city": "Lisbon",
+      "isHQ": false,
+      "region": "Europe",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "atlanta",
+      "city": "Atlanta",
+      "isHQ": false,
+      "region": "Americas",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "boston",
+      "city": "Boston",
+      "isHQ": false,
+      "region": "Americas",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    },
+    {
+      "key": "san-francisco",
+      "city": "San Francisco",
+      "isHQ": false,
+      "region": "Americas",
+      "entity": null,
+      "address": null,
+      "_pending": "Listed as a city chip only. No legal entity or street address published."
+    }
+  ],
+  "officesNote": {
+    "_note": "about.html carries the full 14-city list. index-v2.html shows a 6-city subset (Basel HQ, Kuala Lumpur, Singapore, Hong Kong, Shanghai, Osaka). contact.html shows the three addressed offices plus a 9-city chip row. One source list, three views.",
+    "contactPagePending": "Per-office contacts and a map are in build"
+  },
+  "deadlines": [
+    {
+      "key": "ecc",
+      "kicker": "Deadline 01",
+      "title": "ECC support is ending",
+      "body": "SAP ends mainstream maintenance for ECC. Everyone still on it has to move to S/4HANA, and the queue for good delivery teams gets longer every quarter.",
+      "image": "assets/media/deadline-ecc.jpg",
+      "imageAlt": "An IT administrator at an ageing on-premise server rack",
+      "icon": "clock"
+    },
+    {
+      "key": "einvoice",
+      "kicker": "Deadline 02",
+      "title": "E-invoice is now law",
+      "body": "Malaysian e-invoicing has to come out of your finance system. Built into the ERP it is configuration. Bolted on beside it, it is manual work forever.",
+      "image": "assets/media/deadline-einvoice.jpg",
+      "imageAlt": "A finance executive working through paper invoices beside a digital invoice form",
+      "icon": "doc"
+    },
+    {
+      "key": "ai",
+      "kicker": "Deadline 03",
+      "title": "The board expects AI",
+      "body": "AI only pays back on clean, connected data. In a manufacturer that data lives in the ERP, so modernising it is step one of any real AI plan.",
+      "image": "assets/media/deadline-ai.jpg",
+      "imageAlt": "Executives in a night boardroom discussing a report by laptop light",
+      "icon": "ai"
+    }
+  ],
+  "plan": [
+    {
+      "key": "step-1",
+      "n": "1",
+      "title": "Book a free assessment",
+      "body": "Sixty minutes on your landscape and your pressure points. You leave with your S/4HANA path named and the AI opportunities that are real in your processes."
+    },
+    {
+      "key": "step-2",
+      "n": "2",
+      "title": "See it running, not described",
+      "body": "We stand up pre-built industry content so the workshops happen against a working system. You decide against something you can click, not a requirements sheet."
+    },
+    {
+      "key": "step-3",
+      "n": "3",
+      "title": "Go live on a rehearsed cutover",
+      "body": "Validated environments, testing focused on your risk, and the cutover simulated before it is real. Then hypercare, then run support, with the same team."
+    }
+  ],
+  "commitments": [
+    {
+      "key": "free-assessment",
+      "lead": "The assessment is free and yours to keep.",
+      "body": "Take the written read to another partner if you want to. It is still useful."
+    },
+    {
+      "key": "early-software",
+      "lead": "You see working software early.",
+      "body": "Pre-built content means a running system in the first weeks, not a blueprint document in month four."
+    },
+    {
+      "key": "rehearsed-cutover",
+      "lead": "The cutover is rehearsed before it is real.",
+      "body": "Go-live situations are simulated so the freeze window is known, not discovered."
+    },
+    {
+      "key": "inspectable",
+      "lead": "Regulated work stays inspectable.",
+      "body": "CSV on GAMP5, validated environments, and a team that has been through more than one hundred audits."
+    },
+    {
+      "key": "same-people",
+      "lead": "The same people stay through hypercare.",
+      "body": "No handover to a team that was not in the workshops."
+    }
+  ],
+  "faq": [
+    {
+      "key": "how-long",
+      "q": "How long does a move to S/4HANA actually take?",
+      "a": "It depends on the number of entities, how much custom code you carry, and whether the work is regulated. A single-entity Grow implementation is measured in weeks. A multi-country programme with validation runs in waves across quarters. The assessment gives you a sequence and an effort range for your specific landscape rather than an industry average."
+    },
+    {
+      "key": "all-at-once",
+      "q": "Do we have to replace everything at once?",
+      "a": "No. Most programmes run in waves: a template first, then a pilot site, then rollout. Coexistence between ECC and S/4HANA during the transition is a normal pattern, and part of the plan is deciding which entities move first and why."
+    },
+    {
+      "key": "einvoice",
+      "q": "What happens to the e-invoice requirement?",
+      "a": "It is handled inside the ERP as configuration. Government e-invoice work for Malaysia is a named service line in our portfolio, so it is scoped as part of the finance core rather than bolted on afterwards."
+    },
+    {
+      "key": "existing-partner",
+      "q": "We already have an SAP partner. Is this a replacement conversation?",
+      "a": "Not necessarily. We are independent and unbiased, and a common starting point is a second read on a plan you already have. If your current partner is doing well, the assessment will say so."
+    },
+    {
+      "key": "who-delivers",
+      "q": "Who actually does the work, and where do they sit?",
+      "a": "Delivery leads based in Kuala Lumpur and Singapore, backed by more than 400 consultants across Asia and 1,500 worldwide. The people in the assessment are the people in the workshops."
+    },
+    {
+      "key": "after-go-live",
+      "q": "What happens after go-live?",
+      "a": "Hypercare first, then AMS and run support, including local issues at overseas sites. More than 95% of our client relationships are long term, which only happens if the run phase is taken as seriously as the build."
+    }
+  ],
+  "news": [
+    {
+      "key": "sapnow-booth-recap",
+      "kind": "Event note",
+      "title": "SAP NOW AI Tour, Singapore: what we showed at the booth",
+      "excerpt": "A live S/4HANA system ran all day at Sands Expo. The three demos, and how the conversation continues as the free assessment.",
+      "date": "4 Aug 2026",
+      "readTime": "3 min read",
+      "category": "Events",
+      "href": "event.html",
+      "status": "published"
+    },
+    {
+      "key": "sapnow-silver-sponsor",
+      "kind": "Programme news",
+      "title": "Tenthpin MC confirmed as Silver Sponsor of the SAP NOW AI Tour",
+      "excerpt": "Southeast Asia 2026, Sands Expo and Convention Centre. Why an implementation partner sponsors an AI tour, in one sentence: the AI runs inside the ERP.",
+      "date": "Jul 2026",
+      "readTime": "2 min read",
+      "category": "Events",
+      "href": "event.html",
+      "status": "published"
+    },
+    {
+      "key": "einvoice-inside-sap",
+      "kind": "Insight · arriving",
+      "title": "The e-invoice mandate, handled inside SAP",
+      "excerpt": "The long-form read on Malaysian e-invoicing as configuration rather than bolt-on. Publishing after native review; gated with a name and an email.",
+      "date": null,
+      "readTime": null,
+      "category": "Insights",
+      "href": null,
+      "status": "in-review",
+      "_pending": "Article not written yet. The card renders as a labelled slot with the meta line \"In review · Insights\"."
+    },
+    {
+      "key": "gxp-validation-s4hana",
+      "kind": "Insight · arriving",
+      "title": "GxP validation on S/4HANA: what actually gets audited",
+      "excerpt": "The life sciences read: validated environments, CSV on GAMP5, and the audit trail a panel actually opens.",
+      "date": null,
+      "readTime": null,
+      "category": "Insights",
+      "href": null,
+      "status": "in-review",
+      "_pending": "Article not written yet. The card renders as a labelled slot with the meta line \"In review · Insights\"."
+    }
+  ],
+  "footerLinks": [
+    {
+      "group": "Services",
+      "items": [
+        {
+          "label": "SAP Grow",
+          "href": "services.html#grow"
+        },
+        {
+          "label": "Rise and Move",
+          "href": "services.html#rise"
+        },
+        {
+          "label": "S/4HANA transition",
+          "href": "services.html#s4"
+        },
+        {
+          "label": "AMS and run support",
+          "href": "services.html#ams"
+        }
+      ]
+    },
+    {
+      "group": "Industries",
+      "items": [
+        {
+          "label": "Automotive",
+          "href": "industries.html#automotive"
+        },
+        {
+          "label": "Manufacturing",
+          "href": "industries.html#manufacturing"
+        },
+        {
+          "label": "Life sciences",
+          "href": "industries.html#lifesciences"
+        },
+        {
+          "label": "Case studies",
+          "href": "cases.html"
+        }
+      ]
+    },
+    {
+      "group": "Company",
+      "items": [
+        {
+          "label": "About",
+          "href": "about.html"
+        },
+        {
+          "label": "News & insights",
+          "href": "news.html"
+        },
+        {
+          "label": "Partners & certifications",
+          "href": "partners.html"
+        },
+        {
+          "label": "Contact",
+          "href": "contact.html"
+        }
+      ]
+    },
+    {
+      "group": "Reach us",
+      "items": [
+        {
+          "label": "Kuala Lumpur · Singapore",
+          "href": null,
+          "isPlainText": true
+        },
+        {
+          "label": "hello@tenthpinmc.com",
+          "href": "mailto:hello@tenthpinmc.com"
+        },
+        {
+          "label": "Part of global Tenthpin · HQ Basel",
+          "href": null,
+          "isPlainText": true
+        },
+        {
+          "label": "Book a free assessment",
+          "href": "contact.html",
+          "isCta": true
+        }
+      ]
+    }
+  ],
+  "footerMeta": {
+    "brand": "Tenthpin",
+    "brandSuffix": "MC",
+    "brandSub": "Management Consultants",
+    "logo": "assets/logo_tenthpin_pos.svg",
+    "tagline": [
+      "Client-Centric.",
+      "Insight-Driven.",
+      "SAP-Focused."
+    ],
+    "base": [
+      "© 2026 Tenthpin Management Consultants",
+      "ISO 9001 · ISO 27001 · AAA rated",
+      "Privacy · Terms · Imprint"
+    ],
+    "legalLinks": [
+      {
+        "label": "Privacy",
+        "href": null
+      },
+      {
+        "label": "Terms",
+        "href": null
+      },
+      {
+        "label": "Imprint",
+        "href": null
+      }
+    ],
+    "_pending": "Privacy, Terms and Imprint render as plain text in the footer base row. No pages or hrefs exist for them yet.",
+    "whatsapp": {
+      "href": "https://wa.me/60000000000",
+      "label": "Ask us on WhatsApp",
+      "_pending": "The WhatsApp number 60000000000 is a placeholder. Replace with the real Tenthpin MC number before launch."
+    }
+  },
+  "event": {
+    "key": "sap-now-ai-tour-2026",
+    "name": "SAP NOW AI Tour Southeast Asia 2026",
+    "shortName": "SAP NOW AI Tour",
+    "zh": "SAP NOW AI 之旅 · 银牌赞助商",
+    "role": "Silver Sponsor",
+    "date": "4 August 2026",
+    "dateISO": "2026-08-04",
+    "venue": "Sands Expo & Convention Centre",
+    "venueDetail": "Level 5",
+    "city": "Singapore",
+    "status": "concluded",
+    "registerHref": "event.html#register",
+    "eventPageHref": "event.html",
+    "boothNumber": null,
+    "stripText": "Silver Sponsor · 4 August 2026 · Sands Expo & Convention Centre, Singapore",
+    "proofstrip": [
+      {
+        "k": "30 min",
+        "label": "Booth conversation"
+      },
+      {
+        "k": "Live",
+        "label": "S/4HANA prototype, not slides"
+      },
+      {
+        "k": "Free",
+        "label": "SAP and AI assessment follow-up"
+      },
+      {
+        "k": "EN · 中文",
+        "label": "Both spoken at the booth"
+      }
+    ],
+    "showcase": [
+      {
+        "key": "01",
+        "title": "A working S/4HANA company",
+        "body": "Our pre-built system content, the same one we use for fit-to-standard workshops. Ask it a question about your process and see the answer."
+      },
+      {
+        "key": "02",
+        "title": "E-invoice inside the ERP",
+        "body": "Malaysian compliance handled as configuration in the finance core rather than as a bolt-on spreadsheet."
+      },
+      {
+        "key": "03",
+        "title": "The delivery process, on paper",
+        "body": "How a migration actually runs, phase by phase, including the cutover rehearsal most partners skip."
+      }
+    ],
+    "_pending": "Booth number is not published. event.html also carries stale chips reading \"Date · to be confirmed\", \"Venue · to be confirmed\" and \"Kuala Lumpur\", plus a note that date, venue and sponsorship tier are pending from the organiser. Those contradict the confirmed 4 Aug 2026 Singapore detail in the same page and in index-v2.html. Reconcile with the client before the React build; the confirmed values are the ones recorded here.",
+    "_note": "register.html is a meta-refresh redirect to event.html now that the event has concluded. index-v2.html still links register.html from the event strip and the hero CTA."
+  },
+  "forms": [
+    {
+      "id": "bookForm",
+      "page": "contact.html",
+      "purpose": "Request the free SAP and AI assessment",
+      "submitLabel": "Book a free assessment",
+      "submitZh": "预约免费评估",
+      "destination": null,
+      "_pending": "No endpoint. The page prints \"Form endpoint not connected yet. Wire this to the Tenthpin mailbox or CRM before launch.\" and assets/tp.js only validates client-side, then shows a note saying nothing was sent.",
+      "fields": [
+        {
+          "name": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true,
+          "autocomplete": "name"
+        },
+        {
+          "name": "company",
+          "label": "Company",
+          "type": "text",
+          "required": true,
+          "autocomplete": "organization"
+        },
+        {
+          "name": "email",
+          "label": "Work email",
+          "type": "email",
+          "required": true,
+          "autocomplete": "email"
+        },
+        {
+          "name": "phone",
+          "label": "Phone, optional",
+          "type": "tel",
+          "required": false,
+          "autocomplete": "tel"
+        },
+        {
+          "name": "stack",
+          "label": "What you run on SAP today",
+          "type": "select",
+          "required": false,
+          "options": [
+            "ECC, planning the move",
+            "S/4HANA, already live",
+            "Non-SAP, evaluating",
+            "Mixed landscape",
+            "Not sure yet"
+          ]
+        },
+        {
+          "name": "context",
+          "label": "Anything we should know",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "Timeline, plants or entities in scope, the decision you are trying to make."
+        }
+      ],
+      "nextSteps": [
+        {
+          "n": "01",
+          "title": "We reply within one working day",
+          "body": "A short note confirming the fit and proposing two times."
+        },
+        {
+          "n": "02",
+          "title": "Sixty minutes, no slide deck",
+          "body": "Your landscape, your pressure points, and the questions a plan has to answer."
+        },
+        {
+          "n": "03",
+          "title": "You receive the written read",
+          "body": "The path, the AI opportunities, the sequence, and what to decide first."
+        }
+      ]
+    },
+    {
+      "id": "bookForm",
+      "page": "event.html",
+      "purpose": "Reserve a thirty-minute booth or follow-up slot",
+      "submitLabel": "Reserve a slot",
+      "submitZh": "预约展位时段",
+      "destination": null,
+      "_pending": "No endpoint. The page prints \"Form endpoint not connected yet. Wire this to the Tenthpin mailbox or CRM before the event.\" The id collides with the contact.html form, so the React build should namespace them.",
+      "fields": [
+        {
+          "name": "name",
+          "label": "Name",
+          "type": "text",
+          "required": true,
+          "autocomplete": "name"
+        },
+        {
+          "name": "company",
+          "label": "Company",
+          "type": "text",
+          "required": true,
+          "autocomplete": "organization"
+        },
+        {
+          "name": "email",
+          "label": "Work email",
+          "type": "email",
+          "required": true,
+          "autocomplete": "email"
+        },
+        {
+          "name": "phone",
+          "label": "Phone, optional",
+          "type": "tel",
+          "required": false,
+          "autocomplete": "tel"
+        },
+        {
+          "name": "stack",
+          "label": "What you run on SAP today",
+          "type": "select",
+          "required": false,
+          "options": [
+            "ECC, planning the move",
+            "S/4HANA, already live",
+            "Non-SAP, evaluating",
+            "Mixed landscape",
+            "Not sure yet"
+          ]
+        },
+        {
+          "name": "context",
+          "label": "What you want to see at the booth",
+          "type": "textarea",
+          "required": false,
+          "placeholder": "A process, a compliance question, or the migration decision you are weighing."
+        }
+      ],
+      "nextSteps": [
+        {
+          "n": "01",
+          "title": "SAP NOW AI Tour",
+          "body": "Tenthpin MC attends as a sponsor. Sponsorship tier to be confirmed against the event pack."
+        },
+        {
+          "n": "02",
+          "title": "Date and venue",
+          "body": "Tuesday 4 August 2026, Level 5, Sands Expo & Convention Centre, Singapore. Tenthpin MC is a Silver Sponsor."
+        },
+        {
+          "n": "03",
+          "title": "Who will be there",
+          "body": "Delivery leads from Kuala Lumpur and Singapore, so the answers come from people who run the work."
+        },
+        {
+          "n": "04",
+          "title": "Cannot make it",
+          "body": "The free assessment runs all year. Book it here instead.",
+          "href": "contact.html"
+        }
+      ]
+    }
+  ]
+}

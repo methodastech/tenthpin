@@ -1,0 +1,5 @@
+# local backups made while editing (git history replaces them)
+*.bak
+*.orig.jpg
+*.v1.png
+_backup-before-midnight-cosmo/

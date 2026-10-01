@@ -1,0 +1,62 @@
+/* about.html · page-local styles.
+   Loaded AFTER assets/tp.css so the cascade order is unchanged.
+   Utilities below replace former inline style="" attributes one for one. */
+
+.abt-u-mt3{margin-top:var(--s3)}
+.abt-u-mt4{margin-top:var(--s4)}
+.abt-u-mt5{margin-top:var(--s5)}
+.abt-u-mt6{margin-top:var(--s6)}
+.abt-u-mt7{margin-top:var(--s7)}
+
+/* ── the what-we-are pillars as a pinned column strip · 10 Aug ──
+   The Copyco blindspots mechanic re-set in the house system: paper cards,
+   hairline dividers, brand-blue chips and dither art, squared boxes.
+   Desktop scrolls the strip horizontally under a pin; under 901px or
+   reduced motion it stacks into expandable cards. */
+.abtc{height:520vh;background:var(--bg)}
+.abtc-pin{height:100vh;overflow:hidden;display:flex;align-items:stretch;
+  padding-top:clamp(118px,13vh,164px);background:var(--bg)}
+.abtc-track{display:flex;align-items:stretch;height:100%;will-change:transform}
+.abtc-card{position:relative;flex:0 0 auto;width:16vw;height:100%;background:var(--bg2,#fff);
+  border-right:1px solid var(--line2);padding:clamp(18px,2vw,34px) clamp(16px,1.6vw,30px) clamp(24px,4vh,52px);
+  display:flex;flex-direction:column;overflow:hidden;--t:0}
+.abtc-card:first-child{border-left:1px solid var(--line2)}
+.abtc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex:none}
+.abtc-n{background:var(--blue);color:#fff;padding:3px 7px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.12em;line-height:1.2}
+.abtc-art{width:clamp(52px,4.6vw,88px);height:clamp(52px,4.6vw,88px);image-rendering:pixelated;opacity:.85;flex:none}
+.abtc-title{margin-top:auto;margin-bottom:clamp(16px,3vh,34px);
+  font-family:"Space Grotesk";font-weight:500;letter-spacing:-.02em;line-height:1.06;
+  font-size:clamp(1.35rem,2.3vw,2.4rem);color:var(--ink);
+  opacity:calc((var(--t) - .12) * 2.2)}
+.abtc-toggle{all:unset;text-align:left;font:inherit;letter-spacing:inherit;color:inherit;cursor:default}
+.abtc-content{flex:none;margin-bottom:auto;pointer-events:none;
+  opacity:calc((var(--t) - .24) * 3.2);
+  clip-path:inset(0 0 clamp(0%,calc((.66 - var(--t)) * 280%),100%) 0)}
+.abtc-card.is-full .abtc-content{pointer-events:auto}
+.abtc-lbl{display:inline-block;background:var(--blue);color:#fff;padding:4px 8px;margin-bottom:14px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.abtc-p{font-size:clamp(.9rem,.98vw,1.02rem);line-height:1.6;color:var(--soft);max-width:36ch}
+.abtc-spine{position:absolute;left:clamp(16px,1.6vw,30px);bottom:clamp(24px,4vh,52px);
+  font-family:"Space Grotesk";font-weight:500;letter-spacing:-.01em;color:var(--ink);
+  font-size:clamp(.95rem,1.1vw,1.25rem);opacity:calc(1 - var(--t) * 3);
+  white-space:nowrap;max-width:calc(100% - 2 * clamp(16px,1.6vw,30px));overflow:hidden;text-overflow:ellipsis}
+@media (max-width:900px),(prefers-reduced-motion:reduce){
+  .abtc{height:auto}
+  .abtc-pin{height:auto;padding-top:0;display:block}
+  .abtc-track{display:block;height:auto;transform:none!important;border-top:1px solid var(--line2)}
+  .abtc-card{width:100%!important;height:auto;border-right:0;border-left:0!important;
+    border-bottom:1px solid var(--line2);padding:clamp(20px,4vw,34px) var(--gut);--t:1!important}
+  .abtc-top{margin-bottom:18px}
+  .abtc-title{margin-top:0;margin-bottom:0;font-size:clamp(1.4rem,6vw,2rem)}
+  .abtc-toggle{cursor:pointer;width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0}
+  .abtc-toggle::after{content:"+";font-family:"Inter",sans-serif;font-weight:600;font-size:1.3rem;color:var(--ink);
+    transition:transform .3s cubic-bezier(.22,1,.36,1)}
+  .abtc-card.is-open .abtc-toggle::after{transform:rotate(45deg)}
+  .abtc-content{clip-path:none;pointer-events:auto;display:grid;grid-template-rows:0fr;opacity:0;
+    transition:grid-template-rows .42s cubic-bezier(.22,1,.36,1),opacity .3s cubic-bezier(.22,1,.36,1)}
+  .abtc-card.is-open .abtc-content{grid-template-rows:1fr;opacity:1;padding-top:20px}
+  .abtc-content-in{overflow:hidden}
+  .abtc-spine{display:none}
+  .abtc-p{max-width:none}
+}

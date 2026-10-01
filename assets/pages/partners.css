@@ -1,0 +1,90 @@
+/* ───────────────────────────────────────────────
+   PAGE-LOCAL CSS · partners.html + /partners route
+   Rebuilt 13 Aug to the reference layout (dark particle
+   hero, centred sections, logo grid, credentials, navy
+   CTA band). Realigned 14 Aug to the house system: the
+   page keeps its LAYOUT but drops its own design
+   language. Every box is square (10 Aug client rule,
+   premium.css L42), every colour comes from the tp.css
+   tokens or the locked navy family #06156A, and the
+   button is the shared .cta. Loaded after assets/tp.css
+   and premium.css.
+
+   Dark surfaces (.phero, .cta-band) sit outside
+   .dark-band, so their accents are written as the house
+   dark-band literals: eyebrow/accent #8C9EFF (--cyan on
+   dark), shade family #0B1526 #11203A #06156A #1A3050.
+   ─────────────────────────────────────────────── */
+
+/* shared page primitives */
+.pwrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.pcenter{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);text-align:center}
+.p-eyebrow{display:block;font:700 10px "Inter",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--blue)}
+.psec{padding:clamp(54px,8vh,92px) 0;background:var(--bg2)}
+.psec.alt{background:var(--bg)}
+.psec h2{font:600 clamp(24px,2.4vw,33px)/1.15 "Space Grotesk",sans-serif;letter-spacing:-.015em;color:var(--ink);margin:13px 0 0}
+.p-sub{margin:14px auto 0;max-width:540px;color:var(--soft);font-size:14.5px;line-height:1.65}
+
+/* hero · dark, particle wave right */
+.phero{position:relative;overflow:hidden;background:#0B1020;color:#fff;padding:clamp(72px,11vh,128px) 0}
+.phero .pcloud{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.phero-in{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.phero .p-eyebrow{color:#8C9EFF}
+.phero h1{font:500 clamp(36px,4.3vw,58px)/1.07 "Space Grotesk",sans-serif;letter-spacing:-.022em;color:#fff;margin:16px 0 0}
+.phero h1 em{font-style:normal;color:#8C9EFF}
+.p-lede{margin:22px 0 0;max-width:430px;font-size:15px;line-height:1.7;color:rgba(232,238,250,.72)}
+
+/* technology partners · logo grid, each card links out */
+.prow{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:44px}
+@media (min-width:1180px){.prow{grid-template-columns:repeat(6,1fr)}}
+.pcard{border:1px solid var(--line2);background:#fff;padding:28px 16px 22px;display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:4px;text-decoration:none;color:inherit;
+  transition:border-color .3s,transform .3s,box-shadow .3s}
+.pcard:hover{border-color:var(--blue);transform:translateY(-3px);box-shadow:0 18px 36px -24px rgba(6,21,106,.28)}
+.pcard-logo{height:52px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.pcard-logo img{max-height:36px;max-width:128px;width:auto}
+.pcard-word{font:700 15.5px "Space Grotesk",sans-serif;letter-spacing:.08em;color:var(--blue);text-transform:uppercase}
+.pcard-word.hw{color:#C7000B} /* Huawei's own mark colour, not a site accent */
+.pcard b{font:600 14.5px "Space Grotesk",sans-serif;letter-spacing:-.01em;color:var(--ink)}
+.pcard-k{font:500 11px Inter,sans-serif;color:var(--faint)}
+
+/* why partner · four icon columns · square navy badge, as the house chips */
+.wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;margin-top:46px;text-align:center}
+.witem .wic{width:46px;height:46px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 15px}
+.witem .wic svg{width:22px;height:22px}
+.witem b{display:block;font:600 14.5px "Space Grotesk",sans-serif;letter-spacing:-.01em;color:var(--ink)}
+.witem p{margin:8px auto 0;max-width:230px;font-size:12.5px;line-height:1.65;color:var(--soft)}
+
+/* credentials list · identical to the news.html house card, so the two pages
+   render the same component. Keep these six rules in step with news.css. */
+.newslist{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:var(--s5)}
+.newsitem{display:flex;flex-direction:column;gap:9px;border:1px solid var(--line2);background:#fff;padding:20px 22px;text-decoration:none;color:inherit;transition:border-color .3s,transform .3s}
+a.newsitem:hover{border-color:var(--blue);transform:translateY(-3px)}
+.newsitem .nk{font:700 9.5px "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.newsitem.slot .nk{color:var(--faint)}
+.newsitem h3{font:500 19px/1.3 "Space Grotesk",sans-serif;letter-spacing:-.015em;margin:0}
+.newsitem p{font-size:13.5px;color:var(--soft);line-height:1.6;margin:0}
+.newsitem .nmeta{margin-top:auto;padding-top:10px;border-top:1px dashed rgba(16,22,38,.14);font:600 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.newsitem.slot{background:repeating-linear-gradient(135deg,#FBFCFE 0 14px,#F4F6FB 14px 28px)}
+
+/* collaborate · squared navy band, particle right, shared .cta button.
+   The band darkens to the left so the navy .cta reads against it, the same
+   way the SAP NOW event band carries its button. */
+.cta-band{position:relative;overflow:hidden;color:#fff;padding:clamp(40px,6vw,64px) clamp(26px,5vw,58px);
+  background:linear-gradient(102deg,#0B1526 0%,#11203A 46%,#1A3050 100%)}
+.cta-band .pcloud{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.cta-band-in{position:relative;z-index:1;max-width:560px}
+.cta-band .p-eyebrow{color:#8C9EFF}
+.cta-band h2{color:#fff}
+.cta-band p{margin:14px 0 0;font-size:14.5px;line-height:1.7;color:rgba(232,238,250,.75)}
+.cta-band .cta{margin-top:26px}
+.cta-band .cta b{font-weight:700;margin-left:2px;transition:transform .3s ease}
+.cta-band .cta:hover b{transform:translateX(3px)}
+
+/* honesty note */
+.anon-note{margin-top:12px;font-size:12.5px;color:var(--faint)}
+
+/* Utilities replacing former inline style="" attributes */
+.partners-u-mt5{margin-top:var(--s5)}
+.partners-u-mt4{margin-top:var(--s4)}
+.partners-u-mt14{margin-top:14px}

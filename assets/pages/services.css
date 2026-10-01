@@ -1,0 +1,7 @@
+/* services.html · page-local styles.
+   Loaded AFTER assets/tp.css so the cascade order is unchanged.
+   Utilities below replace former inline style="" attributes one for one. */
+
+.svc-u-mt4{margin-top:var(--s4)}
+.svc-u-mt5{margin-top:var(--s5)}
+.svc-u-mt6{margin-top:var(--s6)}

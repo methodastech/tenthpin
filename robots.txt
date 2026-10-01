@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /portal.html
+Sitemap: https://tenthpinmc.com/sitemap.xml

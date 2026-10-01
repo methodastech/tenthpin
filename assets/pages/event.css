@@ -1,0 +1,134 @@
+/* ───────────────────────────────────────────────
+   PAGE-LOCAL CSS · event.html
+   Loaded after assets/tp.css. Nothing here changes
+   the rendered result: these are the former inline
+   style="" declarations, lifted verbatim.
+   ─────────────────────────────────────────────── */
+
+/* Utilities replacing former inline style="" attributes */
+.event-u-mt6{margin-top:var(--s6)}
+.event-u-mt5{margin-top:var(--s5)}
+.event-u-mt3{margin-top:var(--s3)}
+.event-u-linkblue{color:var(--blue-bright)}
+
+/* 17 Sep 2026 · the phase pair stacks on a phone. At 390 the two columns were
+   148px each and the bullets read three words to a line. (House rule: every
+   phone stack is restated at the END of the sheet.) */
+@media (max-width:640px){
+  /* premium.css:129 sets auto-fit minmax(140px,1fr), which still fits two
+     columns in a 306px card: name the single column explicitly */
+  .evphases{grid-template-columns:1fr!important}
+}
+
+/* 23 Sep 2026 · the stands and the room, Tenthpin's own photographs. Three
+   frames of one shape so the row reads as one set; caption under each. */
+.evshots{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.2vw,34px)}
+.evshots figure{margin:0}
+.evshots img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;background:#E4ECF9}
+.evshots figcaption{margin-top:14px}
+.evshots figcaption b{display:block;font-size:16px;letter-spacing:-.01em}
+.evshots figcaption span{display:block;margin-top:4px;font-size:14px;line-height:1.5;color:var(--soft,#4B5A73)}
+
+/* the phone stack, restated last (house rule) */
+@media (max-width:860px){
+  .evshots{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .evphases{grid-template-columns:1fr!important}
+  .evshots{grid-template-columns:1fr;gap:26px}
+}
+
+/* ══ 29 Sep 2026 · PAST EVENTS (/events/) ══════════════════════════════════
+   Arifee: the past events replace the Case studies page. One row per event,
+   newest first: their own photographs on one side (a lead frame, and up to
+   two more stacked beside it to the lead's exact height), the date, place,
+   title, our role, one line and what we showed on the other. Rows alternate
+   sides for rhythm. Pictures hold still: no zoom, no lift, no shadow. */
+.evx-list{display:grid;gap:clamp(64px,8vw,120px);margin-top:clamp(36px,5vh,64px)}
+.evx{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,3.6vw,68px);align-items:center;scroll-margin-top:120px}
+.evx.flip .evx-pics{order:2}
+.evx-pics{display:grid;gap:12px}
+.evx-pics.n2,.evx-pics.n3{grid-template-columns:2fr 1fr}
+.evx-pics .evx-more{display:grid;gap:12px}
+.evx-pics.n2 .evx-more{grid-template-rows:1fr}
+.evx-pics.n3 .evx-more{grid-template-rows:1fr 1fr}
+.evx-shot{position:relative;margin:0;overflow:hidden;background:#E4ECF9;aspect-ratio:4/3}
+.evx-more .evx-shot{aspect-ratio:auto;height:100%;min-height:0}
+.evx-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.evx-meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;font:600 13.5px/1.4 "Inter",sans-serif;color:var(--p3-elec,#0520F5)}
+.evx-meta span+span{color:var(--p3-soft,#4A5872);font-weight:500}
+.evx-copy h3{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;line-height:1.14;font-size:clamp(22px,2.05vw,31px);margin:12px 0 0;color:#0D1526;text-wrap:balance}
+.evx-role{display:inline-flex;align-items:center;gap:9px;margin:14px 0 0;font:600 13px/1.4 "Inter",sans-serif;color:var(--p3-navy,#06156A)}
+.evx-role::before{content:"";width:6px;height:6px;background:var(--p3-elec,#0520F5);flex:0 0 auto}
+.evx-sum{margin:12px 0 0;font-size:16px;line-height:1.62;color:var(--p3-soft,#4A5872);max-width:46ch;text-wrap:pretty}
+.evx-pts{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.evx-pts li{position:relative;padding-left:20px;font-size:14.5px;line-height:1.5;color:#0D1526;text-wrap:pretty}
+.evx-pts li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--p3-elec,#0520F5)}
+.evx-up{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(28px,4vh,48px)}
+.evx-upcard{background:var(--p3-cool,#F4F7FC);padding:clamp(20px,2vw,28px)}
+.evx-upcard h3{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:21px;line-height:1.2;margin:10px 0 0}
+.evx-go{display:inline-flex;gap:6px;margin-top:14px;font:600 14px "Inter",sans-serif;color:var(--p3-elec,#0520F5);text-decoration:none}
+.evx-close{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px clamp(28px,4vw,72px);align-items:end;background:var(--p3-cool,#F4F7FC);padding:clamp(28px,4vw,60px)}
+.evx-close .lede{margin:14px 0 0;max-width:52ch}
+.evx-close .p3c-actions{margin-top:0}
+/* the pictures keep the wide column on either side, and the picture column
+   is never shorter than the words beside it (the site rule for any picture
+   beside copy): each lead frame keeps its 4:3 as a floor, measured against
+   its own column (cqw), and grows with the words when they run longer */
+.evx{align-items:stretch}
+.evx.flip{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}
+.evx-copy{align-self:center}
+.evx-pics{container-type:inline-size;align-self:stretch}
+.evx-pics>.evx-shot{aspect-ratio:auto;height:100%;min-height:75cqw}
+.evx-pics.n2>.evx-shot,.evx-pics.n3>.evx-shot{min-height:50cqw}
+.evx-pics.n2,.evx-pics.n3{grid-template-rows:minmax(0,1fr)}
+.evx-pics .evx-more{height:100%}
+/* the phone stack, restated last (house rule) */
+@media (max-width:1000px){
+  .evx{grid-template-columns:minmax(0,1fr)}
+  .evx.flip .evx-pics{order:0}
+  .evx.flip{grid-template-columns:minmax(0,1fr)}
+  .evx-up{grid-template-columns:minmax(0,1fr)}
+  .evx-close{grid-template-columns:minmax(0,1fr);align-items:start}
+}
+@media (max-width:640px){
+  .evx-list{gap:56px}
+  .evx-pics.n2,.evx-pics.n3{grid-template-columns:1fr 1fr}
+  .evx-pics.n2>.evx-shot,.evx-pics.n3>.evx-shot{grid-column:1 / -1}
+  .evx-pics .evx-more{grid-column:1 / -1;grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .evx-pics.n2 .evx-more{grid-template-columns:1fr}
+  .evx-more .evx-shot{aspect-ratio:4/3;height:auto}
+  .evx-pics.n2>.evx-shot,.evx-pics.n3>.evx-shot{min-height:75cqw}
+  .evx-more .evx-shot{min-height:0}
+  .evx-pics .evx-more{height:auto}
+  .evx-copy h3{font-size:22px}
+  .evx-sum{font-size:15px}
+}
+
+/* upcoming events: poster, access note, agenda, two links */
+.evx-up{align-items:start}
+.evx-upcard.has-poster{padding:0;display:flex;flex-direction:column}
+.evx-upcard .evx-upbody{display:flex;flex-direction:column}
+.evx-upcard.has-poster .evx-upbody{padding:clamp(20px,2vw,28px)}
+.evx-poster{display:block;aspect-ratio:4/5;background:#06156A;overflow:hidden}
+.evx-poster img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.evx-poster:hover img{transform:scale(1.02)}
+.evx-poster:focus-visible{outline:2px solid #0520F5;outline-offset:3px}
+.evx-access{margin:14px 0 0;padding-left:12px;border-left:2px solid #0520F5;font-size:14px;line-height:1.55;color:var(--p3-navy,#06156A)}
+.evx-agenda{list-style:none;margin:16px 0 0;padding:14px 0 0;border-top:1px solid rgba(6,21,106,.12);display:grid;gap:8px}
+.evx-agenda li{display:grid;grid-template-columns:52px 1fr;gap:10px;font-size:14px;line-height:1.5;color:var(--p3-soft,#4A5872)}
+.evx-agenda b{font:600 13px/1.5 "Inter",sans-serif;color:#0520F5;font-variant-numeric:tabular-nums}
+.evx-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:20px}
+.evx-links .evx-go{margin-top:0}
+.evx-links .evx-go:first-child{background:#06156A;color:#fff;padding:12px 18px;font-family:"Space Grotesk",sans-serif;letter-spacing:.02em;transition:background .2s}
+.evx-links .evx-go:first-child:hover{background:#0520F5}
+.evx-links .evx-go.alt:hover,.evx-go:hover b{transform:translateX(2px)}
+.evx-go b{transition:transform .2s}
+/* fill the frame around a poster with a soft blur of the poster itself, so the colour always matches */
+.evx-poster{position:relative;isolation:isolate}
+.evx-poster::before{content:"";position:absolute;inset:-30px;z-index:-1;background:var(--poster) center/cover no-repeat;filter:blur(26px) saturate(1.1);opacity:.95}
+/* equal-height cards, buttons on one line at the bottom */
+.evx-up{align-items:stretch}
+.evx-upcard{display:flex;flex-direction:column}
+.evx-upcard .evx-upbody{flex:1}
+.evx-upcard .evx-links{margin-top:auto;padding-top:20px}

@@ -1,0 +1,961 @@
+/* ==========================================================================
+   servicesv2.css · page-local styles for the /servicesv2 hub study
+   --------------------------------------------------------------------------
+   REBUILT 2 SEP against the client's reference image, which is the layout
+   SPECIFICATION, not inspiration. The composition rules that matter:
+
+     hero        ~580px, 42/58, the photograph bleeds from mid-page to the
+                 RIGHT VIEWPORT EDGE and melts into the hero with a soft
+                 left fade — never a bordered rectangle. H1 at 58–68px.
+     strip       tall clean capability strip under the hero, ~90px.
+     cards       soft shadow, light border, SMALL RADIUS, wide 4:3 images,
+                 28–32px content padding, equal heights.
+     table       rounded shell, roomy vertical padding — not compressed.
+     panels      three-zone feature panels: photo 40 / copy 42 / WebGL 18,
+                 the second reversed, both the same height.
+     map         DOTTED blue connectors with travelling pulses, Live SAP
+                 visually the strongest node.
+     CTA         ~280px navy band: copy left, buttons CENTRE, artwork
+                 right over a faint technical grid.
+
+   CORNERS: SHARP. The reference rounds its cards; the client re-confirmed
+   on 2 Sep that the 27 Aug sharp-edge rule stands, so every radius token
+   here is zero and only the 6px pulse dots would even be eligible.
+
+   WEBGL BUDGET (per the reference): hero route · two feature-panel nets ·
+   CTA nodes — all m26-sv-scenes.js, all hidden under 760px, and the
+   feature nets leave first (under 1100px) because their column goes.
+
+   CONTAINER = .nav-in metrics (1400px / clamp gut) so gutters align with
+   the header, per the 1 Sep correction.
+
+   ORDER
+   00 tokens · 01 primitives · 02 hero · 03 routes · 04 comparison ·
+   05 feature panels · 06 the map · 07 CTA · 08 responsive · 09 motion
+   ========================================================================== */
+
+/* --- 00 · TOKENS --------------------------------------------------------- */
+.sv{
+  --ink:#0D1526;
+  --navy:#06156A;
+  --elec:#0520F5;
+  --soft:#4A5872;
+  --faint:#7B879D;
+  --paper:#FFFFFF;
+  --cool:#F4F7FC;
+  --pale:#E4ECF9;
+  --hair:rgba(13,21,38,.10);
+  --hair2:rgba(13,21,38,.17);
+  --dot:rgba(5,32,245,.5);           /* dotted connector blue */
+  --r:0px;                             /* SHARP EDGES, per the standing rule */
+  --r2:0px;
+  --shadow:0 14px 34px -22px rgba(6,21,106,.28);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --gut:clamp(16px,2.6vw,44px);        /* = .nav-in, aligns with the header */
+  --gap-band:clamp(56px,7.5vh,88px);
+  --gap-head:clamp(20px,3vh,30px);
+  --gap-col:clamp(18px,2vw,28px);
+  background:var(--paper);
+  color:var(--ink);
+  display:block;
+  overflow-x:clip;
+}
+
+/* --- 01 · PRIMITIVES ----------------------------------------------------- */
+.sv-in{width:min(1400px,100%);margin:0 auto;padding:0 var(--gut)}
+.sv-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;line-height:1.12;
+  font-size:clamp(27px,3.2vw,46px);margin:12px 0 0;max-width:900px}
+/* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
+   prototype 3). Where the heading is now first in its column it no longer
+   needs the space the eyebrow used to sit in. */
+.sv-h:first-child,.sv h1:first-child{margin-top:0}
+.sv-h em{font-style:normal;color:var(--elec)}
+.sv-cta{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;background:var(--elec);color:#fff;
+  border-radius:var(--r2);
+  font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;transition:background .25s var(--ease),transform .25s var(--ease)}
+.sv-cta:hover{background:var(--navy);transform:translateY(-2px)}
+.sv-cta.ghost{background:var(--paper);color:var(--navy);box-shadow:inset 0 0 0 1px var(--hair2)}
+.sv-cta.ghost:hover{background:var(--cool);color:var(--navy)}
+.sv-cue{display:inline-flex;align-items:center;gap:8px;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;
+  font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--elec);text-decoration:none}
+.sv-cue b{font-weight:700;transition:transform .25s var(--ease)}
+.sv-cue:hover b{transform:translateX(5px)}
+.sv-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.sv-band{padding:var(--gap-band) 0 0}
+.sv-band.cool{background:var(--cool);padding:var(--gap-band) 0;margin-top:var(--gap-band)}
+.sv-ic{width:17px;height:17px;flex:none;display:block}
+.sv-tags{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+.sv-tag{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--soft);background:var(--cool);border:1px solid var(--hair);
+  padding:5px 9px}
+.sv-stage{pointer-events:none}
+.sv-stage canvas{display:block;width:100%;height:100%}
+
+/* --- 02 · HERO · the photo owns the right half of the viewport ----------- */
+.sv-hero{overflow:clip}
+.sv-hero-main{position:relative;min-height:clamp(540px,64vh,620px);display:flex;align-items:center}
+.sv-hero-fig{position:absolute;top:0;bottom:0;left:45%;right:0;margin:0}
+.sv-hero-fig img{width:100%;height:100%;object-fit:cover;display:block}
+/* the blend: the image melts into the hero instead of sitting in a box */
+.sv-hero-fig::before{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,var(--paper) 0%,rgba(255,255,255,.55) 9%,transparent 26%),
+             linear-gradient(0deg,rgba(255,255,255,.5) 0%,transparent 16%)}
+.sv-hero-fig .sv-stage{position:absolute;left:-8%;right:0;bottom:-2%;height:60%;z-index:2}
+.sv-hero-copy{position:relative;z-index:3;width:min(560px,46%);padding:clamp(28px,5vh,56px) 0}
+.sv-hero-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
+  font-size:clamp(38px,4.4vw,64px);margin:14px 0 0}
+.sv-hero-copy h1 em{font-style:normal;color:var(--elec)}
+.sv-sub{font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.65;color:var(--soft);max-width:480px;margin:18px 0 26px}
+/* the capability strip: tall and calm, three items, generous spacing */
+.sv-caps{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.sv-cap{display:flex;align-items:center;justify-content:center;gap:12px;padding:33px 12px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--soft)}
+.sv-cap .sv-ic{color:var(--elec);width:18px;height:18px}
+.sv-cap + .sv-cap{border-left:1px solid var(--hair)}
+
+/* --- 03 · THE THREE ROUTES · soft cards, wide images --------------------- */
+.sv-routes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap-col);margin-top:var(--gap-head)}
+.sv-route{display:flex;flex-direction:column;min-width:0;color:inherit;text-decoration:none;
+  border:1px solid var(--hair);border-radius:var(--r);overflow:hidden;background:var(--paper);
+  box-shadow:var(--shadow);transition:border-color .25s var(--ease),transform .3s var(--ease)}
+.sv-route:hover{border-color:var(--hair2);transform:translateY(-3px)}
+.sv-route-shot{margin:0;overflow:hidden;background:var(--pale)}
+.sv-route-shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;
+  transition:transform .8s var(--ease)}
+.sv-route:hover .sv-route-shot img{transform:scale(1.035)}
+.sv-route em{display:block;margin:24px 28px 0;font-style:normal;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--elec)}
+.sv-route > b{display:block;margin:9px 28px 0;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  letter-spacing:-.015em;line-height:1.25;font-size:clamp(18px,1.7vw,24px)}
+.sv-ben{list-style:none;margin:14px 28px 0;padding:0;display:grid;gap:8px}
+.sv-ben li{display:flex;align-items:flex-start;gap:9px;font-size:14.5px;line-height:1.45;color:var(--soft)}
+.sv-ben .sv-ic{width:15px;height:15px;margin-top:2px;color:var(--elec)}
+.sv-route .sv-cue{margin:16px 28px 26px}
+.sv-route:hover .sv-cue b{transform:translateX(5px)}
+
+/* --- 04 · COMPARISON · rounded shell, roomy rows -------------------------- */
+.sv-tablewrap{margin-top:var(--gap-head);border:1px solid var(--hair);border-radius:var(--r);
+  overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
+.sv-table{width:100%;border-collapse:collapse}
+.sv-table th,.sv-table td{text-align:left;vertical-align:middle;padding:19px 22px}
+.sv-table thead th{background:var(--navy);color:#fff;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  letter-spacing:-.01em;font-size:16.5px;border-left:1px solid rgba(255,255,255,.12)}
+.sv-table thead th:first-child{border-left:0}
+.sv-table tbody th{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--soft);width:19%}
+.sv-th-lab{display:flex;align-items:center;gap:10px}
+.sv-th-lab .sv-ic{width:16px;height:16px;color:var(--elec)}
+.sv-table tbody td{font-size:15.5px;line-height:1.5;color:var(--ink);border-left:1px solid var(--hair)}
+.sv-table tbody tr + tr th,.sv-table tbody tr + tr td{border-top:1px solid var(--hair)}
+.sv-table tbody tr:nth-child(even){background:rgba(244,247,252,.55)}
+
+/* --- 05 · ONCE YOU ARE LIVE · three-zone feature panels -------------------
+   photo 40 / copy 42 / WebGL 18, the second panel mirrored. The narrow
+   third zone is what keeps these from reading as plain 50/50 rows. */
+.sv-feat{display:grid;grid-template-columns:40% minmax(0,1fr) 18%;align-items:stretch;
+  margin-top:var(--gap-head);border:1px solid var(--hair);border-radius:var(--r);overflow:hidden;
+  background:var(--paper);box-shadow:var(--shadow)}
+.sv-feat + .sv-feat{margin-top:var(--gap-col)}
+.sv-feat-shot{margin:0;overflow:hidden;background:var(--pale);min-width:0}
+.sv-feat-shot img{display:block;width:100%;height:100%;min-height:330px;object-fit:cover}
+.sv-feat-body{min-width:0;padding:clamp(26px,2.8vw,44px);align-self:center}
+.sv-feat-viz{position:relative;min-width:0;align-self:stretch;
+  background:linear-gradient(180deg,rgba(5,32,245,.035),transparent 65%)}
+.sv-feat.rev{grid-template-columns:18% minmax(0,1fr) 40%}
+.sv-feat.rev .sv-feat-shot{order:3}
+.sv-feat.rev .sv-feat-body{order:2}
+.sv-feat.rev .sv-feat-viz{order:1}
+.sv-feat h3{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;line-height:1.16;
+  font-size:clamp(22px,2.4vw,32px);margin:12px 0 0}
+.sv-feat h3 em{font-style:normal;color:var(--elec)}
+.sv-feat p{font-size:15.5px;line-height:1.65;color:var(--soft);max-width:470px;margin:12px 0 0}
+.sv-feat .sv-actions{margin-top:17px}
+
+/* --- 06 · THE MAP · dotted routes, Live SAP strongest --------------------- */
+.sv-map{margin-top:var(--gap-head)}
+.sv-map-grid{display:grid;align-items:center;row-gap:15px;
+  grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr) 44px minmax(0,1fr) 44px minmax(0,1fr)}
+/* boxes */
+.sv-nd{position:relative;display:flex;align-items:center;gap:11px;padding:13px 16px;min-width:0;
+  border:1px solid var(--hair2);border-radius:var(--r2);background:var(--paper);
+  font-size:14.5px;font-weight:600;letter-spacing:-.01em;line-height:1.3;color:var(--ink);text-decoration:none}
+.sv-nd .sv-ic{width:16px;height:16px;color:var(--soft)}
+a.sv-nd{transition:border-color .25s var(--ease),color .25s var(--ease)}
+a.sv-nd:hover{border-color:var(--elec);color:var(--elec)}
+a.sv-nd:hover .sv-ic{color:var(--elec)}
+.sv-rtnd{border-left:2px solid var(--elec)}
+.sv-rtnd .sv-ic{color:var(--elec)}
+/* explicit placement */
+.sv-mst1{grid-area:1/1/2/2}.sv-mst2{grid-area:2/1/3/2}.sv-mst3{grid-area:3/1/4/2}
+.sv-cn1{grid-area:1/2/2/3}.sv-cn2{grid-area:2/2/3/3}.sv-cn3{grid-area:3/2/4/3}
+.sv-mrt1{grid-area:1/3/2/4}.sv-mrt2{grid-area:2/3/3/4}.sv-mrt3{grid-area:3/3/4/4}
+.sv-brkl{grid-area:1/4/4/5}.sv-livebox{grid-area:1/5/4/6}.sv-brkr{grid-area:1/6/4/7}
+.sv-aft{grid-area:1/7/4/8}
+/* dotted straight connectors, each carrying a travelling pulse */
+.sv-cn{position:relative;height:0;border-top:2px dotted var(--dot)}
+.sv-cn::after{content:"";position:absolute;top:-4px;left:0;width:6px;height:6px;
+  background:var(--elec);animation:svPulse 2.8s linear infinite}
+.sv-cn2::after{animation-delay:.9s}
+.sv-cn3::after{animation-delay:1.8s}
+/* brackets: a dotted vertical spine, fed by dotted stubs either side */
+.sv-brk{position:relative;height:100%;min-height:100%}
+.sv-brk::before{content:"";position:absolute;left:50%;width:0;border-left:2px dotted var(--dot)}
+.sv-brkl::before{top:16%;bottom:16%}
+.sv-brkr::before{top:24%;bottom:24%}
+.sv-brkl::after{content:"";position:absolute;top:50%;left:50%;right:0;height:0;border-top:2px dotted var(--dot)}
+.sv-mrt::after{content:"";position:absolute;top:50%;left:100%;width:22px;height:0;border-top:2px dotted var(--dot)}
+/* the destination node: visually the strongest thing in the diagram */
+.sv-livebox{position:relative;align-self:center;display:flex;align-items:center;gap:14px;
+  background:var(--navy);color:#fff;padding:21px 22px;border-radius:var(--r2);
+  box-shadow:0 16px 36px -18px rgba(6,21,106,.55);animation:svGlow 4.5s var(--ease) infinite}
+.sv-livebox::after{content:"";position:absolute;top:50%;left:100%;width:22px;height:0;border-top:2px dotted var(--dot)}
+.sv-lvic{flex:none;color:#8FB3FF}
+.sv-lvic .sv-ic{width:26px;height:26px}
+.sv-lvtx{min-width:0}
+.sv-livebox b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+  font-size:20px}
+.sv-livebox .sv-lvtx span{display:block;margin-top:5px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.66)}
+.sv-aft{display:flex;flex-direction:column;justify-content:center;gap:15px}
+.sv-aft .sv-nd::before{content:"";position:absolute;top:50%;right:100%;width:22px;height:0;border-top:2px dotted var(--dot)}
+/* column captions over the diagram */
+.sv-map-caps{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr) 44px minmax(0,1fr) 44px minmax(0,1fr);
+  margin-bottom:12px}
+.sv-map-cap{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint)}
+.sv-map-cap:nth-child(2){grid-column:3}
+.sv-map-cap:nth-child(3){grid-column:5}
+.sv-map-cap:nth-child(4){grid-column:7}
+
+/* --- 07 · CTA · copy left, buttons centre, artwork right ------------------ */
+.sv-close{position:relative;background:var(--navy);color:#fff;margin-top:var(--gap-band);
+  padding:clamp(52px,8vh,80px) 0;overflow:hidden}
+.sv-band.cool + .sv-close{margin-top:0}
+/* the faint technical grid behind the artwork, right side only */
+.sv-close::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,rgba(143,179,255,.07) 0 1px,transparent 1px 46px),
+                   repeating-linear-gradient(90deg,rgba(143,179,255,.07) 0 1px,transparent 1px 46px);
+  -webkit-mask-image:linear-gradient(90deg,transparent 46%,#000 78%);
+  mask-image:linear-gradient(90deg,transparent 46%,#000 78%)}
+.sv-close .sv-stage{position:absolute;top:0;bottom:0;right:0;width:min(34%,460px);z-index:0;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 42%);
+  mask-image:linear-gradient(90deg,transparent,#000 42%)}
+.sv-close-grid{position:relative;z-index:1;display:grid;align-items:center;gap:clamp(24px,4vw,64px);
+  grid-template-columns:minmax(0,1.05fr) auto;padding-right:clamp(44px,22vw,420px)}
+.sv-close h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.026em;line-height:1.14;
+  font-size:clamp(27px,3vw,42px);margin:12px 0 0;max-width:560px}
+.sv-close h2 em{font-style:normal;color:#8FB3FF}
+.sv-close p{font-size:15.5px;line-height:1.65;color:rgba(255,255,255,.7);max-width:460px;margin:12px 0 0}
+.sv-close-actions{gap:12px}
+.sv-close-actions .sv-cta{justify-content:center;white-space:nowrap}
+.sv-close .sv-cta:hover{background:#fff;color:var(--navy)}
+.sv-close .sv-cta.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.34)}
+.sv-close .sv-cta.ghost:hover{background:rgba(255,255,255,.08);color:#fff}
+
+/* --- 08 · RESPONSIVE ------------------------------------------------------ */
+@media (max-width:1100px){
+  /* the panels' narrow WebGL column is the first thing to go */
+  .sv-feat{grid-template-columns:42% minmax(0,1fr)}
+  .sv-feat.rev{grid-template-columns:minmax(0,1fr) 42%}
+  .sv-feat-viz{display:none}
+  .sv-close-grid{padding-right:clamp(44px,18vw,300px)}
+}
+@media (max-width:1020px){
+  .sv-hero-main{display:block;min-height:0}
+  .sv-hero-fig{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%}
+  .sv-hero-fig img{aspect-ratio:16/9;height:auto}
+  .sv-hero-fig::before{background:linear-gradient(0deg,var(--paper),transparent 22%)}
+  .sv-hero-copy{width:100%;padding:clamp(24px,4vh,40px) 0 26px}
+  .sv-feat,.sv-feat.rev{grid-template-columns:1fr}
+  .sv-feat .sv-feat-shot,.sv-feat.rev .sv-feat-shot{order:0}
+  .sv-feat .sv-feat-body,.sv-feat.rev .sv-feat-body{order:1}
+  .sv-feat-shot img{min-height:0;height:auto;aspect-ratio:3/2}
+  .sv-close-grid{grid-template-columns:1fr;padding-right:var(--gut)}
+
+}
+@media (max-width:940px){
+  .sv-routes{grid-template-columns:1fr;gap:22px}
+  /* the map goes vertical: starting point, route, live, continuations */
+  .sv-map-caps{display:none}
+  .sv-map-grid{display:flex;flex-direction:column;align-items:stretch;gap:24px}
+  .sv-cn,.sv-brk{display:none}
+  .sv-mrt::after,.sv-livebox::after,.sv-aft .sv-nd::before{display:none}
+  .sv-mst1{order:1}.sv-mst2{order:2}.sv-mst3{order:3}
+  .sv-mrt1{order:4}.sv-mrt2{order:5}.sv-mrt3{order:6}
+  .sv-livebox{order:7}.sv-aft{order:8;gap:24px}
+  .sv-mrt1::before,.sv-livebox::before,.sv-aft .sv-nd:first-child::after{
+    content:"";position:absolute;left:50%;top:-25px;width:0;height:24px;border-left:2px dotted var(--dot)}
+}
+@media (max-width:760px){
+  .sv-stage{display:none}
+  .sv-caps{grid-template-columns:1fr}
+  .sv-cap{justify-content:flex-start;padding:14px 4px}
+  .sv-cap + .sv-cap{border-left:0;border-top:1px solid var(--hair)}
+  /* the comparison stacks: one block per route, labels drawn from data-svc */
+  .sv-tablewrap{border:0;background:transparent;box-shadow:none;overflow:visible}
+  .sv-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .sv-table,.sv-table tbody,.sv-table tr,.sv-table th,.sv-table td{display:block;padding:0}
+  .sv-table tbody tr{border:1px solid var(--hair);border-radius:var(--r2);background:var(--paper);padding:15px 17px}
+  .sv-table tbody tr + tr{margin-top:12px;border-top:1px solid var(--hair)}
+  .sv-table tbody tr:nth-child(even){background:var(--paper)}
+  .sv-table tbody th{width:auto;margin-bottom:9px}
+  .sv-table tbody td{border:0;font-size:14px;padding:6px 0 0}
+  .sv-table tbody td::before{content:attr(data-svc);display:block;
+    font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;font-weight:700;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--elec);margin-bottom:2px}
+}
+
+/* --- 09 · MOTION ---------------------------------------------------------- */
+@keyframes svPulse{
+  0%{transform:translateX(0);opacity:0}
+  12%{opacity:1}
+  86%{opacity:1}
+  100%{transform:translateX(38px);opacity:0}
+}
+@keyframes svGlow{
+  0%,100%{box-shadow:0 16px 36px -18px rgba(6,21,106,.55),0 0 0 0 rgba(5,32,245,0)}
+  50%{box-shadow:0 16px 36px -18px rgba(6,21,106,.55),0 0 0 8px rgba(5,32,245,.13)}
+}
+@media (prefers-reduced-motion:reduce){
+  .sv-cn::after{animation:none;opacity:0}
+  .sv-livebox{animation:none}
+  .sv-route-shot img,.sv-cta,.sv-cue b,.sv-route{transition:none}
+}
+
+
+/* ═══ 4 SEP 2026 · PROTOTYPE 3 PASS · NO LINE DESIGN ═════════════════════
+   Client direction, repeated through the home review: no hairline rules
+   between content. Only single-sided dividers come off here; framed objects
+   (chips, cards, figures, panels) keep their border, because those are
+   objects rather than rules. */
+.sv-caps{border-top:0}
+.sv .sv-caps{border-top:0;border-bottom:0}
+
+/* 7 Sep 2026 (Bazil: "why isn't the background of the header gone"): the
+   bar has no ground at rest on this route, as on Home and About. This sheet
+   loads only on this route, so the root selector cannot leak. premium.css
+   L73 sets fill and hairline with !important, hence the same here. */
+body:has(.sv) .nav.attop{background:transparent!important;border-bottom-color:transparent!important;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
+
+/* ═══ 7 SEP 2026 · THE ROUTE SELECTOR (Bazil) ═════════════════════════════ */
+.sv-hero-sel{padding:clamp(120px,15vh,176px) 0 clamp(48px,7vh,80px);overflow:visible}
+.sv-hero-sel .sv-hero-grid{display:grid;grid-template-columns:minmax(0,44fr) minmax(0,56fr);gap:clamp(28px,4vw,72px);align-items:center}
+.sv-hero-sel .sv-hero-copy{width:auto;padding:0}
+.sv-routesel{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);padding-top:clamp(120px,11vw,168px)}
+.sv-rail{position:absolute;left:0;right:0;top:clamp(64px,6.2vw,96px);height:40px;width:100%;overflow:visible}
+.sv-rail-line{fill:none;stroke:rgba(5,32,245,.28);stroke-width:1.5;stroke-dasharray:2 7;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.sv-rail-pulse{fill:none;stroke:var(--elec);stroke-width:2.5;stroke-linecap:round;vector-effect:non-scaling-stroke;
+  stroke-dasharray:.12 1;animation:svRail 4s cubic-bezier(.45,0,.4,1) infinite}
+@keyframes svRail{0%{stroke-dashoffset:1.12;opacity:0}8%{opacity:1}88%{opacity:1}100%{stroke-dashoffset:-.12;opacity:0}}
+.sv-rsel{position:relative;display:grid;justify-items:center;text-align:center;text-decoration:none;color:inherit;
+  padding:0 clamp(4px,.8vw,12px);transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.sv-rsel:hover{transform:translateY(-6px)}
+.sv-rsel-ic{position:absolute;left:50%;top:calc(-1 * clamp(120px,11vw,168px));translate:-50% 0;
+  width:clamp(104px,9.6vw,148px);height:clamp(104px,9.6vw,148px);display:block}
+.sv-rsel-ic svg{width:100%;height:100%;display:block}
+.sv-rsel b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;font-size:clamp(16px,1.35vw,20px);line-height:1.15;color:var(--navy)}
+.sv-rsel > span{display:block;margin-top:7px;font-size:13px;line-height:1.5;color:var(--soft);max-width:22ch}
+.sv-rsel.r1 .tp-act{animation-delay:1.3s}.sv-rsel.r2 .tp-act{animation-delay:2.6s}
+/* the node under each object, on the rail */
+.sv-rsel::before{content:"";position:absolute;left:50%;top:calc(-1 * clamp(120px,11vw,168px) + clamp(64px,6.2vw,96px) + 12px);translate:-50% -50%;
+  width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--elec)}
+@media (max-width:1000px){
+  .sv-hero-sel .sv-hero-grid{grid-template-columns:1fr;gap:34px}
+  .sv-routesel{padding-top:clamp(100px,22vw,140px)}
+}
+@media (max-width:640px){
+  .sv-routesel{grid-template-columns:1fr;padding-top:0;gap:26px}
+  .sv-rail{display:none}
+  .sv-rsel{grid-template-columns:72px minmax(0,1fr);justify-items:start;text-align:left;column-gap:14px;padding:0}
+  .sv-rsel-ic{position:static;translate:none;width:72px;height:72px;grid-row:1 / span 2}
+  .sv-rsel::before{display:none}
+}
+
+
+/* ═══ 7 SEP 2026 · THE ISOMETRIC SET ON SERVICES (mirrored from home2.css) ═══ */
+.tp-iso{--io:#06156A;--if1:#fff;--if2:#E6EDFF;--if3:#C3D3F6;--ia:#0520F5;--ia2:#041BCC;--is:#06156A;overflow:visible;display:block}
+.tp-iso .tp-iso-sh{opacity:.22}
+.tp-iso.onphoto{--io:#fff;--if1:rgba(255,255,255,.96);--if2:rgba(255,255,255,.72);--if3:rgba(255,255,255,.5);--ia:#0520F5;--ia2:#0317B8;--is:#fff}
+.tp-iso .tp-iso-g{animation:tpIsoFloat 4.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.tp-iso .tp-iso-sh{animation:tpIsoSh 4.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes tpIsoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.2px)}}
+@keyframes tpIsoSh{0%,100%{transform:scale(1);opacity:.22}50%{transform:scale(.9);opacity:.13}}
+@media (prefers-reduced-motion:reduce){.tp-iso .tp-iso-g,.tp-iso .tp-iso-sh{animation:none}}
+.tp-iso{--io:#0520F5;--is:#0520F5;--ia2:#0317B8;--if3:#BFD0F5}
+.tp-iso.onphoto{--io:#fff;--is:#fff;--ia2:#0317B8;--if3:rgba(255,255,255,.5)}
+.tp-iso{--if2:#DCE6FF;--if3:#AFC4F3;animation:tpIsoGlow 3.6s ease-in-out infinite}
+.tp-iso.onphoto{--if2:rgba(255,255,255,.74);--if3:rgba(255,255,255,.48)}
+@keyframes tpIsoGlow{0%,100%{--ia:#0520F5}50%{--ia:#5B7BFF}}
+.tp-iso .tp-iso-g{animation:tpIsoFloat 3.6s ease-in-out infinite}
+@keyframes tpIsoFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-1.4deg)}}
+.tp-iso .tp-iso-sh{animation:tpIsoSh 3.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.tp-iso{animation:none}}
+.tp-iso .tp-act{transform-box:fill-box;transform-origin:50% 100%}
+.tp-iso[data-k="lens"] .tp-act{animation:tpAcSearch 7s ease-in-out infinite}
+@keyframes tpAcSearch{0%,56%,100%{transform:translate(0,0)}66%{transform:translate(-5px,-2.5px)}80%{transform:translate(5px,2.5px)}92%{transform:translate(0,0)}}
+.tp-iso[data-k="golive"] .tp-act{animation:tpAcPress 7s ease-in-out infinite}
+@keyframes tpAcPress{0%,60%,100%{transform:translateY(0)}64%{transform:translateY(3px)}70%{transform:translateY(0)}}
+.tp-iso[data-k="stack"] .tp-act,.tp-iso[data-k="engine"] .tp-act,.tp-iso[data-k="medtech"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+@keyframes tpAcLift{0%,58%,100%{transform:translateY(0)}66%{transform:translateY(-4px)}78%{transform:translateY(0)}}
+.tp-iso[data-k="bars"] .tp-act{animation:tpAcGrow 7s ease-in-out infinite}
+@keyframes tpAcGrow{0%,56%,100%{transform:scaleY(1)}62%{transform:scaleY(.72)}74%{transform:scaleY(1.08)}82%{transform:scaleY(1)}}
+.tp-iso[data-k="migrate"] .tp-act,.tp-iso[data-k="platform"] .tp-act,.tp-iso[data-k="building"] .tp-act{animation:tpAcBlink 7s ease-in-out infinite}
+@keyframes tpAcBlink{0%,56%,100%{opacity:1}62%{opacity:.3}68%{opacity:1}74%{opacity:.3}80%{opacity:1}}
+.tp-iso[data-k="supply"] .tp-act{animation:tpAcDrive 7s ease-in-out infinite}
+@keyframes tpAcDrive{0%,55%,100%{transform:translate(0,0)}70%{transform:translate(6px,3.5px)}86%{transform:translate(0,0)}}
+.tp-iso[data-k="mfg"] .tp-act{animation:tpAcPuff 7s ease-out infinite;transform-origin:50% 50%}
+@keyframes tpAcPuff{0%,58%,100%{opacity:0;transform:translateY(0) scale(.5)}64%{opacity:.8}80%{opacity:0;transform:translateY(-9px) scale(1.4)}}
+.tp-iso[data-k="lab"] .tp-act{animation:tpAcSwirl 7s ease-in-out infinite}
+@keyframes tpAcSwirl{0%,56%,100%{transform:rotate(0)}64%{transform:rotate(-4deg)}76%{transform:rotate(4deg)}88%{transform:rotate(0)}}
+.tp-iso[data-k="pharma"] .tp-act{animation:tpAcRoll 7s ease-in-out infinite;transform-origin:50% 50%}
+@keyframes tpAcRoll{0%,58%,100%{transform:translate(0,0) rotate(0)}70%{transform:translate(3px,1.7px) rotate(3deg)}84%{transform:translate(0,0) rotate(0)}}
+.tp-iso[data-k="figure"] .tp-act,.tp-iso[data-k="partners"] .tp-act{animation:tpAcNod 7s ease-in-out infinite}
+@keyframes tpAcNod{0%,60%,100%{transform:translateY(0)}65%{transform:translateY(1.8px)}70%{transform:translateY(0)}75%{transform:translateY(1.8px)}80%{transform:translateY(0)}}
+.tp-iso[data-k="flag"] .tp-act{animation:tpAcWave 7s ease-in-out infinite;transform-origin:0 50%}
+@keyframes tpAcWave{0%,56%,100%{transform:skewY(0)}64%{transform:skewY(-6deg)}76%{transform:skewY(6deg)}88%{transform:skewY(0)}}
+.tp-iso[data-k="clock"] .tp-act{animation:tpAcTick 7s steps(1,end) infinite;transform-origin:0 0}
+@keyframes tpAcTick{0%,58%{transform:rotate(0)}62%,100%{transform:rotate(30deg)}}
+.tp-iso[data-k="unlink"] .tp-act{animation:tpAcApart 7s ease-in-out infinite}
+@keyframes tpAcApart{0%,56%,100%{transform:translate(0,0)}66%{transform:translate(4px,2.3px)}84%{transform:translate(0,0)}}
+.tp-iso[data-k="industry"] .tp-draw{stroke-dasharray:30;stroke-dashoffset:0;animation:tpAcDraw 7s ease-in-out infinite}
+@keyframes tpAcDraw{0%,58%{stroke-dashoffset:0}60%{stroke-dashoffset:30}78%,100%{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.tp-iso .tp-act,.tp-iso .tp-draw{animation:none}}
+.tp-iso{transition:transform .5s var(--ease)}
+.tp-iso .tp-iso-g,.tp-iso .tp-iso-sh{animation:none;transform:none}
+.tp-iso[data-k="peak"] .tp-act{transform-origin:0 100%;animation:tpAcWave 7s ease-in-out infinite}
+@keyframes tpAcWave{0%,58%,100%{transform:skewY(0)}64%{transform:skewY(-7deg)}72%{transform:skewY(5deg)}80%{transform:skewY(-3deg)}88%{transform:skewY(0)}}
+.tp-iso[data-k="badge"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+.tp-iso[data-k="cycle"] .tp-act{transform-origin:50% 50%;animation:tpAcTurn 7s ease-in-out infinite}
+@keyframes tpAcTurn{0%,52%{transform:rotate(0)}70%,100%{transform:rotate(120deg)}}
+.tp-iso[data-k="shield"] .tp-act{animation:tpAcBlink 7s ease-in-out infinite}
+
+.tp-iso[data-k="handshake"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+
+/* ═══ 8 SEP 2026 · SERVICES REVIEW (Bazil) ═══════════════════════════════ */
+/* 30 · a blue phrase never splits across lines ("a should be on the second line") */
+.sv h1 em,.sv .sv-h em,.sv h3 em{white-space:nowrap}
+@media (max-width:640px){.sv h1 em,.sv .sv-h em,.sv h3 em{white-space:normal}}
+
+/* 31 · the capsule: number and icon in one container (Bazil), used by the
+   hero process here and mirrored on Home and About */
+.sv-cap{display:inline-flex;align-items:center;gap:10px;height:48px;padding:3px 16px 3px 3px;border-radius:999px;background:#fff;
+  border:1px solid rgba(5,32,245,.22);box-shadow:0 10px 24px -16px rgba(6,21,106,.4);position:relative;z-index:1}
+.sv-cap b{width:42px;height:42px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;line-height:1}
+.sv-cap i{display:grid;place-items:center;width:24px;height:24px;color:var(--elec)}
+.sv-cap i .sv-ic{width:22px;height:22px}
+
+/* 32 · the hero process: five stations on a dotted rail, a pulse running it */
+.sv-proc{list-style:none;margin:0;padding:0;display:grid;position:relative;align-self:center}
+.sv-proc-st{display:grid;grid-template-columns:auto 1fr;column-gap:20px;align-items:center;position:relative;padding:clamp(7px,1.1vh,12px) 0}
+.sv-proc-st::before{content:"";position:absolute;left:23px;top:0;bottom:0;border-left:2px dotted rgba(5,32,245,.36);z-index:0}
+.sv-proc-st:first-child::before{top:50%}
+.sv-proc-st:last-child::before{bottom:50%}
+.sv-proc-w{display:grid;gap:3px;max-width:36ch}
+.sv-proc-w > b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.3vw,20px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
+.sv-proc-w > span{font-size:clamp(13.5px,1vw,15px);line-height:1.5;color:var(--soft)}
+.sv-proc .sv-cap::after{content:"";position:absolute;left:-1px;top:-1px;width:48px;height:48px;border-radius:50%;border:2px solid var(--elec);opacity:0;
+  animation:svRing 7s ease-out infinite;animation-delay:calc(var(--i) * 1.4s + .3s)}
+@keyframes svRing{0%{opacity:.6;transform:scale(.75)}18%{opacity:0;transform:scale(1.5)}100%{opacity:0;transform:scale(1.5)}}
+.sv-proc-pulse{position:absolute;left:18px;top:0;width:12px;height:12px;border-radius:50%;background:var(--elec);box-shadow:0 0 0 5px rgba(5,32,245,.16);z-index:2;
+  animation:svProc 7s linear infinite}
+@keyframes svProc{0%{top:36px;opacity:0}5%{opacity:1}94%{opacity:1}100%{top:calc(100% - 36px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.sv-proc-pulse,.sv-proc .sv-cap::after{animation:none;opacity:0}}
+@media (max-width:1000px){.sv-proc{margin-top:8px}}
+
+/* 33 · route cards: an icon on each (Bazil: "give each an icon"); the
+   photographs are served at 2400 wide so they are no longer soft at 2x */
+.sv-route em{display:flex;align-items:center;gap:10px}
+.sv-route-ic{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:9px;background:var(--pale);color:var(--elec);flex:none}
+.sv-route-ic .sv-ic{width:17px;height:17px}
+
+/* 34 · the comparison, relatable (Bazil: "an easier table people can
+   relate to"): a lead line, each column headed by its icon, name and who it
+   is for, row labels as plain sentences, the first row in the reader's own
+   words, a last row that is the link */
+.sv-cmp-lead{margin-top:14px}
+.sv-table-v2 thead th{padding:18px 22px 16px;vertical-align:top}
+.sv-th-svc{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:center}
+.sv-th-svc i{grid-row:1 / span 2;display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.1);color:#9DBBFF}
+.sv-th-svc i .sv-ic{width:19px;height:19px}
+.sv-th-svc b{font-weight:500;font-size:17px;line-height:1.15}
+.sv-th-svc > span{font-size:12.5px;color:rgba(255,255,255,.62);margin-top:2px}
+.sv-table-v2 tbody th{font-family:"Space Grotesk",sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+.sv-table-v2 .sv-th-lab{display:flex;align-items:center;gap:11px}
+.sv-table-v2 .sv-th-lab i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--pale);color:var(--elec);flex:none}
+.sv-table-v2 .sv-th-lab i .sv-ic{width:16px;height:16px}
+.sv-table-v2 tbody tr:first-child td{font-weight:600;color:var(--navy)}
+.sv-table-v2 tbody td{font-size:15px;line-height:1.5;padding:19px 22px}
+.sv-table-v2 .sv-tr-go td{padding-top:16px;padding-bottom:16px}
+.sv-table-v2 .sv-tr-go .sv-cue{margin:0}
+@media (max-width:900px){.sv-table-v2 tbody tr:first-child td{font-weight:600}.sv-table-v2 .sv-th-lab{margin-bottom:6px}}
+
+/* 35 · the route map, easier to read (Bazil: "more vertical spacing,
+   improve the diagram"): air between rows, numbered column captions with a
+   hint each, arrowheads on the connectors, larger nodes */
+.sv-map-grid{row-gap:26px}
+.sv-nd{padding:16px 18px;font-size:15px;gap:12px}
+.sv-nd .sv-ic{width:18px;height:18px}
+.sv-map-caps{margin-bottom:22px;align-items:start}
+.sv-map-cap{display:grid;grid-template-columns:auto 1fr;column-gap:9px;align-items:center;font-family:"Space Grotesk",sans-serif;font-size:14.5px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+.sv-map-cap b{grid-row:1 / span 2;width:26px;height:26px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:600}
+.sv-map-cap em{font-style:normal;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:400;color:var(--soft)}
+.sv-cn::before{content:"";position:absolute;right:-1px;top:-5px;width:0;height:0;border-left:7px solid var(--elec);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent;opacity:.85}
+.sv-brkl::after{border-top-color:var(--elec);opacity:.55}
+.sv-livebox::after{border-top-color:var(--elec);opacity:.55}
+.sv-aft .sv-nd::before{border-top-color:var(--elec);opacity:.55}
+.sv-livebox{padding:26px 26px}
+.sv-livebox b{font-size:22px}
+/* 36 · no box behind an icon (Bazil): the card eyebrow icons and the table
+   icons are bare glyphs in electric, sized up a little to hold their own */
+.sv-route-ic{background:none;border-radius:0;width:auto;height:auto}
+.sv-route-ic .sv-ic{width:19px;height:19px}
+.sv-table-v2 .sv-th-lab i{background:none;border-radius:0;width:auto;height:auto}
+.sv-table-v2 .sv-th-lab i .sv-ic{width:19px;height:19px}
+.sv-th-svc i{background:none;border-radius:0;width:auto;height:auto;color:#9DBBFF}
+.sv-th-svc i .sv-ic{width:23px;height:23px}
+
+/* 37 · once you are live (Bazil): the picture on the left of both panels,
+   never stretched or smashed (a 4:3 frame sets the row height and the
+   photograph covers it), and the visual is a small process instead of the
+   cube and the stack */
+.sv-feat,.sv-feat.rev{grid-template-columns:34% minmax(0,1fr) 30%;align-items:stretch}
+.sv-feat.rev .sv-feat-shot,.sv-feat .sv-feat-shot{order:1}
+.sv-feat.rev .sv-feat-body,.sv-feat .sv-feat-body{order:2}
+.sv-feat.rev .sv-feat-viz,.sv-feat .sv-feat-viz{order:3}
+.sv-feat-shot{aspect-ratio:4/3;min-height:0}
+.sv-feat-shot img{height:100%;min-height:0;object-fit:cover;object-position:50% 40%}
+.sv-feat-proc{display:grid;align-items:center;justify-items:start;padding:24px clamp(18px,2vw,34px) 24px 0}
+.sv-proc.sm{--i:0}
+.sv-proc.sm .sv-proc-st{padding:7px 0;column-gap:14px}
+.sv-proc.sm .sv-cap{height:40px;padding:3px 13px 3px 3px;gap:8px}
+.sv-proc.sm .sv-cap b{width:34px;height:34px;font-size:14px}
+.sv-proc.sm .sv-cap i{width:20px;height:20px}
+.sv-proc.sm .sv-cap i .sv-ic{width:18px;height:18px}
+.sv-proc.sm .sv-cap::after{width:40px;height:40px}
+.sv-proc.sm .sv-proc-st::before{left:19px}
+.sv-proc.sm .sv-proc-w > b{font-size:15px}
+.sv-proc.sm .sv-proc-pulse{left:15px;width:10px;height:10px;animation-name:svProcSm}
+@keyframes svProcSm{0%{top:28px;opacity:0}6%{opacity:1}94%{opacity:1}100%{top:calc(100% - 28px);opacity:0}}
+@media (max-width:1000px){
+  .sv-feat,.sv-feat.rev{grid-template-columns:1fr}
+  .sv-feat-shot{aspect-ratio:3/2}
+  .sv-feat .sv-feat-viz,.sv-feat.rev .sv-feat-viz{display:grid;order:3;padding:0 clamp(26px,2.8vw,44px) 30px}
+}
+/* 37b · the frame stays in its column: with both axes stretched the ratio
+   yields and the photograph covers the box; without this the ratio widened
+   the frame past its column and under the copy */
+.sv-feat-shot{justify-self:stretch;width:100%;min-width:0}
+
+/* 38 · the mechanism diagrams (Bazil: "diagrams, not just a boring flow, a
+   visual that shows exactly how it works"): SVG with SMIL motion in the
+   right zone, which is wider now so the diagram reads */
+.sv-feat,.sv-feat.rev{grid-template-columns:32% minmax(0,1fr) 34%}
+.sv-feat-dg{display:grid;place-items:center;padding:16px clamp(14px,1.6vw,26px);background:linear-gradient(180deg,rgba(5,32,245,.035),transparent 65%)}
+.sv-dg{width:100%;max-width:440px;height:auto;display:block;overflow:visible}
+.dg-line{fill:none;stroke:rgba(5,32,245,.34);stroke-width:1.6;stroke-dasharray:2 5;stroke-linecap:round}
+.dg-line.dashed{stroke-dasharray:5 6;stroke:rgba(5,32,245,.28)}
+.dg-hair{fill:none;stroke:var(--hair2);stroke-width:1.5}
+.dg-rise{fill:none;stroke:var(--elec);stroke-width:2;stroke-linecap:round}
+.dg-bar{fill:rgba(5,32,245,.16)}
+.dg-bar.hot{fill:rgba(5,32,245,.38)}
+.dg-node{fill:#fff;stroke:rgba(5,32,245,.26);stroke-width:1.2}
+.dg-node.on{fill:var(--elec);stroke:none}
+.dg-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:13.5px;fill:var(--ink)}
+.dg-t.on{fill:#fff}
+.dg-lab{font-family:"Inter",sans-serif;font-weight:600;font-weight:700;font-size:9px;letter-spacing:.14em;fill:var(--faint)}
+.dg-dot{fill:var(--elec)}
+.dg-dot.fix{fill:#fff;stroke:var(--elec);stroke-width:2}
+.dg-dot.exc{fill:#0317B8}
+@media (prefers-reduced-motion:reduce){.dg-dot{display:none}}
+@media (max-width:1000px){.sv-feat .sv-feat-dg,.sv-feat.rev .sv-feat-dg{display:grid;order:3;padding:0 clamp(26px,2.8vw,44px) 30px}}
+/* 38b · quieter diagram lines (Bazil: "too messy"): thin solid, no dashes,
+   arrowheads, nothing under a node */
+.dg-line,.dg-line.dashed{stroke:rgba(5,32,245,.3);stroke-width:1.5;stroke-dasharray:none}
+.dg-node{stroke:rgba(5,32,245,.2)}
+.dg-dot.exc{fill:var(--elec)}
+
+/* 39 · no curved corners in Tenthpin (Bazil): capsules, number blocks,
+   labels and diagram nodes are square; the ring flash is off (a square
+   ring reads wrong), the rail pulse stays */
+.sv-cap,.sv-cap b,.sv-map-cap b{border-radius:0}
+.sv-proc .sv-cap::after{display:none}
+.sv-th-svc i,.sv-table-v2 .sv-th-lab i,.sv-route-ic{border-radius:0}
+
+/* 40 · the close band talks to the right person (Bazil): the cube is gone;
+   three lines the reader recognises, each the link to its route, and the
+   band has more vertical room */
+.sv-close{padding:clamp(96px,12vh,150px) 0}
+.sv-close-grid.v2{grid-template-columns:minmax(0,54fr) minmax(0,46fr);grid-template-areas:"copy who" "act who";align-items:center;padding-right:0;column-gap:clamp(40px,6vw,110px);row-gap:28px}
+.sv-close-grid.v2 .sv-close-copy{grid-area:copy}
+.sv-close-grid.v2 .sv-close-actions{grid-area:act;align-self:start}
+.sv-close-who{grid-area:who;display:grid;gap:6px;align-self:center}
+.sv-who-lb{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#8FB3FF;margin-bottom:10px}
+.sv-who{display:grid;grid-template-columns:26px 1fr;column-gap:16px;align-items:start;padding:14px 0;color:#fff;text-decoration:none}
+.sv-who i{display:grid;place-items:center;width:26px;height:26px;color:#8FB3FF;margin-top:1px}
+.sv-who i .sv-ic{width:22px;height:22px}
+.sv-who b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.015em;line-height:1.2;transition:color .25s var(--ease)}
+.sv-who em{display:block;margin-top:6px;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8FB3FF}
+.sv-who em u{text-decoration:none;display:inline-block;transition:transform .25s var(--ease)}
+.sv-who:hover b{color:#8FB3FF}
+.sv-who:hover em u{transform:translateX(5px)}
+@media (max-width:1000px){.sv-close-grid.v2{grid-template-columns:1fr;grid-template-areas:"copy" "who" "act";row-gap:30px}}
+
+/* 41 · rhythm (Bazil: "vertical spacing needs a bit more in some areas"):
+   bands 80 to 128px, headings 36 to 56px above their content, the two live
+   panels further apart, the hero title on three fixed lines at every width
+   ("3 lines only": the size is capped so the longest line never wraps) */
+.sv{--gap-band:clamp(80px,10vh,128px);--gap-head:clamp(36px,4.8vh,56px)}
+.sv-feat + .sv-feat{margin-top:clamp(28px,3.6vh,46px)}
+.sv-hero-sel{padding-bottom:clamp(64px,8vh,100px)}
+.sv-hero-sel h1{font-size:clamp(40px,3.45vw,72px);white-space:nowrap}
+.sv-hero-sel h1 em{white-space:nowrap}
+.sv-cmp-lead{margin-bottom:0}
+@media (max-width:640px){.sv-br{display:none}.sv-hero-sel h1{white-space:normal}}
+
+/* 42 · the hero process, richer (Bazil: "make it look better, more premium
+   icons"): a 56px capsule with a deeper number block and a duotone icon,
+   a finer rail, larger type, more air per row */
+.sv-proc .sv-cap{height:56px;padding:0 20px 0 0;gap:0;border:1px solid rgba(5,32,245,.2);box-shadow:0 16px 34px -20px rgba(6,21,106,.5)}
+.sv-proc .sv-cap b{width:54px;height:54px;font-size:19px;background:linear-gradient(160deg,#3D7BFF 0%,#0520F5 55%,#0317B8 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28)}
+.sv-proc .sv-cap i{width:56px;height:54px;color:var(--elec)}
+.sv-proc .sv-cap i .sv-icd{width:28px;height:28px}
+.sv-proc-st{column-gap:24px;padding:clamp(10px,1.6vh,16px) 0}
+.sv-proc-st::before{left:27px;border-left:1.5px dotted rgba(5,32,245,.4)}
+.sv-proc-pulse{left:21px;width:13px;height:13px;box-shadow:0 0 0 5px rgba(5,32,245,.14),0 0 16px rgba(5,32,245,.5)}
+@keyframes svProc{0%{top:44px;opacity:0}5%{opacity:1}94%{opacity:1}100%{top:calc(100% - 44px);opacity:0}}
+.sv-proc-w{gap:4px;max-width:40ch}
+.sv-proc-w > b{font-size:clamp(18px,1.45vw,22px)}
+.sv-proc-w > span{font-size:clamp(14px,1.05vw,15.5px);color:var(--soft)}
+
+/* 43 · all five services, how each one works (Bazil): one row per service,
+   the duotone icon, name, what it is and who it is for at the left, the
+   steps as a small numbered process at the right, the link under it. No
+   rules between rows: the icon and the air separate them */
+.sv-all{list-style:none;margin:var(--gap-head) 0 0;padding:0;display:grid;gap:clamp(34px,5vh,64px)}
+.sv-svc{display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);column-gap:clamp(28px,4vw,72px);row-gap:16px;align-items:start}
+.sv-svc-l{display:grid;grid-template-columns:52px 1fr;column-gap:18px;align-items:start}
+.sv-svc-ic{display:grid;place-items:center;width:52px;height:52px;color:var(--elec)}
+.sv-svc-ic .sv-icd{width:34px;height:34px}
+.sv-svc-n{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(21px,1.7vw,27px);letter-spacing:-.022em;line-height:1.12;color:var(--ink);text-decoration:none}
+.sv-svc-n:hover{color:var(--elec)}
+.sv-svc p{margin:8px 0 0;font-size:15.5px;line-height:1.6;color:var(--soft);max-width:44ch}
+.sv-svc-who{display:block;margin-top:10px;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.sv-svc-who b{color:var(--elec);margin-right:6px}
+.sv-steps{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:12px 0;align-items:center}
+.sv-steps li{display:flex;align-items:center;gap:10px;position:relative;padding-right:34px}
+.sv-steps li:last-child{padding-right:0}
+.sv-steps li:not(:last-child)::after{content:"";position:absolute;right:8px;top:50%;width:18px;height:0;border-top:1.5px solid rgba(5,32,245,.35)}
+.sv-steps li:not(:last-child)::before{content:"";position:absolute;right:6px;top:calc(50% - 3.5px);border-left:5px solid var(--elec);border-top:3.5px solid transparent;border-bottom:3.5px solid transparent;opacity:.8}
+.sv-steps b{width:26px;height:26px;background:var(--elec);color:#fff;display:grid;place-items:center;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:12.5px;flex:none}
+.sv-steps span{font-size:14.5px;font-weight:500;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
+.sv-svc-cue{grid-column:2;margin:0}
+@media (max-width:1000px){
+  .sv-svc{grid-template-columns:1fr}
+  .sv-svc-cue{grid-column:1}
+  .sv-steps{flex-direction:column;align-items:flex-start;gap:10px}
+  .sv-steps li{padding-right:0}
+  .sv-steps li::before,.sv-steps li::after{display:none}
+  .sv-steps span{white-space:normal}
+}
+/* 43b · the link sits right under the steps: the left cell spans both rows,
+   so the second row is sized by the link alone */
+.sv-svc-l{grid-row:1 / span 2}
+.sv-svc{grid-template-rows:auto auto;row-gap:18px}
+@media (max-width:1000px){.sv-svc-l{grid-row:auto}}
+
+/* 44 · the five services with a diagram each (Bazil: "a clearer diagram
+   explanation of how each one works, the 3D icons like what we have, most
+   people do not understand"): the house object at the left, the mechanism
+   drawn at the right, a plain-words line under it */
+.sv-svc.v2{grid-template-columns:minmax(0,36fr) minmax(0,64fr);grid-template-rows:auto;row-gap:0;column-gap:clamp(32px,4.5vw,80px);align-items:center}
+.sv-svc.v2 .sv-svc-l{grid-row:auto;grid-template-columns:88px 1fr;column-gap:20px;align-items:start}
+.sv-svc-obj{display:block;width:88px;height:88px;margin-top:-6px}
+.sv-svc-obj svg{width:100%;height:100%;display:block;overflow:visible}
+.sv-svc.v2 .sv-svc-cue{display:inline-flex;margin-top:16px}
+.sv-svc-r{min-width:0}
+.sv-dg.wide{max-width:none;width:100%}
+.sv-svc-cap{margin:12px 0 0;font-size:15px;line-height:1.55;color:var(--ink);max-width:62ch}
+.sv-svc-cap b{font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--elec);margin-right:10px}
+.dg-node.soft{fill:rgba(5,32,245,.08);stroke:rgba(5,32,245,.24)}
+.dg-blk{fill:rgba(5,32,245,.16);stroke:rgba(5,32,245,.3);stroke-width:1}
+.dg-blk.on{fill:rgba(255,255,255,.92);stroke:none}
+.dg-gate{fill:#fff;stroke:var(--elec);stroke-width:1.4}
+.dg-check{fill:none;stroke:var(--elec);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dg-run{fill:none;stroke:var(--elec);stroke-width:2;opacity:.55}
+.dg-stroke{fill:none;stroke:var(--elec);stroke-width:1.6;stroke-linecap:round}
+.dg-flag{fill:rgba(5,32,245,.16);stroke:var(--elec);stroke-width:1.4;stroke-linejoin:round}
+.dg-t.sm{font-size:12px}
+.dg-lab.on{fill:rgba(255,255,255,.7)}
+.sv-all{gap:clamp(48px,7vh,92px)}
+@media (max-width:1000px){
+  .sv-svc.v2{grid-template-columns:1fr;row-gap:22px}
+  .sv-svc.v2 .sv-svc-l{grid-template-columns:64px 1fr;column-gap:14px}
+  .sv-svc-obj{width:64px;height:64px}
+}
+
+/* 45 · each service in its own container, numbered, the same three zones in
+   every one (Bazil: "put them each in a container", "align them nicely",
+   "structured, organised", "number the services"). Header: number block,
+   the object, the name and who it is for, the link at the right. Body: what
+   it is at the left, how it works at the right, labels on one line. Footer:
+   in plain words. Square corners, one hairline frame, no rules inside. */
+.sv-all{gap:clamp(22px,3vh,34px)}
+.sv-svc.v3{display:grid;grid-template-columns:1fr;grid-template-rows:auto auto auto;row-gap:0;column-gap:0;
+  background:var(--paper);border:1px solid rgba(5,32,245,.16);box-shadow:0 20px 44px -34px rgba(6,21,106,.35)}
+.sv-svc-hd{display:grid;grid-template-columns:52px 64px minmax(0,1fr) auto;column-gap:18px;align-items:center;
+  padding:18px clamp(20px,2.2vw,32px);background:rgba(5,32,245,.055)}
+.sv-svc-no{width:52px;height:52px;background:var(--elec);color:#fff;display:grid;place-items:center;
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em}
+.sv-svc.v3 .sv-svc-obj{width:64px;height:64px;margin:0}
+.sv-svc-ttl{display:grid;gap:4px;min-width:0}
+.sv-svc.v3 .sv-svc-n{font-size:clamp(20px,1.5vw,25px)}
+.sv-svc.v3 .sv-svc-who{margin-top:0}
+.sv-svc.v3 .sv-svc-cue{margin:0;white-space:nowrap}
+.sv-svc-bd{display:grid;grid-template-columns:minmax(0,34fr) minmax(0,66fr);column-gap:clamp(28px,3.6vw,64px);align-items:start;
+  padding:clamp(22px,2.6vh,34px) clamp(20px,2.2vw,32px) clamp(18px,2.2vh,28px)}
+.sv-svc-lb{display:block;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--elec);line-height:1;margin-bottom:14px}
+.sv-svc-what p{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.25vw,20px);letter-spacing:-.015em;line-height:1.35;color:var(--ink);max-width:26ch}
+.sv-svc-how{min-width:0}
+.sv-svc-how .sv-dg.wide{display:block;width:100%;max-width:none}
+.sv-svc-ft{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:baseline;
+  padding:16px clamp(20px,2.2vw,32px) 18px;background:rgba(5,32,245,.055)}
+.sv-svc-ft .sv-svc-lb{margin:0;white-space:nowrap}
+.sv-svc-ft p{margin:0;font-size:15px;line-height:1.55;color:var(--ink)}
+@media (max-width:1000px){
+  .sv-svc-hd{grid-template-columns:44px 52px minmax(0,1fr);row-gap:12px}
+  .sv-svc-no{width:44px;height:44px;font-size:16px}
+  .sv-svc.v3 .sv-svc-obj{width:52px;height:52px}
+  .sv-svc.v3 .sv-svc-cue{grid-column:1 / -1}
+  .sv-svc-bd{grid-template-columns:1fr;row-gap:22px}
+  .sv-svc-what p{max-width:none}
+  .sv-svc-ft{grid-template-columns:1fr;row-gap:6px}
+}
+/* 45b · the header link belongs at the right end of the header row (rule 43
+   had pinned .sv-svc-cue to column two, which dropped it under the object) */
+.sv-svc.v3 .sv-svc-cue{grid-column:4;grid-row:1;justify-self:end;align-self:center}
+@media (max-width:1000px){.sv-svc.v3 .sv-svc-cue{grid-column:1 / -1;grid-row:auto;justify-self:start}}
+
+/* 46 · in plain words under what it is (Bazil): the left column carries the
+   words, the right column the picture, the footer strip is gone */
+.sv-svc.v3{grid-template-rows:auto auto}
+.sv-svc-bd{padding-bottom:clamp(24px,3vh,36px)}
+.sv-svc-plain{margin-top:clamp(24px,3.2vh,36px)}
+.sv-svc-plain p{margin:0;font-size:15px;line-height:1.6;color:var(--soft);max-width:34ch}
+
+/* 47 · the hero process as an exploded isometric stack (Bazil, after the
+   Mesosphere reference: "in Tenthpin colour and structure"): five plates
+   stacked with air between them, the house object standing on each, a
+   leader from the plate's right corner to the title, a dotted axis through
+   the stack, every layer lifting in turn on a 7s cycle. Square, no curves. */
+.sv-stack{list-style:none;margin:0;padding:0;display:grid;position:relative;align-self:center;
+  --plw:clamp(180px,15vw,240px)}
+.sv-stack::before{content:"";position:absolute;left:calc(var(--plw) / 2);top:6px;bottom:6px;border-left:1.5px dotted rgba(5,32,245,.34);z-index:0}
+.sv-layer{display:grid;grid-template-columns:var(--plw) clamp(36px,3.4vw,58px) minmax(0,1fr);align-items:center;position:relative;height:clamp(104px,9.2vw,138px)}
+.sv-plate{position:relative;width:var(--plw);aspect-ratio:240/134;z-index:1;animation:svLift 7s ease-in-out infinite;animation-delay:calc(var(--i) * 1.4s)}
+.sv-plate-svg{position:absolute;inset:0;width:100%;height:100%;display:block;overflow:visible}
+.pl-top{fill:#F1F5FF;stroke:var(--elec);stroke-width:1.1;stroke-linejoin:round}
+.pl-left{fill:#DCE6FF;stroke:var(--elec);stroke-width:1.1;stroke-linejoin:round}
+.pl-right{fill:#AFC4F3;stroke:var(--elec);stroke-width:1.1;stroke-linejoin:round}
+.sv-plate-obj{position:absolute;left:50%;top:44.8%;width:44%;aspect-ratio:1;transform:translate(-50%,-70%);display:block}
+.sv-plate-obj svg{width:100%;height:100%;display:block;overflow:visible}
+.sv-lead{position:relative;height:1px;background:rgba(5,32,245,.42);transform:translateY(-6%);animation:svLeadOn 7s ease-in-out infinite;animation-delay:calc(var(--i) * 1.4s)}
+.sv-lead i{position:absolute;right:-3px;top:-3px;width:7px;height:7px;background:var(--elec)}
+.sv-layer-w{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:14px;align-items:start;padding-left:14px}
+.sv-layer-n{width:30px;height:30px;background:var(--elec);color:#fff;display:grid;place-items:center;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:13.5px;font-style:normal;margin-top:1px}
+.sv-layer-w > div{display:grid;gap:4px;max-width:38ch}
+.sv-layer-w > div > b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
+.sv-layer-w > div > span{font-size:clamp(13.5px,1vw,15px);line-height:1.5;color:var(--soft)}
+@keyframes svLift{0%,12%,100%{transform:translateY(0)}5%{transform:translateY(-5px)}}
+@keyframes svLeadOn{0%,12%,100%{background:rgba(5,32,245,.42)}5%{background:rgba(5,32,245,.9)}}
+@media (prefers-reduced-motion:reduce){.sv-plate,.sv-lead{animation:none}}
+@media (max-width:1000px){.sv-stack{--plw:170px;margin-top:8px}.sv-layer{height:112px}}
+@media (max-width:640px){.sv-layer{grid-template-columns:120px 24px minmax(0,1fr);height:auto;min-height:96px;padding:8px 0}.sv-stack{--plw:120px}.sv-layer-w{padding-left:8px}}
+
+/* 48 · the stack, all out (Bazil): a tint per layer from pale at the top to
+   solid electric at the foundation, a halftone top face with an inset line,
+   an isometric shadow under every plate, larger objects, a pulse running
+   down the axis, more air per row */
+.sv-layer{height:clamp(116px,10.2vw,154px)}
+.sv-plate{aspect-ratio:240/150}
+.pl-shadow{fill:rgba(6,21,106,.07)}
+.pl-dot{fill:rgba(5,32,245,.22)}
+.pl-inset{fill:none;stroke:rgba(5,32,245,.28);stroke-width:1;stroke-linejoin:round}
+.sv-layer:nth-child(1) .pl-top{fill:#F8FAFF}
+.sv-layer:nth-child(2) .pl-top{fill:#F3F6FF}
+.sv-layer:nth-child(3) .pl-top{fill:#ECF1FF}
+.sv-layer:nth-child(4) .pl-top{fill:#E4EBFF}
+.sv-layer:nth-child(5) .pl-top{fill:var(--elec);stroke:#0317B8}
+.sv-layer:nth-child(5) .pl-left{fill:#041BCC;stroke:#0317B8}
+.sv-layer:nth-child(5) .pl-right{fill:#0317B8;stroke:#0317B8}
+.sv-layer:nth-child(5) .pl-dot{fill:rgba(255,255,255,.22)}
+.sv-layer:nth-child(5) .pl-inset{stroke:rgba(255,255,255,.35)}
+.sv-layer:nth-child(5) .pl-shadow{fill:rgba(5,32,245,.16)}
+.sv-plate-obj{width:54%;top:40%;transform:translate(-50%,-72%)}
+.sv-stack::after{content:"";position:absolute;left:calc(var(--plw) / 2 - 3.5px);top:6px;width:7px;height:7px;background:var(--elec);z-index:2;
+  animation:svAxis 7s linear infinite}
+@keyframes svAxis{0%{top:6px;opacity:0}4%{opacity:1}96%{opacity:1}100%{top:calc(100% - 12px);opacity:0}}
+@keyframes svLift{0%,14%,100%{transform:translateY(0)}6%{transform:translateY(-7px)}}
+.sv-layer-w > div > b{font-size:clamp(18px,1.45vw,23px)}
+.sv-layer-w > div > span{font-size:clamp(14px,1.05vw,15.5px)}
+@media (prefers-reduced-motion:reduce){.sv-stack::after{display:none}}
+/* 48b · the foundation object stands on its plate; descriptions get a
+   wider measure so they do not orphan a word */
+.sv-layer:nth-child(5) .sv-plate-obj{top:46%}
+.sv-layer-w > div{max-width:48ch}
+/* 48c · the foundation plate is Tenthpin navy, so the white object on it
+   reads as one piece (on electric its lifted top looked detached) */
+.sv-layer:nth-child(5) .pl-top{fill:#06156A;stroke:#040F4F}
+.sv-layer:nth-child(5) .pl-left{fill:#040F4F;stroke:#040F4F}
+.sv-layer:nth-child(5) .pl-right{fill:#0B1526;stroke:#0B1526}
+.sv-layer:nth-child(5) .pl-dot{fill:rgba(255,255,255,.16)}
+.sv-layer:nth-child(5) .pl-inset{stroke:rgba(255,255,255,.28)}
+.sv-layer:nth-child(5) .pl-shadow{fill:rgba(6,21,106,.16)}
+.sv-layer:nth-child(5) .sv-plate-obj .tp-iso{--ia:#0520F5;--ia2:#5B8CFF}
+
+/* 49 · the service panel header (Bazil: "don't put the number in a box",
+   "not 01 but 1 2 3", "icon should be bigger"): the numeral is set large in
+   electric with no block behind it, and the object is half again as big */
+.sv-svc-no{width:auto;height:auto;background:none;color:var(--elec);
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:34px;line-height:1;letter-spacing:-.03em;
+  display:block;text-align:center}
+.sv-svc-hd{grid-template-columns:34px 96px minmax(0,1fr) auto;column-gap:20px}
+.sv-svc.v3 .sv-svc-obj{width:96px;height:96px}
+@media (max-width:1000px){
+  .sv-svc-hd{grid-template-columns:28px 72px minmax(0,1fr)}
+  .sv-svc-no{font-size:26px}
+  .sv-svc.v3 .sv-svc-obj{width:72px;height:72px}
+}
+
+/* 50 · the phone stack, RESTATED LAST (bug sweep, 9 Sep 2026). Rule 37 and
+   rule 38 set `.sv-feat` columns unconditionally after the earlier
+   `@media (max-width:1000px)` block, which killed it: at 390 the two "once
+   you are live" rows rendered as three ~120px columns, one word per line,
+   with the mechanism diagram squeezed to 121px. Anything that changes the
+   .sv-feat grid must stay above this block. */
+@media (max-width:1000px){
+  .sv-feat,.sv-feat.rev{grid-template-columns:1fr;row-gap:22px}
+  .sv-feat .sv-feat-shot,.sv-feat.rev .sv-feat-shot{order:1}
+  .sv-feat .sv-feat-body,.sv-feat.rev .sv-feat-body{order:2}
+  .sv-feat .sv-feat-dg,.sv-feat.rev .sv-feat-dg,.sv-feat .sv-feat-viz,.sv-feat.rev .sv-feat-viz{order:3;display:grid;padding:0 clamp(20px,2.8vw,44px) 28px}
+  .sv-feat-shot{aspect-ratio:3/2}
+  .sv-feat-shot img{height:100%}
+}
+
+
+/* 10 Sep 2026 (QA audit): readability floor. Every label, chip, eyebrow and
+   note whose final size sat under 11px now reads at 11px. Media overrides are
+   restated inside their own query so the desktop size is untouched. */
+.sv-cta,
+.sv-cue,
+.sv-tag,
+.sv-cap,
+.sv-route em,
+.sv-table tbody th,
+.dg-lab,
+.sv-who-lb,
+.sv-svc-who,
+.sv-svc-cap b,
+.sv-svc-lb{font-size:11px}
+@media (max-width:760px){.sv-table tbody td::before{font-size:11px}}
+
+/* 10 Sep 2026 (QA audit): the stack layers' phone height restated after the
+   later fixed height, so a row is only as tall as its words. */
+@media (max-width:760px){.sv-layer{height:auto;min-height:96px}}
+
+/* 15 Sep 2026 (one header on every page): the site container */
+.sv{--gut:clamp(18px,3vw,52px)}
+.sv-in{width:min(1340px,100%)}
+
+/* 18 Sep 2026 · no line animation anywhere (Bazil: "no line animation
+   throughout the website"). Lines stay drawn; nothing grows, draws itself,
+   sweeps or runs along them. Mechanism dots in diagrams and on the globe
+   are kept pending his call. */
+.sv-lead{animation:none}
+.sv-stack::after{content:none;animation:none}
+.tp-iso[data-k="industry"] .tp-draw{animation:none;stroke-dasharray:none}
+
+
+/* ── 19 Sep 2026 · the engagement stack, rebuilt (.sv-stk) ────────────────
+   One drawing painted bottom-up, labels pinned to each plate's centre.
+   Assembles from the foundation up on arrival, then a station at a time on
+   an 8s cycle: lift, lit top, brighter glow, filled label. */
+.sv-stk{--sw:clamp(236px,21vw,318px);position:relative;display:grid;grid-template-columns:var(--sw) minmax(0,1fr);column-gap:clamp(20px,2.4vw,40px);align-self:center}
+.sv-stk-svg{display:block;width:var(--sw);height:auto;overflow:visible}
+.sv-stk-labs{list-style:none;margin:0;padding:0;position:relative}
+.skb{position:absolute;left:0;right:0;transform:translateY(-50%);display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:14px;align-items:start;cursor:default;outline:0}
+.skb-n{width:32px;height:32px;display:grid;place-items:center;border:1px solid #CFDBF6;background:#fff;color:var(--elec);
+  font:600 14px/1 "Space Grotesk",sans-serif;font-style:normal;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease)}
+.skb > div{display:grid;gap:3px;max-width:36ch}
+.skb > div > b{font:500 clamp(17px,1.35vw,21px)/1.15 "Space Grotesk",sans-serif;letter-spacing:-.02em;color:var(--ink);transition:color .35s var(--ease)}
+.skb > div > span{font-size:clamp(13.5px,1vw,15px);line-height:1.5;color:var(--soft)}
+
+/* the drawing */
+.sv-stk-svg .sk-top{fill:#F3F6FF;stroke:#B9CBF3;stroke-width:1;transition:fill .5s}
+.sv-stk-svg .sk-left{fill:#DCE6FB;stroke:#B9CBF3;stroke-width:1}
+.sv-stk-svg .sk-right{fill:#C9D8F8;stroke:#B9CBF3;stroke-width:1}
+.sv-stk-svg .sk-ins{fill:none;stroke:#C3D3F6;stroke-width:1;stroke-dasharray:3 3}
+.sv-stk-svg .sk-dot{fill:rgba(5,32,245,.14)}
+.sv-stk-svg .sk-glow{fill:url(#skGlow);opacity:.45}
+.sv-stk-svg .skl0 .sk-top{fill:#F9FBFF}
+.sv-stk-svg .skl1 .sk-top{fill:#F4F7FF}
+.sv-stk-svg .skl2 .sk-top{fill:#EEF3FF}
+.sv-stk-svg .skl3 .sk-top{fill:#E8EFFF}
+.sv-stk-svg .skl4 .sk-top{fill:#06156A;stroke:#040F4F}
+.sv-stk-svg .skl4 .sk-left{fill:#040F4F;stroke:#040F4F}
+.sv-stk-svg .skl4 .sk-right{fill:#020A3A;stroke:#020A3A}
+.sv-stk-svg .skl4 .sk-ins{stroke:rgba(255,255,255,.26)}
+.sv-stk-svg .skl4 .sk-dot{fill:rgba(255,255,255,.14)}
+.sv-stk-svg .skl4 .tp-iso{--ia:#0520F5;--ia2:#5B8CFF}
+.sv-stk-svg .skl,.sv-stk-svg .ska{transform-box:view-box}
+
+/* arrival: the foundation first, each plate settling onto the one below */
+.sv-stk.pre .skl{opacity:0;transform:translateY(-26px)}
+.sv-stk.in .skl{animation:skIn .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc((4 - var(--i)) * 130ms)}
+@keyframes skIn{from{opacity:0;transform:translateY(-26px)}to{opacity:1;transform:none}}
+.sv-stk.pre .skb{opacity:0}
+.sv-stk.in .skb{animation:skLabIn .7s var(--ease) both;animation-delay:calc(300ms + var(--i) * 90ms)}
+@keyframes skLabIn{from{opacity:0}to{opacity:1}}
+
+/* the cycle: one station at a time, 1.6s each, after the arrival */
+.sv-stk.in .ska{animation:skOn 8s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(1.3s + var(--i) * 1.6s)}
+.sv-stk.in .ska .sk-top{animation:skTop 8s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(1.3s + var(--i) * 1.6s)}
+.sv-stk.in .ska .sk-glow{animation:skGlow 8s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(1.3s + var(--i) * 1.6s)}
+.sv-stk.in .skl4 .ska .sk-top{animation-name:skTopDeep}
+.sv-stk.in .skb .skb-n{animation:skNum 8s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(1.3s + var(--i) * 1.6s)}
+.sv-stk.in .skb > div > b{animation:skTitle 8s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(1.3s + var(--i) * 1.6s)}
+@keyframes skOn{0%,20%,100%{transform:none}4%,16%{transform:translateY(-6px)}}
+@keyframes skTop{0%,20%,100%{stroke:#B9CBF3}4%,16%{fill:#DCE7FF;stroke:#0520F5}}
+@keyframes skTopDeep{0%,20%,100%{fill:#06156A}4%,16%{fill:#1C3A73;stroke:#0520F5}}
+@keyframes skGlow{0%,20%,100%{opacity:.45}4%,16%{opacity:1}}
+@keyframes skNum{0%,20%,100%{background:#fff;color:#0520F5;border-color:#CFDBF6}4%,16%{background:#0520F5;color:#fff;border-color:#0520F5}}
+@keyframes skTitle{0%,20%,100%{color:#0D1526}4%,16%{color:#0520F5}}
+
+/* pointing at a station holds it */
+.sv-stk[data-hot] .ska,.sv-stk[data-hot] .ska .sk-top,.sv-stk[data-hot] .ska .sk-glow,.sv-stk[data-hot] .skb .skb-n,.sv-stk[data-hot] .skb > div > b{animation:none!important}
+.sv-stk[data-hot="0"] .skl0 .ska{transform:translateY(-6px)}.sv-stk[data-hot="0"] .skl0 .sk-top{fill:#DCE7FF;stroke:#0520F5}.sv-stk[data-hot="0"] .skl0 .sk-glow{opacity:1}.sv-stk[data-hot="0"] .skb0 .skb-n{background:#0520F5;color:#fff;border-color:#0520F5}.sv-stk[data-hot="0"] .skb0 > div > b{color:#0520F5}
+.sv-stk[data-hot="1"] .skl1 .ska{transform:translateY(-6px)}.sv-stk[data-hot="1"] .skl1 .sk-top{fill:#DCE7FF;stroke:#0520F5}.sv-stk[data-hot="1"] .skl1 .sk-glow{opacity:1}.sv-stk[data-hot="1"] .skb1 .skb-n{background:#0520F5;color:#fff;border-color:#0520F5}.sv-stk[data-hot="1"] .skb1 > div > b{color:#0520F5}
+.sv-stk[data-hot="2"] .skl2 .ska{transform:translateY(-6px)}.sv-stk[data-hot="2"] .skl2 .sk-top{fill:#DCE7FF;stroke:#0520F5}.sv-stk[data-hot="2"] .skl2 .sk-glow{opacity:1}.sv-stk[data-hot="2"] .skb2 .skb-n{background:#0520F5;color:#fff;border-color:#0520F5}.sv-stk[data-hot="2"] .skb2 > div > b{color:#0520F5}
+.sv-stk[data-hot="3"] .skl3 .ska{transform:translateY(-6px)}.sv-stk[data-hot="3"] .skl3 .sk-top{fill:#DCE7FF;stroke:#0520F5}.sv-stk[data-hot="3"] .skl3 .sk-glow{opacity:1}.sv-stk[data-hot="3"] .skb3 .skb-n{background:#0520F5;color:#fff;border-color:#0520F5}.sv-stk[data-hot="3"] .skb3 > div > b{color:#0520F5}
+.sv-stk[data-hot="4"] .skl4 .ska{transform:translateY(-6px)}.sv-stk[data-hot="4"] .skl4 .sk-top{fill:#1C3A73;stroke:#0520F5}.sv-stk[data-hot="4"] .skl4 .sk-glow{opacity:1}.sv-stk[data-hot="4"] .skb4 .skb-n{background:#0520F5;color:#fff;border-color:#0520F5}.sv-stk[data-hot="4"] .skb4 > div > b{color:#0520F5}
+.sv-stk .ska{transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion:reduce){.sv-stk .skl,.sv-stk .ska,.sv-stk .sk-top,.sv-stk .sk-glow,.sv-stk .skb,.sv-stk .skb-n,.sv-stk .skb > div > b{animation:none!important;opacity:1}}
+
+/* phones: the drawing above, the stations as a list under it */
+@media (max-width:640px){
+  .sv-stk{grid-template-columns:1fr;row-gap:22px;--sw:min(220px,62vw)}
+  .sv-stk-svg{margin:0 auto}
+  .skb{position:static;transform:none!important;margin-bottom:16px}
+  .sv-stk.in .skb{animation-name:skLabInM}
+}
+@keyframes skLabInM{from{opacity:0}to{opacity:1}}
+
+/* the CTA in the house button face, not a mono label */
+.sv-hero-sel .sv-cta{font:600 14px/1 "Space Grotesk",sans-serif;letter-spacing:.02em;text-transform:uppercase}
+
+/* 22 Sep 2026 · no zoom on hover (Bazil) */
+.sv-route:hover .sv-route-shot img{transform:none!important}

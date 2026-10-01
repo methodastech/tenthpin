@@ -1,0 +1,2942 @@
+/* ═══════════════════════════════════════════════════════════════
+   TENTHPIN MC · WEBSITE 2 · shared design system
+   White base, one anchor blue, lime on the single CTA only.
+   ═══════════════════════════════════════════════════════════════
+
+   WHAT THIS FILE IS
+   Plain CSS. No framework, no preprocessor, no build step, no
+   post-processing. Every page links it directly and the browser
+   receives exactly these bytes. Nothing compiles it, nothing
+   tree-shakes it, nothing renames a class. Custom properties on
+   :root are the only abstraction.
+
+   ⚠ HOW TO EDIT IT · READ THIS FIRST
+   The file is a STACK OF OVERRIDE LAYERS, not a flat sheet. It grew
+   by appending: each new layer deliberately re-declares selectors an
+   earlier layer already set, and wins on source order. A single
+   class can be defined four or five times down the file, and only
+   the LAST matching declaration decides what renders.
+
+     1. Grep the whole file for the selector before you change it.
+        `grep -n "\.evband" assets/tp.css` returns 50 hits. Read them
+        all. Editing the first hit is the standard way to change
+        nothing and think you changed something.
+     2. Make the edit in the LAST layer that matches, never the first.
+     3. Appending a new rule at the very bottom always works.
+        Editing in the middle usually does not.
+     4. The 38 remaining !important declarations are commented in
+        place. Each one says what it beats. Do not remove one without
+        reading its comment.
+
+   ───────────────────────────────────────────────────────────────
+   RESPONSIVE BREAKPOINTS · every width query in the file, ascending
+   ───────────────────────────────────────────────────────────────
+   Strictly desktop-first. There is not a single min-width query:
+   every breakpoint is a max-width that narrows an already-built
+   desktop layout.
+
+     520px   badge grid to 2 col L480 · credential row to 2 col L860
+     560px   hero headline spans go inline L864 · hero stats to
+             2 col L1143 · anonymised tiles to 1 col L1313
+     600px   client logo row to 2 col plus smaller marks L1717, L1787
+     620px   credential grid to 2 col L1685
+     640px   THE MOBILE TIER. Rewrites the spacing tokens (--gut,
+             --s3 … --s8), section padding, the hero and h2 type
+             clamps, the .g3/.g4 and .stats grids, plan viz height,
+             film stage, CTA panels, WhatsApp bubble, event-band CTA.
+     760px   hero stops filling the viewport · .g2 / .gapgrid / .spine
+             to 1 col · .plan to 1 col · event-strip title hidden ·
+             banner meta · hero stats gap · credential images ·
+             question cube
+     900px   THE TABLET TIER. .offers / .tiers / .quotes / .guar /
+             .engine-grid / .evband / .aiw to 1 col · section heads
+             restack · credential and logo rows re-grid · services
+             dropdown goes inline · workspace bar tightens · the
+             SECOND mobile nav panel L1648
+     980px   the AI split (.aiw) to 1 col L1128
+    1000px   THE NAV BREAKPOINT. Links to burger L593 · footer to
+             2 col · .offer to 1 col · method flow to 3 col ·
+             credential and logo rows to 3 col
+    1100px   .g4 to 2 col L1364
+
+   Non-width queries: prefers-reduced-motion:reduce, 14 blocks, in
+   both the `@media(` and `@media (` spellings, so grep for both.
+   `@media print`, 2 blocks L1396, L1558.
+
+   FOR THE REACT REBUILD · which near-duplicates to collapse
+     520 / 560 / 600 / 620 / 640  →  one MOBILE tier at 640
+     900 / 980 / 1000             →  one TABLET tier at 1000
+     1100                         →  fold into a LAPTOP tier or drop
+     760                          →  the only genuine in-between. It
+                                     carries the hero reflow and the
+                                     two-col to one-col switches.
+                                     Test before merging it away.
+   Nothing here has been re-pointed. The values above are the current
+   truth of this file; the collapse is a recommendation for the
+   rebuild only.
+
+   ───────────────────────────────────────────────────────────────
+   LAYER MAP · cascade order, later beats earlier
+   ───────────────────────────────────────────────────────────────
+   L211    LAYER 0 · TOKENS. :root custom properties: palette, the
+          --s1 … --s8 spacing scale, --maxw, --gut, easings. Plus
+          .dark-band L220, which re-points the same tokens so dark
+          showpiece sections inherit an inverted palette.
+   L227   LAYER 1 · BASE + COMPONENTS. Reset, element defaults and
+          the primitives (.wrap, .sec, .eyebrow, h2.big, .lede,
+          .shead), then one block per component:
+            L250 .cta / .cue        the single CTA and the quiet cue
+            L258 .ldr               loading screen
+            L295 .nav               header, workspace bar, burger, lang
+           L342 .evstrip           time-bound event strip
+           L354 .hero              hero shell, grid, chips, scroll hint
+           L387 .proofstrip        numbers band under the hero
+           L394 grids and cards    .g2 .g3 .g4 .card .gapgrid
+           L421 .showpiece         dark full-bleed stage, .facets
+           L441 .viz               labeled placeholder slots
+           L459 .na                not-available-yet marker
+           L466 .badges            partner badges
+           L482 .media             video and picture placeholders
+           L501 .indust            industry cards
+           L510 .spine / .story    case spine
+           L522 .flow / .step      the method strip
+           L534 .force .stats .offices
+           L549 .offer .form .field
+           L565 .tbl / .st         status table, roadmap page
+           L575 .foot              footer
+   L592  LAYER 2 · RESPONSIVE BASE. The original four-block pass:
+          1000 / 760 / 640 / reduced-motion. A large share of the
+          file's !important flags live here, because later layers
+          re-declare the same selectors at higher specificity.
+   L645  LAYER 3 · 52 FRAMEWORK. Home-page section components added
+          on top of the base: .logorow L650, .stake/.prob L656,
+          .plan/.pstep L670, .offers/.off L680, .tiers L697,
+          .quotes L711, .guar L721, .faq L729, and the
+          nav-over-dark-band variants L738.
+   L751  LAYER 4 · CINEMATIC VIDEO HERO. .hero.video re-points the
+          token block locally for a dark hero, then adds the footage,
+          the 3D canvas, the scrims and the asset-slot markers.
+   L797  LAYER 5 · REFINEMENT PASSES, L797 to L1221. Roughly
+          thirty small appended blocks, each fixing one thing seen on
+          the live page. In order: hero motion L797 · .shot
+          photography L804 · hero credibility chips L816 · nav
+          always visible L825 · industry banner L832 · credential
+          line L853 · headline breaks L862 · banner video L869 ·
+          banner transition L875 · logo marks and sizing L884,
+          L895, L907, L914 · the 3D process diagram L920, L936,
+          L944, L954, L957 · credential band L949 · nav collapse
+          on scroll L965 · footer brand L970 · the services film
+          L976 · credential marks L994 · the AI on S/4HANA stack
+          L1007, L1010, L1030 · problem cards with scenes L1054 ·
+          offer 3D stages L1061 · hero stats L1070 · hero event
+          button L1079 · event band L1090 · AI split L1112 · tier
+          cards L1132 · route transition L1137 · mobile stats L1142 ·
+          registration form and page L1149, L1157, L1187 ·
+          coming-soon modal L1203.
+   L1222 LAYER 6 · CTA WINDOW HOUSE RULE (Bazil, 5 Aug 2026). Every
+          section-level CTA becomes a framed blue window with corner
+          ticks. .evb-cta, .tfoot and .cta-panel share one definition.
+   L1278 LAYER 7 · POLISH PASSES, L1278 to L1736. The second long
+          tail: services dropdown L1278 · consultant lock L1297,
+          L1605 · anonymised sector tiles L1302, L1600, not used
+          by any in-scope page today · how-it-works numerals L1315 ·
+          section heads L1325, L1340 · service card stages L1332 ·
+          film band L1335, L1611 · case cards L1351, L1576 ·
+          commitment band L1367 · Q&A cube L1375, L1497 ·
+          WhatsApp bubble L1385 · footer veil and halos L1398,
+          L1406, L1507 · pricing L1410 · sector cards L1417,
+          L1560, L1584 · the SAP NOW band, rebuilt six times
+          L1451, L1459, L1474, L1486, L1490, L1502, L1512 ·
+          legibility shadows over canvases L1517 · hero page and
+          video shadows L1544, L1550 · credentials L1587, L1668 ·
+          hero film crossfade L1619, L1657 · scroll cue L1629,
+          L1690 · nav over the dark hero and the mobile panel
+          L1637 · client marks L1702 · workspace bar L1723.
+   L1737 LAYER 8 · CORRECTIONS, 7 Aug. THE LAST WORD. Seven numbered
+          fixes that settle every layer above: credential artwork,
+          fewer horizontal rules, the outcome line, no box inside a
+          box on .tfoot, quieter footer canvas, leadership portraits,
+          footer breathing room. New overrides belong here or below.
+
+   ───────────────────────────────────────────────────────────────
+   KNOWN TANGLES · check these before you touch them
+   ───────────────────────────────────────────────────────────────
+   · MOBILE NAV IS IMPLEMENTED TWICE. L593 (max-width 1000) hides
+     .navlinks, shows the burger and opens via `.nav.open .navlinks`.
+     L1648 (max-width 900) adds a second fixed panel that opens via
+     `.navlinks.open`. Between 900 and 1000 only the first is live.
+     Any nav change has to be made in both or it will look right on
+     one width and wrong on the other.
+   · .g4 IS DECLARED FOUR TIMES: L397, L623 (max-width 640,
+     !important), L1363, L1365 (max-width 640, 1 column). The
+     !important at L623 wins, so L1365 is dead code.
+   · .credline IS REBUILT FIVE TIMES: L854, L950, L994, L1587,
+     then re-gridded at L1668, then stripped of its cell borders
+     again by the corrections layer at L1755.
+   · .logorow IS REBUILT THREE TIMES: L650, L1703, then turned
+     from a grid into a flex row at L1767.
+   · .evband PADDING IS SET FOUR TIMES: L1460, L1472, L1487,
+     L1488. Only the last pair renders.
+   · .scrollhint HAS TWO IMPLEMENTATIONS: the chevron L376 and the
+     filling line L1690. L1692 hides the chevron.
+   · .logorow.anon L1302 / L1600 is fully styled but used by NO
+     in-scope page, which is what hides the L909 conflict below.
+
+   ───────────────────────────────────────────────────────────────
+   !important AUDIT · 7 Aug 2026
+   ───────────────────────────────────────────────────────────────
+   Audited 40 real declarations (41 textual matches: one sits inside
+   the explanatory comment on L985). 38 remain, each with a trailing
+   comment naming the rule it beats. Grep `!important` to walk them.
+
+   Two flags were removed as provably redundant, meaning no other
+   rule anywhere in the file sets that property on an element that
+   selector can match. The declarations themselves stayed, only the
+   flags went, so nothing renders differently:
+     · min-height on .nav-top L1724
+     · flex-wrap on .nav-top .nt-in L1727
+
+   The load-bearing ones, do not touch without reading the comment:
+     L620 hero h1 clamp, beats .hero.page h1
+     L623 .g4 two-up on phones, beats a later 1-column rule
+     L633 .viz min-height, beats .viz.tall and .viz.short
+     L640 reduced motion, universal selector has no specificity
+     L641 [data-reveal], beats inline styles written by GSAP
+     L818 hero chips, beats .hero.video .chip
+     L851 [hidden], beats every class-level display rule
+    L1505 cue underline, restores what L1503 strips
+    L1724 .nav-top height:auto, beats the .nav.solid collapse
+    L1734 mobile workspace bar, beats L1727
+   ═══════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#F5F7FC; --bg2:#FFFFFF; --panel:#FCFDFF;
+  --ink:#101626; --soft:#46536B; --faint:#6B7185; --faintest:#9AA3B5;
+  --line:rgba(16,22,38,.09); --line2:rgba(16,22,38,.14);
+  --blue:#06156A; --blue-bright:#0C2190; --cyan:#06156A;
+  --s1:8px; --s2:14px; --s3:20px; --s4:28px; --s5:38px; --s6:52px; --s7:70px; --s8:96px;
+  --maxw:1400px; --gut:clamp(16px,2.6vw,44px);
+  --e1:cubic-bezier(.22,1,.36,1); --e2:cubic-bezier(.65,.05,.36,1);
+}
+.dark-band{
+  --bg:#0B1020; --bg2:#0E1424; --panel:#121A2E;
+  --ink:#EEF2FB; --soft:#AEB9D2; --faint:#7E8AA6; --faintest:#39435C;
+  --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.15);
+  --blue:#06156A; --blue-bright:#7C92FF; --cyan:#8C9EFF;
+  background:var(--bg2); color:var(--ink);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--bg)}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--blue);color:#fff}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.mono{font-family:"Inter",sans-serif;font-weight:600}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.025em;line-height:1.04}
+h1 em,h2 em,h3 em{font-style:normal;color:var(--blue-bright)}
+.wrap{max-width:var(--maxw);margin:0 auto;width:100%}
+.sec{padding:clamp(62px,9.8vh,124px) 0;position:relative}
+.sec.wrap{padding-left:var(--gut);padding-right:var(--gut)}
+.sec.tight{padding-top:clamp(36px,4.6vh,60px)}
+.eyebrow{font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--blue-bright);display:flex;align-items:center;gap:0}
+.eyebrow i{display:none}
+.dark-band .eyebrow{color:var(--cyan)}
+.dark-band .eyebrow i{background:var(--cyan)}
+h2.big{font-size:clamp(28px,4.6vw,58px);margin-top:var(--s2);max-width:min(940px,94vw)}
+.lede{color:var(--soft);font-size:clamp(15px,1.3vw,18px);max-width:min(720px,92vw);margin-top:var(--s3)}
+.lab{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.shead{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--s5);align-items:end}
+.shead .r{padding-bottom:6px}
+
+/* ── the single CTA ─────────────────────────────────────────── */
+.cta{display:inline-flex;align-items:center;justify-content:center;background:var(--blue);color:#fff;font-family:"Inter",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;padding:15px 26px;border:0;cursor:pointer;transition:background .35s var(--e1),transform .35s var(--e1);white-space:nowrap}
+.cta:hover{background:var(--blue-bright);transform:translateY(-2px)}
+.cta.sm{font-family:"Space Grotesk";font-weight:600;font-size:13px;letter-spacing:.01em;text-transform:none;padding:10px 18px}
+/* no underline: the mono caps and the arrow carry the affordance on their own */
+.cue{display:inline-flex;align-items:center;gap:9px;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);transition:color .3s}
+.cue:hover{color:var(--blue-bright)}
+.cue b{font-weight:400;font-size:13px;line-height:1}
+
+/* ── loading screen ─────────────────────────────────────────── */
+.ldr{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;animation:ldrFail .001s linear 6s forwards}
+@keyframes ldrFail{to{opacity:0;visibility:hidden;pointer-events:none}}
+.ldr::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 50% 0/ 84px 84px,
+  linear-gradient(180deg,var(--line) 1px,transparent 1px) 0 50%/ 84px 84px;
+  opacity:.5;-webkit-mask-image:radial-gradient(58% 52% at 50% 46%,#000,transparent 74%);mask-image:radial-gradient(58% 52% at 50% 46%,#000,transparent 74%)}
+.ldr-stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;transition:opacity .5s var(--e1),transform .6s var(--e1)}
+.ldr::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;opacity:.55;
+  -webkit-mask-image:radial-gradient(62% 62% at 50% 46%,#000,transparent);mask-image:radial-gradient(62% 62% at 50% 46%,#000,transparent)}
+.ldr-frame{position:relative;width:clamp(206px,27vw,284px);height:clamp(206px,27vw,284px);border:1px solid var(--line2);background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center}
+.ldr-frame::after{content:"";position:absolute;inset:11px;border:1px solid var(--line);pointer-events:none;opacity:.8}
+.ldr-bar{position:absolute;left:-1px;top:-1px;height:2px;width:calc(100% + 2px);background:var(--blue);transform:scaleX(var(--p,0));transform-origin:0 50%;transition:transform .18s linear;
+  box-shadow:0 0 14px rgba(6,21,106,.5)}
+.lt{position:absolute;width:11px;height:11px}
+.lt::before,.lt::after{content:"";position:absolute;background:var(--blue);opacity:.5}
+.lt::before{left:0;top:5px;width:11px;height:1px}
+.lt::after{left:5px;top:0;width:1px;height:11px}
+.lt1{left:-6px;top:-6px}.lt2{right:-6px;top:-6px}.lt3{left:-6px;bottom:-6px}.lt4{right:-6px;bottom:-6px}
+.ldr-mark{position:relative;width:66%;height:0;padding-bottom:calc(66% * 24 / 181)}
+.lm{position:absolute;inset:0;-webkit-mask:url(logo_tenthpin_pos.svg) no-repeat center/contain;mask:url(logo_tenthpin_pos.svg) no-repeat center/contain}
+.lm-ghost{background:var(--faintest);opacity:.28}
+.lm-ink{background:var(--blue);clip-path:inset(calc(100% - var(--p,0) * 100%) 0 0 0)}
+.ldr-mc{position:absolute;right:-13%;top:50%;transform:translateY(-50%);font-family:"Inter",sans-serif;font-weight:600;font-weight:700;font-size:9px;letter-spacing:.06em;color:#fff;background:var(--blue);padding:2px 4px;opacity:var(--p,0)}
+.ldr-words{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);display:flex;gap:14px}
+.ldr-words span{opacity:.35;transition:opacity .5s var(--e1)}
+.ldr-words span.on{opacity:1;color:var(--ink)}
+.ldr-count{position:absolute;bottom:clamp(26px,6vh,54px);left:0;right:0;text-align:center;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.14em;color:var(--faint)}
+.ldr-count b{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+.ldr.done{transform:translateY(-101%);transition:transform 1.05s var(--e1);animation:none}
+.ldr.done .ldr-stage{opacity:0;transform:translateY(-14px)}
+.ldr.done .ldr-count{opacity:0;transition:opacity .3s}
+html.ldr-lock,html.ldr-lock body{overflow:hidden}
+@media(prefers-reduced-motion:reduce){.ldr{display:none}}
+
+/* ── chrome ─────────────────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:800;isolation:isolate}
+.nav-top{background:#0B1020;height:34px}
+.nt-in{max-width:var(--maxw);margin:0 auto;height:100%;padding:0 var(--gut);display:flex;align-items:center;justify-content:space-between;gap:14px}
+.tb-mark{font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#9FB4FF;white-space:nowrap}
+.tb-mark b{color:#EAF0FB;font-weight:700}
+.wsw{display:flex;align-items:center;border:1px solid rgba(255,255,255,.24);overflow:auto;max-width:100%}
+.wsw a{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#C7D3EE;padding:6px 12px;border-right:1px solid rgba(255,255,255,.18);white-space:nowrap}
+.wsw a:last-child{border-right:0}
+.wsw a:hover{color:#fff;background:rgba(255,255,255,.09)}
+.wsw a.on{background:#06156A;color:#fff;font-weight:700}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:18px;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);height:73px;transition:height .4s var(--e1)} /* 4 Sep 2026: 10% taller */
+.nav::after{content:"";position:absolute;left:0;right:0;top:0;height:100%;z-index:-1;pointer-events:none;
+  background:rgba(250,251,254,.9);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);backdrop-filter:blur(10px) saturate(140%)}
+.nav.solid::after{background:rgba(250,251,254,.97);box-shadow:0 1px 0 var(--line),0 12px 32px -22px rgba(16,22,38,.3)}
+.nav.solid .nav-in{height:64px}
+.brand{display:flex;align-items:center;gap:9px}
+.brand .bt{display:flex;align-items:center;gap:6px}
+.brand-logo{height:23px;width:auto}
+.brand .mc{font-family:"Inter",sans-serif;font-weight:600;font-weight:700;font-size:11px;letter-spacing:.04em;color:#fff;background:var(--blue);padding:3px 5px}
+.brand .bs{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);display:block;margin-top:2px}
+.navlinks{display:flex;align-items:center;gap:15px;margin-left:auto;flex-wrap:nowrap}
+.navlinks a{font-family:"Inter";font-size:13.5px;font-weight:500;letter-spacing:.01em;color:var(--soft);position:relative;padding:6px 0;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--blue);transition:width .45s var(--e1)}
+.navlinks a:hover{color:var(--ink)}.navlinks a:hover::after{width:100%}
+.navlinks a.here{color:var(--ink)}.navlinks a.here::after{width:100%}
+.navlinks a.dim{opacity:.42}
+.navlinks a.dim:hover{opacity:.7}
+.navlinks a.cta{color:#fff}
+.navlinks a.cta:hover{color:#fff;background:var(--blue-bright)}
+.navlinks a.cta::after{display:none}
+.navlinks a .soon{display:none}
+.lang{display:flex;align-items:center;border:1px solid var(--line2);margin-left:4px}
+.lang button{font-family:"Inter";font-size:11px;font-weight:600;letter-spacing:.02em;padding:5px 9px;background:none;border:0;color:var(--faint);cursor:pointer}
+.lang button.on{background:var(--ink);color:#fff}
+/* burger: no box, two weighted rules that fold into a cross */
+.burger{display:none;width:34px;height:34px;border:0;background:none;cursor:pointer;position:relative;padding:0}
+.burger i{position:absolute;left:5px;right:5px;height:1.6px;border-radius:2px;background:var(--ink);transition:transform .42s var(--e1),opacity .25s,width .42s var(--e1)}
+.burger i:nth-child(1){top:13px}
+.burger i:nth-child(2){top:20px;left:5px;right:11px}
+.burger i:nth-child(3){display:none}
+.burger:hover i:nth-child(2){right:5px}
+.nav.open .burger i:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+.nav.open .burger i:nth-child(2){right:5px;transform:translateY(-3.5px) rotate(-45deg)}
+
+
+/* ── event strip · time-bound campaign, not a nav tab ───────── */
+.evstrip{background:var(--blue);color:#fff;position:relative;z-index:2;transition:height .45s var(--e1),opacity .3s var(--e1)}
+.ev-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);height:48px;display:flex;align-items:center;gap:16px}
+.ev-k{font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;background:rgba(255,255,255,.18);padding:6px 11px;white-space:nowrap}
+.ev-t{font-size:14.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ev-a{font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:2px;margin-left:auto;white-space:nowrap;transition:border-color .3s}
+.ev-a:hover{border-color:#fff}
+.ev-x{background:none;border:0;color:rgba(255,255,255,.85);font-size:17px;line-height:1;cursor:pointer;padding:0 0 0 6px;flex:none}
+.ev-x:hover{color:#fff}
+html.no-strip .evstrip{display:none}
+@media(max-width:760px){.ev-t{display:none}.ev-in{gap:10px}}
+
+/* ── hero ───────────────────────────────────────────────────── */
+.hero{position:relative;min-height:94svh;display:flex;align-items:center;padding:140px 0 clamp(56px,7vh,84px);overflow:hidden}
+html.no-strip .hero{padding-top:118px}
+.hero.page{min-height:70svh;padding:150px 0 var(--s6)}
+html.no-strip .hero.page{padding-top:116px}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;-webkit-mask-image:linear-gradient(180deg,#000 68%,transparent 100%);mask-image:linear-gradient(180deg,#000 68%,transparent 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,var(--bg) 0%,rgba(245,247,252,.94) 30%,rgba(245,247,252,.55) 48%,rgba(245,247,252,0) 66%)}
+.hero--mviz::after{display:none}
+.hero-grid{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.6;background:linear-gradient(90deg,var(--line) 1px,transparent 1px) 50% 0/ calc(100% / 12) 100%;-webkit-mask-image:linear-gradient(180deg,#000 40%,transparent 92%);mask-image:linear-gradient(180deg,#000 40%,transparent 92%)}
+.hero-inner{position:relative;z-index:2;padding:0 var(--gut);width:100%;max-width:var(--maxw);margin:0 auto}
+.hero h1{font-size:clamp(40px,6.2vw,92px);letter-spacing:-.032em;line-height:1.03;max-width:min(16ch,94vw)}
+.hero.page h1{font-size:clamp(36px,5.8vw,76px);max-width:min(18ch,94vw)}
+.hero .lede{margin-top:var(--s4);font-size:clamp(15px,1.4vw,18.5px)}
+.hero-cta{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s5);flex-wrap:wrap}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:var(--s5)}
+.chip{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line2);background:rgba(255,255,255,.7);padding:8px 11px;display:inline-flex;align-items:center;gap:8px;transition:transform .5s var(--e1),border-color .4s}
+.chip i{width:4px;height:4px;background:var(--blue);display:block;animation:chipfloat 4.2s ease-in-out infinite}
+.chip:nth-child(2) i{animation-duration:4.9s;animation-delay:-1.4s}
+.chip:nth-child(3) i{animation-duration:5.4s;animation-delay:-2.1s}
+.chip:hover{transform:translateY(-4px);border-color:rgba(6,21,106,.4)}
+@keyframes chipfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.hero-vizslot{display:none}
+.scrollhint{position:absolute;bottom:104px;left:max(var(--gut),calc((100% - var(--maxw))/2 + var(--gut)));z-index:4;
+  display:flex;align-items:center;gap:13px}
+.scrollhint span{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.24em;text-transform:uppercase;color:#AFC0E2}
+.sh-arr{position:relative;display:block;width:15px;height:21px}
+.sh-arr::before,.sh-arr::after{content:"";position:absolute;left:1px;width:11px;height:11px;
+  border-right:1.5px solid #8C9EFF;border-bottom:1.5px solid #8C9EFF;transform:rotate(45deg)}
+.sh-arr::before{top:0;animation:shc 1.9s ease-in-out infinite}
+.sh-arr::after{top:8px;animation:shc 1.9s ease-in-out .3s infinite}
+@keyframes shc{0%,100%{opacity:.18;transform:translateY(0) rotate(45deg)}50%{opacity:1;transform:translateY(4px) rotate(45deg)}}
+@media(prefers-reduced-motion:reduce){.sh-arr::before,.sh-arr::after{animation:none;opacity:.7}}
+
+/* ── proof strip ────────────────────────────────────────────── */
+.proofstrip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.6)}
+.proofstrip .in{max-width:var(--maxw);margin:0 auto;padding:16px var(--gut);display:flex;align-items:center;gap:clamp(14px,3.4vw,44px);flex-wrap:wrap;justify-content:space-between}
+.pf{display:flex;align-items:baseline;gap:9px;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.pf b{color:var(--ink);font-weight:700}
+.pf u{text-decoration:none;color:var(--faint);font-size:8.5px}
+
+/* ── grids and cards ────────────────────────────────────────── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3)}
+.card{border:1px solid var(--line2);background:var(--panel);padding:var(--s4);position:relative;transition:border-color .45s,transform .5s var(--e1)}
+.card:hover{border-color:rgba(6,21,106,.34);transform:translateY(-3px)}
+a.card{color:inherit;display:block}
+a.card::after{content:"\2192";position:absolute;right:var(--s4);bottom:var(--s4);font-family:"Inter",sans-serif;font-weight:600;font-size:13px;color:var(--blue-bright);opacity:0;transform:translateX(-6px);transition:opacity .4s,transform .4s var(--e1)}
+a.card:hover::after{opacity:1;transform:translateX(0)}
+a.card{padding-bottom:calc(var(--s4) + 16px)}
+.card h3{font-size:clamp(18px,1.9vw,23px);margin-top:var(--s2)}
+.card p{color:var(--soft);font-size:14px;margin-top:var(--s2)}
+.card .k{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright)}
+.dark-band .card{background:rgba(255,255,255,.03)}
+
+.gapgrid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4);margin-top:var(--s6)}
+.gapcard{border:1px solid var(--line2);padding:var(--s4);background:var(--panel);position:relative;overflow:hidden}
+.gapcard.now{background:linear-gradient(160deg,rgba(16,22,38,.03),transparent 60%)}
+.gapcard.next{border-color:rgba(6,21,106,.32);background:linear-gradient(160deg,rgba(6,21,106,.07),transparent 62%)}
+.gapcard ul{list-style:none;margin-top:var(--s3);display:flex;flex-direction:column;gap:11px}
+.gapcard li{font-size:14.5px;color:var(--soft);display:flex;gap:11px;align-items:flex-start;line-height:1.5}
+.gapcard li::before{content:"";width:5px;height:5px;margin-top:8px;flex:none;background:var(--faintest)}
+.gapcard.next li::before{background:var(--blue)}
+.gapcard .tag{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.gapcard.next .tag{color:var(--blue-bright)}
+.gapcard h3{font-size:clamp(19px,2.2vw,27px);margin-top:var(--s2)}
+
+/* ── dark showpiece ─────────────────────────────────────────── */
+.showpiece{position:relative;overflow:hidden;padding:0}
+.sp-stage{position:relative;min-height:100svh;display:flex;align-items:center}
+#coreCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.sp-scrim{position:absolute;inset:0;z-index:1;pointer-events:none;background:
+  radial-gradient(70% 60% at 78% 50%, rgba(63,224,208,.10), transparent 62%),
+  linear-gradient(90deg, rgba(11,16,32,.94) 0%, rgba(11,16,32,.72) 44%, rgba(11,16,32,.1) 76%)}
+.sp-wrap{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%;padding:clamp(60px,9vh,110px) var(--gut)}
+.sp-copy{max-width:min(560px,92vw)}
+.facets{margin-top:var(--s5);display:flex;flex-direction:column;border-top:1px solid var(--line2)}
+.facet{border-bottom:1px solid var(--line2);padding:var(--s3) 0;display:grid;grid-template-columns:34px 1fr;gap:var(--s3);opacity:.42;transition:opacity .5s var(--e1)}
+.facet.on{opacity:1}
+.facet .n{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.1em;color:var(--cyan);padding-top:4px}
+.facet h3{font-size:clamp(17px,2vw,22px)}
+.facet p{color:var(--soft);font-size:13.5px;margin-top:6px;max-width:44ch}
+.facet .rd{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-top:9px;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity .5s}
+.facet.on .rd{opacity:1}
+.facet .rd i{width:5px;height:5px;background:var(--cyan);display:block;animation:pulse 1.7s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ── labeled placeholder slots ──────────────────────────────── */
+.viz{position:relative;border:1px solid var(--line2);background:radial-gradient(130% 120% at 50% 0%, rgba(6,21,106,.06), transparent 60%), var(--panel);display:flex;flex-direction:column;justify-content:flex-end;gap:var(--s2);padding:var(--s4);min-height:280px;overflow:hidden;transition:border-color .4s,transform .5s var(--e1)}
+.viz:hover{border-color:rgba(6,21,106,.4);transform:translateY(-3px)}
+.viz::after{content:"";position:absolute;inset:9px;border:1px dashed var(--line);pointer-events:none}
+.viz-top{position:absolute;top:var(--s4);left:var(--s4);right:var(--s4);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;z-index:2}
+.viz-ic{width:26px;height:26px;color:var(--blue-bright);flex:none}
+.viz-ic svg{width:100%;height:100%;display:block}
+.viz-type{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-bright);border:1px solid var(--line2);padding:5px 8px;background:rgba(6,21,106,.04)}
+.viz-k{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-bright);position:relative}
+.viz-d{font-family:"Space Grotesk";font-weight:500;font-size:clamp(16px,1.9vw,21px);color:var(--ink);line-height:1.25;max-width:30ch;position:relative}
+.viz-spec{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);position:relative;display:flex;align-items:center;gap:8px}
+.viz-spec i{width:4px;height:4px;background:var(--blue);display:inline-block;flex:none}
+.viz.tall{min-height:360px}.viz.short{min-height:210px}
+.viz .ph{position:absolute;inset:0;z-index:0;opacity:.5;background:
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/34px 34px,
+  linear-gradient(180deg,var(--line) 1px,transparent 1px) 0 0/34px 34px;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent 78%);mask-image:radial-gradient(70% 60% at 50% 40%,#000,transparent 78%)}
+
+/* ── not-available-yet marker ───────────────────────────────── */
+.na{display:inline-flex;align-items:center;gap:8px;font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);border:1px dashed var(--line2);padding:7px 10px;background:rgba(16,22,38,.02)}
+.na i{width:5px;height:5px;background:var(--faintest);display:block;flex:none}
+.na.warm{color:var(--blue-bright);border-color:rgba(6,21,106,.32);background:rgba(6,21,106,.04)}
+.na.warm i{background:var(--blue)}
+
+
+/* ── partner badges · real file if present, named slot if not ── */
+.badges{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:var(--s5)}
+.badge{border:1px solid var(--line2);background:var(--bg2);min-height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:14px 10px;text-align:center;transition:border-color .4s,transform .5s var(--e1)}
+.badge:hover{border-color:rgba(6,21,106,.34);transform:translateY(-3px)}
+.badge img{max-height:44px;width:auto;object-fit:contain}
+.badge .bn{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.badge .bs2{font-family:"Inter",sans-serif;font-weight:600;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.badge.missing{border-style:dashed;background:rgba(16,22,38,.015)}
+.badge.missing img{display:none}
+.badge .bf{font-family:"Inter",sans-serif;font-weight:600;font-size:7.5px;letter-spacing:.06em;color:var(--faintest);word-break:break-all;display:none}
+.badge.missing .bf{display:block}
+.badge .bmark{width:38px;height:38px;border:1px dashed var(--line2);display:none;align-items:center;justify-content:center;color:var(--faintest);font-family:"Inter",sans-serif;font-weight:600;font-size:8px;letter-spacing:.08em}
+.badge.missing .bmark{display:flex}
+@media(max-width:900px){.badges{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.badges{grid-template-columns:repeat(2,1fr)}.badge{min-height:88px}}
+
+/* ── media placeholders · video and picture ─────────────────── */
+.media{position:relative;border:1px dashed var(--line2);background:radial-gradient(120% 110% at 50% 0%, rgba(6,21,106,.05), transparent 60%), var(--panel);aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:border-color .4s}
+.media:hover{border-color:rgba(6,21,106,.4)}
+.media.p43{aspect-ratio:4/3}
+.media.p45{aspect-ratio:4/5}
+.media::before{content:"";position:absolute;inset:0;opacity:.45;background:
+  linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/34px 34px,
+  linear-gradient(180deg,var(--line) 1px,transparent 1px) 0 0/34px 34px;
+  -webkit-mask-image:radial-gradient(70% 60% at 50% 45%,#000,transparent 78%);mask-image:radial-gradient(70% 60% at 50% 45%,#000,transparent 78%)}
+.media-in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:9px;padding:18px;text-align:center;max-width:90%}
+.media-ic{width:34px;height:34px;color:var(--blue-bright)}
+.media-ic svg{width:100%;height:100%;display:block}
+.media-t{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-bright);border:1px solid var(--line2);padding:5px 8px;background:rgba(6,21,106,.04)}
+.media-d{font-family:"Space Grotesk";font-weight:500;font-size:clamp(15px,1.7vw,19px);color:var(--ink);line-height:1.25}
+.media-f{font-family:"Inter",sans-serif;font-weight:600;font-size:8px;letter-spacing:.06em;color:var(--faintest);word-break:break-all}
+.dark-band .media{background:radial-gradient(120% 110% at 50% 0%, rgba(63,224,208,.07), transparent 60%), #0B1020;border-color:rgba(255,255,255,.16)}
+.dark-band .media-d{color:#EEF2FB}
+.dark-band .media-ic,.dark-band .media-t{color:#8C9EFF}
+
+/* ── industries ─────────────────────────────────────────────── */
+.indust{position:relative;overflow:hidden;border:1px solid var(--line2);background:var(--panel);min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--s4);transition:transform .6s var(--e1),border-color .5s}
+.indust:hover{transform:translateY(-5px);border-color:rgba(6,21,106,.4)}
+.indust canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.indust .ib{position:relative;z-index:2}
+.indust h3{font-size:clamp(20px,2.3vw,28px);margin-top:6px}
+.indust p{color:var(--soft);font-size:13.5px;margin-top:9px;max-width:34ch}
+.indust .slotnote{margin-top:var(--s3);font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);border-top:1px dashed var(--line2);padding-top:10px}
+
+/* ── case spine ─────────────────────────────────────────────── */
+.spine{margin-top:var(--s6);display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3)}
+.story{border:1px solid var(--line2);background:var(--panel);padding:var(--s4);position:relative;overflow:hidden;transition:border-color .45s,transform .5s var(--e1)}
+.story:hover{border-color:rgba(6,21,106,.34);transform:translateY(-3px)}
+.story .head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.story h3{font-size:clamp(18px,2vw,24px);margin-top:var(--s3)}
+.story .blocks{margin-top:var(--s3);display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.story .bl{border:1px solid var(--line);padding:9px 8px;background:rgba(255,255,255,.6)}
+.story .bl b{display:block;font-family:"Inter",sans-serif;font-weight:600;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-bright);font-weight:500}
+.story .bl span{display:block;font-size:10.5px;color:var(--soft);margin-top:4px;line-height:1.35}
+.story .bl.diff{border-color:rgba(6,21,106,.4);background:rgba(6,21,106,.05)}
+
+/* ── method ─────────────────────────────────────────────────── */
+.flow{margin-top:var(--s6);display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line2);background:var(--panel)}
+.step{padding:var(--s4) var(--s3);border-right:1px solid var(--line2);position:relative;transition:background .45s}
+.step:last-child{border-right:0}
+.step:hover{background:rgba(6,21,106,.04)}
+.step .n{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;color:var(--blue-bright)}
+.step h3{font-size:17px;margin-top:10px}
+.step p{font-size:12.5px;color:var(--soft);margin-top:8px;line-height:1.5}
+.step::after{content:"";position:absolute;right:-5px;top:50%;width:9px;height:9px;border-top:1px solid var(--blue);border-right:1px solid var(--blue);transform:translateY(-50%) rotate(45deg);background:var(--panel);z-index:2}
+.step:last-child::after{display:none}
+.accel{margin-top:var(--s3);display:flex;flex-wrap:wrap;gap:8px}
+
+/* ── forces, stats, offices ─────────────────────────────────── */
+.force{border-top:2px solid var(--blue);padding-top:var(--s3)}
+.force .n{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright)}
+.force h3{font-size:clamp(19px,2.1vw,24px);margin-top:10px}
+.force p{color:var(--soft);font-size:14px;margin-top:10px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4);margin-top:var(--s5)}
+.stat .num{font-family:"Space Grotesk";font-weight:500;font-size:clamp(34px,4.6vw,60px);letter-spacing:-.03em;line-height:1;color:var(--ink)}
+.stat .lab2{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-top:11px;border-top:1px solid var(--line);padding-top:10px}
+.offices{margin-top:var(--s6);padding-top:var(--s4);border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;align-items:baseline;column-gap:0;row-gap:12px}
+.off-k{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-right:28px}
+.office{font-family:"Space Grotesk";font-weight:500;font-size:16px;letter-spacing:-.01em;color:var(--soft);border:0;padding:0;background:none}
+.office b{color:var(--ink);font-weight:500}
+.office+.office::before{content:"·";color:var(--faintest);margin:0 16px;font-weight:400}
+
+/* ── offer, forms ───────────────────────────────────────────── */
+.offer{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s6);align-items:start}
+.olist{list-style:none;display:flex;flex-direction:column;gap:var(--s3);margin-top:var(--s4)}
+.olist li{display:grid;grid-template-columns:34px 1fr;gap:var(--s2);align-items:start}
+.olist .on{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;color:var(--blue-bright);padding-top:5px}
+.olist b{font-family:"Space Grotesk";font-weight:500;font-size:18px;display:block}
+.olist span{color:var(--soft);font-size:14px;display:block;margin-top:4px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3);margin-top:var(--s5)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1 / -1}
+.field label{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.field input,.field textarea,.field select{font-family:"Inter",sans-serif;font-size:15px;color:var(--ink);background:var(--bg2);border:1px solid var(--line2);padding:13px 14px;outline:none;transition:border-color .35s,box-shadow .35s;border-radius:0}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(6,21,106,.12)}
+.field textarea{min-height:118px;resize:vertical}
+.formnote{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:var(--s3)}
+
+/* ── status table, used by the roadmap page ─────────────────── */
+.tbl{width:100%;border-collapse:collapse;margin-top:var(--s5);font-size:14px}
+.tbl th{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);text-align:left;padding:12px 14px;border-bottom:1px solid var(--line2);background:rgba(16,22,38,.02)}
+.tbl td{padding:13px 14px;border-bottom:1px solid var(--line);color:var(--soft);vertical-align:top}
+.tbl td b{color:var(--ink);font-weight:600}
+.st{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;white-space:nowrap;border:1px solid var(--line2);color:var(--faint)}
+.st.live{color:#4f6606;border-color:rgba(147,179,10,.5);background:rgba(147,179,10,.1)}
+.st.build{color:var(--blue-bright);border-color:rgba(6,21,106,.35);background:rgba(6,21,106,.06)}
+.st.later{color:var(--faint)}
+
+/* ── footer ─────────────────────────────────────────────────── */
+.foot{background:var(--bg2);color:var(--ink);border-top:1px solid var(--line);padding:clamp(150px,19vh,240px) 0 var(--s6);position:relative;overflow:hidden}
+#footCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.55}
+.foot .in{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.foot-top{display:grid;grid-template-columns:1.5fr .9fr .9fr .8fr 1.1fr;gap:var(--s5);align-items:start}
+.foot-logo{width:210px}
+.foot .tagline{font-family:"Space Grotesk";font-weight:500;font-size:clamp(20px,2.4vw,30px);letter-spacing:-.02em;margin-top:var(--s4);color:var(--ink);line-height:1.3}
+.foot .tagline span{display:block}
+.fcol .fc-cta{display:inline-flex;margin-top:16px;background:var(--blue);color:#fff!important;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:11px 16px}  /* !important on color: .fc-cta is an <a> inside .fcol, and .fcol a:hover at L588 is 0,2,1 against this rule's 0,2,0. Without the flag the button label turns blue-bright on a blue fill on hover. */
+.fcol .fc-cta:hover{background:var(--blue-bright)}
+.fcol .fc-mut{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)!important}  /* !important on color: beats .fcol p at L587 (var(--soft)). This rule already wins on specificity (0,2,0 vs 0,1,1), so the flag is belt-and-braces. Kept so the two footer colour overrides read as one pair. */
+.fcol h4{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);font-weight:500}
+.fcol a,.fcol p{display:block;color:var(--soft);font-size:15px;margin-top:14px;transition:color .3s}
+.fcol a:hover{color:var(--blue-bright)}
+.fcol .sf{font-family:"Inter",sans-serif;font-weight:600;font-size:7.5px;letter-spacing:.1em;color:var(--faint);margin-left:6px;border:1px solid var(--line2);padding:1px 4px}
+.foot-base{margin-top:clamp(110px,15vh,170px);border-top:1px solid var(--line);padding-top:var(--s4);display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+
+/* ═══════════════ responsive ═══════════════ */
+@media(max-width:1000px){
+  .navlinks{display:none}
+  .burger{display:block}
+  .nav.open .navlinks{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:flex-start;gap:0;background:rgba(250,251,254,.98);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:var(--s3) max(var(--gut),calc((100% - var(--maxw))/2 + var(--gut))) var(--s4)}
+  .nav.open .navlinks a{padding:12px 0;width:100%;border-bottom:1px solid var(--line);font-size:15px}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .offer{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(3,1fr)}
+  .step:nth-child(3){border-right:0}
+  .step:nth-child(3)::after{display:none}
+}
+@media(max-width:760px){
+  .hero{min-height:auto;padding:142px 0 34px}
+  html.no-strip .hero{padding-top:112px}
+  .hero.page{min-height:auto;padding:146px 0 var(--s5)}
+  html.no-strip .hero.page{padding-top:118px}
+  .hero--mviz .hero-vizslot{display:block;position:relative;width:100%;height:clamp(280px,78vw,360px);margin:14px 0 4px;overflow:hidden;background:radial-gradient(56% 52% at 50% 47%, rgba(6,21,106,.12), transparent 72%)}
+  .hero--mviz #heroCanvas{position:relative;inset:auto;width:100%;height:100%;-webkit-mask-image:none;mask-image:none}
+  .hero--mviz .hero h1{max-width:none}
+  .scrollhint{display:none}
+  .g2,.gapgrid,.spine{grid-template-columns:1fr}
+  .sp-stage{min-height:auto}
+  .sp-scrim{background:linear-gradient(180deg,rgba(11,16,32,.72) 0%,rgba(11,16,32,.93) 58%)}
+}
+@media(max-width:640px){
+  :root{ --gut:14px; --s3:12px; --s4:16px; --s5:22px; --s6:28px; --s7:36px; --s8:48px; }
+  .sec{padding:38px 0}
+  .hero h1{font-size:clamp(32px,8.8vw,46px)!important}  /* !important: REQUIRED. .hero.page h1 at L365 is 0,2,1 and outranks this 0,1,1 mobile override, so every inner-page hero would keep the desktop clamp. */
+  h2.big{font-size:clamp(23px,6.6vw,32px)!important}  /* !important: guards the mobile clamp against later same-specificity h2 font-size rules that win on source order, e.g. .eng-head h2 at L1032. */
+  .lede,.hero .lede{font-size:14px}
+  .g3,.g4{grid-template-columns:1fr 1fr!important;gap:9px}  /* !important: REQUIRED and load-bearing. .g4 is redeclared at L1363 and again at L1365 inside this same 640 breakpoint (1 column). This flag is the only reason case and service grids stay two-up on phones, and it is why L1365 never renders. */
+  .card{padding:14px}.card p{font-size:12.5px}
+  .stats{grid-template-columns:1fr 1fr!important;gap:16px 12px}  /* !important: overrides the 4-column base at L539. Same specificity and later in source, so order alone already wins: not load-bearing. Kept because it pairs with the .g3/.g4 line above and splitting the pair invites an asymmetric edit. */
+  .flow{grid-template-columns:1fr 1fr}
+  .step{border-right:1px solid var(--line2);border-bottom:1px solid var(--line2);padding:15px 13px}
+  .step::after{display:none}
+  .story .blocks{grid-template-columns:repeat(2,1fr)}
+  .form{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr 1fr;gap:var(--s4)}
+  .shead{grid-template-columns:1fr;gap:var(--s3)}
+  .viz{min-height:190px!important;padding:15px}  /* !important: REQUIRED. .viz.tall (360px) and .viz.short (210px) at L453 are 0,2,0 and outrank this 0,1,0 mobile override. */
+  .indust{min-height:290px}
+  .proofstrip .in{gap:11px 16px;padding:12px var(--gut)}
+  .pf{font-size:9px}
+  .tbl{font-size:12.5px}.tbl td,.tbl th{padding:10px 8px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.05ms!important}  /* !important x2: REQUIRED. The universal selector is specificity 0,0,0, so every animated rule in the file outranks it. Without both flags the reduced-motion preference does nothing. */
+  html.js [data-reveal]{opacity:1!important;transform:none!important}  /* !important x2: REQUIRED. GSAP (assets/tp.js, the [data-reveal] tween) writes opacity and transform as INLINE styles. Only !important outranks an inline declaration. */
+  html{scroll-behavior:auto}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   52 FRAMEWORK · home page section components
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Client logos · greyscale row, slots until clearance */
+.logorow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:var(--s7);margin-bottom:var(--s6)}
+.logoslot{border:0;background:none;height:76px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;filter:grayscale(1)}
+
+.logoslot span{font-family:"Inter",sans-serif;font-weight:600;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--faintest);text-align:center;padding:0 6px}
+@media(max-width:900px){.logorow{grid-template-columns:repeat(3,1fr)}}
+
+/* Stake · problem cards, on the white base per D1 */
+.stake{background:var(--bg);padding:clamp(62px,9.4vh,116px) 0;position:relative;overflow:hidden}
+.stake .in{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);position:relative;z-index:2}
+.stake h2{color:var(--ink)}
+.stake .lede{color:var(--soft)}
+.stake .eyebrow{color:var(--blue-bright)}
+.probs{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s6)}
+.prob{border:1px solid var(--line2);background:var(--panel);padding:var(--s4);transition:border-color .45s,transform .5s var(--e1)}
+.prob:hover{border-color:rgba(6,21,106,.34);transform:translateY(-3px)}
+.prob .pk{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright)}
+.prob h3{font-size:clamp(18px,2vw,23px);margin-top:var(--s2);color:var(--ink)}
+.prob p{color:var(--soft);font-size:14px;margin-top:var(--s2)}
+.stake-more{margin-top:var(--s5);border-left:2px solid var(--blue);padding-left:var(--s3);color:var(--ink);font-size:clamp(15px,1.5vw,18px);max-width:74ch}
+
+/* The Plan · 3 numbered steps with connectors */
+.plan{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4);margin-top:var(--s6);position:relative}
+.pstep{position:relative;padding-top:var(--s2)}
+.pstep .pn{color:var(--blue-bright);font-family:"Inter",sans-serif;font-weight:600;font-weight:700;font-size:15px;letter-spacing:.14em}
+.pstep h3{font-size:clamp(19px,2.2vw,25px);margin-top:var(--s3)}
+.pstep p{color:var(--soft);font-size:14.5px;margin-top:var(--s2);max-width:38ch}
+.pstep::after{content:"";position:absolute;top:26px;left:66px;right:-14px;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
+.pstep:last-child::after{display:none}
+@media(max-width:760px){.plan{grid-template-columns:1fr}.pstep::after{display:none}}
+
+/* Product / service cards, middle featured */
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s6)}
+.off{border:1px solid var(--line2);background:var(--panel);display:flex;flex-direction:column;transition:border-color .45s,transform .5s var(--e1)}
+.off:hover{border-color:rgba(6,21,106,.34);transform:translateY(-3px)}
+.off.feat{border-color:var(--blue);box-shadow:0 24px 60px -34px rgba(6,21,106,.55)}
+.off .ohead{padding:var(--s4) var(--s4) 0}
+.off .obadge{position:absolute;top:12px;right:12px;font-family:"Inter",sans-serif;font-weight:600;font-size:8px;letter-spacing:.14em;text-transform:uppercase;background:var(--blue);color:#fff;padding:4px 7px}
+.off{position:relative}
+.off h3{font-size:clamp(20px,2.2vw,26px);margin-top:var(--s2)}
+.off .od{color:var(--soft);font-size:14px;margin-top:var(--s2)}
+.off ul{list-style:none;margin:var(--s3) 0 0;padding:0;display:flex;flex-direction:column;gap:9px}
+.off li{display:flex;gap:10px;font-size:13.5px;color:var(--soft);line-height:1.45}
+.off li::before{content:"";width:5px;height:5px;background:var(--blue);margin-top:7px;flex:none}
+.off .ofoot{margin-top:auto;padding:var(--s4)}
+.off .media{border-left:0;border-right:0;border-top:0}
+@media(max-width:900px){.offers{grid-template-columns:1fr}}
+
+/* Pricing */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s6)}
+.tier{border:1px solid var(--line2);background:var(--panel);padding:var(--s4);display:flex;flex-direction:column;position:relative}
+.tier.best{border-color:var(--blue);box-shadow:0 24px 60px -34px rgba(6,21,106,.5)}
+.tier .tk{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue-bright)}
+.tier h3{font-size:clamp(20px,2.2vw,26px);margin-top:var(--s2)}
+.tier .price{font-family:"Space Grotesk";font-weight:500;font-size:clamp(26px,3vw,38px);letter-spacing:-.02em;margin-top:var(--s3)}
+.tier .price small{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);display:block;margin-top:6px}
+.tier ul{list-style:none;margin:var(--s3) 0 var(--s4);padding:0;display:flex;flex-direction:column;gap:9px}
+.tier li{display:flex;gap:10px;font-size:13.5px;color:var(--soft)}
+.tier li::before{content:"";width:5px;height:5px;background:var(--blue);margin-top:7px;flex:none}
+.tier .tfoot{margin-top:auto}
+@media(max-width:900px){.tiers{grid-template-columns:1fr}}
+
+/* Testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s6)}
+.quote{border:1px dashed var(--line2);background:var(--panel);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s2);min-height:220px}
+.quote.feat{background:#0B1020;border-style:solid;border-color:rgba(255,255,255,.14)}
+.quote.feat .qt,.quote.feat .qn{color:#EEF2FB}
+.quote .qs{font-family:"Inter",sans-serif;font-weight:600;font-size:12px;letter-spacing:.24em;color:var(--faintest)}
+.quote .qt{font-family:"Space Grotesk";font-weight:500;font-size:clamp(16px,1.8vw,20px);line-height:1.3;color:var(--ink)}
+.quote .qn{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-top:auto}
+@media(max-width:900px){.quotes{grid-template-columns:1fr}}
+
+/* Guarantee */
+.guar{border:1px solid rgba(6,21,106,.3);background:linear-gradient(160deg,rgba(6,21,106,.07),transparent 62%),var(--panel);padding:var(--s6) var(--s5);margin-top:var(--s5);display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s6);align-items:center}
+.guar ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.guar li{display:flex;gap:12px;font-size:15px;color:var(--soft);line-height:1.5}
+.guar li b{color:var(--ink)}
+.guar li::before{content:"\2713";color:var(--blue-bright);font-family:"Inter",sans-serif;font-weight:600;font-size:13px;flex:none;margin-top:2px}
+@media(max-width:900px){.guar{grid-template-columns:1fr;padding:var(--s5) var(--s4)}}
+
+/* FAQ */
+.faq{margin-top:var(--s6);border-top:1px solid var(--line)}
+.fq{border-bottom:1px solid var(--line)}
+.fq summary{list-style:none;cursor:pointer;padding:var(--s4) 0;display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s3);font-family:"Space Grotesk";font-weight:500;font-size:clamp(17px,1.9vw,21px);color:var(--ink)}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary::after{content:"+";font-family:"Inter",sans-serif;font-weight:600;font-size:19px;color:var(--blue-bright);flex:none;transition:transform .35s var(--e1)}
+.fq[open] summary::after{transform:rotate(45deg)}
+.fq p{color:var(--soft);font-size:14.5px;padding:0 0 var(--s4);max-width:78ch}
+
+/* ── nav adapts over dark bands ──────────────────────────────── */
+.nav.on-dark::after{background:rgba(11,16,32,.88)}
+.nav.on-dark.solid::after{background:rgba(11,16,32,.96);box-shadow:0 1px 0 rgba(255,255,255,.08),0 12px 30px -20px rgba(0,0,0,.6)}
+.nav.on-dark .navlinks a{color:#C7D3EE}
+.nav.on-dark .navlinks a:hover,.nav.on-dark .navlinks a.here{color:#fff}
+.nav.on-dark .brand .bs{color:#7E8AA6}
+.nav.on-dark .brand-logo{content:url(logo_tenthpin_neg.svg)}
+.nav.on-dark .lang{border-color:rgba(255,255,255,.22)}
+.nav.on-dark .lang button{color:#9FB4FF}
+.nav.on-dark .lang button.on{background:#fff;color:#0B1020}
+.nav.on-dark .burger i{background:#fff}
+.nav.on-dark .burger i{background:#fff}
+
+/* ═══════════════════════════════════════════════════════════════
+   CINEMATIC VIDEO HERO · footage + 3D convergence layer
+   ═══════════════════════════════════════════════════════════════ */
+.hero.video{
+  --ink:#EEF2FB; --soft:#B7C2DA; --faint:#8C99B6; --faintest:#5A6684;
+  --line:rgba(255,255,255,.09); --line2:rgba(255,255,255,.17);
+  --blue-bright:#8C9EFF; --panel:rgba(255,255,255,.04);
+  background:#070B16;color:var(--ink);min-height:94svh
+}
+.hero.video::after{display:none}
+.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.62;filter:saturate(.72) contrast(1.06)}
+.hero.no-video .hero-vid{display:none}
+.hero-fallback{position:absolute;inset:0;z-index:0;display:none;background:
+  radial-gradient(58% 70% at 72% 42%, rgba(6,21,106,.30), transparent 62%),
+  radial-gradient(48% 60% at 22% 78%, rgba(63,224,208,.14), transparent 66%),
+  linear-gradient(180deg,#070B16 0%,#0B1226 55%,#070B16 100%)}
+.hero.no-video .hero-fallback{display:block}
+.hero-fallback::before{content:"";position:absolute;inset:0;opacity:.5;background:
+  linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/78px 78px,
+  linear-gradient(180deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/78px 78px;
+  -webkit-mask-image:radial-gradient(70% 60% at 62% 46%,#000,transparent 78%);mask-image:radial-gradient(70% 60% at 62% 46%,#000,transparent 78%)}
+#cineCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.hero-vscrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:
+  linear-gradient(90deg,rgba(7,11,22,.92) 0%,rgba(7,11,22,.74) 38%,rgba(7,11,22,.28) 66%,rgba(7,11,22,.5) 100%),
+  linear-gradient(180deg,rgba(7,11,22,.9) 0%,transparent 26%,transparent 62%,rgba(7,11,22,.92) 100%)}
+.hero.video .hero-inner{z-index:3}
+.hero.video h1{text-shadow:0 2px 40px rgba(0,0,0,.5)}
+.hero.video h1 em{color:#8C9EFF}
+.hero.video .lede{color:#C3CDE4}
+.hero.video .eyebrow{color:#8C9EFF}.hero.video .eyebrow i{background:#8C9EFF}
+.hero.video .chip{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:#C3CDE4;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hero.video .chip i{background:#8C9EFF}
+.hero.video .cue{color:#9FB0CE}
+.hero.video .cue:hover{color:#fff}
+.hero.video .scrollhint span{color:#6C7A99}
+.vslot{position:absolute;right:var(--gut);bottom:22px;z-index:4;display:flex;align-items:center;gap:8px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#7C8AA8;
+  border:1px dashed rgba(255,255,255,.2);padding:7px 10px;background:rgba(7,11,22,.5)}
+.vslot i{width:5px;height:5px;background:#8C9EFF;display:block;flex:none}
+.hero:not(.no-video) .vslot{display:none}
+@media(max-width:760px){
+  .hero.video{min-height:auto}
+  .hero-vscrim{background:linear-gradient(180deg,rgba(7,11,22,.86) 0%,rgba(7,11,22,.45) 40%,rgba(7,11,22,.95) 100%)}
+  .vslot{right:auto;left:var(--gut);font-size:7.5px}
+}
+
+/* ── hero motion · slow drift on the footage, masked line reveal ── */
+.hero-vid{animation:kb 26s ease-in-out infinite alternate;transform-origin:62% 50%}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.11)}}
+
+
+@media(prefers-reduced-motion:reduce){.hero-vid{animation:none}}
+
+/* ── real photography · framed, graded, captioned ───────────── */
+.shot{position:relative;overflow:hidden;border:1px solid var(--line2);background:#0B1020}
+.shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s var(--e1)}
+.shot:hover img{transform:scale(1.035)}
+.shot.r169{aspect-ratio:16/9}.shot.r43{aspect-ratio:4/3}
+.shot::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(7,11,22,0) 46%,rgba(7,11,22,.72) 100%)}
+.shot figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:var(--s3) var(--s4);
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#C3CDE4;
+  display:flex;align-items:center;gap:9px}
+.shot figcaption i{width:5px;height:5px;background:#8C9EFF;display:block;flex:none}
+
+/* ── hero credibility line · no boxes, just marks and type ──── */
+.hero .chips{gap:clamp(16px,2.4vw,34px);margin-top:var(--s5)}
+.hero .chip{background:none!important;border:0!important;padding:0!important;-webkit-backdrop-filter:none;backdrop-filter:none;
+  font-size:10px;letter-spacing:.13em;color:var(--faint)}  /* !important x3 on the line above: REQUIRED for background. .hero.video .chip at L781 is 0,3,0 and outranks this 0,2,0, so the video hero would re-box the credibility chips with the glass fill and border. border:0 and padding:0 carry the flag with it so the three-part reset cannot be half-applied. */
+.hero.video .chip{color:#9FB0CE}
+.hero .chip:hover{transform:none;color:var(--ink)}
+.hero.video .chip:hover{color:#fff}
+.hero .chip i{width:4px;height:4px}
+
+/* ── nav stays visible, including at the top of the page ───── */
+.nav-in{transition:transform .55s var(--e1),opacity .4s var(--e1),height .4s var(--e1)}
+.nav.attop .nav-in{transform:none;opacity:1;pointer-events:auto}
+.nav.attop::after{opacity:0}
+.nav::after{transition:opacity .45s var(--e1),background .45s var(--e1)}
+@media(prefers-reduced-motion:reduce){.nav.attop .nav-in{transform:none;opacity:1;pointer-events:auto}}
+
+/* ── industry banner · four slides, slow crossfade and drift ── */
+.bslides{position:absolute;inset:0;z-index:0;overflow:hidden}
+.bslide{position:absolute;inset:0;opacity:0;z-index:0;transition:none}
+.bslide.on{z-index:3;opacity:1}
+.bslide.was{z-index:2;opacity:1}
+.bslide img{width:100%;height:100%;object-fit:cover;display:block;opacity:.66;filter:saturate(.78) contrast(1.05)}
+
+@keyframes bkb{from{transform:scale(1.03)}to{transform:scale(1.12)}}
+.bmeta{position:absolute;left:max(var(--gut),calc((100% - var(--maxw))/2 + var(--gut)));bottom:30px;z-index:4;
+  display:flex;align-items:center;gap:18px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:#AFC0E2;text-shadow:0 1px 16px rgba(4,8,20,.65)}
+.bm-ix{display:flex;gap:12px}
+.bm-ix b{font-weight:500;color:rgba(255,255,255,.32);transition:color .5s}
+.bm-ix b.on{color:#8C9EFF}
+.bm-t{color:#EEF2FB;min-width:15ch}
+@media(max-width:760px){.bmeta{bottom:16px;font-size:9px;gap:12px}.bm-t{min-width:0}}
+@media(prefers-reduced-motion:reduce){.bslide.on img{animation:none}}
+
+[hidden]{display:none!important}  /* !important: REQUIRED. [hidden] is 0,1,0 and nearly every component here sets display on a class of equal or higher weight (.chip, .bslide, .film-play, .badge …), so the attribute would never win on its own. */
+
+/* ── credentials, stated not boxed ──────────────────────────── */
+.credline{display:grid;grid-template-columns:repeat(7,1fr);gap:var(--s3)}  /* 7 since ISO 27701 joined the row (10 Aug) */
+.cred-i{padding:var(--s4) 0}
+.cred-i b{display:block;font-family:"Space Grotesk";font-weight:500;font-size:clamp(15px,1.5vw,18px);color:var(--ink);letter-spacing:-.01em}
+.cred-i span{display:block;font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--faint);margin-top:7px}
+.credfoot{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.11em;text-transform:uppercase;color:var(--faintest);margin-top:var(--s3)}
+@media(max-width:900px){.credline{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.credline{grid-template-columns:repeat(2,1fr)}}
+
+/* ── headline breaks where the meaning breaks ───────────────── */
+.hero h1 > span{display:block}
+@media(max-width:560px){
+  .hero h1 > span{display:inline}
+  .hero h1 > span:not(:last-child)::after{content:" "}
+}
+
+/* ── banner slides carry video with the still as the poster ─── */
+.bslide video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:.66;filter:saturate(.78) contrast(1.05);z-index:1}
+.bslide img{position:absolute;inset:0;z-index:0}
+.bslide.hasvid img{opacity:0}
+.bslide.on video{animation:none}
+
+/* ── banner transition · wipe, slow settle, readout swap ────── */
+
+
+.bm-t{transition:opacity .3s var(--e1),transform .3s var(--e1)}
+.bmeta.swap .bm-t,.bmeta.swap .bm-n{opacity:0;transform:translateY(-4px)}
+@media(prefers-reduced-motion:reduce){
+  .bslide{transition:none}.bslide video,.bslide img{transition:none;transform:none}
+}
+
+/* ── real marks when supplied, type when not ────────────────── */
+.cred-i{position:relative}
+.cred-img{max-height:46px;width:auto;max-width:132px;object-fit:contain;margin-bottom:14px;display:block}
+.cred-i.nologo .cred-img{display:none}
+.logoslot{position:relative;padding:0}
+.logo-img{max-height:38px;max-width:78%;width:auto;object-fit:contain;filter:grayscale(1);opacity:.72;transition:opacity .4s,filter .4s}
+.logoslot:hover .logo-img{opacity:1;filter:grayscale(0)}
+.logoslot.nologo .logo-img{display:none}
+.logoslot:not(.nologo) span{display:none}
+
+
+/* ── logo sizing so different marks read at one optical weight ─ */
+.logorow{align-items:center}
+.logoslot{height:128px;display:flex;align-items:center;justify-content:center;border:0;background:none}
+.logo-img{max-height:56px;max-width:84%}
+.logoslot img[src*="bmw"]{max-height:70px}
+.logoslot img[src*="mercedes"]{max-height:72px}
+.logoslot img[src*="roche"]{max-height:46px}
+.logoslot img[src*="lilly"]{max-height:52px}
+.logoslot img[src*="honda"]{max-height:54px}
+.logoslot img[src*="amgen"]{max-height:34px}
+.cred-i .cred-img{max-height:34px;max-width:104px}
+
+/* ── hero trust strip · the fusion-consulting mechanic: a label, then client
+     marks auto-scrolling along the hero's bottom edge. The marquee is two
+     identical halves; each slides -100% of its own width, and the trailing
+     gap rides as padding so both halves measure the same, which is what the
+     seamless hand-off depends on. ─ */
+.hero-trust{display:flex;align-items:center;
+  padding:44px var(--gut);background:#fff;border-bottom:1px solid rgba(16,22,38,.05)}
+.ht-lab{display:none}   /* the band is logos only, per the 20 Aug reference */
+.hero-trust .logomarq{flex:1;min-width:0;overflow:hidden;display:flex;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.logomarq-half{display:flex;align-items:center;flex:0 0 auto;
+  gap:clamp(56px,7vw,130px);padding-right:clamp(56px,7vw,130px);
+  animation:logomarq 60s linear infinite}
+.hero-trust .logoslot{width:170px;height:74px;flex:0 0 auto}
+/* full colour, full strength: the band is white, the marks carry the colour.
+   The slot needs its own filter:none — the base .logoslot at L652 grayscales
+   the container, which would strip the img's colour whatever the img says. */
+.hero-trust .logoslot{filter:none}
+.hero-trust .logo-img{max-height:46px;max-width:100%;filter:none;opacity:1}
+.hero-trust .logoslot:hover .logo-img{filter:none;opacity:1}
+.hero-trust .logoslot img[src*="bmw"],.hero-trust .logoslot img[src*="mercedes"]{max-height:60px}
+.hero-trust .logoslot img[src*="roche"]{max-height:38px}
+.hero-trust .logoslot img[src*="boehringer"],.hero-trust .logoslot img[src*="gsk"]{max-height:56px}
+.hero-trust .logoslot img[src*="sonova"],.hero-trust .logoslot img[src*="takeda"]{max-height:50px}
+.hero-trust:hover .logomarq-half{animation-play-state:paused}
+@keyframes logomarq{to{transform:translateX(-100%)}}
+/* the hero fills the first screen edge to edge; the band starts at the fold */
+.hero.video{min-height:clamp(640px,88svh,960px)} /* 4 Sep 2026: capped so the proof strip shows above the fold on tall screens */
+@media(max-width:760px){
+  .hero-trust{padding:22px var(--gut)}
+  .hero-trust .logoslot{width:120px;height:54px}
+  .hero-trust .logo-img{max-height:34px}
+}
+@media(prefers-reduced-motion:reduce){
+  .logomarq-half{animation:none}
+  .logomarq-half[aria-hidden]{display:none}
+}
+
+/* logos sit on the page, not in boxes */
+.logorow{gap:clamp(14px,2.4vw,34px)}
+.logoslot,.logoslot:hover{border:0!important;background:none!important;box-shadow:none!important}  /* !important x3: outranks the later cell borders on .logorow .logoslot at L1706 and the white tile chrome on .logorow.anon .logoslot at L1304. The corrections layer at L1770 lands on the same borderless result, so on today's pages this is belt-and-braces. Keep it: .logorow.anon would silently lose its border and white fill if that variant were ever put back into a page. */
+
+.cred-img.tall{max-height:52px;max-width:150px}
+.cred-i img[src$="sap-logo.svg"]{max-height:26px}
+
+/* set marks for credentials with no fetchable artwork */
+.cred-mark{display:flex;align-items:center;justify-content:center;height:52px;width:92px;margin-bottom:14px;
+  border:1px solid var(--line2);background:linear-gradient(150deg,rgba(6,21,106,.09),transparent 70%)}
+.cm-a{font-family:"Inter",sans-serif;font-weight:600;font-weight:700;font-size:15px;letter-spacing:.06em;color:var(--blue-bright)}
+.cred-img.seal{max-height:54px;max-width:54px}
+
+/* ── the process, assembled in 3D as you scroll ─────────────── */
+.planviz{position:relative;height:clamp(240px,26vw,340px);margin-top:var(--s5);overflow:hidden}
+#planCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.pv-scale{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);pointer-events:none}
+.pv-scale span{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--faintest);padding:10px 0 0;transition:color .5s var(--e1)}
+.pv-scale span:nth-child(2){text-align:center}
+.pv-scale span:nth-child(3){text-align:right}
+.pv-scale span.on{color:var(--blue-bright)}
+.pstep{transition:opacity .5s var(--e1)}
+.pstep.dim{opacity:.42}
+.pstep .pn{transition:background .45s var(--e1),color .45s var(--e1),border-color .45s var(--e1)}
+.pstep.live .pn{color:var(--blue)}
+@media(max-width:640px){.planviz{height:200px}}
+
+/* process steps sit centred under their stations */
+.plan .pstep{text-align:center}
+.plan .pstep .pn{margin:0 auto}
+.plan .pstep p{margin-left:auto;margin-right:auto}
+.plan .pstep::after{display:none}
+#plan .plan ~ p{text-align:center}
+.planviz{height:clamp(260px,30vw,380px);margin-bottom:0}
+
+/* steps hug the diagram, drops run straight into the badges */
+.plan{margin-top:0}
+.plan .pstep{padding-top:0}
+.plan .pstep .pn{margin-top:-2px}
+
+/* credential band, one size and one baseline for every cell */
+.credline .cred-img,.credline .cred-img.tall,.credline .cred-img.seal{height:64px;max-height:64px;width:auto;max-width:190px;object-fit:contain;margin-bottom:18px}
+.credline .cred-i b{display:block;min-height:46px;font-size:clamp(14px,1.35vw,17px);line-height:1.3}
+.credline .cred-i{display:flex;flex-direction:column;justify-content:flex-start}
+
+/* the steps are controls: hover one and the diagram answers */
+.plan .pstep{cursor:pointer}
+
+/* the active description answers its station */
+.plan .pstep{transition:opacity .5s var(--e1),transform .55s var(--e1)}
+.plan .pstep h3{transition:color .45s var(--e1)}
+.plan .pstep p{transition:color .45s var(--e1)}
+.plan .pstep.live{transform:translateY(-6px)}
+.plan .pstep.live h3{color:var(--blue-bright)}
+.plan .pstep.live p{color:var(--ink)}
+
+/* once scrolling, only the site nav stays */
+.nav-top{transition:height .45s var(--e1),opacity .3s var(--e1);overflow:hidden}
+.evstrip{overflow:hidden}
+.nav.solid .nav-top,.nav.solid .evstrip{height:0;opacity:0;pointer-events:none}
+
+/* footer brand carries the MC identity */
+.foot-brand{display:flex;align-items:center;gap:10px}
+.fmc{font-family:"Inter",sans-serif;font-weight:600;font-weight:700;font-size:13px;letter-spacing:.04em;color:#fff;background:var(--blue);padding:4px 7px}
+.foot-sub{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#8F9AB4;margin-top:10px}
+.foot-logo{width:268px}
+
+/* ── the services film · one playable stage ─────────────────── */
+.filmstage{position:relative;overflow:hidden;border:1px solid var(--line2);background:#0B1020;aspect-ratio:16/9}  /* matches the supplied film: explainer.mp4 is 1280x720. A 21:9 stage with object-fit:cover would crop about a quarter of the frame. */
+.filmstage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.film-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:92px;height:92px;border:0;background:none;cursor:pointer;color:#fff;display:flex;align-items:center;justify-content:center}
+.film-play svg{width:34px;height:34px;position:relative;z-index:2;filter:drop-shadow(0 2px 12px rgba(0,0,0,.5))}
+.fp-ring{position:absolute;inset:0;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:rgba(11,16,32,.35);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:transform .45s var(--e1),background .35s}
+.film-play:hover .fp-ring{transform:scale(1.08);background:rgba(6,21,106,.5)}
+.filmstage.playing .film-play{display:none}
+.film-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(14px,2.4vw,26px) clamp(16px,2.6vw,30px);display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;background:linear-gradient(180deg,rgba(7,11,22,0),rgba(7,11,22,.82));pointer-events:none}
+.filmstage.playing .film-cap{opacity:0!important;pointer-events:none;transition:opacity .4s}  /* !important: the reveal tween leaves an inline opacity:1 on [data-reveal], which otherwise outranks this and leaves the caption sitting over the player controls */
+.fc-k{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#8C9EFF;white-space:nowrap}
+.fc-t{font-family:"Space Grotesk";font-weight:500;font-size:clamp(15px,1.8vw,21px);color:#fff}
+.filmstage.nofilm video{display:none}
+.filmstage.nofilm{background:radial-gradient(70% 90% at 50% 20%,rgba(6,21,106,.28),transparent 65%),#0B1020}
+.filmstage.nofilm .film-play .fp-ring{border-style:dashed;border-color:rgba(255,255,255,.45)}
+.filmstage.nofilm::after{content:"FILM SLOT \2022 AWAITING ASSET";position:absolute;top:14px;left:16px;z-index:2;font-family:"Inter",sans-serif;font-weight:600;font-size:8px;letter-spacing:.12em;color:rgba(255,255,255,.5)}
+@media(max-width:640px){.filmstage{aspect-ratio:16/9}.film-play{width:70px;height:70px}}
+
+/* credential marks · no boxes, the artwork carries it */
+.credline{gap:18px}
+.cred-i{border:0;background:none;padding:12px 6px;min-height:0;
+  align-items:center;text-align:center;justify-content:flex-start;position:relative;
+  transition:transform .6s var(--e1)}
+.cred-i:hover{transform:translateY(-4px)}
+.credline .cred-img,.credline .cred-img.tall,.credline .cred-img.seal{height:64px;max-height:64px;max-width:180px;margin:0 auto 18px;
+  filter:saturate(.72);opacity:.92;transition:filter .5s,opacity .5s}
+.cred-i:hover .cred-img{filter:saturate(1);opacity:1}
+.credline .cred-i b{min-height:0;font-size:14px;line-height:1.3;display:block}
+.credline .cred-i span{margin-top:8px;font-size:8.5px}
+@media(max-width:900px){.cred-i{padding:10px 6px}.credline .cred-img,.credline .cred-img.tall,.credline .cred-img.seal{height:52px;max-height:52px}}
+
+/* ── ported: the AI-on-S/4HANA stack ── */
+.stack-open{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.stack-canvas{width:100%;max-width:520px;height:500px;display:block;touch-action:none;filter:drop-shadow(0 22px 38px rgba(16,22,38,.11))}
+/* flat layered engine stack */
+.estack{width:100%;max-width:520px;display:flex;flex-direction:column;gap:9px}
+.elayer{position:relative;display:flex;align-items:center;gap:16px;width:100%;text-align:left;padding:17px 22px;background:#fff;border:0;border-left:3px solid transparent;box-shadow:0 1px 2px rgba(16,22,38,.05),0 14px 30px -22px rgba(16,22,38,.3);cursor:pointer;font-family:inherit;transition:transform .3s var(--e1),box-shadow .3s var(--e1),border-color .3s;will-change:transform}
+.elayer .el-n{font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.06em;color:var(--faint);flex:none;width:22px}
+.elayer .el-name{font-family:"Space Grotesk";font-weight:600;font-size:18px;color:var(--ink);letter-spacing:-.01em}
+.elayer .el-rel{margin-left:auto;font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);text-align:right}
+.elayer:hover,.elayer.on{transform:translateX(9px);box-shadow:0 2px 3px rgba(16,22,38,.06),0 28px 52px -26px rgba(16,22,38,.46);border-left-color:var(--blue)}
+.elayer-hot{background:linear-gradient(100deg,#06156A,#0C2190)}
+.elayer-hot .el-n{color:rgba(255,255,255,.72)}
+.elayer-hot .el-name{color:#fff}
+.elayer-hot .el-rel{color:rgba(255,255,255,.82)}
+.elayer-hot:hover,.elayer-hot.on{border-left-color:#fff;box-shadow:0 2px 3px rgba(6,21,106,.2),0 30px 56px -24px rgba(6,21,106,.6)}
+.stack-tip{position:absolute;pointer-events:none;transform:translate(-50%,-128%);background:#fff;border:1px solid var(--line2);padding:10px 13px;border-radius:0;max-width:240px;opacity:0;transition:opacity .16s;z-index:6;box-shadow:0 14px 34px -12px rgba(16,22,38,.22)}
+.stack-tip.on{opacity:1}
+.stack-tip b{font-family:"Space Grotesk";font-weight:600;font-size:13px;display:block;color:var(--blue-bright)}
+.stack-tip span{font-family:"Inter";font-size:11.5px;color:var(--soft);display:block;margin-top:4px;line-height:1.45}
+.stack-cap{display:flex;align-items:center;gap:14px;margin-top:var(--s4);font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.stack-cap span:first-child{color:var(--blue-bright);font-weight:700}
+.stack-cap span:last-child{color:var(--faint)}
+.engine-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,4.5vw,60px);align-items:center;margin-top:var(--s4)}
+/* AI use-cases orbit: full-width 3D that runs behind the floating copy (nodes never clipped) */
+.eng-right{display:flex;flex-direction:column;gap:var(--s4)}
+.eng-head h2{font-size:clamp(22px,2.7vw,34px);line-height:1.12;letter-spacing:-.02em;max-width:20ch}.eng-head h2 em{color:var(--blue-bright);font-style:normal}
+.eng-head p{color:var(--soft);font-size:15px;margin-top:10px;max-width:54ch}
+.eng-detail{position:relative;min-height:300px;display:flex;flex-direction:column;justify-content:center;transition:opacity .26s var(--e1)}
+.ed-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}
+.ed-num{font-family:"Inter",sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;color:var(--blue-bright)}
+.ed-rel{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);display:inline-flex;align-items:center;gap:9px}
+.ed-rel::before{content:"";width:16px;height:1px;background:var(--line2)}
+.ed-name{font-family:"Space Grotesk";font-weight:500;font-size:clamp(22px,2.6vw,30px);line-height:1.12;letter-spacing:-.01em}
+.ed-desc{color:var(--soft);font-size:16px;line-height:1.55;margin-top:12px;max-width:44ch}
+.ed-viz{margin:var(--s3) 0;display:block;max-width:380px}
+.ed-viz svg{width:100%;height:auto}
+.ed-tags{display:flex;flex-wrap:wrap;gap:8px}
+.ed-tags span{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);border:1px solid var(--line2);padding:6px 10px}
+.engine-note{font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.06em;color:var(--cyan);margin-top:var(--s5);display:flex;align-items:center;gap:10px}
+.engine-note i{width:6px;height:6px;background:var(--cyan);display:inline-block}
+.ucbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s3);justify-content:center}
+.ucbtns button{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);background:#fff;border:1px solid var(--line2);border-radius:9px;padding:10px 14px;cursor:pointer;box-shadow:0 4px 12px -8px rgba(16,22,38,.3);transition:transform .25s var(--e1),background .25s,color .25s,border-color .25s,box-shadow .25s}
+.ucbtns button:hover,.ucbtns button.on{color:#fff;background:var(--blue);border-color:var(--blue);transform:translateY(-2px);box-shadow:0 12px 22px -12px rgba(6,21,106,.6)}
+
+@media(max-width:900px){.engine-grid{grid-template-columns:1fr;gap:var(--s5)}.stack-canvas{height:380px}}
+@media(max-width:640px){.eng-detail{min-height:0}.ed-viz{max-width:340px}.stack-canvas{height:330px}}
+
+/* deadline cards carry their scene */
+.prob{padding:0;overflow:hidden}
+.prob .pi{aspect-ratio:16/10;overflow:hidden;border-bottom:1px solid var(--line);margin:0;background:#0B1020}
+.prob .pi img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.82);transition:transform 1s var(--e1)}
+.prob:hover .pi img{transform:scale(1.04)}
+.prob .pbody{padding:var(--s4)}
+
+/* ── offer cards · a 3D stage that explains the route ───────── */
+.off{overflow:hidden}
+.ov3d{position:relative;aspect-ratio:16/10;margin:0;overflow:hidden;
+  background:linear-gradient(180deg,#FBFCFF,#F0F3FB);border-bottom:1px solid var(--line)}
+.ov3d canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ov3d figcaption{position:absolute;left:14px;bottom:10px;z-index:2;font-family:"Inter",sans-serif;font-weight:600;
+  font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);pointer-events:none}
+@media(prefers-reduced-motion:reduce){.ov3d{display:none}}
+
+/* ── hero stats · icon, number, label, no box, under the CTA ── */
+.hstats{display:flex;flex-wrap:wrap;gap:32px 58px;margin-top:calc(var(--s5)*1.25)}
+.hstat{display:flex;align-items:flex-start;gap:15px}
+.hstat svg{width:26px;height:26px;stroke:#8C9EFF;fill:none;flex:none;margin-top:4px}
+.hstat b{display:block;font-family:"Space Grotesk";font-weight:600;font-size:28px;color:#fff;letter-spacing:-.02em;line-height:1}
+.hstat span{display:block;margin-top:8px;font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#9FB0CE}
+.stats-dup{display:none}
+@media(max-width:760px){.hstats{gap:22px 30px}.hstat b{font-size:19px}}
+
+/* ── hero event register · glass beside the lime ────────────── */
+.cta-ev{display:inline-flex;align-items:center;gap:11px;padding:14px 22px;
+  border:1px solid rgba(255,255,255,.3);color:#fff;
+  font-family:"Space Grotesk";font-weight:600;font-size:13.5px;letter-spacing:.01em;white-space:nowrap;
+  background:rgba(255,255,255,.07);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  transition:background .35s var(--e1),border-color .35s var(--e1),transform .35s var(--e1)}
+.cta-ev:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.55);transform:translateY(-2px)}
+.cta-ev .dot{width:7px;height:7px;background:var(--blue);border-radius:50%;flex:none;animation:evpulse 1.9s ease infinite}
+@keyframes evpulse{0%,100%{box-shadow:0 0 0 0 rgba(147,179,10,.55)}55%{box-shadow:0 0 0 8px rgba(147,179,10,0)}}
+@media(prefers-reduced-motion:reduce){.cta-ev .dot{animation:none}}
+
+/* ── event band · the registration block, dark showpiece ────── */
+.evband{position:relative;overflow:hidden;color:#EEF2FB;padding:calc(var(--s7)*.85) 0;
+  background:#0B1020 radial-gradient(900px 460px at 84% -12%,rgba(6,21,106,.4),transparent 65%)}
+.evband::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+  background-size:56px 56px;
+  -webkit-mask-image:radial-gradient(75% 95% at 62% 42%,#000,transparent);mask-image:radial-gradient(75% 95% at 62% 42%,#000,transparent)}
+.evband .in{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut);
+  display:grid;grid-template-columns:1.25fr .9fr;gap:var(--s6);align-items:center}
+.evband .eyebrow{color:#8C9EFF}
+.evband h2{color:#fff}
+.evband h2 em{color:#8C9EFF}
+.evband .lede{color:#AEB9D2}
+.evb-cta{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s5);flex-wrap:wrap}
+.evband .cue{color:#C9D6F2}
+.evb-r{display:flex;flex-direction:column;gap:28px;justify-content:center}
+.evb-f{display:flex;gap:15px;align-items:flex-start}
+.evb-f svg{width:22px;height:22px;stroke:#8C9EFF;fill:none;flex:none;margin-top:3px}
+.evb-f b{display:block;font-family:"Space Grotesk";font-weight:600;font-size:16.5px;color:#fff;letter-spacing:-.01em}
+.evb-f span{display:block;margin-top:5px;font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#7E8AA6}
+@media(max-width:900px){.evband .in{grid-template-columns:1fr;gap:var(--s5)}}
+
+/* ── AI section · bolted on versus built in ─────────────────── */
+.aiw{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--s6);align-items:center}
+.aiw-stage{position:relative;background:linear-gradient(180deg,#FBFCFF,#F0F3FB);border:1px solid var(--line);overflow:hidden}
+.aiw-stage canvas{display:block;width:100%;aspect-ratio:4/3.1;max-height:520px}
+.aiw-toggle{position:absolute;top:14px;left:14px;display:flex;border:1px solid var(--line2);background:var(--panel)}
+.awt{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  padding:9px 14px;background:none;border:0;color:var(--faint);cursor:pointer;transition:background .35s,color .35s}
+.awt.on{background:var(--blue);color:#fff}
+.aiw-read{position:absolute;left:16px;bottom:12px;right:16px;font-family:"Inter",sans-serif;font-weight:600;
+  font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);pointer-events:none}
+.aiw-r{display:flex;flex-direction:column;gap:26px}
+.aiw-i{display:flex;gap:16px;align-items:flex-start}
+.aiw-i svg{width:24px;height:24px;stroke:var(--blue-bright);fill:none;flex:none;margin-top:2px}
+.aiw-i b{display:block;font-family:"Space Grotesk";font-weight:600;font-size:17px;color:var(--ink);letter-spacing:-.01em}
+.aiw-i p{margin:6px 0 0;font-size:13.5px;color:var(--soft);line-height:1.55}
+.aiw-close{font-size:14px;color:var(--ink);border-left:2px solid var(--blue);padding-left:16px;line-height:1.6}
+@media(max-width:980px){.aiw{grid-template-columns:1fr;gap:var(--s5)}}
+
+/* ── loading screen · the core assembles in 3D ──────────────── */
+
+/* tier cards host a 3D stage like the offers */
+.tier{padding:0;overflow:hidden}
+.tier .tbody{padding:var(--s4);display:flex;flex-direction:column;flex:1}
+.tier .tfoot{margin-top:auto}
+
+/* ── SPA route transition · pages arrive, not appear ────────── */
+.route-view{animation:pgIn .55s cubic-bezier(.22,.61,.36,1) both}
+@keyframes pgIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.route-view{animation:none}}
+
+/* mobile · stats in two columns */
+@media(max-width:560px){
+  .hstats{gap:20px 0}
+  .hstat{width:50%;padding-right:12px;box-sizing:border-box}
+  .hstat b{font-size:21px}
+}
+
+/* ── event registration form ────────────────────────────────── */
+.phrow{display:flex;gap:8px}
+.phrow select{flex:0 0 92px}
+.phrow input{flex:1;min-width:0}
+.field.consent label{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--soft);text-transform:none;letter-spacing:0;font-family:"Inter";line-height:1.5;cursor:pointer}
+.field.consent input{width:15px;height:15px;margin-top:2px;flex:none;accent-color:var(--blue)}
+.form .ok{color:var(--ink);font-size:14px;border-left:2px solid var(--blue);padding-left:14px;line-height:1.6}
+
+/* ── standalone registration page ───────────────────────────── */
+.regpage{min-height:100svh;display:flex;flex-direction:column;align-items:center;padding:0 var(--gut);position:relative}
+.regpage::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(700px 420px at 80% -10%,rgba(6,21,106,.08),transparent 65%),
+    linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:auto,64px 64px,64px 64px;opacity:.7;
+  -webkit-mask-image:radial-gradient(90% 90% at 50% 30%,#000,transparent);mask-image:radial-gradient(90% 90% at 50% 30%,#000,transparent)}
+.reg-top{width:100%;max-width:760px;display:flex;align-items:center;justify-content:space-between;padding:26px 0 20px}
+.reg-ev{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+.reg-card{width:100%;max-width:760px;background:var(--panel);border:1px solid var(--line);
+  padding:clamp(26px,4vw,46px);box-shadow:0 40px 80px -50px rgba(11,16,32,.25)}
+.reg-visual{position:relative;margin:calc(clamp(26px,4vw,46px)*-1) calc(clamp(26px,4vw,46px)*-1) clamp(24px,3.4vw,38px);
+  aspect-ratio:21/8;overflow:hidden;border-bottom:1px solid var(--line)}
+.reg-visual img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85)}
+.reg-visual figcaption{position:absolute;left:16px;bottom:12px;display:flex;align-items:center;gap:9px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:#E7ECF7;text-shadow:0 1px 12px rgba(4,8,20,.7)}
+.reg-visual figcaption i{width:5px;height:5px;background:var(--blue);flex:none}
+.reg-card h1{font-size:clamp(30px,4.4vw,46px);letter-spacing:-.032em;margin-top:var(--s3)}
+.reg-card .lede{margin-top:var(--s3)}
+.reg-card .form{margin-top:var(--s5)}
+.reg-sec{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-bright);
+  margin:var(--s4) 0 0;grid-column:1/-1;padding-top:var(--s3);border-top:1px solid var(--line)}
+.reg-sec:first-child{margin-top:0;border-top:0;padding-top:0}
+.cta.wide{width:100%}
+.reg-alt{margin-top:var(--s4);font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.reg-alt a{color:var(--blue-bright)}
+.reg-alt i{color:var(--faintest);font-style:normal;margin:0 6px}
+.reg-foot{margin:auto 0 24px;padding-top:var(--s5);font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--faintest)}
+@media(max-width:640px){.reg-visual{aspect-ratio:16/8}}
+
+/* register page · bigger, clearer type */
+.regpage .field label{font-size:11.5px;letter-spacing:.11em;color:var(--soft)}
+.regpage .field input,.regpage .field select,.regpage .field textarea{font-size:16px;padding:14px 14px;color:var(--ink)}
+.regpage .phrow select{font-size:15px}
+.regpage .lede{font-size:16.5px;line-height:1.65}
+.regpage .reg-sec{font-size:10.5px}
+.regpage .field.consent label{font-size:14.5px;color:var(--ink)}
+.regpage .field.consent input{width:17px;height:17px}
+.regpage .cta.wide{font-size:13px;padding:19px 26px;letter-spacing:.15em}
+.regpage .formnote{font-size:10px;letter-spacing:.08em}
+.regpage .reg-alt{font-size:10.5px}
+
+/* 4:3 shot variant */
+.shot.r43{aspect-ratio:4/3}
+.shot.r43 img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ── coming-soon gate modal ─────────────────────────────────── */
+html,body{overflow-x:clip}
+.tpmodal{position:fixed;inset:0;z-index:1200;display:flex;align-items:center;justify-content:center;
+  background:rgba(11,16,32,.52);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);
+  animation:tpmIn .3s ease both;padding:var(--gut)}
+@keyframes tpmIn{from{opacity:0}to{opacity:1}}
+.tpmodal .box{width:min(460px,94vw);background:var(--panel);border:1px solid var(--line);
+  padding:clamp(26px,4vw,38px);box-shadow:0 50px 110px -40px rgba(11,16,32,.55);
+  animation:tpmBox .4s cubic-bezier(.22,.61,.36,1) both}
+@keyframes tpmBox{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.tpmodal h3{font-size:clamp(20px,2.4vw,25px);letter-spacing:-.02em;margin-top:var(--s2)}
+.tpmodal p{color:var(--soft);font-size:14px;line-height:1.6;margin:10px 0 0}
+.tpmodal .row{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s4);flex-wrap:wrap}
+.tpadmin{display:block;margin-top:var(--s4);background:none;border:0;cursor:pointer;padding:0;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--faintest);
+  transition:color .3s}
+.tpadmin:hover{color:var(--blue-bright)}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Official call-to-action section
+   House rule (Bazil, 5 Aug 2026): every call to action is BLUE and sits in a
+   window. A CTA is never a bare link on the page background: it is a framed
+   panel that reads as the official next step, so a CIO scanning the page can
+   find the action without hunting for it.
+   Applied to the section-level CTA groups. The hero row keeps its buttons
+   unframed because the hero is already the page's CTA moment.
+   ────────────────────────────────────────────────────────────────────────── */
+.evb-cta,
+.tfoot,
+.cta-panel{
+  position:relative;
+  width:fit-content;max-width:100%;
+  display:flex;align-items:center;flex-wrap:wrap;gap:18px;
+  margin-top:var(--s4);
+  padding:22px 26px;
+  background:linear-gradient(180deg,rgba(6,21,106,.075),rgba(6,21,106,.03));
+  border:1px solid rgba(6,21,106,.30);
+  border-radius:2px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 14px 34px -22px rgba(16,22,38,.5);
+}
+/* the corner ticks that make it read as a window rather than a tinted div */
+.evb-cta::before,.tfoot::before,.cta-panel::before,
+.evb-cta::after,.tfoot::after,.cta-panel::after{
+  content:"";position:absolute;width:9px;height:9px;pointer-events:none;
+  border:1px solid var(--blue);opacity:.55;
+}
+.evb-cta::before,.tfoot::before,.cta-panel::before{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.evb-cta::after,.tfoot::after,.cta-panel::after{bottom:-1px;right:-1px;border-left:0;border-top:0}
+
+/* on the dark event band the same window inverts */
+.evb .evb-cta,
+.dark .evb-cta,.dark .tfoot,.dark .cta-panel{
+  background:linear-gradient(180deg,rgba(6,21,106,.20),rgba(6,21,106,.08));
+  border-color:rgba(120,150,255,.42);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 18px 40px -24px rgba(0,0,0,.75);
+}
+.evb .evb-cta::before,.evb .evb-cta::after,
+.dark .evb-cta::before,.dark .evb-cta::after{border-color:#7E96FF;opacity:.75}
+
+/* the label that names it as the official step */
+.evb-cta::marker{content:none}
+.cta-panel-label,
+.evb-cta .lbl,.tfoot .lbl{
+  flex:0 0 100%;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--blue);margin-bottom:-4px;
+}
+.evb .evb-cta .lbl,.dark .cta-panel-label{color:#9FB4FF}
+
+@media(max-width:640px){
+  .evb-cta,.tfoot,.cta-panel{padding:18px;gap:12px}
+  .evb-cta .cta,.tfoot .cta,.cta-panel .cta{width:100%}
+}
+
+/* ── services dropdown ─────────────────────────────── */
+.navdrop{position:relative;display:inline-flex;align-items:center}
+.navdrop>a{display:inline-flex;align-items:center;gap:6px}
+.navdrop .dcar{width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-1px);transition:transform .3s var(--e1)}
+.navdrop:hover .dcar,.navdrop:focus-within .dcar{transform:rotate(225deg) translateY(-1px)}
+.navdrop .dpanel{position:absolute;top:100%;left:50%;transform:translate(-50%,8px);min-width:210px;
+  background:#fff;border:1px solid rgba(16,22,38,.12);box-shadow:0 18px 40px -18px rgba(16,22,38,.28);
+  padding:8px;display:flex;flex-direction:column;opacity:0;visibility:hidden;
+  transition:opacity .25s var(--e1),transform .25s var(--e1),visibility .25s;z-index:80}
+.navdrop:hover .dpanel,.navdrop:focus-within .dpanel{opacity:1;visibility:visible;transform:translate(-50%,2px)}
+.navdrop .dpanel a{display:block;padding:10px 12px;font-family:"Inter";font-size:13.5px;font-weight:500;color:var(--soft);white-space:nowrap}
+.navdrop .dpanel a:hover{background:rgba(6,21,106,.06);color:var(--ink)}
+.navdrop .dpanel a::after{display:none}
+.navdrop .dpanel .dall{border-top:1px solid rgba(16,22,38,.09);margin-top:6px;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-bright)}
+@media(max-width:900px){
+  .navdrop{flex-direction:column;align-items:flex-start}
+  .navdrop .dpanel{position:static;transform:none;opacity:1;visibility:visible;box-shadow:none;border:0;padding:0 0 0 14px;min-width:0}
+}
+
+/* consultant login lock */
+.portal-lk{display:inline-flex;align-items:center;gap:5px;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line2);padding:6px 10px;transition:color .3s,border-color .3s}
+.portal-lk:hover{color:var(--blue-bright);border-color:var(--blue)}
+.portal-lk::after{display:none}
+
+/* ── sector tiles (anonymised client band) · wins over the old logo-slot rules ── */
+.logorow.anon{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:var(--s6);margin-bottom:var(--s5)}
+.logorow.anon .logoslot{height:auto;min-height:0;padding:18px 20px;border:1px solid rgba(16,22,38,.12);background:#fff;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:6px;filter:none;position:relative;
+  transition:border-color .3s,transform .3s}
+.logorow.anon .logoslot:hover{border-color:var(--blue);transform:translateY(-2px)}
+.logorow.anon .logoslot:before{content:"";width:22px;height:2px;background:var(--blue);display:block;margin-bottom:8px}
+.logorow.anon .an-k{display:block!important;font:500 16px/1.25 "Space Grotesk",sans-serif;letter-spacing:-.01em;color:var(--ink);text-align:left}  /* !important: beats .logoslot:not(.nologo) span at L892 (display:none). This rule already wins on specificity (0,3,0 vs 0,2,1), so the flag is defensive. Kept because the whole .logorow.anon block was written to sit on top of the older logo-slot layer. */
+.logorow.anon .logoslot span:last-child{display:block!important;font:500 10px "Inter",sans-serif;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--faint);text-align:left;padding:0}  /* !important on the line above: same reason as .an-k. Beats .logoslot:not(.nologo) span at L892; wins on specificity anyway, kept as part of the same override block. */
+@media(max-width:900px){.logorow.anon{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.logorow.anon{grid-template-columns:1fr}}
+
+/* how-it-works: bolder numerals, lifted above the step, less ghosting */
+#plan .plan{margin-top:calc(var(--s3) * -1)}
+#plan .pstep{padding-top:0}
+#plan .pstep .pn{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:30px;letter-spacing:-.02em;
+  color:var(--blue);line-height:1;margin-bottom:10px;display:block}
+#plan .pstep h3{margin-top:6px}
+#plan .pstep p{margin-top:10px}
+#plan .pstep::after{top:16px;left:44px}
+.pstep.dim{opacity:.78}
+
+/* section heads: description aligned to the title's first line, even rhythm below */
+.shead{align-items:start}
+.shead .r{padding-bottom:0;padding-top:.62em}
+.shead .r .lede{margin-top:0}
+#plan .planviz{margin-top:var(--s4)}
+@media(max-width:900px){.shead .r{padding-top:0}}
+
+/* service card stages: deeper ground so the pale isometric geometry separates */
+.ov3d{background:linear-gradient(180deg,#F4F7FE,#E6ECFA)!important}  /* !important: same selector and same specificity as the base .ov3d at L1063, later in source, so it already wins. Kept as the visible marker that this deeper ground is the deliberate later override, not a duplicate. */
+.ov3d figcaption{color:#5A6478;background:rgba(255,255,255,.72);padding:3px 8px;left:10px;bottom:8px}
+/* film band: caption above, no runtime, quieter title weight */
+.filmstage .film-cap{top:auto}
+.filmstage .fc-k{display:none}
+.filmstage .fc-t{font-weight:500}
+
+/* section head: the eyebrow sits above BOTH columns, title and description share one top line */
+.shead{grid-template-areas:"k k" "t d";align-items:start}
+.shead>div:first-child{grid-area:t;display:contents}
+.shead>div:first-child .eyebrow{grid-area:k;margin-bottom:var(--s3)}
+.shead>div:first-child h2{grid-area:t;margin:0}
+.shead .r{grid-area:d;padding-top:.18em}
+@media(max-width:900px){
+  .shead{grid-template-areas:"k" "t" "d";grid-template-columns:1fr}
+  .shead .r{padding-top:0}
+}
+
+/* case cards: real photography + an outcome icon */
+.cs-card .cs-shot{position:relative;margin:0;aspect-ratio:16/9;overflow:hidden;background:#E9EDF6;border-bottom:1px solid rgba(16,22,38,.09)}
+.cs-card .cs-shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s var(--e1)}
+.cs-card:hover .cs-shot img{transform:scale(1.04)}
+.cs-card .cs-shot figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:7px;
+  padding:9px 12px;font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,rgba(10,16,32,0),rgba(10,16,32,.74))}
+.cs-card .cs-shot figcaption i{width:5px;height:5px;background:#0C2190;flex:0 0 auto}
+.cs-out{display:flex;align-items:flex-start;gap:8px}
+.cs-out .oi{flex:0 0 auto;width:16px;height:16px;color:var(--blue);margin-top:-1px}
+.cs-out .oi svg{width:100%;height:100%;display:block}
+
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:1100px){.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.g4{grid-template-columns:1fr}}
+
+/* commitment band: the ask lands where the risk was just removed */
+.guar-cta{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid rgba(16,22,38,.12);
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.guar-cta .lbl{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+  flex:0 0 100%}
+.guar-note{font-size:13px;color:var(--soft);max-width:34ch}
+@media(max-width:640px){.guar-cta .cta{width:100%}}
+
+/* Q&A block: a rotating question mark that says "ask us anything" */
+.qbox{display:none}
+.qb-face{display:flex;align-items:center;justify-content:center;width:100%;height:100%;
+  background:linear-gradient(150deg,#3E7BFF,#1E36DE 60%,#141FA0);color:#fff;
+  box-shadow:0 10px 22px -12px rgba(24,38,180,.9),inset 0 1px 0 rgba(255,255,255,.35);
+  animation:qspin 5.5s var(--e1) infinite;transform-style:preserve-3d}
+.qb-face b{font-family:"Space Grotesk";font-size:24px;font-weight:600;line-height:1}
+@keyframes qspin{0%,62%{transform:rotateY(0)}78%{transform:rotateY(180deg)}100%{transform:rotateY(360deg)}}
+@media (prefers-reduced-motion:reduce){.qb-face{animation:none}}
+
+/* floating WhatsApp */
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:900;width:54px;height:54px;border-radius:50%;
+  background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 12px 26px -10px rgba(16,22,38,.45);transition:transform .3s var(--e1),box-shadow .3s}
+.wa-float svg{width:30px;height:30px;fill:currentColor}
+.wa-float:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 16px 30px -10px rgba(16,22,38,.5)}
+.wa-tip{position:absolute;right:64px;white-space:nowrap;background:#101626;color:#fff;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;
+  opacity:0;transform:translateX(6px);transition:opacity .25s,transform .25s;pointer-events:none}
+.wa-float:hover .wa-tip{opacity:1;transform:translateX(0)}
+@media(max-width:640px){.wa-float{right:14px;bottom:14px;width:48px;height:48px}.wa-tip{display:none}}
+@media print{.wa-float{display:none}}
+
+/* footer: a soft white veil between the ERP spine and the words */
+.foot{position:relative;isolation:isolate}
+.foot #footCanvas{z-index:0}
+.foot .in{position:relative;z-index:2}
+.foot::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+   radial-gradient(64% 50% at 16% 44%, rgba(255,255,255,.90) 0%, rgba(255,255,255,.55) 55%, rgba(255,255,255,0) 82%),
+   linear-gradient(180deg, rgba(245,247,252,.55) 0%, rgba(245,247,252,0) 22%, rgba(245,247,252,0) 78%, rgba(245,247,252,.60) 100%)}
+/* the words carry their own halo so the scene can stay legible behind them */
+.foot .fcol a,.foot .fcol p,.foot .fcol h4,.foot .foot-base span,.foot .tagline,.foot .foot-sub{
+  text-shadow:0 0 12px rgba(245,247,252,.95),0 0 4px rgba(245,247,252,.9)}
+
+/* pricing: one meaningful highlight. Free reads as free; the rest stays neutral. */
+.tier .price{color:var(--ink)}
+.tier .price.is-free{color:#12A150}
+.tier .price small{color:var(--faint)}
+.tier.best{border-color:var(--line2)}
+.tier.best .tk{color:var(--blue-bright)}
+
+/* ── sector cards: one card per sector, its own accent, fine-line icon ── */
+.sec-grid{align-items:stretch}
+.sec-card{display:flex;flex-direction:column;background:#fff;border:1px solid rgba(16,22,38,.12);
+  text-decoration:none;color:inherit;overflow:hidden;position:relative;
+  transition:border-color .35s var(--e1),transform .35s var(--e1),box-shadow .35s var(--e1)}
+.sec-card:before{content:"";position:absolute;left:0;top:0;width:100%;height:2px;background:var(--sc);z-index:3;
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--e1)}
+.sec-card:hover{border-color:color-mix(in srgb,var(--sc) 45%,#fff);transform:translateY(-4px);
+  box-shadow:0 20px 40px -26px color-mix(in srgb,var(--sc) 70%,#0B1020)}
+.sec-card:hover:before{transform:scaleX(1)}
+.sec-card .sc-shot{position:relative;margin:0;aspect-ratio:4/3;overflow:hidden;background:#E9EDF6}
+.sec-card .sc-shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s var(--e1)}
+.sec-card:hover .sc-shot img{transform:scale(1.05)}
+.sec-card .sc-shot figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:7px;
+  padding:10px 12px;font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(180deg,rgba(10,16,32,0),rgba(10,16,32,.78))}
+.sec-card .sc-shot figcaption i{width:5px;height:5px;background:var(--sc);flex:0 0 auto}
+.sec-card .sc-b{padding:18px 20px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.sec-card .sc-ico{width:34px;height:34px;color:var(--sc)}
+.sec-card .sc-ico svg{width:100%;height:100%;display:block}
+.sec-card .sc-ico svg path,.sec-card .sc-ico svg circle{stroke-dasharray:120;stroke-dashoffset:120;animation:scdraw 1.4s var(--e1) forwards}
+.sec-card:nth-child(2) .sc-ico svg *{animation-delay:.1s}
+.sec-card:nth-child(3) .sc-ico svg *{animation-delay:.2s}
+.sec-card:nth-child(4) .sc-ico svg *{animation-delay:.3s}
+@keyframes scdraw{to{stroke-dashoffset:0}}
+.sec-card .sc-lab{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sc)}
+.sec-card h3{font-size:clamp(19px,1.7vw,23px);line-height:1.18;margin:0}
+.sec-card p{font-size:13.5px;color:var(--soft);line-height:1.6;margin:0}
+.sec-card .sc-go{margin-top:auto;padding-top:12px;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--sc);display:inline-flex;align-items:center;gap:7px}
+.sec-card .sc-go b{transition:transform .3s var(--e1)}
+.sec-card:hover .sc-go b{transform:translateX(4px)}
+@media (prefers-reduced-motion:reduce){.sec-card .sc-ico svg *{animation:none;stroke-dashoffset:0}}
+
+/* SAP NOW band, now the last beat before the footer, over a Singapore skyline */
+.evband{position:relative;overflow:hidden;isolation:isolate}
+.evband .sg-sky{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.evband .in{position:relative;z-index:2}
+.evband:before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(11,16,32,.94) 0%,rgba(11,16,32,.80) 42%,rgba(11,16,32,.30) 74%,rgba(11,16,32,.55) 100%)}
+@media(max-width:900px){.evband:before{background:linear-gradient(180deg,rgba(11,16,32,.92),rgba(11,16,32,.72))}}
+
+/* SAP NOW band: content reads from the top, skyline stays under it */
+.evband{padding-top:clamp(48px,6vw,84px);padding-bottom:clamp(120px,15vw,190px)}
+.evband .in{align-items:flex-start}
+.evband:before{background:
+  linear-gradient(90deg,rgba(11,16,32,.96) 0%,rgba(11,16,32,.86) 46%,rgba(11,16,32,.42) 78%,rgba(11,16,32,.62) 100%),
+  linear-gradient(180deg,rgba(11,16,32,.78) 0%,rgba(11,16,32,.30) 34%,rgba(11,16,32,.10) 62%,rgba(11,16,32,.55) 100%)}
+/* the detail column gets its own quiet panel so dates never fight the buildings */
+.evband .evb-r{position:relative;padding:18px 20px;border:1px solid rgba(147,178,255,.16);
+  background:linear-gradient(180deg,rgba(9,14,30,.72),rgba(9,14,30,.52));
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.evband .evb-f b,.evband .evb-f span{text-shadow:0 1px 14px rgba(6,10,24,.85)}
+.evband .in>div:first-child h2,.evband .in>div:first-child .lede,.evband .in>div:first-child .eyebrow{
+  text-shadow:0 1px 18px rgba(6,10,24,.7)}
+@media(max-width:900px){.evband{padding-bottom:clamp(150px,32vw,220px)}}
+
+/* the event CTA, framed like every official next step on the site */
+.evband .evb-cta{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:16px;
+  margin-top:var(--s5);padding:20px 22px;border:1px solid rgba(147,178,255,.30);
+  background:linear-gradient(180deg,rgba(9,14,30,.72),rgba(9,14,30,.46));
+  backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.evband .evb-cta .lbl{flex:0 0 100%;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#8FB0FF;margin:0}
+.evband .evb-cta .cta{background:var(--blue);color:#fff}
+.evband .evb-cta .cta:hover{background:#3B4CFF}
+.evband .evb-cta .cue{color:#C7D3EE}
+@media(max-width:640px){.evband .evb-cta .cta{width:100%;justify-content:center}}
+
+/* the band gets its height back under control */
+.evband{padding-bottom:clamp(96px,10vw,132px)}
+@media(max-width:900px){.evband{padding-bottom:clamp(110px,22vw,150px)}}
+
+/* the event band loses its boxes: nothing framed, everything aligned */
+.evband .evb-cta{border:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+  padding:0;margin-top:var(--s5);gap:18px}
+.evband .evb-cta .lbl{color:#8FB0FF}
+.evband .evb-r{border:0;background:none;backdrop-filter:none;-webkit-backdrop-filter:none;padding:0}
+.evband .evb-f b,.evband .evb-f span{text-shadow:0 1px 16px rgba(6,10,24,.9)}
+
+/* the question block: a real cube, sitting with the description */
+.qrow{display:flex;align-items:flex-start;gap:18px}
+.qcube{width:104px;height:104px;flex:0 0 auto;margin-top:-18px;overflow:visible}
+@media(max-width:760px){.qrow{gap:14px}.qcube{width:78px;height:78px;margin-top:-8px}}
+
+/* no stray rules anywhere in the event CTA group */
+.evband .evb-cta,.evband .evb-cta *{border:0!important;box-shadow:none!important}  /* !important x2: strips the CTA-window frame from L1240 and L1242 and every inherited border inside the group. Specificity alone would already win, but the flags are load-bearing as a SYSTEM: L1505 below restores the one border that should survive, and it can only do that because this rule is !important. Change one, change both. */
+.evband .evb-cta .cta{box-shadow:none!important}  /* !important: restates L1503 at higher specificity (0,3,0) so a later, more specific .cta shadow cannot slip back in. Currently redundant with the * rule above; kept because the two lines are the same guard. */
+/* the cue underline that used to be restored here is gone with the rest of them:
+   .cue at L254 no longer draws one, so nothing needs putting back. */
+
+/* the footer now carries the city, lightly: the veil goes back to a whisper */
+.foot::before{background:
+  radial-gradient(56% 46% at 14% 44%, rgba(245,247,252,.86) 0%, rgba(245,247,252,.42) 58%, rgba(245,247,252,0) 84%),
+  linear-gradient(180deg, rgba(245,247,252,.70) 0%, rgba(245,247,252,0) 24%, rgba(245,247,252,0) 82%, rgba(245,247,252,.55) 100%)}
+
+/* no corner brackets anywhere in the event band */
+.evband .evb-cta::before,.evband .evb-cta::after,
+.evband .tfoot::before,.evband .tfoot::after,
+.evband .cta-panel::before,.evband .cta-panel::after{content:none!important;display:none!important}  /* !important x2: kills the CTA-window corner ticks drawn at L1245 (content:""). Specificity already wins (0,2,0 vs 0,1,0); the flags guard against the ticks block being re-specified in a later layer, which is exactly how this file grows. */
+
+/* ── legibility over any animated surface ──────────────────────
+   Anything that can sit above a canvas carries its own shadow, so
+   the art can run behind it without ever competing with the words. */
+
+/* dark surfaces: the event band */
+.evband .in h2,
+.evband .in .lede,
+.evband .in .eyebrow,
+.evband .evb-f b,
+.evband .evb-f span,
+.evband .evb-cta .lbl,
+.evband .evb-cta .cue{
+  text-shadow:0 1px 2px rgba(5,9,22,.95),0 2px 18px rgba(5,9,22,.85),0 0 42px rgba(5,9,22,.65)}
+.evband .evb-f svg{filter:drop-shadow(0 2px 10px rgba(5,9,22,.9))}
+
+/* light surfaces: the footer over the city */
+.foot .tagline,
+.foot .foot-sub,
+.foot .fcol h4,
+.foot .fcol a,
+.foot .fcol p,
+.foot .foot-base span,
+.foot .foot-brand{
+  text-shadow:0 0 3px rgba(245,247,252,1),0 0 10px rgba(245,247,252,.98),0 0 24px rgba(245,247,252,.85)}
+.foot .foot-logo,.foot .fmc{filter:drop-shadow(0 0 10px rgba(245,247,252,.95))}
+.foot .fc-cta{box-shadow:0 6px 22px -8px rgba(6,21,106,.55)}
+
+/* the industries hero, where the morph shares the band with the copy */
+.hero.page .hero-inner h1,
+.hero.page .hero-inner .lede,
+.hero.page .hero-inner .eyebrow{
+  text-shadow:0 0 14px rgba(245,247,252,.92),0 0 34px rgba(245,247,252,.75)}
+
+/* the home hero sits over video: keep its own protection explicit */
+.hero.video .hero-inner h1,
+.hero.video .hero-inner .lede,
+.hero.video .hero-inner .eyebrow,
+.hero.video .hstat b,
+.hero.video .hstat span{
+  text-shadow:0 1px 2px rgba(5,9,22,.85),0 2px 22px rgba(5,9,22,.7)}
+
+@media print{*{text-shadow:none!important}}  /* !important: REQUIRED. Universal selector, 0,0,0, and it has to beat the whole legibility-shadow layer at L1522-L1556. */
+
+/* ── sector cards: photos tuned to the accent, captions always readable ──
+   Each photo gets a graded scrim plus a soft blur pad under its caption, and a
+   tint in the sector accent so the four images read as one colour system. */
+.sec-card .sc-shot::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(9,14,30,0) 40%,rgba(9,14,30,.30) 62%,rgba(9,14,30,.86) 100%),
+    linear-gradient(180deg,color-mix(in srgb,var(--sc) 22%,transparent) 0%,transparent 46%);
+  mix-blend-mode:normal}
+.sec-card .sc-shot img{filter:saturate(.78) contrast(1.04) brightness(.94)}
+.sec-card:hover .sc-shot img{filter:saturate(.9) contrast(1.05) brightness(.97)}
+.sec-card .sc-shot figcaption{z-index:2;background:none;padding:11px 13px;line-height:1.45;
+  text-shadow:0 1px 2px rgba(5,9,22,.95),0 2px 14px rgba(5,9,22,.9)}
+.sec-card .sc-shot figcaption::before{content:"";position:absolute;left:0;right:0;bottom:0;height:78%;
+  z-index:-1;pointer-events:none;backdrop-filter:blur(7px) saturate(.9);-webkit-backdrop-filter:blur(7px) saturate(.9);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 46%);mask-image:linear-gradient(180deg,transparent,#000 46%);
+  background:linear-gradient(180deg,transparent,color-mix(in srgb,var(--sc) 30%,rgba(9,14,30,.72)))}
+/* the case cards get the same treatment so the whole page reads as one system */
+.cs-card .cs-shot img{filter:saturate(.78) contrast(1.04) brightness(.94)}
+.cs-card .cs-shot figcaption{background:none;z-index:2;padding:11px 13px;
+  text-shadow:0 1px 2px rgba(5,9,22,.95),0 2px 14px rgba(5,9,22,.9)}
+.cs-card .cs-shot figcaption::before{content:"";position:absolute;left:0;right:0;bottom:0;height:78%;
+  z-index:-1;backdrop-filter:blur(7px) saturate(.9);-webkit-backdrop-filter:blur(7px) saturate(.9);
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 46%);mask-image:linear-gradient(180deg,transparent,#000 46%);
+  background:linear-gradient(180deg,transparent,rgba(9,14,30,.80))}
+/* the sector titles keep to two lines so the four cards stay level */
+.sec-card h3{min-height:2.36em;display:flex;align-items:flex-start}
+
+/* credentials: bigger badges, one baseline, stronger marks */
+.credline{align-items:flex-start}
+.credline .cred-i{display:flex;flex-direction:column;align-items:center;text-align:center}
+.credline .cred-img,.credline .cred-img.tall,.credline .cred-img.seal{
+  height:76px;max-height:76px;width:auto;max-width:230px;object-fit:contain;margin-bottom:20px}
+.credline .cred-img.seal{height:80px;max-height:80px;max-width:80px}
+.credline .cred-i b{min-height:2.4em;display:flex;align-items:center;justify-content:center;text-align:center}
+.credline .cred-i span{line-height:1.5}
+@media(max-width:760px){
+  .credline .cred-img,.credline .cred-img.tall{height:58px;max-height:58px}
+  .credline .cred-img.seal{height:62px;max-height:62px;max-width:62px}
+  .credline .cred-i b{min-height:0}
+}
+/* the anonymised client row: one grid, one baseline */
+.logorow.anon .logoslot{justify-content:flex-start;min-height:100%}
+.logorow.anon .an-k{min-height:2.5em;display:flex;align-items:flex-start;line-height:1.25}
+.logorow.anon .logoslot span:last-child{margin-top:auto;padding-top:6px;line-height:1.5}
+
+/* consultant login: a lock, nothing more */
+.portal-lk{width:34px;height:34px;padding:0;justify-content:center;border-radius:2px;
+  border:1px solid var(--line2);color:var(--faint);transition:color .3s,border-color .3s,background .3s}
+.portal-lk svg{width:15px;height:15px}
+.portal-lk:hover{color:#fff;background:var(--blue);border-color:var(--blue)}
+
+/* the film: poster and custom play until it starts, native controls after */
+.filmstage{position:relative;overflow:hidden}
+.filmstage video{display:block;width:100%;height:auto;background:#0B1020}
+.filmstage video::-webkit-media-controls{opacity:0;transition:opacity .3s}
+.filmstage.playing video::-webkit-media-controls{opacity:1}
+.film-play{transition:opacity .35s var(--e1),transform .35s var(--e1)}
+.filmstage.playing .film-play,.filmstage.playing .film-cap{opacity:0;pointer-events:none;transform:scale(.94)}
+
+/* hero films: a real crossfade between sectors */
+.hero.video .bslides{position:absolute;inset:0;overflow:hidden}
+.hero.video .bslide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s var(--e1);will-change:opacity}
+.hero.video .bslide.on{opacity:1}
+.hero.video .bslide video,.hero.video .bslide img{width:100%;height:100%;object-fit:cover;display:block}
+.hero.video .bslide video{position:relative;z-index:1}
+.hero.video .bslide img{position:absolute;inset:0;z-index:0}
+.bmeta .bm-ix b{opacity:.32;transition:opacity .4s,color .4s}
+.bmeta .bm-ix b.on{opacity:1;color:#fff}
+
+/* the scroll cue: quieter, slower, premium */
+.scrollhint{opacity:.42;transition:opacity .4s}
+.scrollhint:hover{opacity:.7}
+.scrollhint span{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.34em;text-transform:uppercase;opacity:.75}
+.scrollhint .sh-arr{animation:shdrift 3.4s var(--e1) infinite}
+@keyframes shdrift{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(5px);opacity:.9}}
+@media (prefers-reduced-motion:reduce){.scrollhint .sh-arr{animation:none}}
+
+/* header over the dark hero: the negative mark, white type */
+.nav.on-dark .brand-logo{filter:brightness(0) invert(1)}
+.nav.on-dark .brand .bs{color:rgba(255,255,255,.62)}
+.nav.on-dark .navlinks a{color:rgba(255,255,255,.82)}
+.nav.on-dark .navlinks a:hover,.nav.on-dark .navlinks a.here{color:#fff}
+.nav.on-dark .portal-lk{color:rgba(255,255,255,.72);border-color:rgba(255,255,255,.28)}
+.nav.on-dark .portal-lk:hover{background:#fff;color:var(--blue);border-color:#fff}
+.nav.on-dark .lang button{color:rgba(255,255,255,.7);border-color:rgba(255,255,255,.24)}
+.nav.on-dark .lang button.on{background:#fff;color:var(--ink)}
+body.scrolled header.nav{background:rgba(245,247,252,.96);border-bottom-color:var(--line)}
+body.scrolled .nav.on-dark{background:rgba(11,16,32,.92);border-bottom-color:rgba(255,255,255,.10)}
+@media(max-width:900px){
+  .navlinks{position:fixed;inset:64px 0 auto 0;background:#fff;flex-direction:column;align-items:flex-start;
+    gap:2px;padding:18px 22px 26px;border-bottom:1px solid var(--line);
+    transform:translateY(-12px);opacity:0;visibility:hidden;transition:.3s var(--e1);z-index:70}
+  .navlinks.open{transform:none;opacity:1;visibility:visible}
+  .nav.on-dark .navlinks{background:#0B1020}
+  body.nav-open{overflow:hidden}
+}
+
+/* hero films: the still is a fallback, never a second layer */
+.hero.video .bslide img{position:absolute;inset:0;z-index:0;opacity:1;transition:opacity .5s var(--e1)}
+.hero.video .bslide.ready img{opacity:0}
+.hero.video .bslide video{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .5s var(--e1)}
+.hero.video .bslide.ready video{opacity:1}
+/* only the active slide is composited at all */
+.hero.video .bslide{opacity:0;visibility:hidden;transition:opacity 1.1s var(--e1),visibility 0s linear 1.1s}
+.hero.video .bslide.on{opacity:1;visibility:visible;transition:opacity 1.1s var(--e1),visibility 0s}
+.film-cap .fc-w{display:block;margin-top:6px;font-family:"Inter",sans-serif;font-weight:600;font-size:9px;
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+
+/* ── credentials, in our own language: no imitation artwork ── */
+.credline{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border-top:1px solid var(--line);  /* 7 since ISO 27701 joined the row (10 Aug); this is the WINNING layer, L854 mirrors it */
+  border-bottom:1px solid var(--line)}
+.credline .cred-i{display:flex;flex-direction:column;align-items:flex-start;gap:9px;
+  padding:26px 22px;border-right:1px solid var(--line);text-align:left}
+.credline .cred-i:last-child{border-right:0}
+.credline .cr-mark{display:inline-flex;align-items:center;justify-content:center;min-width:52px;height:30px;
+  padding:0 11px;background:var(--blue);color:#fff}
+.credline .cr-mark b{font-family:"Space Grotesk";font-weight:700;font-size:15px;letter-spacing:-.01em;line-height:1}
+.credline .cred-i:nth-child(1) .cr-mark{background:#0A4FB0}
+.credline .cred-i:nth-child(4) .cr-mark,.credline .cred-i:nth-child(5) .cr-mark{background:#101626}
+.credline .cred-i:nth-child(6) .cr-mark{background:#B07A12}
+.credline .cr-name{font-family:"Space Grotesk";font-weight:500;font-size:15.5px;letter-spacing:-.01em;color:var(--ink);line-height:1.25}
+.credline .cr-sub{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--faint);line-height:1.5}
+@media(max-width:1000px){.credline{grid-template-columns:repeat(3,1fr)}
+  .credline .cred-i:nth-child(3){border-right:0}
+  .credline .cred-i:nth-child(n+4){border-top:1px solid var(--line)}}
+@media(max-width:620px){.credline{grid-template-columns:repeat(2,1fr)}
+  .credline .cred-i{padding:20px 16px}
+  .credline .cred-i:nth-child(even){border-right:0}
+  .credline .cred-i:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* ── the scroll cue, rebuilt: a line that fills and releases ── */
+.scrollhint{display:flex;align-items:center;gap:12px;opacity:.55}
+.scrollhint .sh-arr{display:none}
+.scrollhint::before{content:"";width:1px;height:46px;background:rgba(255,255,255,.18);position:relative;overflow:hidden}
+.scrollhint::after{content:"";position:absolute;width:1px;height:46px;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,.9),transparent);
+  animation:shfill 2.8s cubic-bezier(.65,.05,.36,1) infinite}
+.scrollhint span{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.32em;text-transform:uppercase;
+  color:rgba(255,255,255,.62)}
+@keyframes shfill{0%{transform:translateY(-46px)}60%,100%{transform:translateY(46px)}}
+@media (prefers-reduced-motion:reduce){.scrollhint::after{animation:none;opacity:.4}}
+
+/* ── client marks: one optical size, one weight, no colour noise ── */
+.logorow{display:grid;grid-template-columns:repeat(6,1fr);gap:0;align-items:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:var(--s5)}
+.logorow .logoslot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  padding:30px 18px;border-right:1px solid var(--line);min-height:132px}
+.logorow .logoslot:last-child{border-right:0}
+.logorow .logo-img{height:38px;width:auto;max-width:118px;object-fit:contain;display:block;
+  filter:grayscale(1) brightness(.55) contrast(1.15);opacity:.68;
+  transition:filter .45s var(--e1),opacity .45s var(--e1),transform .45s var(--e1)}
+.logorow .logoslot:hover .logo-img{filter:grayscale(0) brightness(1) contrast(1);opacity:1;transform:translateY(-2px)}
+.logorow .lg-n{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--faint);text-align:center}
+@media(max-width:1000px){.logorow{grid-template-columns:repeat(3,1fr)}
+  .logorow .logoslot:nth-child(3){border-right:0}
+  .logorow .logoslot:nth-child(n+4){border-top:1px solid var(--line)}}
+@media(max-width:600px){.logorow{grid-template-columns:repeat(2,1fr)}
+  .logorow .logoslot{min-height:104px;padding:22px 12px}
+  .logorow .logo-img{height:30px;max-width:92px}
+  .logorow .logoslot:nth-child(even){border-right:0}
+  .logorow .logoslot:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* ── admin/workspace bar: let it size to its own content, never clip ── */
+.nav-top{height:auto!important;min-height:0;overflow:visible!important;
+  transition:opacity .3s var(--e1)!important}  /* height:auto !important is REQUIRED: .nav.solid .nav-top at L968 is 0,2,0 and collapses this bar to height:0 on scroll. overflow:visible !important beats overflow:hidden at L966 (same specificity, wins on order anyway) and transition !important replaces the height transition set on the same line. min-height lost its flag on 7 Aug 2026: no other rule in the file sets min-height on .nav-top, so it was provably redundant. */
+body.tbhide .nav-top{opacity:0;pointer-events:none}
+.nav-top .nt-in{flex-wrap:nowrap;gap:16px!important;padding:8px 22px!important;
+  align-items:center!important}  /* gap and padding !important beat .nt-in at L298 and pair with the mobile override at L1734, which must also be !important to win against these. align-items restates the same value as L298. flex-wrap lost its flag on 7 Aug 2026: no other rule in the file sets flex-wrap on .nt-in, so it was provably redundant. */
+.nav-top .tb-mark{flex:0 0 auto}
+.nav-top .wsw{flex:0 1 auto;overflow-x:auto!important;scrollbar-width:none}  /* !important: beats the overflow shorthand on .wsw at L301, which sets overflow-x as a side effect. Specificity already wins (0,2,0 vs 0,1,0); the flag makes the intent explicit that this bar must always scroll rather than clip. */
+.nav-top .wsw::-webkit-scrollbar{height:0}
+@media(max-width:900px){
+  .nav-top .tb-mark small{display:none}
+  .nav-top .nt-in{padding:7px 14px!important;gap:10px!important}  /* !important x2: REQUIRED. L1727 sets padding and gap on the same selector with !important. Same specificity, so only another !important later in source can win. Drop these flags and the mobile bar keeps its desktop padding. */
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CORRECTIONS · 7 Aug · nav contrast, real credential artwork,
+   fewer rules, no box-inside-a-box, calmer footer field.
+   This block is last on purpose: it settles the earlier layers.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* 01 · credentials · real badge artwork, one optical height, no chips */
+.credline .cr-mark{background:none;padding:0;min-width:0;width:auto;height:46px;
+  display:flex;align-items:center;justify-content:flex-start;color:inherit}
+/* the badge SVGs carry a viewBox but no width/height, so width:auto
+   collapses to 0. Widths below are the viewBox ratio at a 46px cap. */
+.credline .cr-mark img{height:46px;width:121px;object-fit:contain;
+  object-position:left center;display:block}
+.credline .cr-mark.seal img{height:46px;width:46px}
+.credline .cr-mark.shield img{height:46px;width:69px}
+.credline .cred-i:nth-child(1) .cr-mark,.credline .cred-i:nth-child(4) .cr-mark,
+.credline .cred-i:nth-child(5) .cr-mark,.credline .cred-i:nth-child(6) .cr-mark{background:none}
+/* no cell grid: the badges carry the structure on their own */
+.credline{border-top:0;border-bottom:0;gap:clamp(16px,2.4vw,40px);
+  margin-top:var(--s5);margin-bottom:var(--s2)}
+.credline .cred-i,.credline .cred-i:last-child,
+.credline .cred-i:nth-child(n+3),.credline .cred-i:nth-child(n+4){
+  border-right:0;border-top:0;border-left:0;border-bottom:0}
+.credline .cred-i{gap:14px;padding:22px 0}
+.credline .cred-i b.cr-name{min-height:2.4em;display:flex;align-items:flex-start;
+  justify-content:flex-start;text-align:left}
+
+/* 02 · fewer horizontal rules through the proof band.
+       The credential grid stays a contained box; the client marks
+       float on white; the offices line keeps the single separator. */
+.logorow{display:flex;justify-content:space-between;align-items:center;
+  gap:clamp(16px,3vw,54px);border-top:0;border-bottom:0;
+  margin-top:var(--s6);margin-bottom:var(--s2)}
+.logorow .logoslot,.logorow .logoslot:last-child{border-right:0;border-top:0;
+  flex:0 1 auto;min-height:0;padding:30px 0}
+.logorow .logoslot:first-child{align-items:flex-start}
+.logorow .logoslot:last-child{align-items:flex-end}
+
+/* one optical size, not one measured size: a roundel has to sit taller
+   than a wordmark to carry the same weight */
+.logorow .logo-img{height:auto;max-width:none}
+.logorow img[src*="bmw"]{height:66px}
+.logorow img[src*="mercedes"]{height:68px}
+.logorow img[src*="honda"]{height:52px}
+.logorow img[src*="roche"]{height:44px}
+.logorow img[src*="amgen"]{height:34px}
+.logorow img[src*="lilly"]{height:50px}
+@media(max-width:1000px){.logorow .logoslot:nth-child(n+4){border-top:0}
+  .logorow{flex-wrap:wrap;justify-content:center;gap:clamp(22px,5vw,56px)}
+  .logorow .logoslot:first-child,.logorow .logoslot:last-child{align-items:center}}
+@media(max-width:600px){.logorow .logoslot:nth-child(n+3){border-top:0}
+  .logorow img[src*="bmw"]{height:48px}.logorow img[src*="mercedes"]{height:50px}
+  .logorow img[src*="honda"]{height:38px}.logorow img[src*="roche"]{height:32px}
+  .logorow img[src*="amgen"]{height:25px}.logorow img[src*="lilly"]{height:36px}}
+.anon-note{margin-top:var(--s3);font-size:12.5px;color:var(--faint);max-width:78ch}
+
+/* 03 · the outcome line reads as one sentence, not three columns */
+.cs-out{display:block;line-height:1.55}
+.cs-out .oi{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:7px}
+.cs-out b{display:inline;font-weight:600;color:var(--blue)}
+
+/* 04 · no box inside a box · the next step sits on the card itself */
+.tfoot{border:0;background:none;box-shadow:none;padding:20px 0 0;
+  border-top:1px solid var(--line);margin-top:auto}
+.tfoot .lbl{display:block;margin-bottom:12px}
+/* the L1245 corner ticks frame a box. This .tfoot has no box, so they were
+   left hanging in the card's corners: drop them here, keep them on
+   .evb-cta and .cta-panel where the frame they mark still exists. */
+.tfoot::before,.tfoot::after{display:none}
+
+/* 05 · footer field · quieter, so the wordmark and links lead */
+#footCanvas{opacity:.34}
+
+/* 06 · leadership portraits fill their slot; the hatched placeholder
+       art only shows while a slot is still empty */
+.face .ph{position:relative;overflow:hidden}
+.face .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 22%;display:block;filter:saturate(.92) contrast(1.02);
+  transition:transform .7s var(--e1),filter .5s var(--e1)}
+.face:hover .ph img{transform:scale(1.03);filter:saturate(1) contrast(1.04)}
+.face .ph:has(img){background:none}
+.face .ph:has(img)::before,.face .ph:has(img)::after{display:none}
+
+/* 07 · the foot gets room to breathe around the backbone */
+.foot{padding:clamp(190px,24vh,300px) 0 clamp(48px,6vh,74px)}
+.foot-base{margin-top:clamp(150px,20vh,230px)}
+
+/* ══════════════════════════════════════════════════════════════════
+   CORRECTIONS · 7 Aug, second pass.
+   Nav control cluster, brand sizing, equal card treatment, and the
+   premium lift moved onto hover only. Last layer, settles the rest.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* 08 · nav · one height and one baseline for every control.
+       They were 28px, 34px and 41.4px on three different tops. */
+.navlinks .lang,
+.navlinks .portal-lk,
+.navlinks .cta.sm{height:36px;box-sizing:border-box;
+  display:inline-flex;align-items:center;justify-content:center}
+.navlinks .lang{padding:0;overflow:hidden}
+.navlinks .lang button{height:100%;display:inline-flex;align-items:center;
+  justify-content:center;padding:0 12px}
+.navlinks .portal-lk{width:36px;padding:0}
+.navlinks .cta.sm{padding:0 20px}
+
+/* 09 · brand · a little larger, sitting a little lower in the bar */
+.brand-logo{height:28px}
+.brand .mc{transform:scale(1.12);transform-origin:left center}
+.brand{transform:translateY(3px)}
+.nav.solid .brand{transform:translateY(1px)}
+
+/* 10 · client marks · more room above and below, the caption steps back */
+.logorow .logoslot,.logorow .logoslot:last-child{padding:46px 0}
+.logorow{margin-top:var(--s7);margin-bottom:var(--s4)}
+.anon-note{margin-top:var(--s4)}
+
+/* 11 · the three routes are equal. Singling the middle one out with a blue
+       border and a permanent glow made the other two read as second best. */
+.off.feat{border-color:var(--line2);box-shadow:none}
+.off,.prob,.cs-card{box-shadow:none}
+
+/* 12 · premium lift on hover only, never at rest */
+.off,.prob,.cs-card{transition:border-color .45s var(--e1),
+  transform .5s var(--e1),box-shadow .5s var(--e1)}
+.off:hover,.off.feat:hover,.prob:hover,.cs-card:hover{
+  border-color:rgba(6,21,106,.34);transform:translateY(-3px);
+  box-shadow:0 2px 4px rgba(16,22,38,.05),0 26px 56px -30px rgba(6,21,106,.42)}
+@media(hover:none){
+  .off:hover,.off.feat:hover,.prob:hover,.cs-card:hover{
+    transform:none;box-shadow:none}
+}
+
+/* 13 · the case spine gets room to breathe */
+.cspine{margin-top:var(--s7);gap:var(--s3)}
+.cspine+*{margin-top:var(--s6)}
+.cs-card .cs-b{padding-bottom:var(--s4)}
+
+/* 14 · foot · content rides higher, the backbone keeps its band below */
+.foot{padding:clamp(104px,13vh,168px) 0 clamp(48px,6vh,74px)}
+.foot-base{margin-top:clamp(196px,25vh,290px)}
+
+/* 15 · mobile menu · the language pill and the consultant login are controls,
+       not menu rows, so they sit together on one line instead of stretching
+       to full width like the links do. The bar goes solid while it is open. */
+@media(max-width:900px){
+  .nav.open .navlinks,.navlinks{flex-wrap:wrap}
+  .nav.open .navlinks .lang,.navlinks .lang{width:auto;flex:0 0 auto;
+    margin-top:16px;border-bottom:0;padding:0}
+  .nav.open .navlinks .portal-lk,.navlinks .portal-lk{width:36px;flex:0 0 auto;
+    margin-top:16px;margin-left:10px;border-bottom:0;padding:0}
+  .nav.open .navlinks .cta.sm,.navlinks .cta.sm{flex:1 0 100%;width:100%;
+    margin-top:16px;justify-content:center;border-bottom:0}
+  body.nav-open .nav::after{opacity:1;background:rgba(250,251,254,.99)}
+  body.nav-open .nav.on-dark::after{background:rgba(11,16,32,.99)}
+}
+
+/* 16 · film · a control bar at opacity 0 is still in the hit test, so the
+       invisible seek bar was clickable before the film ever started.
+       Take it out of hit testing until playback actually begins. */
+.filmstage video::-webkit-media-controls,
+.filmstage video::-webkit-media-controls-enclosure,
+.filmstage video::-webkit-media-controls-panel{pointer-events:none}
+.filmstage.playing video::-webkit-media-controls,
+.filmstage.playing video::-webkit-media-controls-enclosure,
+.filmstage.playing video::-webkit-media-controls-panel{pointer-events:auto}
+
+/* 17 · the people band · one working session, the roster beside it.
+       Replaces the four-portrait grid, which read as a stock team page.
+       Portraits survive as roster avatars, still labelled placeholders. */
+.pband{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,3.4vw,56px);
+  align-items:stretch;margin-top:var(--s6)}
+.pb-shot{position:relative;margin:0;overflow:hidden;background:#E9EDF6;
+  border:1px solid var(--line2);aspect-ratio:4/3}
+.pb-shot img{width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.9) contrast(1.02);transition:transform .9s var(--e1)}
+.pband:hover .pb-shot img{transform:scale(1.03)}
+.pb-shot figcaption{position:absolute;left:0;right:0;bottom:0;z-index:2;
+  display:flex;align-items:center;gap:8px;padding:14px 16px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(255,255,255,.92)}
+.pb-shot figcaption::before{content:"";position:absolute;left:0;right:0;bottom:0;
+  height:150%;z-index:-1;background:linear-gradient(180deg,transparent,rgba(7,11,22,.8))}
+.pb-shot figcaption i{width:5px;height:5px;background:#0C2190;flex:0 0 auto}
+
+.pb-roster{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;
+  justify-content:center;gap:2px}
+.pb-roster li{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;
+  column-gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.pb-roster li:last-child{border-bottom:0}
+.pr-av{grid-row:1 / span 2;width:52px;height:52px;overflow:hidden;border-radius:50%;
+  background:#E9EDF6;display:block}
+.pr-av img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block;
+  filter:saturate(.92)}
+.pb-roster b{font-family:"Space Grotesk";font-weight:500;font-size:15.5px;
+  letter-spacing:-.01em;color:var(--ink);line-height:1.3;align-self:end}
+.pr-c{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);align-self:start;margin-top:3px}
+
+@media(max-width:900px){
+  .pband{grid-template-columns:1fr;gap:var(--s4)}
+  .pb-shot{aspect-ratio:16/10}
+  .pr-av{width:44px;height:44px}
+}
+
+/* 18 · Chinese typography.
+   The Latin families (Space Grotesk, Inter, JetBrains Mono) carry no CJK
+   glyphs, so before this rule the 中文 mirror fell through to whatever the OS
+   picked. A system CJK stack is deliberate over a webfont: a subsetted
+   Chinese face costs megabytes, and every device in the Chinese market ships
+   an excellent native one. Latin families stay first so mixed strings such as
+   "SAP 转型" keep the brand face on the Latin run. */
+:root{
+  --cjk:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",
+        "Source Han Sans SC","WenQuanYi Micro Hei",sans-serif;
+}
+html[lang="zh"] body,
+html[lang="zh"] h1,html[lang="zh"] h2,html[lang="zh"] h3,html[lang="zh"] h4,
+html[lang="zh"] p,html[lang="zh"] a,html[lang="zh"] span,html[lang="zh"] b,
+html[lang="zh"] li,html[lang="zh"] button,html[lang="zh"] .big,
+html[lang="zh"] .lede,html[lang="zh"] .eyebrow{
+  font-family:"Space Grotesk","Inter",var(--cjk)}
+html[lang="zh"] .eyebrow,html[lang="zh"] .cr-sub,html[lang="zh"] .lg-n,
+html[lang="zh"] .pr-c,html[lang="zh"] .office,html[lang="zh"] .foot-base{
+  font-family:"Inter",var(--cjk);font-weight:600}
+/* Chinese has no ascenders or descenders to speak of, so the Latin tracking
+   and tight leading read cramped. Loosen both only while zh is active. */
+html[lang="zh"] .big{letter-spacing:0;line-height:1.25}
+html[lang="zh"] .eyebrow,html[lang="zh"] .cr-sub,html[lang="zh"] .lg-n{letter-spacing:.06em}
+
+/* 17b · the roster tracks the top of the photograph rather than floating
+        in the middle of the column, which left a hole under the headline */
+.pb-roster{justify-content:flex-start}
+.pb-roster li:first-child{padding-top:0}
+
+/* 19 · credentials · larger badges. The earlier widths were left over from the
+       200x76 artwork; the rebuilt badges are 200x111, so the widths below are
+       recomputed from the real viewBox ratios at a 64px cap. */
+.credline .cr-mark{height:64px}
+.credline .cr-mark img{height:64px;width:115px}      /* 200 x 111.36 */
+.credline .cr-mark.seal img{height:64px;width:64px}  /* 64 x 64 */
+.credline .cr-mark.shield img{height:64px;width:96px}/* 96 x 64 */
+@media(max-width:1000px){
+  .credline .cr-mark,.credline .cr-mark img{height:56px}
+  .credline .cr-mark img{width:101px}
+  .credline .cr-mark.seal img{width:56px}
+  .credline .cr-mark.shield img{width:84px}
+}
+
+/* 20 · commitment block · the next-step CTA was wrapping onto a second row
+       under the LEFT column, which left the whole right column empty below
+       the list. Placing it explicitly in the right column uses that space and
+       shortens the section. */
+.guar{align-items:start}
+.guar > div:first-child{grid-column:1;grid-row:1}
+.guar > ul{grid-column:2;grid-row:1;margin:0}
+.guar .guar-cta{grid-column:2;grid-row:2;align-self:start;margin-top:var(--s4)}
+@media(max-width:900px){
+  .guar > div:first-child,.guar > ul,.guar .guar-cta{grid-column:1}
+  .guar > ul{grid-row:auto}
+  .guar .guar-cta{grid-row:auto}
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   21 · ACCESSIBILITY AND LAYOUT CORRECTIONS · 7 Aug
+   From an eight-dimension audit, each finding independently verified.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* 21a · the mobile Services submenu inherited a white panel fill from the
+        desktop dropdown, so on the home page it was white text on white.
+        Dropping the fill lets the links take the bar's own colour in both
+        the light and the on-dark state. */
+@media(max-width:1000px){
+  .navdrop .dpanel{background:none;box-shadow:none;border:0}
+}
+
+/* 21b · the burger appears below 1000px but the control cluster only
+        stopped stretching below 900px, so 901 to 1000 had full-width
+        controls. Both now share the same breakpoint. */
+@media(max-width:1000px){
+  .nav.open .navlinks,.navlinks{flex-wrap:wrap}
+  .nav.open .navlinks .lang,.navlinks .lang{width:auto;flex:0 0 auto;
+    margin-top:16px;border-bottom:0;padding:0}
+  .nav.open .navlinks .portal-lk,.navlinks .portal-lk{width:36px;flex:0 0 auto;
+    margin-top:16px;margin-left:10px;border-bottom:0;padding:0}
+  .nav.open .navlinks .cta.sm,.navlinks .cta.sm{flex:1 0 100%;width:100%;
+    margin-top:16px;justify-content:center;border-bottom:0}
+}
+
+/* 21c · the scroll cue printed over the hero stats on phones. The original
+        hide at L612 was overridden by the cue's own later rules, so it is
+        re-stated here, after them, rather than with !important. */
+@media(max-width:760px){.scrollhint{display:none}}
+
+/* 21d · skip link, ahead of the repeated header block */
+.skip{position:absolute;left:-9999px;top:0;z-index:2147483001;
+  background:var(--blue);color:#fff;padding:12px 18px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;text-decoration:none}
+.skip:focus{left:8px;top:8px}
+
+/* 22 · footer · the assessment button carried a wide blue glow that read as a
+       blur halo against the pale ground. A tight shadow reads as a raised
+       surface instead of a light leak. */
+.foot .fc-cta{box-shadow:0 2px 6px -2px rgba(6,21,106,.32)}
+
+/* 23 · footer · the five columns sat too close and the Reach-us column, which
+       carries a city line, an email, a note and a button, was the most cramped.
+       Wider gutters, and that column gets its own wider track. */
+.foot-top{grid-template-columns:1.5fr .85fr .85fr .8fr 1.35fr;
+  gap:clamp(28px,3.6vw,64px) clamp(24px,3vw,56px)}
+.foot-top .fcol:last-child{min-width:0}
+.foot-top .fcol p{max-width:26ch}
+@media(max-width:1100px){
+  .foot-top{grid-template-columns:1fr 1fr 1fr;gap:var(--s5) var(--s5)}
+  .foot-top>*:first-child{grid-column:1 / -1}
+}
+@media(max-width:760px){
+  .foot-top{grid-template-columns:1fr 1fr;gap:var(--s4) var(--s4)}
+  .foot-top>*:first-child{grid-column:1 / -1}
+}
+
+/* 24 · type over live backdrops · the SAP NOW band draws an animated skyline
+       on a canvas behind the copy, and the hero plays video behind it. A soft
+       shadow lifts the text off whatever frame happens to be underneath,
+       without reading as a drop shadow. */
+.evband.dark-band .in h2,
+.evband.dark-band .in .eyebrow,
+.evband.dark-band .in p,
+.evband.dark-band .in .lbl,
+.evband.dark-band .in b,
+.evband.dark-band .in span{
+  text-shadow:0 1px 2px rgba(4,8,20,.55),0 2px 14px rgba(4,8,20,.42)}
+.hero.video .hero-inner h1,
+.hero.video .hero-inner .lede,
+.hero.video .hero-inner .eyebrow,
+.hero.video .hstats .hstat{
+  text-shadow:0 1px 2px rgba(4,8,20,.42),0 2px 16px rgba(4,8,20,.34)}
+/* buttons carry their own fill, so they must not inherit the shadow */
+.evband.dark-band .in .cta,.hero.video .hero-inner .cta,
+.evband.dark-band .in .cta *,.hero.video .hero-inner .cta *{text-shadow:none}
+
+
+/* ── credentials centred in their columns · 10 Aug client request ──
+   Overrides the flex-start alignment of the L1671 layer; badge, name and
+   sub all centre on the column axis. */
+.credline .cred-i{align-items:center;text-align:center}
+.credline .cred-i b.cr-name{align-items:center;justify-content:center;text-align:center}
+
+
+/* ── services dropdown over a dark hero ───────────────────────────
+   The on-dark nav paints every .navlinks a white, and that reached the
+   links inside the dropdown too, which keeps its own white panel on
+   desktop: white on white, so the panel opened blank. The panel holds
+   its own palette here. Desktop only; below 1000px the panel drops its
+   background and sits on the dark bar, where white is correct. */
+@media(min-width:1001px){
+  .nav.on-dark .navlinks .dpanel a{color:var(--soft)}
+  .nav.on-dark .navlinks .dpanel a:hover,
+  .nav.on-dark .navlinks .dpanel a.here{color:var(--ink)}
+  .nav.on-dark .navlinks .dpanel .dall{color:var(--blue-bright)}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYER 9 · THE 14 AUG DESIGN ASKS
+   Appended 17 Aug 2026. Three asks from the Tenthpin meeting:
+   vibrant hero footage (00:40:16, 00:52:04), the named service
+   line under the locked H1 (00:49:23, 00:55:38), and fewer lines
+   in the interface (00:28:42, 00:29:49).
+
+   Appended rather than edited in place: every selector below is
+   already declared earlier in this file, so an in-place edit
+   would have to win a specificity argument it does not need to
+   have. Source order settles it.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── 0 · the warm token, defined here as well as in premium.css ─
+   premium.css is switched OFF on the home route (App.jsx:
+   `const wantPrem = seg !== '/'`), and the home hero is the one
+   place that needs the warm most. tp.css always loads, so the
+   token lives here and premium.css only consumes it. */
+:root{--warm:#BF8A2C;--warm-deep:#9C6E1C;--warm-tint:rgba(191,138,44,.14)}
+
+/* ── 1 · the footage · REPLACED 17 Aug ─────────────────
+   The four dark sector loops are gone. Foo Sang asked for vibrant,
+   energetic, professional imagery and pointed at the SAP house style,
+   so the hero now runs four high-key stills: measured mean luminance
+   .80 against .17 to .57 for the footage they replace.
+
+   No filter and no scrim. Both existed to make white text survive a
+   dark frame, and the type is navy now, so every pixel of the image
+   is shown exactly as shot. The <video> elements were removed from the
+   markup rather than hidden: m16-sector-films.js already returns early
+   from play() when a slide has no video, leaves .ready unset, and the
+   still holds at full opacity, so the 7.2s rotation still runs. */
+.hero-vscrim{background:linear-gradient(90deg,
+    rgba(255,255,255,.95) 0%,
+    rgba(255,255,255,.90) 28%,
+    rgba(255,255,255,.62) 46%,
+    rgba(255,255,255,.20) 62%,
+    rgba(255,255,255,0)   78%)}
+/* A WHITE wash, not a dark one. The plain wall in these frames only runs to
+   roughly the left fifth; past it the headline crosses window mullions and
+   hair, which measured 2.78:1 for navy type with no wash at all. This lifts
+   the backdrop under the text to near-white and reaches zero by 78%, so the
+   subject and the whole right of the frame are untouched. The band still
+   reads bright, which a dark scrim could never do. */
+@media(max-width:760px){
+  /* Narrow screens have no column: the headline runs the full width, so a
+     horizontal wash protects nothing and phone measured 2.92:1. Vertical
+     instead, heaviest where the type sits, easing off toward the bottom so
+     the photo still reads underneath. This also supersedes the dark mobile
+     scrim at L794, which is still written for white type on footage. */
+  .hero-vscrim{background:linear-gradient(180deg,
+    rgba(255,255,255,.94) 0%,
+    rgba(255,255,255,.88) 55%,
+    rgba(255,255,255,.66) 100%)}
+}
+
+/* ── 1b · the hero is a LIGHT band now ──────────────────
+   .hero.video at L754 sets a dark token set and a near-black ground for
+   white type over footage. Every one of those is inverted here rather
+   than edited in place, because L754 is the layer the mobile and
+   dark-band rules still key off. */
+.hero.video{
+  --ink:#101626; --soft:#39415A; --faint:#5A6684; --faintest:#8A93A8;
+  --line:rgba(16,22,38,.10); --line2:rgba(16,22,38,.16);
+  --blue-bright:#0C2190; --panel:rgba(16,22,38,.04);
+  background:#EDEFF3; color:var(--ink)}
+.hero.video .hero-inner h1,
+.hero.video .hero-inner .lede,
+.hero.video .hero-inner .eyebrow,
+.hero.video .hstats .hstat{text-shadow:none}   /* the dark-frame shadow at L2071 would smear navy type */
+.hero.video h1{color:#06156A}
+.hero.video h1 em{color:#1F5FBF}
+.hero.video .lede{color:#39415A}
+.hero.video .hero-svc span{color:#3A4560}
+.hero.video .cue{color:#5A6684}
+.hero.video .cue:hover{color:#06156A}
+.hero.video .scrollhint span{color:#5A6684}
+
+/* the ghost CTA was a white outline for a dark ground */
+.hero.video .cta-ev{background:rgba(255,255,255,.72);border-color:rgba(6,21,106,.28);color:#06156A;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.hero.video .cta-ev:hover{background:#fff;border-color:rgba(6,21,106,.5)}
+
+/* the slide index and sector label sit over the photo, bottom left */
+.hero.video .bm-ix b{color:rgba(6,21,106,.38)}
+.hero.video .bm-ix b.on{color:#06156A}
+.hero.video .bm-t{color:#28324A}
+
+/* ── 2 · the named service line, directly under the H1 ──────────
+   The kickstart locks the H1 keywords, so the three service areas
+   Foo Sang asked for ride immediately beneath it instead of
+   replacing it. Mono, small, warm rules between the items. */
+.hero-svc{display:flex;flex-wrap:wrap;align-items:center;gap:0 18px;
+  margin:18px 0 0;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;
+  letter-spacing:.17em;text-transform:uppercase;line-height:1.9}
+.hero-svc span{display:inline-flex;align-items:center;gap:18px;color:#D8E0F2}
+.hero-svc span+span::before{content:"";width:14px;height:1.5px;
+  background:var(--warm);display:inline-block;flex:none}
+
+/* the card kicker, the site's real eyebrow: a 9px mono label above the
+   heading on 106 cards across 11 pages. It was --blue-bright, a second
+   blue beside a blue heading, which is the change that makes the palette
+   read as two colours. Set here rather than in premium.css because that
+   file is disabled on the home route. No page stylesheet declares
+   .card .k, so source order settles it against L407 without a flag. */
+.card .k{color:var(--warm)}
+@media(max-width:560px){
+  .hero-svc{gap:0 12px;font-size:9.5px;letter-spacing:.14em}
+  .hero-svc span{gap:12px}
+  .hero-svc span+span::before{width:10px}
+}
+
+/* ── 3 · fewer lines ────────────────────────────────────────────
+   The credential row and the client row were each drawn as a grid
+   of bordered cells: 7 verticals plus 6 verticals plus four
+   horizontals, all at the top of the page. The cells read as cells
+   without them. Top and bottom rules stay, they carry the band. */
+.credline .cred-i,
+.logorow .logoslot{border-right:0}
+@media(max-width:1000px){
+  .credline .cred-i:nth-child(n+4),
+  .logorow .logoslot:nth-child(n+4){border-top:0}
+}
+@media(max-width:620px){
+  .credline .cred-i:nth-child(n+3){border-top:0}
+}
+@media(max-width:600px){
+  .logorow .logoslot:nth-child(n+3){border-top:0}
+}
+/* the cells lost their dividers, so they need their own breathing room */
+.credline .cred-i{padding:26px 26px 26px 0}
+.logorow .logoslot{padding:30px 14px}
+
+/* ── 4 · the credential row is eight wide, not seven ────────────
+   SAP Global Partner joined the row on 17 Aug, in second place
+   behind Gold Partner. L1671 hard-codes repeat(7,1fr) and calls
+   itself the winning layer, which it was until this one.
+
+   A 4-up step at 1240 is new: eight cells divide evenly into 8, 4
+   and 2, so those widths fill both rows exactly. The inherited
+   3-up at 1000 leaves two cells on the last row, which is why the
+   4-up sits above it and takes the widest of the narrow cases. */
+.credline{grid-template-columns:repeat(8,1fr)}
+@media(max-width:1240px){.credline{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:1000px){.credline{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.credline{grid-template-columns:repeat(2,1fr)}}
+
+/* ── 5 · the network band · Pudong on canvas ────────────────────
+   Added 17 Aug with tp module 19. The canvas is decorative and
+   aria-hidden; the cities underneath carry the actual information,
+   so the band still says what it means with JS off or the drawing
+   never running. Height is capped in vw so the skyline keeps its
+   proportion instead of stretching on wide screens. */
+.netband .skyfig{margin:var(--s5) 0 0;position:relative}
+.netband .skyfig canvas{display:block;width:100%;
+  height:clamp(230px,26vw,380px);background:
+  linear-gradient(180deg,#FBFCFE 0%,#F2F5FA 62%,#EDF1F8 100%)}
+.netband .skycap{position:absolute;left:14px;bottom:12px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--faint)}
+.netband .netrow{display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;border-top:1px solid var(--line);margin-top:var(--s4)}
+.netband .netcity{display:flex;flex-direction:column;gap:6px;padding:22px 22px 22px 0}
+.netband .netcity b{font-family:"Space Grotesk";font-weight:500;font-size:16px;
+  letter-spacing:-.01em;color:var(--ink);line-height:1.25}
+.netband .netcity span{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--faint);line-height:1.5}
+/* the warm mark ties this band to the card kickers and the hero service line */
+.netband .netcity b::before{content:"";display:block;width:18px;height:1.5px;
+  background:var(--warm);margin-bottom:10px}
+@media(max-width:900px){
+  .netband .netrow{grid-template-columns:repeat(2,1fr)}
+  .netband .netcity{padding:18px 18px 18px 0}
+}
+@media(max-width:560px){
+  .netband .netrow{grid-template-columns:1fr}
+  .netband .skyfig canvas{height:clamp(190px,44vw,240px)}
+}
+
+/* 4 Sep 2026: primary CTA in the heading face, electric blue */
+.cta{font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;background:#0520F5;padding:15px 26px}
+.cta:hover{background:#041BD0}
+
+/* ── 4 Sep 2026 (pass 2) · hero footage on the prototype-3 pages ──────────
+   Every prototype-3 hero that carried a still now carries the moving frame
+   over it. The <img> stays for its alt text and is reused as the poster, so
+   the two are the same picture and the swap is invisible. One class, because
+   each page names its own hero wrapper. */
+.s4-hero-shot,.am-hero-img,.sg-hero-img,.ai-hero-img,.ls-shot,.sv-hero-fig{position:relative}
+.tp-hvid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:1}
+@media (prefers-reduced-motion:reduce){.tp-hvid{display:none}}
+
+/* 4 Sep 2026 · the hero footage must sit UNDER the wash that gives the copy
+   its ground. .tp-hvid carried z-index:1, which lifted it above the
+   ::after scrim on ams2, ai-sap2, sapgrow2 and servicesv2 and left the
+   headline sitting on raw video. z-index 0 keeps it above the still (which
+   is earlier in the tree) and below every scrim. */
+.tp-hvid{z-index:0}
+
+
+/* 4 Sep 2026 · pass 12 · the footer halo was written for words sitting over
+   the city scene. On the solid marks (the MC badge, the wordmark and the
+   CTA) the same white text-shadow and drop-shadow read as a glow around a
+   dark block, which is what Bazil saw. Solid elements carry no halo. */
+.foot .fmc,.foot .fcol .fc-cta,.foot .foot-logo{text-shadow:none;filter:none}
+.foot .foot-brand{text-shadow:none}
+
+
+/* 7 Sep 2026 (Bazil): the footer breathes. More above the columns, more
+   between the rows in each column, more above the base line. */
+.foot{padding:clamp(150px,19vh,230px) 0 clamp(64px,8vh,96px)}
+.foot-top{gap:clamp(40px,4vw,72px)}
+.foot .fcol h4{margin-bottom:22px}
+.foot .fcol a:not(.fc-cta),.foot .fcol p{display:block;margin-top:14px;line-height:1.5}
+.foot .fcol .fc-cta{margin-top:22px}
+.foot-base{margin-top:clamp(230px,28vh,330px);padding-top:clamp(26px,3vh,40px)}
+
+/* ── 7 Sep 2026 (Bazil): no underline for the current page. A quiet pill
+   behind the current item, the same on About, Case studies and Industries.
+   Dropdowns lead with the main page and list the pages for each under it. ── */
+.navlinks{gap:clamp(4px,.9vw,14px)}
+.navlinks a{padding:7px 10px;border-radius:7px}
+.navlinks a::after{display:none}
+.navlinks a.here{color:var(--ink);background:rgba(5,32,245,.09);font-weight:600}
+.navlinks a:hover{background:rgba(6,21,106,.05)}
+.navdrop .dpanel{padding:8px;min-width:250px}
+.navdrop .dpanel a{border-radius:6px;padding:9px 12px}
+.navdrop .dpanel a.here{background:rgba(5,32,245,.09);color:var(--ink)}
+.navdrop .dpanel a:focus-visible{outline:2px solid var(--blue,#0520F5);outline-offset:-2px}
+.navdrop .dpanel .dlead{display:grid;gap:2px;padding:10px 12px 12px;margin-bottom:6px;color:var(--ink);border-bottom:0;background:rgba(5,32,245,.06)}
+.navdrop .dpanel .dlead b{font-weight:600;font-size:13.5px;color:var(--ink)}
+.navdrop .dpanel .dlead span{font-family:"Inter";font-size:12px;font-weight:400;color:var(--soft);white-space:normal;max-width:24ch}
+.navdrop .dpanel .dlead:hover{background:rgba(5,32,245,.12)}
+
+/* 7 Sep 2026 (Bazil: "increase the height more"): the footer breathes */
+.foot{padding:clamp(190px,24vh,300px) 0 clamp(90px,10vh,130px)}
+
+/* ═══ 7 SEP 2026 · THE LOADER, IN DOTS (Bazil: "better loading screen") ═══
+   The screen is the dot field: the wordmark assembles from dots scattered
+   across the whole viewport, the counter runs beneath, and the screen
+   lifts away. The old frame, ink and line rules are inert without their
+   markup. */
+#tpLoader{position:fixed;inset:0;z-index:99990;background:#F6F8FC;display:block;
+  transition:transform .8s cubic-bezier(.7,0,.2,1)}
+#tpLoader.done{transform:translateY(-101%)}
+#tpLoader.gone{display:none}
+#tpLoader .tpl-dots{position:absolute;inset:0;display:block}
+#tpLoader .tpl-foot{position:absolute;left:50%;top:calc(46% + clamp(40px,5vw,70px));transform:translateX(-50%);
+  display:flex;align-items:baseline;gap:clamp(18px,3vw,40px);white-space:nowrap}
+#tpLoader .tpl-sub{font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#5A6684}
+#tpLoader .tpl-ct{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(22px,2.2vw,30px);letter-spacing:-.02em;color:#0520F5;font-variant-numeric:tabular-nums}
+/* 7 Sep 2026: the keyboard focus ring follows the pill, in the brand blue */
+.navlinks a:focus-visible{outline:2px solid #0520F5;outline-offset:2px;border-radius:7px}
+.navlinks a:focus:not(:focus-visible){outline:0}
+
+/* 8 Sep 2026 · the open menu scrolls (bug sweep): at 390 by 700 the drawer
+   ran to 1198px with the body locked, so Case studies, Partners, the
+   language toggle and Contact could not be reached. Capped to the viewport
+   under the bar and the header, scrolling inside itself. */
+@media (max-width:1000px){
+  .nav.open .navlinks{max-height:calc(100dvh - 100% - var(--wsbar-h,62px));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;align-content:flex-start}
+  /* nowrap: the earlier wrap rule plus a capped height folded the column into a second column at the right */
+}
+/* 8 Sep 2026 · a story reached by its anchor lands under the header, not
+   beneath it (Home case tiles link to /casestudiesv2/#rise-1 and so on) */
+article[id]{scroll-margin-top:calc(var(--wsbar-h,62px) + 88px)}
+/* 8 Sep 2026 · the footer core is drawn at full strength now (Bazil:
+   "improve this visual"); the module carries its own tones */
+#footCanvas,.foot #footCanvas{opacity:1}
+/* 8 Sep 2026 · room for the footer core (Bazil: "proper vertical distance"):
+   the band between the columns and the base bar holds the boxes, the rail,
+   the names and the caption with air above and below */
+.foot-base{margin-top:clamp(300px,36vh,400px)}
+/* 8 Sep 2026 · more vertical distance in the footer band (Bazil) */
+.foot-base{margin-top:clamp(380px,44vh,500px)}
+/* 8 Sep 2026 · no curved corners in the header (Bazil): the current-page
+   pill, the language toggle, the portal lock, the Contact button, the
+   dropdown panels and the focus ring are all square */
+.navlinks a,.navlinks a.here,.navlinks a:focus-visible,.lang,.lang a,.lang button,.portal-lk,.nav .cta,.nav .cta.sm,.navdrop,.navdrop a,.dlead,.burger{border-radius:0!important}
+/* 9 Sep 2026 · the menus never overlap each other (Bazil: "don't overlap when
+   drop down"): a panel hangs from its OWN trigger's left edge instead of
+   being centred under it, which is what made two open panels collide, and
+   the open one is lifted above its neighbour. Each row carries a glyph. */
+.navdrop .dpanel{left:0;transform:translate(0,8px);z-index:2}
+.navdrop:hover .dpanel,.navdrop:focus-within .dpanel{transform:translate(0,2px);z-index:6}
+.navdrop:hover,.navdrop:focus-within{z-index:6}
+.navdrop .dpanel a{display:grid;grid-template-columns:20px minmax(0,1fr);align-items:center;column-gap:11px}
+.navdrop .dpanel a.dlead{grid-template-columns:20px minmax(0,1fr);align-items:start}
+.navdrop .dpanel a.dlead b{grid-column:2}
+.navdrop .dpanel a.dlead span{grid-column:2}
+.navdrop .dpanel .dico{display:grid;place-items:center;width:20px;height:20px;color:var(--elec);grid-row:1}
+.navdrop .dpanel a.dlead .dico{grid-row:1;margin-top:1px}
+.navdrop .dpanel .dico svg{width:19px;height:19px;display:block}
+@media (max-width:1000px){.navdrop .dpanel{left:auto;transform:none;z-index:auto}}
+
+/* ══ NAV · the premium pass. 10 Sep 2026 (Bazil: "make this a lot more
+   premium"). No rounding is added anywhere: Tenthpin is square, so the lift
+   has to come from alignment, hairline weight, type and restraint instead.
+   Scoped above the drawer breakpoint so the mobile panel keeps its own rules. */
+@media (min-width:1001px){
+
+  /* 1 · one control height. The lock was 34px against the toggle and the
+     button at 36, so the three controls never sat on a common baseline. */
+  .navlinks .portal-lk{width:36px;height:36px;border-radius:0}
+  .navlinks .lang,.navlinks .cta.sm{height:36px}
+
+  /* 2 · one hairline. A single border colour and weight across the outlined
+     controls, so they read as one set rather than three separate widgets. */
+  .navlinks .lang,.navlinks .portal-lk{border:1px solid rgba(14,20,48,.16)}
+  .nav.over .navlinks .lang,.nav.over .navlinks .portal-lk{border-color:rgba(255,255,255,.26)}
+
+  /* 3 · the language toggle as one segmented control. It was a hard black box
+     beside a white one, which read as two buttons that disagreed. Now: one
+     bordered field, a hairline between the halves, and the active half filled. */
+  .navlinks .lang{overflow:hidden;background:transparent}
+  .navlinks .lang button{font-family:"Inter",system-ui,sans-serif;font-size:11.5px;font-weight:600;
+    letter-spacing:.06em;padding:0 13px;height:100%;transition:background .28s var(--e1),color .28s var(--e1)}
+  .navlinks .lang button+button{border-left:1px solid rgba(14,20,48,.14)}
+  .nav.over .navlinks .lang button+button{border-left-color:rgba(255,255,255,.22)}
+  .navlinks .lang button:not(.on):hover{background:rgba(14,20,48,.05)}
+  .nav.over .navlinks .lang button:not(.on):hover{background:rgba(255,255,255,.12)}
+
+  /* 4 · the lock. Same field as the toggle at rest; on hover it fills with the
+     accent rather than only changing its outline, so the target is unambiguous. */
+  .navlinks .portal-lk{transition:background .28s var(--e1),color .28s var(--e1),border-color .28s var(--e1)}
+  .navlinks .portal-lk:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+
+  /* 5 · the call to action. Square and solid; the hover deepens the fill and
+     opens the tracking a hair. No lift, no shadow, no scale. */
+  .navlinks .cta.sm{transition:background .28s var(--e1),letter-spacing .28s var(--e1)}
+  .navlinks .cta.sm:hover{background:#0317B8;letter-spacing:.03em}
+
+  /* 6 · the link underline, drawn a touch heavier so it reads as a rule rather
+     than an artefact, and held clear of the descenders. */
+  .navlinks a::after{height:1.5px;bottom:-3px}
+
+  /* 7 · the dropdown caret turns when its menu is open, so the control states
+     what it did. */
+  .navlinks .has-drop>a svg,.navlinks .has-drop>button svg{transition:transform .3s var(--e1)}
+  .navlinks .has-drop.open>a svg,.navlinks .has-drop.open>button svg{transform:rotate(180deg)}
+
+  /* 8 · focus that matches the system: square, accent, and offset so it never
+     sits on the control's own hairline. */
+  .navlinks a:focus-visible,.navlinks button:focus-visible,.navlinks .portal-lk:focus-visible{
+    outline:2px solid var(--blue);outline-offset:3px;border-radius:0}
+}
+
+/* the value-chain showpiece host, inserted by module 28 before #valuechain .flow */
+.chain-gl{width:100%;height:clamp(180px,17vw,250px);margin:clamp(4px,1vh,14px) 0 clamp(14px,2vh,26px);position:relative;pointer-events:none}
+.chain-gl canvas{display:block;width:100%;height:100%}
+@media (max-width:760px){ .chain-gl{height:clamp(130px,26vw,180px)} }
+
+/* the layered-stack showpiece host, inserted by module 29 */
+.stack-gl{width:100%;height:clamp(260px,26vw,400px);margin:clamp(10px,2vh,26px) 0 clamp(16px,2.4vh,32px);position:relative;pointer-events:none}
+.stack-gl canvas{display:block;width:100%;height:100%}
+@media (max-width:760px){ .stack-gl{height:clamp(200px,42vw,280px)} }
+
+
+/* 10 Sep 2026 (QA audit): readability floor. Every label, chip, eyebrow and
+   note whose final size sat under 11px now reads at 11px. Media overrides are
+   restated inside their own query so the desktop size is untouched. */
+.lab,
+.cue,
+.brand .bs,
+.ev-k,
+.chip,
+.scrollhint span,
+.pf,
+.pf u,
+.card .k,
+.gapcard .tag,
+.facet .n,
+.facet .rd,
+.viz-type,
+.viz-k,
+.viz-spec,
+.na,
+.badge .bn,
+.badge .bs2,
+.badge .bf,
+.badge .bmark,
+.media-t,
+.media-f,
+.indust .slotnote,
+.story .bl b,
+.story .bl span,
+.step .n,
+.force .n,
+.stat .lab2,
+.off-k,
+.olist .on,
+.field label,
+.formnote,
+.tbl th,
+.st,
+.fcol .fc-cta,
+.fcol .fc-mut,
+.fcol h4,
+.fcol .sf,
+.foot-base,
+.logoslot span,
+.prob .pk,
+.off .obadge,
+.tier .tk,
+.tier .price small,
+.quote .qn,
+.vslot,
+.shot figcaption,
+.hero .chip,
+.bmeta,
+.cred-i span,
+.credfoot,
+.pv-scale span,
+.foot-sub,
+.fc-k,
+.filmstage.nofilm::after,
+.credline .cred-i span,
+.elayer .el-rel,
+.stack-cap,
+.ed-rel,
+.ed-tags span,
+.ucbtns button,
+.ov3d figcaption,
+.hstat span,
+.evb-f span,
+.awt,
+.aiw-read,
+.reg-ev,
+.reg-visual figcaption,
+.reg-sec,
+.reg-alt,
+.reg-foot,
+.regpage .reg-sec,
+.regpage .formnote,
+.regpage .reg-alt,
+.tpadmin,
+.cta-panel-label,
+.evb-cta .lbl,
+.tfoot .lbl,
+.navdrop .dpanel .dall,
+.portal-lk,
+.cs-card .cs-shot figcaption,
+.guar-cta .lbl,
+.wa-tip,
+.sec-card .sc-shot figcaption,
+.sec-card .sc-lab,
+.sec-card .sc-go,
+.evband .evb-cta .lbl,
+.film-cap .fc-w,
+.credline .cr-sub,
+.logorow .lg-n,
+.pb-shot figcaption,
+.pr-c,
+.hero-svc,
+.netband .skycap,
+.netband .netcity span{font-size:11px}
+@media(max-width:640px){.pf{font-size:11px}}
+@media(max-width:760px){.vslot,.bmeta{font-size:11px}}
+@media(max-width:560px){.hero-svc{font-size:11px}}
+
+/* 10 Sep 2026 (QA audit): one accent. The amber eyebrow on the industry cards
+   was the only warm colour on a blue site. */
+.card .k{color:var(--blue-bright)}
+
+/* 15 Sep 2026 (QA C17) · the drawer groups are accordions. Services and
+   Industries were permanently expanded (nineteen rows, 1,065px of menu in a
+   709px window at 390), and between 901 and 1000px both panels were hidden
+   with no way to open them. A group is one full-width row with the caret at
+   its right edge; its panel shows only while the group is open (.m-open,
+   driven by m01-nav.js). */
+@media (max-width:1000px){
+  .nav.open .navlinks .navdrop{display:block;width:100%;flex:0 0 auto}
+  .nav.open .navlinks .navdrop>a{display:flex;align-items:center;justify-content:space-between;width:100%}
+  .nav.open .navlinks .navdrop .dcar{transform:rotate(45deg) translate(-2px,-2px);margin-right:6px}
+  .nav.open .navlinks .navdrop.m-open .dcar{transform:rotate(225deg) translate(-1px,-1px)}
+  .nav.open .navlinks .navdrop .dpanel{display:none;position:static;width:100%;min-width:0;opacity:1;visibility:visible;transform:none;padding:6px 0 10px;box-shadow:none;border:0;background:none}
+  .nav.open .navlinks .navdrop.m-open .dpanel{display:block}
+  .nav.open .navlinks .navdrop .dpanel a{padding:11px 12px;font-size:15px}
+  .nav.open .navlinks .navdrop .dpanel a.dlead{padding:12px 12px 13px;margin-bottom:4px}
+  .nav.open .navlinks .navdrop .dpanel a.dlead span{max-width:none}
+  .nav.open .navlinks .lang{margin-top:18px;margin-left:0}
+}
+/* 15 Sep 2026 (QA C19) · the consultant login lives in the footer base row */
+.foot-base .foot-portal{color:inherit;text-decoration:none;font:inherit;letter-spacing:inherit;text-transform:inherit;transition:color .25s}
+.foot-base .foot-portal:hover,.foot-base .foot-portal:focus-visible{color:var(--elec,#0520F5)}
+.foot .foot-base .foot-portal{text-shadow:0 0 3px rgba(245,247,252,1),0 0 10px rgba(245,247,252,.98),0 0 24px rgba(245,247,252,.85)}
+
+/* ══ 15 Sep 2026 (QA C07) · CONTACT, EVENT AND NEWS IN THE PROTOTYPE-3 CHROME ══
+   The three pages reachable from the prototype-3 navigation that still wore
+   the earlier language. Their content and behaviour are unchanged (the form,
+   the office skylines, the CMS cards); the chrome follows the service and
+   sector pages: a split hero, the 1340px edge, electric emphasis that never
+   splits, no eyebrows, no mono labels, no bordered or shadowed cards. */
+body:has(.p3c) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
+.p3c{--p3-elec:#0520F5;--p3-navy:#06156A;--p3-soft:#4A5872;--p3-cool:#F4F7FC;--p3-gut:clamp(18px,3vw,52px);background:#fff}
+.p3c .sec.wrap{max-width:1340px;padding-left:var(--p3-gut);padding-right:var(--p3-gut)}
+.p3c h1 em,.p3c h2 em,.p3c h3 em{color:var(--p3-elec);white-space:nowrap}
+@media (max-width:640px){.p3c h1 em,.p3c h2 em,.p3c h3 em{white-space:normal}}
+.p3c h2.big{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;font-size:clamp(27px,3.5vw,48px)}
+
+/* hero */
+.p3c-hero{padding:clamp(130px,16vh,186px) 0 clamp(48px,7vh,84px);background:#fff}
+.p3c-hero.bare{padding-bottom:clamp(20px,3vh,36px)}
+.p3c-in{max-width:1340px;margin:0 auto;padding:0 var(--p3-gut);width:100%}
+.p3c-hero-grid{display:grid;grid-template-columns:42fr 58fr;gap:clamp(28px,3.2vw,56px);align-items:center}
+.p3c-hero.bare .p3c-hero-grid{grid-template-columns:minmax(0,760px)}
+.p3c-hero-grid > *{min-width:0}
+.p3c-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.04;font-size:clamp(32px,3.6vw,56px);margin:0;color:#0D1526}
+.p3c-sub{color:var(--p3-soft);font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.68;max-width:48ch;margin:20px 0 0}
+.p3c-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:clamp(26px,3.4vh,38px)}
+.p3c-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--p3-navy);color:#fff;font-family:"Inter",sans-serif;font-size:14px;font-weight:600;letter-spacing:.01em;padding:15px 24px;text-decoration:none;transition:transform .35s var(--e1),background .35s}
+.p3c-cta:hover{transform:translateY(-2px);background:#0A1C80}
+.p3c-cta.ghost{background:#fff;color:var(--p3-navy);box-shadow:inset 0 0 0 1px rgba(13,21,38,.17)}
+.p3c-cta.ghost:hover{color:var(--p3-elec);box-shadow:inset 0 0 0 1px var(--p3-elec)}
+.p3c-chips{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:clamp(22px,3vh,32px)}
+.p3c-chip{font-family:"Inter",sans-serif;font-size:13px;font-weight:500;color:var(--p3-soft);display:inline-flex;align-items:center;gap:9px}
+.p3c-chip::before{content:"";width:6px;height:6px;background:var(--p3-elec);flex:0 0 auto}
+.p3c-shot{position:relative;margin:0;overflow:hidden;aspect-ratio:4/3;background:#E4ECF9}
+.p3c-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:1000px){
+  .p3c-hero{padding-top:112px}
+  .p3c-hero-grid{grid-template-columns:1fr}
+  .p3c-shot{aspect-ratio:16/10}
+}
+
+/* no eyebrows, no mono labels */
+.p3c .card .k{font-family:"Inter",sans-serif;font-size:13px;font-weight:600;letter-spacing:0;color:var(--p3-elec)}
+.p3c .offcard .k,.p3c .gapcard .tag,.p3c .shead .k{display:none}
+.p3c .field label{font-family:"Inter",sans-serif;font-size:13px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--p3-navy)}
+.p3c .olist .on{font-family:"Inter",sans-serif;font-size:13px;font-weight:600;color:var(--p3-elec)}
+.p3c .cue{font-family:"Space Grotesk",sans-serif;font-size:16px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--p3-navy)}
+.p3c .cue b{color:var(--p3-elec)}
+.p3c .newsitem .nk,.p3c .evcard .nk{font:600 13px "Inter",sans-serif;letter-spacing:0;text-transform:none;color:var(--p3-elec)}
+.p3c .newsitem.slot .nk{color:var(--p3-soft)}
+.p3c .newsitem .nmeta,.p3c .evcard .evwhere,.p3c .evcard .evlink{font:500 12.5px "Inter",sans-serif;letter-spacing:0;text-transform:none;border-top:0}
+
+/* flat tiles instead of bordered, shadowed cards */
+.p3c .card,.p3c .offcard,.p3c .gapcard,.p3c .newsitem,.p3c .evcard{border:0;box-shadow:none;background:var(--p3-cool)}
+.p3c .gapcard.next,.p3c .gapcard.now{background:var(--p3-cool)}
+.p3c .newsitem.slot{background:var(--p3-cool)}
+.p3c .card:hover,.p3c .evcard:hover{box-shadow:none}
+.p3c .offcard .offsky{border-top:0}
+.p3c .p3c-one{max-width:760px}
+.p3c .offices{border-top:0}
+.p3c .offices .office{border:0;background:none}
+.p3c .formnote{font:500 13px "Inter",sans-serif;letter-spacing:0;text-transform:none;color:var(--p3-soft)}
+
+/* ══ 15 Sep 2026 (Bazil: "make sure navigation bar is consistent") ══════════
+   One header on every prototype-3 route. It had nine geometries (the wordmark
+   sat at x 57, 83, 93, 103 or 124 at 1440 depending on the page, so it jumped
+   on every click), Contact, Event and News opened on a solid bar where every
+   other page opened transparent, and only Home dropped the hairline once
+   scrolled. Now: one container (1340px, the 18 to 52px gutter), transparent
+   at rest, the same glass once scrolled, no hairline on any page (the house
+   no-lines rule Home already followed). The page containers that differed are
+   moved to the same edge in their own sheets, so the wordmark and every page's
+   first column still share one x. The footer takes the same container. */
+body.proto3 header.nav .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
+body.proto3 header.nav.attop{background:transparent!important;border-bottom-color:transparent!important;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+body.proto3 header.nav,body.proto3 header.nav.solid{border-bottom-color:transparent!important;box-shadow:none!important}
+body.proto3 .foot .in{max-width:1340px;padding-left:clamp(18px,3vw,52px);padding-right:clamp(18px,3vw,52px)}
+
+/* 17 Sep 2026 · the prototype-3 chrome stacks its card grids on a phone.
+   The global rule at L624 keeps .g3/.g4 two-up with !important, which is
+   right for the old case and service grids, but on the Event, Contact and
+   News pages those cells carry paragraphs: at 390 they were 145px wide and
+   read three words to a line. Scoped to .p3c so the older pages keep theirs. */
+@media (max-width:640px){
+  .p3c .g3,.p3c .g4{grid-template-columns:1fr!important}
+}
+
+/* ── 19 Sep 2026 · the loading screen, premium (TpLoader.jsx) ────────────
+   Letters rise from a baseline one by one, a band of electric light passes
+   through them once, a counter runs to 100 under the mark, then a two-tone
+   curtain (paper, then electric) lifts to the page. */
+#tpLoader{position:fixed;inset:0;z-index:99990;background:none!important;display:block;transform:none!important;transition:none!important;pointer-events:auto}
+#tpLoader.gone{display:none}
+#tpLoader .tpl-dots{display:none}
+#tpLoader .tpl-sheet{position:absolute;inset:0;will-change:transform;transition:transform .95s cubic-bezier(.76,0,.24,1)}
+#tpLoader .tpl-sheet-b{background:#0520F5}
+#tpLoader .tpl-sheet-a{background:#F7F9FD;display:grid;place-items:center}
+#tpLoader.done .tpl-sheet-a{transform:translateY(-101%);transition-delay:.18s}
+#tpLoader.done .tpl-sheet-b{transform:translateY(-101%);transition-delay:.34s}
+#tpLoader .tpl-field{position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(5,32,245,.16) 1px,transparent 1.4px);background-size:22px 22px;
+  -webkit-mask-image:radial-gradient(46% 42% at 50% 50%,#000 0%,transparent 100%);mask-image:radial-gradient(46% 42% at 50% 50%,#000 0%,transparent 100%);
+  opacity:0;transition:opacity 1.2s ease}
+#tpLoader.go .tpl-field{opacity:1}
+#tpLoader .tpl-center{position:relative;width:min(560px,78vw);transition:transform .7s cubic-bezier(.7,0,.2,1),opacity .5s ease}
+#tpLoader.done .tpl-center{transform:translateY(-18px);opacity:0}
+#tpLoader .tpl-word{display:block;width:100%;height:auto;overflow:visible}
+#tpLoader .tpl-ch{fill:#0B0F17;transform:translateY(26px);transform-box:view-box}
+#tpLoader.go .tpl-ch{animation:tplRise .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(120ms + var(--k) * 60ms)}
+@keyframes tplRise{from{transform:translateY(26px)}to{transform:none}}
+#tpLoader .tpl-sheen{transform-box:view-box}
+#tpLoader.go .tpl-sheen{animation:tplSheen 1s cubic-bezier(.45,0,.2,1) .95s forwards}
+@keyframes tplSheen{from{transform:translateX(0)}to{transform:translateX(270px)}}
+#tpLoader .tpl-foot{position:static;transform:none;display:flex;justify-content:space-between;align-items:baseline;margin-top:clamp(18px,2.2vw,28px);gap:24px;
+  opacity:0;transition:opacity .6s ease .55s}
+#tpLoader.go .tpl-foot{opacity:1}
+#tpLoader .tpl-sub{font:500 clamp(11.5px,1vw,13px)/1 "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#5A6684}
+#tpLoader .tpl-ct{font:500 clamp(18px,1.7vw,24px)/1 "Space Grotesk",sans-serif;letter-spacing:-.01em;color:#0520F5;font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:reduce){#tpLoader{display:none}}
+
+/* 21 Sep 2026 · the particle loader is back (Bazil: "I like the previous
+   logo animation load better, particles, but it needs to be better"). The
+   dots draw on a full-screen canvas in the paper sheet; the svg is only the
+   mark's measure now; the two-tone curtain exit is unchanged. */
+#tpLoader.dots .tpl-canvas{position:absolute;inset:0;display:block;pointer-events:none;z-index:0}
+#tpLoader.dots .tpl-center{z-index:1}
+#tpLoader.dots .tpl-field{opacity:0!important}
+#tpLoader.dots .tpl-word{visibility:hidden}
+
+/* ── 21 Sep 2026 · the Services and Industries menus as visual boards ────
+   (Bazil: "modern, interactive and with visuals ... like IAQ but better").
+   Three zones above 1000px: a preview panel that crossfades to whichever row
+   is pointed at, the rows (name plus who it is for), and a starting-point
+   card. Under 1001px the panel and the card go and the rows stack in the
+   drawer's accordion as before. */
+@media (min-width:1001px){
+  .navdrop .dpanel.mega{display:grid;grid-template-columns:268px minmax(250px,1fr) 214px;gap:0;padding:0;min-width:0;width:min(820px,calc(100vw - 48px));
+    background:#fff;border:1px solid rgba(6,21,106,.1);box-shadow:0 30px 70px -28px rgba(13,21,38,.38),0 2px 8px rgba(13,21,38,.05);overflow:hidden}
+  #indPanel.mega{grid-template-columns:268px minmax(240px,1fr) 214px;width:min(800px,calc(100vw - 48px))}
+  /* the preview */
+  .mg-lead{position:relative;display:block;min-height:286px;background:#06156A;overflow:hidden}
+  .mg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.03);transition:opacity .45s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+  .mg-img.on{opacity:1;transform:none}
+  .mg-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,48,.05) 28%,rgba(14,27,48,.86) 100%)}
+  .mg-copy{position:absolute;left:18px;right:18px;bottom:16px;display:grid;gap:5px;color:#fff;animation:mgRise .38s cubic-bezier(.2,.7,.2,1)}
+  .mg-copy b{font:500 19px/1.2 "Space Grotesk","Inter",sans-serif;letter-spacing:-.01em}
+  .mg-copy span{font:400 12.5px/1.5 "Inter",sans-serif;color:rgba(255,255,255,.84)}
+  @keyframes mgRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  /* the rows */
+  .mg-rows{display:block;padding:10px}
+  .navdrop .dpanel.mega .mg-rows a{grid-template-columns:20px minmax(0,1fr);row-gap:1px;padding:9px 12px;align-items:start;transition:background .18s ease}
+  .navdrop .dpanel.mega .mg-rows a .dico{grid-row:1 / span 2;align-self:center}
+  .navdrop .dpanel.mega .mg-rows a>span{grid-column:2;font-weight:600;font-size:13.5px;color:var(--ink)}
+  .navdrop .dpanel.mega .mg-rows a small{grid-column:2;font:400 12px/1.35 "Inter",sans-serif;color:var(--soft)}
+  .navdrop .dpanel.mega .mg-rows a:hover,.navdrop .dpanel.mega .mg-rows a:focus-visible{background:rgba(5,32,245,.07)}
+  .navdrop .dpanel.mega .mg-rows a.dlead{margin-bottom:6px}
+  /* the rows arrive as a set when the board opens */
+  .navdrop.is-open .mg-rows a,.navdrop:hover .mg-rows a{animation:mgRow .34s cubic-bezier(.2,.7,.2,1) both}
+  .mg-rows a:nth-child(2){animation-delay:.03s}.mg-rows a:nth-child(3){animation-delay:.06s}.mg-rows a:nth-child(4){animation-delay:.09s}
+  .mg-rows a:nth-child(5){animation-delay:.12s}.mg-rows a:nth-child(6){animation-delay:.15s}
+  @keyframes mgRow{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  /* the starting-point card */
+  .navdrop .dpanel.mega a.mg-side{display:flex;flex-direction:column;gap:8px;padding:20px 18px;margin:0;background:#F3F7FF;border-left:1px solid rgba(6,21,106,.07);align-items:flex-start}
+  .navdrop .dpanel.mega a.mg-side b{font:500 16px/1.25 "Space Grotesk","Inter",sans-serif;color:var(--ink);letter-spacing:-.01em}
+  .navdrop .dpanel.mega a.mg-side span{font:400 12.5px/1.5 "Inter",sans-serif;color:var(--soft);white-space:normal}
+  .navdrop .dpanel.mega a.mg-side em{margin-top:auto;font:600 12.5px/1 "Inter",sans-serif;font-style:normal;color:#fff;background:var(--elec,#0520F5);padding:10px 13px;transition:background .18s ease}
+  .navdrop .dpanel.mega a.mg-side:hover em{background:#1F57E0}
+  .navdrop .dpanel.mega a.mg-side:hover{background:#EAF1FF}
+}
+@media (max-width:1000px){
+  .mg-lead,.navdrop .dpanel.mega a.mg-side{display:none!important}
+  .mg-rows{display:block}
+  .navdrop .dpanel.mega .mg-rows a small{display:none}
+}
+@media (prefers-reduced-motion:reduce){.mg-copy,.mg-rows a{animation:none!important}.mg-img{transition:none}}
+
+/* the boards hang from the header's own container, not from their trigger:
+   an 820px panel hung from the Services link ran 100px off the right edge of
+   a 1440 screen. Anchored to the right end of .nav-in it can never leave the
+   viewport, and a transparent bridge keeps the hover alive across the gap. */
+@media (min-width:1001px){
+  .nav-in{position:relative}
+  .navdrop:has(> .dpanel.mega){position:static}
+  .navdrop .dpanel.mega{left:auto;right:clamp(18px,3vw,52px);top:calc(100% - 6px);transform:translate(0,8px)}
+  .navdrop:hover .dpanel.mega,.navdrop:focus-within .dpanel.mega,.navdrop.is-open .dpanel.mega{transform:translate(0,0)}
+  .navdrop .dpanel.mega::before{content:"";position:absolute;left:0;right:0;top:-26px;height:26px}
+}
+/* the menu glyphs are electric: --elec is only defined inside the page
+   wrappers, so in the header it resolved to nothing and the glyphs went grey */
+.navdrop .dpanel .dico{color:#0520F5}
+/* the overview row keeps its own quiet sub-line (the row rule above made it bold) */
+@media (min-width:1001px){
+  .navdrop .dpanel.mega .mg-rows a.dlead>span{font:400 12px/1.4 "Inter",sans-serif;color:var(--soft);max-width:none}
+  .navdrop .dpanel.mega .mg-rows a.dlead .dico{grid-row:1;align-self:start;margin-top:2px}
+  /* the lead row's words sit on the same x as every other row (its own gap was 2px against 11px) */
+  .navdrop .dpanel.mega .mg-rows a.dlead{column-gap:11px;row-gap:1px}
+}
+
+/* ── 22 Sep 2026 · the menu boards, simpler (Bazil: "don't penetrate the
+   visual", "picture and list enough, no need to over complex, the 3rd
+   column"). Two zones: the picture with its words UNDER it, and the rows.
+   Nothing is laid over the photograph. */
+@media (min-width:1001px){
+  .navdrop .dpanel.mega,#indPanel.mega{grid-template-columns:272px minmax(300px,1fr);width:min(620px,calc(100vw - 48px))}
+  .mg-lead{display:grid;grid-template-rows:minmax(0,1fr) auto;min-height:0;background:#F3F7FF}
+  .mg-shot{position:relative;display:block;min-height:188px;overflow:hidden;background:#E4ECF9}
+  .mg-img,.mg-img.on{transform:none;transition:opacity .45s ease}
+  .mg-copy{position:static;left:auto;right:auto;bottom:auto;padding:16px 18px 18px;color:var(--ink);gap:6px}
+  .mg-copy b{font:500 17px/1.2 "Space Grotesk","Inter",sans-serif;color:#06156A}
+  .mg-copy span{font:400 12.5px/1.5 "Inter",sans-serif;color:var(--soft)}
+}
+
+/* ── 22 Sep 2026 · no zoom on hover, anywhere (Bazil, twice: "remove zoom in
+   effects"). A picture holds still; a link answers with colour, never scale. */
+.shot:hover img,.prob:hover .pi img,.cs-card:hover .cs-shot img,.sec-card:hover .sc-shot img,.face:hover .ph img,.pband:hover .pb-shot img{transform:none!important}
+.film-play:hover .fp-ring{transform:none!important}
+.wa-float:hover{transform:none!important}
+
+/* ── 23 Sep 2026 · Bazil's live pass ──────────────────────────────────────
+   "do not distort any picture" and "button needs to look premium or in the
+   style of Tenthpin rather than just boxy". */
+
+/* The menu board picture was never stretched (object-fit has always been
+   cover) but its box was near square, so a 4:3 or 16:9 frame lost a third of
+   itself and the person in it read narrow. The box takes the pictures' own
+   ratio now, so almost nothing is cut. */
+@media (min-width:1001px){
+  .mg-lead{min-height:0}
+  .mg-shot{min-height:0;aspect-ratio:4/3}
+}
+
+/* The header controls. Square stays (house rule), the premium comes from the
+   type and the behaviour: the language switch is type on a hairline instead
+   of a filled chip, and Contact carries an arrow that arrives on hover and
+   settles into the deep navy. */
+.navlinks .lang{border:0!important;background:none!important;overflow:visible}
+.navlinks .lang button{padding:0 10px;background:none!important;color:var(--faint);
+  font:600 12px/1 "Inter",system-ui,sans-serif;letter-spacing:.03em;
+  transition:color .25s var(--ease)}
+.navlinks .lang button.on{color:var(--ink);background:none!important;font-weight:700}
+.navlinks .lang button:not(.on):hover{color:var(--elec);background:none!important}
+.navlinks .lang button+button{border-left:1px solid rgba(14,20,48,.18)}
+.nav.over .navlinks .lang button{color:rgba(255,255,255,.6)}
+.nav.over .navlinks .lang button.on{color:#fff}
+.nav.over .navlinks .lang button+button{border-left-color:rgba(255,255,255,.24)}
+
+.nav .cta,.nav .cta.sm{display:inline-flex;align-items:center;justify-content:center;
+  font-family:"Space Grotesk","Inter",system-ui,sans-serif;font-weight:600;letter-spacing:.005em;
+  padding:0 19px;background:var(--elec);color:#fff;
+  transition:background .28s var(--ease),box-shadow .28s var(--ease),padding .28s var(--ease)}
+.nav .cta::after,.nav .cta.sm::after{content:"\2192";display:inline-block;width:0;margin-left:0;
+  opacity:0;overflow:hidden;transform:translateX(-4px);
+  transition:width .3s var(--ease),margin-left .3s var(--ease),opacity .3s var(--ease),transform .3s var(--ease)}
+.nav .cta:hover,.nav .cta.sm:hover,.nav .cta:focus-visible,.nav .cta.sm:focus-visible{
+  background:#06156A;box-shadow:0 12px 26px -16px rgba(6,21,106,.7)}
+.nav .cta:hover::after,.nav .cta.sm:hover::after,.nav .cta:focus-visible::after,.nav .cta.sm:focus-visible::after{
+  width:.85em;margin-left:8px;opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.nav .cta,.nav .cta.sm,.nav .cta::after,.nav .cta.sm::after{transition:none}}
+
+/* 24 Sep 2026 (Bazil: "this navigation bar can have more vertical space").
+   The prototype-3 header on a desktop breathes: 92px at rest, 78px once the
+   page has scrolled and the bar goes solid. Phones keep 74 (the drawer and
+   the hero copy are set against it). */
+@media (min-width:1001px){
+  body.proto3 header.nav .nav-in{height:92px}
+  body.proto3 header.nav.solid .nav-in{height:78px}
+}
+
+/* 24 Sep 2026 · the footer, aligned and structured (Bazil: "align and
+   structure footer better", "don't use the typewriter font"). One grid for
+   the columns and the base row, eyebrows on the logo's cap line, one rhythm
+   for every link, the Reach column reduced to what it is (cities, offices,
+   email, the one button in the house face), the typewriter labels gone. */
+.foot-top{grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr)) minmax(0,1.3fr);gap:clamp(36px,4vw,72px) clamp(28px,3.4vw,64px);align-items:start}
+.foot .foot-brand{display:block}
+.foot .foot-logo{width:clamp(200px,17vw,250px);display:block}
+.foot .foot-sub{font:600 12px/1.2 "Inter",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:12px 0 0}
+.foot .tagline{margin-top:clamp(26px,3.2vh,40px);font-size:clamp(20px,1.9vw,26px);line-height:1.25;letter-spacing:-.02em}
+.foot .foot-line{margin:18px 0 0;font:400 14.5px/1.55 "Inter",sans-serif;color:var(--soft);max-width:30ch}
+.foot .fcol h4{font:600 12px/1.2 "Inter",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0 0 18px;padding-top:7px}
+.foot .fcol a:not(.fc-cta),.foot .fcol p{display:block;margin:0 0 12px;font:400 15px/1.45 "Inter",sans-serif;letter-spacing:0;text-transform:none;color:var(--soft)}
+.foot .fcol a:not(.fc-cta):hover{color:var(--elec,#0520F5)}
+.foot .fcol .fc-mut{font:400 13.5px/1.5 "Inter",sans-serif;letter-spacing:0;text-transform:none;color:var(--faint)!important;margin:-4px 0 14px}
+.foot .fcol .fc-cta{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 18px;margin-top:8px;background:var(--elec,#0520F5);color:#fff!important;font:600 14px/1 "Space Grotesk",sans-serif;letter-spacing:.005em;text-transform:none;box-shadow:none;border-radius:0;transition:background .25s}
+.foot .fcol .fc-cta:hover{background:#1F55DB}
+.foot-base{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr)) minmax(0,1.3fr);gap:12px clamp(28px,3.4vw,64px);align-items:start;font:400 12.5px/1.5 "Inter",sans-serif;letter-spacing:0;text-transform:none;color:var(--faint)}
+.foot-base .foot-portal{grid-column:5;justify-self:start}
+@media (max-width:1100px){
+  .foot-top{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-top > *:first-child{grid-column:1 / -1}
+  .foot-base{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-base .foot-portal{grid-column:auto}
+}
+@media (max-width:640px){
+  .foot-top,.foot-base{grid-template-columns:1fr}
+  .foot .fcol h4{padding-top:0}
+}
+.foot-base > span{white-space:nowrap}
+
+/* ── 26 Sep 2026 (brought in from the live link, 27 Sep) · the menu board
+   picture fills its column. The 4:3 box (23 Sep) left an empty pale band
+   between the picture and its words whenever the list beside it ran taller,
+   which read as a stretched panel. The picture now takes the full height
+   (object-fit:cover, never distorted) and its column is sized to the
+   pictures' 4:3, so nothing is cut. */
+@media (min-width:1001px){
+  .mg-lead{grid-template-rows:minmax(0,1fr) auto}
+  .mg-shot{aspect-ratio:auto;min-height:200px;height:100%}
+  .mg-img{object-position:50% 50%}
+  /* the Services board has six rows, so its picture column is widened until
+     the frame is the pictures' own 4:3 (364 x 273): shown whole, not cropped */
+  .navdrop .dpanel.mega:not(#indPanel){grid-template-columns:364px minmax(300px,1fr);width:min(712px,calc(100vw - 48px))}
+}
+/* 29 Sep 2026 (Arifee, WhatsApp): the footer's last column is "Get in touch":
+   one link to the Contact page, the email, the button. The link reads as a
+   link: ink at rest with a small arrow, the house blue on hover. */
+.foot .fcol a.fc-reach{color:var(--ink,#040F4F);font-weight:600}
+.foot .fcol a.fc-reach::after{content:" \2192";font-weight:400}
+.foot .fcol a.fc-reach:hover{color:var(--elec,#0520F5)}

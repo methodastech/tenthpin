@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Site editor · Tenthpin MC</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/fonts.css">
+<link rel="stylesheet" href="/assets/portal/editor.css?v=4">
+</head>
+<body>
+<!-- The Tenthpin site editor. 22 Sep 2026 (Bazil: "the portal side where you
+     can edit the website needs to be wholly complete and easy to use",
+     "create an easy to go in button, no needing password").
+     Everything is in assets/portal/editor.js and editor.css; the site side is
+     react-app/src/cms/live.js. How it works: HOW-TO-EDIT.md. -->
+<div id="welcome" class="welcome" hidden>
+  <div class="welcome-in">
+    <img src="/assets/logo_tenthpin_pos.svg" alt="Tenthpin">
+    <h1>Change the website <em>yourself</em></h1>
+    <p>Click any words, picture or button on any page and type the new version. Case studies, people, client logos, questions, news and events each have their own list.</p>
+    <ol>
+      <li><i>1</i>Click what you want to change</li>
+      <li><i>2</i>See it change on the page as you type</li>
+      <li><i>3</i>Press Publish when you are happy</li>
+    </ol>
+    <button class="b pri lg" id="goIn" type="button">Go in</button>
+    <p class="fine">Nothing goes live until you press Publish. Your work is kept as a draft in this browser.</p>
+  </div>
+</div>
+<div id="app" class="app" hidden>
+  <header class="top">
+    <a class="brand" href="/" target="_blank" rel="noopener" title="Open the website"><img src="/assets/logo_tenthpin_pos.svg" alt="Tenthpin"><span>Site editor</span></a>
+    <div class="status" id="status"></div>
+    <div class="grow"></div>
+    <div class="acts">
+      <button class="b sm ghost" id="undoBtn" type="button" title="Undo (Cmd Z)"></button>
+      <button class="b sm ghost" id="redoBtn" type="button" title="Redo (Shift Cmd Z)"></button>
+      <button class="b sm" id="previewBtn" type="button">Preview</button>
+      <button class="b sm pri" id="publishBtn" type="button">Publish</button>
+    </div>
+  </header>
+  <aside class="nav" id="nav"></aside>
+  <main class="main" id="main"></main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="modal"></div>
+<script src="/assets/content/content.js"></script>
+<script src="/assets/portal/editor.js?v=6"></script>
+</body>
+</html>

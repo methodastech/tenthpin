@@ -1,0 +1,9 @@
+/* 4 Sep 2026 · large-display scaling.
+   The site is set in px around a 1440 to 1920 baseline. Above that the whole
+   page zooms in steps, so a 2K or 4K viewer sees the same composition at a
+   readable size instead of a small site inside a wide margin. Viewport units
+   and getBoundingClientRect follow the zoomed viewport, so the fixed bar,
+   ScrollTrigger and the WebGL stages keep their maths. */
+@media (min-width:2200px){html{zoom:1.2}}
+@media (min-width:2800px){html{zoom:1.5}}
+@media (min-width:3600px){html{zoom:2}}

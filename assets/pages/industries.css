@@ -1,0 +1,171 @@
+/* industries.html · page-local styles.
+   Loaded AFTER assets/tp.css. Rule order is identical to the original inline
+   <style id="morphCss"> block, so the cascade is unchanged. */
+
+/* ---- hero morph canvas + caption (was inline <style id="morphCss">) ---- */
+.hero.page{position:relative}
+#indMorph{position:absolute;inset:0;width:100%;height:100%}
+.morphcap{position:absolute;right:clamp(16px,5vw,64px);bottom:26px;z-index:3;display:flex;align-items:baseline;gap:10px;
+  background:rgba(255,255,255,.82);border:1px solid rgba(16,22,38,.12);padding:9px 14px;backdrop-filter:blur(4px);
+  transition:opacity .4s}
+.morphcap.sw{opacity:0}
+.morphcap i{font:700 10px "Inter",sans-serif;color:#06156A;font-style:normal;letter-spacing:.1em}
+.morphcap b{font:500 14.5px "Space Grotesk",sans-serif;letter-spacing:-.01em;color:#101626}
+.morphcap span{font:500 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
+@media(max-width:760px){
+  .hero.page{display:flex;flex-direction:column;padding-bottom:0;min-height:auto}
+  .hero.page .hero-inner{min-height:0;padding-bottom:0}
+  .hero.page .hero-inner{order:1}
+  #indMorph{order:2;position:relative;inset:auto;width:100%;height:280px;display:block}
+  .morphcap{order:3;position:static;align-self:flex-end;margin:8px 16px 20px}
+}
+
+/* ---- page utilities (lifted verbatim from inline style="" attributes) ---- */
+.ind-u-mt3{margin-top:var(--s3)}
+.ind-u-mt4{margin-top:var(--s4)}
+.ind-u-mt5{margin-top:var(--s5)}
+.ind-u-mt6{margin-top:var(--s6)}
+
+/* ---- life sciences page (24 Aug) ------------------------------------- */
+/* A looping film inside a .shot, which tp.css only styles for <img>. */
+.ind-vid video{width:100%;height:100%;object-fit:cover;display:block}
+/* The sub-heading over the "can help you" list. h2.big is the section head,
+   so this sits one step under it rather than competing with it. */
+.ind-listhead{font-size:clamp(20px,2.4vw,29px);max-width:24ch}
+@media (max-width:900px){
+  .ind-listhead{font-size:clamp(19px,5.2vw,25px);max-width:none}
+}
+
+/* ---- life sciences page · imagery (25 Aug) --------------------------- */
+/* A photograph behind the hero type. tp.css already paints .hero::after as a
+   left-to-right white scrim for the canvas heroes, so the picture reads on
+   the right while the headline keeps its contrast on the left. */
+/* the life-sciences particle showpiece (module 23): the same box tp.css
+   gives #heroCanvas. Hidden below 760px, where there is no room to park the
+   shape beside the headline; the module's observer parks the loop. */
+#lsHeroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;
+  -webkit-mask-image:linear-gradient(180deg,#000 68%,transparent 100%);mask-image:linear-gradient(180deg,#000 68%,transparent 100%)}
+@media (max-width:760px){#lsHeroCanvas{display:none}}
+.ind-herobg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.ind-herobg img{width:100%;height:100%;object-fit:cover;object-position:68% 45%}
+.ind-herobg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(245,247,252,0) 58%,rgba(245,247,252,.92) 100%)}
+
+/* Wide scene band: a 21:9 crop, so a full-width photograph does not eat a
+   whole viewport the way a 16:9 one does. */
+.ind-band{aspect-ratio:21/9}
+/* Portrait figure, for the shots that were framed vertically. */
+.ind-portrait{aspect-ratio:4/5}
+
+/* The AI section is the one dark surface on this page (D1 allows dark as a
+   narrow showpiece band). Full-bleed section, .wrap inside, photograph behind
+   a two-stop scrim so the cards keep their contrast. */
+.ind-dark{position:relative;overflow:hidden}
+.ind-dark > .wrap{position:relative;z-index:2}
+.ind-darkbg{position:absolute;inset:0;z-index:0}
+.ind-darkbg img{width:100%;height:100%;object-fit:cover;opacity:.6}
+.ind-darkbg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(11,16,32,.88),rgba(11,16,32,.94))}
+
+@media (max-width:760px){
+  /* the horizontal scrim cannot carry the type on a narrow screen, so the
+     hero picture goes behind a vertical wash instead */
+  .ind-herobg::after{background:linear-gradient(180deg,rgba(245,247,252,.84),rgba(245,247,252,.95))}
+  .ind-band{aspect-ratio:16/9}
+  .ind-portrait{aspect-ratio:3/4}
+}
+/* premium.css L31 hard-codes .lede to a light-theme ink (#39415A) rather than
+   to the palette variable, which all but disappears on the dark band. The
+   dark sections restate it from their own palette. */
+.ind-dark .lede{color:var(--soft)}
+
+
+/* ═══ 7 SEP 2026 · THE INDEX (Bazil) ══════════════════════════════════════ */
+.ind-hero-index{overflow:hidden}
+.ind-hero-index #indMorph,.ind-hero-index .morphcap,.ind-hero-index .hero-grid{display:none}
+.ind-herobg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;opacity:0;transition:opacity .9s ease}
+.ind-herobg img.on{opacity:1}
+.ind-herobg::after{background:linear-gradient(90deg,rgba(245,247,252,1) 0%,rgba(245,247,252,.97) 38%,rgba(245,247,252,.78) 58%,rgba(245,247,252,.55) 100%)}
+.hero.page .hero-inner.ind-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);gap:clamp(28px,4vw,72px);align-items:center;
+  max-width:var(--maxw);width:100%;margin:0 auto;padding-top:clamp(120px,15vh,176px);padding-bottom:clamp(48px,7vh,80px)}
+.ind-copy .lede{max-width:48ch}
+.ind-index{display:grid;gap:clamp(6px,1vh,12px)}
+.ind-row{display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;column-gap:18px;
+  padding:clamp(10px,1.4vh,16px) clamp(12px,1.4vw,20px);border-radius:8px;text-decoration:none;color:inherit;
+  transition:background .35s ease,transform .45s cubic-bezier(.2,.7,.2,1)}
+.ind-row:hover,.ind-row.on{background:rgba(255,255,255,.72);transform:translateX(6px)}
+.ind-row-ic{width:72px;height:72px;display:block}
+.ind-row-ic svg{width:100%;height:100%;display:block}
+.ind-row-t b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;font-size:clamp(22px,2.3vw,34px);line-height:1.05;color:#101626}
+.ind-row-t span{display:block;margin-top:4px;font-size:13.5px;line-height:1.45;color:#5A6684}
+.ind-row i{font-style:normal;font-size:22px;color:#0520F5;opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s}
+.ind-row:hover i,.ind-row.on i{opacity:1;transform:none}
+@media (max-width:760px){
+  .hero.page .hero-inner.ind-inner{grid-template-columns:1fr;padding-top:104px}
+  .ind-row{grid-template-columns:56px minmax(0,1fr) auto;column-gap:14px}
+  .ind-row-ic{width:56px;height:56px}
+  .ind-herobg::after{background:linear-gradient(180deg,rgba(245,247,252,.9),rgba(245,247,252,.96))}
+}
+.tp-iso{--io:#06156A;--if1:#fff;--if2:#E6EDFF;--if3:#C3D3F6;--ia:#0520F5;--ia2:#041BCC;--is:#06156A;overflow:visible;display:block}
+.tp-iso .tp-iso-sh{opacity:.22}
+.tp-iso.onphoto{--io:#fff;--if1:rgba(255,255,255,.96);--if2:rgba(255,255,255,.72);--if3:rgba(255,255,255,.5);--ia:#0520F5;--ia2:#0317B8;--is:#fff}
+.tp-iso .tp-iso-g{animation:tpIsoFloat 4.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.tp-iso .tp-iso-sh{animation:tpIsoSh 4.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes tpIsoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.2px)}}
+@keyframes tpIsoSh{0%,100%{transform:scale(1);opacity:.22}50%{transform:scale(.9);opacity:.13}}
+@media (prefers-reduced-motion:reduce){.tp-iso .tp-iso-g,.tp-iso .tp-iso-sh{animation:none}}
+.tp-iso{--io:#0520F5;--is:#0520F5;--ia2:#0317B8;--if3:#BFD0F5}
+.tp-iso.onphoto{--io:#fff;--is:#fff;--ia2:#0317B8;--if3:rgba(255,255,255,.5)}
+.tp-iso{--if2:#DCE6FF;--if3:#AFC4F3;animation:tpIsoGlow 3.6s ease-in-out infinite}
+.tp-iso.onphoto{--if2:rgba(255,255,255,.74);--if3:rgba(255,255,255,.48)}
+@keyframes tpIsoGlow{0%,100%{--ia:#0520F5}50%{--ia:#5B7BFF}}
+.tp-iso .tp-iso-g{animation:tpIsoFloat 3.6s ease-in-out infinite}
+@keyframes tpIsoFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-1.4deg)}}
+.tp-iso .tp-iso-sh{animation:tpIsoSh 3.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.tp-iso{animation:none}}
+.tp-iso .tp-act{transform-box:fill-box;transform-origin:50% 100%}
+.tp-iso[data-k="lens"] .tp-act{animation:tpAcSearch 7s ease-in-out infinite}
+@keyframes tpAcSearch{0%,56%,100%{transform:translate(0,0)}66%{transform:translate(-5px,-2.5px)}80%{transform:translate(5px,2.5px)}92%{transform:translate(0,0)}}
+.tp-iso[data-k="golive"] .tp-act{animation:tpAcPress 7s ease-in-out infinite}
+@keyframes tpAcPress{0%,60%,100%{transform:translateY(0)}64%{transform:translateY(3px)}70%{transform:translateY(0)}}
+.tp-iso[data-k="stack"] .tp-act,.tp-iso[data-k="engine"] .tp-act,.tp-iso[data-k="medtech"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+@keyframes tpAcLift{0%,58%,100%{transform:translateY(0)}66%{transform:translateY(-4px)}78%{transform:translateY(0)}}
+.tp-iso[data-k="bars"] .tp-act{animation:tpAcGrow 7s ease-in-out infinite}
+@keyframes tpAcGrow{0%,56%,100%{transform:scaleY(1)}62%{transform:scaleY(.72)}74%{transform:scaleY(1.08)}82%{transform:scaleY(1)}}
+.tp-iso[data-k="migrate"] .tp-act,.tp-iso[data-k="platform"] .tp-act,.tp-iso[data-k="building"] .tp-act{animation:tpAcBlink 7s ease-in-out infinite}
+@keyframes tpAcBlink{0%,56%,100%{opacity:1}62%{opacity:.3}68%{opacity:1}74%{opacity:.3}80%{opacity:1}}
+.tp-iso[data-k="supply"] .tp-act{animation:tpAcDrive 7s ease-in-out infinite}
+@keyframes tpAcDrive{0%,55%,100%{transform:translate(0,0)}70%{transform:translate(6px,3.5px)}86%{transform:translate(0,0)}}
+.tp-iso[data-k="mfg"] .tp-act{animation:tpAcPuff 7s ease-out infinite;transform-origin:50% 50%}
+@keyframes tpAcPuff{0%,58%,100%{opacity:0;transform:translateY(0) scale(.5)}64%{opacity:.8}80%{opacity:0;transform:translateY(-9px) scale(1.4)}}
+.tp-iso[data-k="lab"] .tp-act{animation:tpAcSwirl 7s ease-in-out infinite}
+@keyframes tpAcSwirl{0%,56%,100%{transform:rotate(0)}64%{transform:rotate(-4deg)}76%{transform:rotate(4deg)}88%{transform:rotate(0)}}
+.tp-iso[data-k="pharma"] .tp-act{animation:tpAcRoll 7s ease-in-out infinite;transform-origin:50% 50%}
+@keyframes tpAcRoll{0%,58%,100%{transform:translate(0,0) rotate(0)}70%{transform:translate(3px,1.7px) rotate(3deg)}84%{transform:translate(0,0) rotate(0)}}
+.tp-iso[data-k="figure"] .tp-act,.tp-iso[data-k="partners"] .tp-act{animation:tpAcNod 7s ease-in-out infinite}
+@keyframes tpAcNod{0%,60%,100%{transform:translateY(0)}65%{transform:translateY(1.8px)}70%{transform:translateY(0)}75%{transform:translateY(1.8px)}80%{transform:translateY(0)}}
+.tp-iso[data-k="flag"] .tp-act{animation:tpAcWave 7s ease-in-out infinite;transform-origin:0 50%}
+@keyframes tpAcWave{0%,56%,100%{transform:skewY(0)}64%{transform:skewY(-6deg)}76%{transform:skewY(6deg)}88%{transform:skewY(0)}}
+.tp-iso[data-k="clock"] .tp-act{animation:tpAcTick 7s steps(1,end) infinite;transform-origin:0 0}
+@keyframes tpAcTick{0%,58%{transform:rotate(0)}62%,100%{transform:rotate(30deg)}}
+.tp-iso[data-k="unlink"] .tp-act{animation:tpAcApart 7s ease-in-out infinite}
+@keyframes tpAcApart{0%,56%,100%{transform:translate(0,0)}66%{transform:translate(4px,2.3px)}84%{transform:translate(0,0)}}
+.tp-iso[data-k="industry"] .tp-draw{stroke-dasharray:30;stroke-dashoffset:0;animation:tpAcDraw 7s ease-in-out infinite}
+@keyframes tpAcDraw{0%,58%{stroke-dashoffset:0}60%{stroke-dashoffset:30}78%,100%{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.tp-iso .tp-act,.tp-iso .tp-draw{animation:none}}
+.tp-iso{transition:transform .5s var(--ease)}
+.tp-iso .tp-iso-g,.tp-iso .tp-iso-sh{animation:none;transform:none}
+.tp-iso[data-k="peak"] .tp-act{transform-origin:0 100%;animation:tpAcWave 7s ease-in-out infinite}
+@keyframes tpAcWave{0%,58%,100%{transform:skewY(0)}64%{transform:skewY(-7deg)}72%{transform:skewY(5deg)}80%{transform:skewY(-3deg)}88%{transform:skewY(0)}}
+.tp-iso[data-k="badge"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+.tp-iso[data-k="cycle"] .tp-act{transform-origin:50% 50%;animation:tpAcTurn 7s ease-in-out infinite}
+@keyframes tpAcTurn{0%,52%{transform:rotate(0)}70%,100%{transform:rotate(120deg)}}
+.tp-iso[data-k="shield"] .tp-act{animation:tpAcBlink 7s ease-in-out infinite}
+
+.tp-iso[data-k="handshake"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+
+/* 24 Sep 2026 · the hub hero plays the sector you point at: a clip per row,
+   assigned on the first hover above 820px with motion on, crossing over the
+   still. Phones keep the stills. */
+.ind-herobg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;opacity:0;transition:opacity .9s ease;z-index:1;pointer-events:none}
+.ind-herobg video.on{opacity:1}

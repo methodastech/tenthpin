@@ -1,0 +1,1015 @@
+/* ==========================================================================
+   aboutus2.css · page-local styles for the /aboutus2 About study
+   --------------------------------------------------------------------------
+   WHAT THIS IS
+   The About page rebuilt to the 27 Aug art-direction note. The verdict on the
+   live About was that it reads as a corporate report: headline, paragraph,
+   card boxes, repeated six times at one weight. This sheet rebuilds it as six
+   bands, each with a different visual identity and one thing in it worth
+   remembering.
+
+   THE ART DIRECTION · "bright precision"
+   Roughly 60% clean editorial layout, 25% real photography, 15% 3D. Off-white
+   grounds rather than pure white, navy type, one electric blue used only as
+   an accent, hairline blueprint rules for the enterprise-tech read, and far
+   more air between and inside bands than the live page carries.
+
+   HOW IT DIFFERS FROM home2.css
+   Same palette family, deliberately different 3D dialect: home2 builds in
+   glass volumes, this page builds in WIREFRAME (module 21). The two studies
+   read as one brand and two distinct pages rather than one template twice.
+
+   HOW IT IS SCOPED
+   Every rule sits under .a2, the wrapper the page mounts, so nothing here can
+   reach the shared header, footer or admin bar. tp.css and premium.css still
+   load underneath.
+
+   ORDER
+   00 tokens · 01 primitives · 02 hero · 03 pillars · 04 network ·
+   05 proof · 06 team · 07 CTA · 08 responsive · 09 reduced motion
+   ========================================================================== */
+
+/* --- 00 · TOKENS ---------------------------------------------------------
+   Not pure white anywhere. Three grounds (paper, cool, pale) carry the band
+   rhythm on their own, before any border or card is drawn. */
+.a2{
+  --ink:#0D1526;
+  --navy:#06156A;
+  --elec:#0520F5;
+  --soft:#4A5872;
+  --faint:#7B879D;
+  --paper:#FCFDFF;
+  --cool:#F1F5FB;
+  --pale:#E6EEFB;
+  --hair:rgba(13,21,38,.08);
+  --hair2:rgba(13,21,38,.14);
+  --rule:rgba(6,21,106,.055);
+  --ease:cubic-bezier(.22,1,.36,1);
+  /* the page breathes: these are materially larger than the live About */
+  --band:clamp(88px,13vh,182px);
+  background:var(--paper);
+  color:var(--ink);
+  display:block;
+  overflow-x:clip;
+}
+
+/* --- 01 · PRIMITIVES -----------------------------------------------------
+   Type hierarchy does most of the design work here: one large heading, one
+   short line of support, everything else small and quiet. */
+.a2-band{padding:var(--band) 0;position:relative}
+.a2-band.cool{background:var(--cool)}
+.a2-band.pale{background:var(--pale)}
+.a2-in{max-width:1360px;margin:0 auto;padding:0 clamp(18px,3vw,52px);width:100%;position:relative}
+.a2-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.02;
+  font-size:clamp(31px,4.5vw,64px);margin:20px 0 0;max-width:16ch}
+/* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
+   prototype 3). Where the heading is now first in its column it no longer
+   needs the space the eyebrow used to sit in. */
+.a2-h:first-child,.a2 h1:first-child{margin-top:0}
+.a2-h em{font-style:normal;color:var(--elec)}
+/* deliberately narrow: the note asks that paragraphs stop dominating */
+.a2-sub{color:var(--soft);font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.66;max-width:46ch;margin:22px 0 0}
+.a2-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--navy);color:#fff;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:17px 30px;border:0;border-radius:0;text-decoration:none;
+  box-shadow:0 16px 34px -20px rgba(6,21,106,.75);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s}
+.a2-cta:hover{transform:translateY(-2px);background:#0A1C80;box-shadow:0 22px 44px -20px rgba(6,21,106,.85)}
+.a2-cta.lg{font-size:13px;padding:22px 40px;border-radius:0}
+.a2-cue{display:inline-flex;align-items:center;gap:9px;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;
+  font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--navy);text-decoration:none;transition:color .3s}
+.a2-cue b{display:inline-block;transition:transform .35s var(--ease)}
+.a2-cue:hover{color:var(--elec)}
+.a2-cue:hover b{transform:translateX(5px)}
+/* the 3D stage: transparent canvas, so the wireframes sit on the band ground */
+.a2-stage{position:relative;display:block;margin:0}
+.a2-stage canvas{display:block;width:100%;height:100%}
+/* the blueprint rule: a hairline column grid, the enterprise-tech texture the
+   note asks for. Masked at both ends so it never reads as a border. */
+.a2-grid{position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(90deg,var(--rule) 1px,transparent 1px) 50% 0 / calc(100% / 12) 100%;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);
+  mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
+
+/* --- 02 · HERO · left type, right sculpture, and air --------------------
+   Rhythm 1 of 6. The live hero was cold because it was empty without being
+   composed. Same emptiness, given a job: the type holds the left third, the
+   sculpture holds the right, and the blueprint grid ties them together. */
+.a2-hero{position:relative;min-height:94svh;display:grid;grid-template-columns:46fr 54fr;
+  align-items:center;gap:clamp(24px,3vw,60px);
+  padding:clamp(140px,17vh,196px) clamp(18px,3vw,52px) clamp(72px,10vh,120px);
+  max-width:1360px;margin:0 auto;overflow:hidden}
+.a2-hero-copy{position:relative;z-index:2;min-width:0}
+.a2-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.038em;line-height:1.0;
+  font-size:clamp(38px,4.6vw,76px);margin:24px 0 0}
+.a2-hero h1 span{display:block}
+.a2-hero h1 em{font-style:normal;color:var(--elec)}
+.a2-hero .a2-sub{max-width:40ch}
+/* the three proof chips. Hairline, not filled: they read as facts, not tags. */
+.a2-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(30px,4vh,46px)}
+.a2-chip{display:inline-flex;align-items:center;gap:10px;font-family:"Inter",sans-serif;font-weight:600;
+  font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);
+  border:1px solid var(--hair2);border-radius:0;padding:10px 16px;background:rgba(255,255,255,.6);
+  transition:border-color .35s,color .35s,transform .45s var(--ease)}
+.a2-chip i{width:5px;height:5px;border-radius:50%;background:var(--elec);flex:0 0 auto}
+.a2-chip:hover{border-color:rgba(5,32,245,.42);color:var(--navy);transform:translateY(-2px)}
+.a2-hero-stage{position:relative;z-index:1;min-width:0;aspect-ratio:1/.92;min-height:360px}
+/* one soft pool of light under the sculpture, so it sits on the page */
+.a2-hero-stage::after{content:"";position:absolute;left:52%;top:58%;width:74%;aspect-ratio:1;
+  transform:translate(-50%,-50%);z-index:-1;pointer-events:none;
+  background:radial-gradient(circle,rgba(5,32,245,.13),transparent 66%)}
+
+/* --- 03 · PILLARS · three blocks, nothing else ---------------------------
+   Rhythm 2. Six small cards become three large ones: a 3D mark on top, a
+   one-word heading, one line of copy. The note's rule that not everything
+   needs a card is honoured by giving these no fill and no shadow, only a
+   top rule that colours in on hover. */
+.a2-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,52px);margin-top:clamp(44px,7vh,86px)}
+.a2-pillar{position:relative;padding:0 0 34px;border-top:1.5px solid var(--hair2);
+  transition:border-color .45s var(--ease)}
+.a2-pillar::after{content:"";position:absolute;left:0;top:-1.5px;width:0;height:1.5px;background:var(--elec);
+  transition:width .5s var(--ease)}
+.a2-pillar:hover{border-color:transparent}
+.a2-pillar:hover::after{width:100%}
+.a2-pillar-stage{height:clamp(150px,17vh,208px);margin:clamp(18px,2.4vh,30px) 0 clamp(20px,3vh,38px)}
+.a2-pillar b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;
+  font-size:clamp(24px,2.4vw,36px);line-height:1.08}
+.a2-pillar p{margin:14px 0 0;font-size:15px;line-height:1.62;color:var(--soft);max-width:26ch}
+.a2-pillar em{font-style:normal;position:absolute;right:0;top:18px;font-family:"Inter",sans-serif;font-weight:600;
+  font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+
+/* --- 04 · NETWORK · the map is the argument -----------------------------
+   Rhythm 3. The live band spends two card columns and eight office chips
+   saying "we are in these places". One map says it in a glance, so the copy
+   shrinks to a single line and the visual takes the weight. */
+.a2-net{display:grid;grid-template-columns:38fr 62fr;gap:clamp(28px,4vw,72px);align-items:center;
+  margin-top:clamp(38px,5vh,64px)}
+.a2-net > *{min-width:0}
+.a2-net-stage{aspect-ratio:1/.62;min-height:320px;position:relative}
+.a2-cities{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(16px,2vw,30px);margin-top:clamp(30px,4vh,48px);
+  border-top:1px solid var(--hair)}
+.a2-city{padding:13px 0;border-bottom:1px solid var(--hair);display:flex;align-items:baseline;gap:10px;min-width:0}
+.a2-city b{min-width:0;overflow-wrap:anywhere}
+.a2-city b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:15.5px;letter-spacing:-.015em}
+.a2-city span{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--faint);margin-left:auto}
+
+/* --- 05 · PROOF · one number, then the detail ---------------------------
+   Rhythm 4. Four equal cards become one feature block that carries the
+   number and the 3D, with three quiet supports beneath it. */
+.a2-proof{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(16px,2vw,26px);margin-top:clamp(40px,6vh,74px)}
+.a2-feat{grid-column:1 / -1;position:relative;overflow:hidden;border-radius:0;background:var(--paper);
+  border:1px solid var(--hair);display:grid;grid-template-columns:1fr .9fr;align-items:center;
+  padding:clamp(30px,4vw,58px);gap:clamp(20px,3vw,44px)}
+.a2-feat > *{min-width:0}
+/* blueprint texture inside the feature block, not on the page behind it */
+.a2-feat::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,var(--rule) 1px,transparent 1px) 0 0 / 46px 100%,
+             linear-gradient(180deg,var(--rule) 1px,transparent 1px) 0 0 / 100% 46px;
+  -webkit-mask-image:radial-gradient(circle at 30% 50%,#000,transparent 78%);
+  mask-image:radial-gradient(circle at 30% 50%,#000,transparent 78%)}
+.a2-feat-copy{position:relative;z-index:2}
+.a2-feat-copy p.a2-num{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.05em;line-height:.88;
+  font-size:clamp(64px,9.5vw,152px);color:var(--navy);margin:0}
+.a2-feat-copy b{display:block;margin-top:16px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  letter-spacing:-.022em;font-size:clamp(19px,1.8vw,26px);line-height:1.16}
+.a2-feat-copy p{margin:14px 0 0;font-size:15px;line-height:1.62;color:var(--soft);max-width:40ch}
+.a2-feat-stage{position:relative;z-index:1;aspect-ratio:1/.82;min-height:220px}
+.a2-sup{padding:26px 28px 30px;border-radius:0;background:var(--paper);border:1px solid var(--hair);
+  transition:border-color .4s,transform .45s var(--ease)}
+.a2-sup:hover{border-color:rgba(5,32,245,.34);transform:translateY(-3px)}
+.a2-sup em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--elec)}
+.a2-sup b{display:block;margin-top:11px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  letter-spacing:-.022em;font-size:clamp(17px,1.5vw,21px);line-height:1.18}
+.a2-sup p{margin:11px 0 0;font-size:13.5px;line-height:1.6;color:var(--soft)}
+.a2-sups{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
+
+/* --- 06 · TEAM · the human band ----------------------------------------
+   Rhythm 5. The one image-led band on the page, and the only one where the
+   3D steps back entirely: the note is explicit that photography carries
+   this section. */
+.a2-team-grid{display:grid;grid-template-columns:1.45fr .55fr;gap:clamp(24px,3.4vw,54px);
+  align-items:stretch;margin-top:clamp(40px,6vh,74px)}
+.a2-team-grid > *{min-width:0}
+.a2-team-shot{position:relative;margin:0;overflow:hidden;border-radius:0;background:var(--pale);aspect-ratio:16/11}
+.a2-team-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;display:block}
+.a2-quals{display:flex;flex-direction:column;justify-content:center}
+.a2-qual{padding:22px 0;border-top:1px solid var(--hair)}
+.a2-qual:last-child{border-bottom:1px solid var(--hair)}
+.a2-qual b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+  font-size:clamp(17px,1.5vw,21px);line-height:1.18}
+.a2-qual span{display:block;margin-top:8px;font-size:13.5px;line-height:1.6;color:var(--soft)}
+/* the one pull statement on the page, set large enough to be a stop */
+.a2-quote{margin:clamp(38px,5.5vh,68px) 0 0;padding:0;border-left:2px solid var(--elec);padding-left:clamp(20px,2.6vw,38px);
+  max-width:min(760px,62%)}
+.a2-quote p{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;
+  font-size:clamp(21px,2.4vw,36px);line-height:1.16}
+.a2-quote cite{display:block;margin-top:16px;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;
+  font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+.a2-portraits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,28px);
+  margin-top:clamp(34px,5vh,60px);max-width:960px}
+/* the portrait slot. Real photography is still owed, so this is drawn as a
+   deliberate placeholder rather than filled with stock. */
+.a2-portrait{position:relative;aspect-ratio:4/5;border-radius:0;overflow:hidden;background:var(--cool);
+  border:1px solid var(--hair);display:flex;flex-direction:column;justify-content:flex-end;padding:22px}
+.a2-portrait::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,var(--rule) 1px,transparent 1px) 0 0 / 34px 100%,
+             linear-gradient(180deg,var(--rule) 1px,transparent 1px) 0 0 / 100% 34px}
+.a2-portrait svg{position:absolute;left:50%;top:42%;width:clamp(46px,5vw,66px);height:auto;
+  transform:translate(-50%,-50%);color:rgba(6,21,106,.16)}
+.a2-portrait b{position:relative;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+  font-size:clamp(15.5px,1.3vw,18px);line-height:1.2}
+.a2-portrait span{position:relative;display:block;margin-top:6px;font-family:"Inter",sans-serif;font-weight:600;
+  font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.a2-note{margin-top:20px;font-size:12.5px;color:var(--faint)}
+
+/* --- 07 · CTA · one line, one button -----------------------------------
+   Rhythm 6. Bright rather than the usual dark close, per the note: the page
+   ends in the same light it started in, with the 3D showing a way in. */
+.a2-cta-band{position:relative;background:var(--pale);overflow:hidden;isolation:isolate;
+  padding:clamp(78px,12vh,150px) 0}
+.a2-cta-viz{position:absolute;left:44%;right:0;top:0;bottom:0;z-index:0;opacity:.85;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
+.a2-cta-band .a2-in{z-index:2}
+.a2-cta-band h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
+  font-size:clamp(30px,4.2vw,60px);margin:20px 0 0;max-width:16ch}
+.a2-cta-band h2 em{font-style:normal;color:var(--elec)}
+.a2-cta-band p{margin:22px 0 0;font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.64;color:var(--soft);max-width:44ch}
+.a2-cta-band .a2-cta{margin-top:clamp(32px,4.4vh,52px)}
+
+/* --- 08 · RESPONSIVE · two tiers ---------------------------------------- */
+@media (max-width:1000px){
+  .a2-hero{grid-template-columns:1fr;min-height:auto;padding-top:120px;gap:clamp(20px,4vh,40px)}
+  .a2-hero-stage{aspect-ratio:1/.72;min-height:300px;order:2}
+  .a2-hero-copy{order:1}
+  .a2-pillars{grid-template-columns:1fr;gap:clamp(28px,5vh,52px)}
+  .a2-pillar p{max-width:none}
+  .a2-pillar-stage{height:clamp(160px,22vh,220px)}
+  .a2-net{grid-template-columns:1fr;gap:clamp(24px,4vh,44px)}
+  .a2-net-stage{aspect-ratio:1/.66;min-height:280px}
+  .a2-proof{grid-template-columns:1fr}
+  .a2-feat{grid-template-columns:1fr;gap:clamp(18px,3vh,34px)}
+  .a2-feat-stage{aspect-ratio:16/10;min-height:200px}
+  .a2-sups{grid-template-columns:1fr}
+  .a2-team-grid{grid-template-columns:1fr}
+  .a2-quote{max-width:none}
+  .a2-cta-viz{left:0;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 52%);
+    mask-image:linear-gradient(180deg,transparent 0,#000 52%);opacity:.5}
+}
+@media (max-width:640px){
+  .a2{--band:clamp(58px,9vh,84px)}
+  .a2-hero h1{font-size:clamp(27px,7.4vw,44px)}
+  .a2-cities{grid-template-columns:1fr}
+  .a2-portraits{grid-template-columns:1fr;gap:14px}
+  .a2-portrait{aspect-ratio:3/2}
+  .a2-portrait svg{top:38%}
+  .a2-team-shot{aspect-ratio:4/3}
+  .a2-feat{padding:26px 22px}
+}
+
+/* --- 09 · REDUCED MOTION ------------------------------------------------
+   Module 21 still builds every scene and renders one still frame, so the
+   wireframe language survives; only the loops stop. */
+@media (prefers-reduced-motion:reduce){
+  .a2-chip,.a2-sup,.a2-pillar::after{transition:none}
+}
+
+
+/* ═══ 4 SEP 2026 · PROTOTYPE 3 PASS · NO LINE DESIGN ═════════════════════
+   Client direction, repeated through the home review: no hairline rules
+   between content. Only single-sided dividers come off here; framed objects
+   (chips, cards, figures, panels) keep their border, because those are
+   objects rather than rules. */
+.a2-city{border-bottom:0}
+.a2-pillar{border-top:0}
+.a2-qual{border-top:0}
+.a2-cities{border-top:0}
+.a2 .a2-qual{border-top:0;border-bottom:0}
+
+/* 7 Sep 2026 (Bazil): About us 2. Titles bigger, no boxes on the chips,
+   the network title in three lines. */
+.a2 .a2-h,.a2 h1.a2-h{font-size:clamp(40px,4.3vw,82px);line-height:1.02}
+.a2-net .a2-h{max-width:21ch;font-size:clamp(30px,2.5vw,44px);line-height:1.06}
+.a2-chip,.a2-chip:hover{border:0;background:none;padding:0;transform:none;color:var(--navy)}
+.a2-chips{gap:10px 28px}
+/* 7 Sep 2026 (Bazil): an electric phrase inside a title never splits
+   across lines; under 640px it may wrap again. */
+.a2 h1 em,.a2 h2 em,.a2 .a2-h em{white-space:nowrap}
+.a2-net .a2-h{max-width:23ch}
+@media (max-width:640px){.a2 h1 em,.a2 h2 em,.a2 .a2-h em{white-space:normal}}
+/* 7 Sep 2026 (Bazil): "Rooted in Asia Pacific" on one line. The copy column
+   takes 56 of 100 and the hero title tops out at 68px, which is the size at
+   which the phrase fits the column at every desktop width. */
+@media (min-width:1001px){.a2-hero{grid-template-columns:56fr 44fr}}
+.a2-hero h1{font-size:clamp(38px,4.6vw,68px)}
+/* 7 Sep 2026 (Bazil): the hero as a centred title with the globe below it.
+   One column, the type centred, the dotted globe the full width of the
+   container. The bent map fades out at its sides and its foot so it sits on
+   the white page rather than ending in a hard edge. */
+.a2-hero.globe{grid-template-columns:1fr;justify-items:center;text-align:center;min-height:auto;gap:clamp(28px,4vh,52px);padding-top:clamp(124px,15vh,168px);padding-bottom:clamp(40px,6vh,72px)}
+.a2-hero.globe .a2-hero-copy{max-width:min(100%,1100px)}
+.a2-hero.globe h1{font-size:clamp(40px,5vw,84px);margin:0 auto}
+.a2-hero.globe .a2-sub{margin:22px auto 0;max-width:46ch}
+.a2-hero.globe .a2-chips{justify-content:center}
+.a2-globe{position:relative;width:100%;aspect-ratio:100/42;min-height:240px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%)}
+.a2-globe canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.a2-globe::after{content:"";position:absolute;left:0;right:0;bottom:0;height:26%;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,0),#fff)}
+.a2-globe-read,.a2-globe-key{position:absolute;bottom:clamp(6px,1.2vw,14px);z-index:2;display:flex;gap:14px;align-items:baseline;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+.a2-globe-read{left:clamp(24px,8%,110px)}
+.a2-globe-key{right:clamp(24px,8%,110px)}
+.a2-globe-read b,.a2-globe-key b{color:var(--elec);font-weight:700}
+.a2-globe-read span::before{content:"·";margin-right:14px;color:var(--hair2)}
+@media (max-width:1000px){.a2-hero.globe{padding-top:112px}.a2-globe{aspect-ratio:100/56}}
+@media (max-width:640px){.a2-globe{aspect-ratio:100/66;min-height:220px}.a2-globe-read span:nth-child(n+3){display:none}.a2-globe-read,.a2-globe-key{font-size:9.5px}.a2-globe-key{display:none}}
+.a2-hero.globe .a2-hero-copy{order:0}.a2-hero.globe .a2-globe{order:2}
+/* the globe is a body: no side mask, a foot fade only */
+.a2-globe{-webkit-mask-image:none;mask-image:none}
+.a2-globe::after{height:16%}
+/* the body leaves through the foot on a white fade, so there is no cut line */
+.a2-globe::after{content:"";height:22%}
+/* office labels over the WebGL globe */
+.a2-globe-lab{position:absolute;left:0;top:0;transform:translate(-9999px,-9999px);margin-top:-7px;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(6,21,106,.78);white-space:nowrap;pointer-events:none;transition:opacity .3s,color .3s;z-index:2}
+.a2-globe-lab.l{margin-left:0;translate:-100% 0}
+.a2-globe-lab.on{color:var(--elec)}
+@media (max-width:640px){.a2-globe-lab{font-size:8.5px;margin-top:-6px}}
+
+/* ═══ 7 SEP 2026 · THE HERO MAP, NOT A GLOBE (Bazil) ══════════════════════
+   "Not supposed to have a navigation bar background here", "without the
+   sphere, dots instead, modern premium", "less height." */
+
+/* 1 · the bar has no ground at rest: no fill, no hairline, no blur. The
+   links stay, this hero is centred type on white and needs its way out.
+   premium.css L73 sets both with !important, hence the same here. */
+body:has(.a2) .nav.attop{background:transparent!important;border-bottom-color:transparent!important;
+  box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+body:has(.a2) .nav{transition:background .45s var(--ease,ease),border-color .45s var(--ease,ease)}
+
+/* 2 · the map is flat and fit by height, so it needs far less of it. The
+   sphere's foot fade goes with the sphere; the dots dissolve on their own. */
+.a2-globe{aspect-ratio:100/30;min-height:250px;max-height:520px}
+.a2-globe::after{content:none}
+.a2-hero.globe{min-height:auto;padding-bottom:clamp(40px,6vh,72px)}
+@media (max-width:1000px){.a2-globe{aspect-ratio:100/44;max-height:none}}
+@media (max-width:640px){.a2-globe{aspect-ratio:100/62;min-height:220px}}
+
+/* 3 · office labels read over the dot field: a white halo behind the type,
+   painted under the fill, so BEIJING and WUHAN hold on the dense electric
+   dots without a box. */
+.a2-globe-lab{paint-order:stroke fill;-webkit-text-stroke:3px rgba(255,255,255,.92);
+  text-shadow:0 0 6px #fff,0 0 2px #fff}
+.a2-globe-lab.on{-webkit-text-stroke:3px rgba(255,255,255,.96)}
+
+/* 4 · the sphere is back, shaded by dots alone: a little more height so
+   the cap reads as a body, still well under the old globe stage. */
+.a2-globe{aspect-ratio:100/34}
+@media (max-width:1000px){.a2-globe{aspect-ratio:100/48}}
+
+/* ═══ 7 SEP 2026 · CHIPS WITH OBJECTS, TWO-LINE NETWORK TITLE, FLAGS, ASIA MAP ═
+   (Bazil: "icons for these", "2 lines only", "detailed looking flags and
+   the world map around Asia only") */
+
+/* 5 · the hero chips carry an isometric object each */
+.a2-chip{gap:12px}
+.a2-chip i{display:none}
+.a2-chip-ic{width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto}
+.a2-chip-ic svg{width:34px;height:34px;display:block}
+
+/* 6 · the network title holds two lines: the copy column is wider and the
+   heading steps down one size, so "it" no longer drops to a third line */
+.a2-net{grid-template-columns:46fr 54fr}
+.a2-net .a2-h{font-size:clamp(28px,3.1vw,50px);max-width:none}
+@media (min-width:1001px){.a2-net .a2-h{white-space:nowrap}}
+
+/* 7 · the office grid: a real flag per office, drawn to spec, as an object.
+   The hairline frame and the gloss are what make it read as a flag and not
+   a colour block. Name and role sit beside it. */
+.a2-city{display:grid;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:0 14px;padding:11px 0}
+.a2-flag{width:44px;height:28px;display:block;border-radius:2px;overflow:hidden;
+  box-shadow:inset 0 0 0 1px rgba(6,21,106,.18),0 1px 2px rgba(6,21,106,.12)}
+.a2-flag svg{width:100%;height:100%;display:block}
+.a2-city b{min-width:0}
+.a2-city span{justify-self:end;white-space:nowrap}
+
+/* 8 · the network stage is the flat Asia dot-map, the same renderer the
+   hero used before the sphere came back: fit by height, offices in frame */
+.a2-net-stage{aspect-ratio:1/.62;min-height:320px;position:relative;overflow:visible}
+.a2-net-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.a2-net-stage .a2-globe-lab{font-size:10px}
+@media (max-width:1000px){.a2-net-stage{aspect-ratio:1/.7;min-height:280px}}
+
+
+/* ═══ 7 SEP 2026 · THE ISOMETRIC SET ON ABOUT ═════════════════════════════
+   The palette (--io --if1 --if2 --if3 --ia --ia2 --is), the float, the glow
+   and every per-object action lived only in home2.css, so the objects
+   rendered black here. Mirrored verbatim, in home2's order, so a later rule
+   wins the same way. Regenerate from home2.css when that set changes. */
+.tp-iso{--io:#06156A;--if1:#fff;--if2:#E6EDFF;--if3:#C3D3F6;--ia:#0520F5;--ia2:#041BCC;--is:#06156A;overflow:visible;display:block}
+.tp-iso .tp-iso-sh{opacity:.22}
+.tp-iso.onphoto{--io:#fff;--if1:rgba(255,255,255,.96);--if2:rgba(255,255,255,.72);--if3:rgba(255,255,255,.5);--ia:#0520F5;--ia2:#0317B8;--is:#fff}
+.tp-iso .tp-iso-g{animation:tpIsoFloat 4.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.tp-iso .tp-iso-sh{animation:tpIsoSh 4.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes tpIsoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.2px)}}
+@keyframes tpIsoSh{0%,100%{transform:scale(1);opacity:.22}50%{transform:scale(.9);opacity:.13}}
+@media (prefers-reduced-motion:reduce){.tp-iso .tp-iso-g,.tp-iso .tp-iso-sh{animation:none}}
+.tp-iso{--io:#0520F5;--is:#0520F5;--ia2:#0317B8;--if3:#BFD0F5}
+.tp-iso.onphoto{--io:#fff;--is:#fff;--ia2:#0317B8;--if3:rgba(255,255,255,.5)}
+.tp-iso{--if2:#DCE6FF;--if3:#AFC4F3;animation:tpIsoGlow 3.6s ease-in-out infinite}
+.tp-iso.onphoto{--if2:rgba(255,255,255,.74);--if3:rgba(255,255,255,.48)}
+@keyframes tpIsoGlow{0%,100%{--ia:#0520F5}50%{--ia:#5B7BFF}}
+.tp-iso .tp-iso-g{animation:tpIsoFloat 3.6s ease-in-out infinite}
+@keyframes tpIsoFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-1.4deg)}}
+.tp-iso .tp-iso-sh{animation:tpIsoSh 3.6s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.tp-iso{animation:none}}
+.tp-iso .tp-act{transform-box:fill-box;transform-origin:50% 100%}
+.tp-iso[data-k="lens"] .tp-act{animation:tpAcSearch 7s ease-in-out infinite}
+@keyframes tpAcSearch{0%,56%,100%{transform:translate(0,0)}66%{transform:translate(-5px,-2.5px)}80%{transform:translate(5px,2.5px)}92%{transform:translate(0,0)}}
+.tp-iso[data-k="golive"] .tp-act{animation:tpAcPress 7s ease-in-out infinite}
+@keyframes tpAcPress{0%,60%,100%{transform:translateY(0)}64%{transform:translateY(3px)}70%{transform:translateY(0)}}
+.tp-iso[data-k="stack"] .tp-act,.tp-iso[data-k="engine"] .tp-act,.tp-iso[data-k="medtech"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+@keyframes tpAcLift{0%,58%,100%{transform:translateY(0)}66%{transform:translateY(-4px)}78%{transform:translateY(0)}}
+.tp-iso[data-k="bars"] .tp-act{animation:tpAcGrow 7s ease-in-out infinite}
+@keyframes tpAcGrow{0%,56%,100%{transform:scaleY(1)}62%{transform:scaleY(.72)}74%{transform:scaleY(1.08)}82%{transform:scaleY(1)}}
+.tp-iso[data-k="migrate"] .tp-act,.tp-iso[data-k="platform"] .tp-act,.tp-iso[data-k="building"] .tp-act{animation:tpAcBlink 7s ease-in-out infinite}
+@keyframes tpAcBlink{0%,56%,100%{opacity:1}62%{opacity:.3}68%{opacity:1}74%{opacity:.3}80%{opacity:1}}
+.tp-iso[data-k="supply"] .tp-act{animation:tpAcDrive 7s ease-in-out infinite}
+@keyframes tpAcDrive{0%,55%,100%{transform:translate(0,0)}70%{transform:translate(6px,3.5px)}86%{transform:translate(0,0)}}
+.tp-iso[data-k="mfg"] .tp-act{animation:tpAcPuff 7s ease-out infinite;transform-origin:50% 50%}
+@keyframes tpAcPuff{0%,58%,100%{opacity:0;transform:translateY(0) scale(.5)}64%{opacity:.8}80%{opacity:0;transform:translateY(-9px) scale(1.4)}}
+.tp-iso[data-k="lab"] .tp-act{animation:tpAcSwirl 7s ease-in-out infinite}
+@keyframes tpAcSwirl{0%,56%,100%{transform:rotate(0)}64%{transform:rotate(-4deg)}76%{transform:rotate(4deg)}88%{transform:rotate(0)}}
+.tp-iso[data-k="pharma"] .tp-act{animation:tpAcRoll 7s ease-in-out infinite;transform-origin:50% 50%}
+@keyframes tpAcRoll{0%,58%,100%{transform:translate(0,0) rotate(0)}70%{transform:translate(3px,1.7px) rotate(3deg)}84%{transform:translate(0,0) rotate(0)}}
+.tp-iso[data-k="figure"] .tp-act,.tp-iso[data-k="partners"] .tp-act{animation:tpAcNod 7s ease-in-out infinite}
+@keyframes tpAcNod{0%,60%,100%{transform:translateY(0)}65%{transform:translateY(1.8px)}70%{transform:translateY(0)}75%{transform:translateY(1.8px)}80%{transform:translateY(0)}}
+.tp-iso[data-k="flag"] .tp-act{animation:tpAcWave 7s ease-in-out infinite;transform-origin:0 50%}
+@keyframes tpAcWave{0%,56%,100%{transform:skewY(0)}64%{transform:skewY(-6deg)}76%{transform:skewY(6deg)}88%{transform:skewY(0)}}
+.tp-iso[data-k="clock"] .tp-act{animation:tpAcTick 7s steps(1,end) infinite;transform-origin:0 0}
+@keyframes tpAcTick{0%,58%{transform:rotate(0)}62%,100%{transform:rotate(30deg)}}
+.tp-iso[data-k="unlink"] .tp-act{animation:tpAcApart 7s ease-in-out infinite}
+@keyframes tpAcApart{0%,56%,100%{transform:translate(0,0)}66%{transform:translate(4px,2.3px)}84%{transform:translate(0,0)}}
+.tp-iso[data-k="industry"] .tp-draw{stroke-dasharray:30;stroke-dashoffset:0;animation:tpAcDraw 7s ease-in-out infinite}
+@keyframes tpAcDraw{0%,58%{stroke-dashoffset:0}60%{stroke-dashoffset:30}78%,100%{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.tp-iso .tp-act,.tp-iso .tp-draw{animation:none}}
+.tp-iso{transition:transform .5s var(--ease)}
+.tp-iso .tp-iso-g,.tp-iso .tp-iso-sh{animation:none;transform:none}
+
+/* ═══ 7 SEP 2026 · THREE REASONS, THE AUDIT ═══════════════════════════════ */
+
+/* 9 · the reasons: title on one line in the middle, three tiles in the
+   middle, each a photograph with its object acting over it, the words
+   centred beneath. No numerals, no rules. */
+.a2-h.a2-center{text-align:center;margin-left:auto;margin-right:auto;max-width:none}
+@media (min-width:901px){.a2-h.a2-center{white-space:nowrap}}
+.a2-reasons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,40px);
+  margin:clamp(40px,6vh,72px) auto 0;max-width:1240px}
+.a2-reason{text-align:center;display:grid;justify-items:center}
+.a2-reason-shot{position:relative;margin:0;width:100%;aspect-ratio:4/3;overflow:hidden;background:var(--pale2,#EEF3FF);
+  box-shadow:0 30px 60px -42px rgba(6,21,106,.55)}
+.a2-reason-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.a2-reason:hover .a2-reason-shot img{transform:scale(1.045)}
+/* a foot fade under the object so it sits on the picture, no plate */
+.a2-reason-shot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;
+  background:linear-gradient(180deg,rgba(9,14,30,0),rgba(9,14,30,.42))}
+.a2-reason-ic{position:absolute;left:clamp(14px,1.6vw,24px);bottom:clamp(12px,1.4vw,20px);z-index:2;
+  width:clamp(84px,7.4vw,112px);height:clamp(84px,7.4vw,112px);display:block;
+  filter:drop-shadow(0 8px 18px rgba(9,14,30,.45))}
+.a2-reason-ic svg{width:100%;height:100%;display:block}
+.a2-reason b{display:block;margin-top:clamp(20px,2.6vh,30px);font-family:"Space Grotesk",sans-serif;font-weight:500;
+  letter-spacing:-.028em;font-size:clamp(24px,2.1vw,32px);line-height:1.1;color:var(--navy)}
+.a2-reason p{margin:12px auto 0;font-size:15px;line-height:1.62;color:var(--soft);max-width:30ch}
+.a2-reason:nth-child(2) .tp-act{animation-delay:1.2s}
+.a2-reason:nth-child(3) .tp-act{animation-delay:2.4s}
+@media (max-width:900px){.a2-reasons{grid-template-columns:1fr;max-width:520px}}
+
+/* 10 · the inspection: the photograph carries the feature, three objects
+   act over it on the shared 7s clock (check, blink, lift), staggered */
+.a2-audit{position:relative;margin:0;aspect-ratio:4/3;min-height:260px;overflow:hidden;z-index:1;
+  box-shadow:0 34px 70px -46px rgba(6,21,106,.6)}
+.a2-audit img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.a2-audit::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(200deg,rgba(9,14,30,0) 40%,rgba(9,14,30,.46) 100%)}
+.a2-audit-ic{position:absolute;z-index:2;display:block;filter:drop-shadow(0 8px 18px rgba(9,14,30,.5))}
+.a2-audit-ic svg{width:100%;height:100%;display:block}
+.a2-audit-ic.i1{left:6%;bottom:8%;width:clamp(96px,9vw,136px);height:clamp(96px,9vw,136px)}
+.a2-audit-ic.i2{right:8%;bottom:10%;width:clamp(76px,7vw,104px);height:clamp(76px,7vw,104px)}
+.a2-audit-ic.i2 .tp-act{animation-delay:1.4s}
+.a2-audit-ic.i3{right:34%;bottom:4%;width:clamp(70px,6.4vw,96px);height:clamp(70px,6.4vw,96px)}
+.a2-audit-ic.i3 .tp-act{animation-delay:2.8s}
+@media (max-width:1000px){.a2-audit{aspect-ratio:16/10;min-height:220px}}
+
+/* 11 · the chips read at the same weight as the rest of the hero: objects
+   48px, the caps a step up (Bazil: "are the icons and font too small") */
+.a2-chip{font-size:12.5px;letter-spacing:.17em;gap:14px}
+.a2-chip-ic,.a2-chip-ic svg{width:48px;height:48px}
+.a2-chips{gap:clamp(22px,3vw,44px)}
+@media (max-width:640px){.a2-chip{font-size:11px}.a2-chip-ic,.a2-chip-ic svg{width:38px;height:38px}}
+
+/* 12 · the globe is turnable: the stage takes the pointer, the canvas shows
+   a hand, and vertical scrolling still passes through on touch */
+.a2-globe{pointer-events:auto}
+.a2-globe canvas{cursor:grab;touch-action:pan-y}
+.a2-globe canvas:active{cursor:grabbing}
+
+/* 7 Sep 2026 · actions for the four objects added for About: the peak's
+   marker waves, the badge lifts, the cycle turns a third (three identical
+   nodes, so the loop restart is invisible), the shield blinks */
+.tp-iso[data-k="peak"] .tp-act{transform-origin:0 100%;animation:tpAcWave 7s ease-in-out infinite}
+@keyframes tpAcWave{0%,58%,100%{transform:skewY(0)}64%{transform:skewY(-7deg)}72%{transform:skewY(5deg)}80%{transform:skewY(-3deg)}88%{transform:skewY(0)}}
+.tp-iso[data-k="badge"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+.tp-iso[data-k="cycle"] .tp-act{transform-origin:50% 50%;animation:tpAcTurn 7s ease-in-out infinite}
+@keyframes tpAcTurn{0%,52%{transform:rotate(0)}70%,100%{transform:rotate(120deg)}}
+.tp-iso[data-k="shield"] .tp-act{animation:tpAcBlink 7s ease-in-out infinite}
+
+/* ═══ 7 SEP 2026 · OBJECTS OFF THE PHOTOGRAPHS, BADGES, FLAG PINS, NO LINES ═ */
+/* 13 · reasons: the object at the left of the words, the words from the left */
+.a2-reason{text-align:left;display:block}
+.a2-reason-shot::after{content:none}
+.a2-reason-row{display:grid;grid-template-columns:78px minmax(0,1fr);column-gap:18px;align-items:start;margin-top:clamp(18px,2.4vh,26px)}
+.a2-reason-ic{position:static;width:78px;height:78px;filter:none;display:block}
+.a2-reason b{margin-top:4px}
+.a2-reason p{margin:8px 0 0;max-width:34ch}
+/* 14 · the audit photograph carries nothing on top of it; a soft vignette only */
+.a2-audit::after{background:linear-gradient(200deg,rgba(9,14,30,0) 55%,rgba(9,14,30,.22) 100%)}
+/* 15 · the certification cards carry a badge each */
+.a2-sup{display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px;align-items:start}
+.a2-sup-ic{grid-column:1;grid-row:1 / span 3;width:64px;height:64px;display:block;margin-top:2px}
+.a2-sup-ic svg{width:100%;height:100%;display:block}
+.a2-sup em,.a2-sup b,.a2-sup p{grid-column:2}
+/* 16 · flag pins on the Asia map */
+.a2-map-flag{position:absolute;left:0;top:0;width:22px;height:14px;margin-left:-11px;pointer-events:none;z-index:2;
+  border-radius:1.5px;overflow:hidden;box-shadow:0 0 0 1px rgba(6,21,106,.22),0 2px 6px rgba(6,21,106,.25);
+  transition:transform .12s linear;background:#fff}
+.a2-map-flag svg{width:100%;height:100%;display:block}
+.a2-map-flag.on{box-shadow:0 0 0 1px rgba(5,32,245,.9),0 4px 12px rgba(5,32,245,.35)}
+.a2-net-stage .a2-globe-lab{margin-top:0}
+/* 17 · no lines: the quote's blue rule and the footer's base rule */
+.a2-quote{border-left:0;padding-left:0}
+body:has(.a2) .foot-base{border-top:0}
+
+/* ═══ 7 SEP 2026 · THE HANDSHAKE, THE PEOPLE ══════════════════════════════ */
+/* 18 · the closing band's stage is the WebGL handshake, full strength */
+.a2-cta-viz.a2-hand{opacity:1;left:50%}
+.a2-cta-viz.a2-hand canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+@media (max-width:1000px){.a2-cta-viz.a2-hand{left:0;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 40%);mask-image:linear-gradient(180deg,transparent 0,#000 40%)}}
+/* 19 · portraits: the frame fills the card, the name sits on a foot fade;
+   the blueprint grid and the placeholder mark are gone */
+.a2-portrait{display:flex;flex-direction:column;justify-content:flex-end;padding:18px 20px;color:#fff;background:var(--cool)}
+.a2-portrait::before{content:none}
+.a2-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;display:block;
+  transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.a2-portrait:hover img{transform:scale(1.04)}
+.a2-portrait::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(9,14,30,0) 48%,rgba(9,14,30,.66) 100%)}
+.a2-portrait b,.a2-portrait span{position:relative;z-index:2;color:#fff}
+.a2-portrait span{color:rgba(255,255,255,.72)}
+.a2-portrait svg{display:none}
+
+/* 20 · the team band: the three qualities with their objects at the left,
+   the photograph at the right (Bazil) */
+.a2-team-grid{grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);align-items:center}
+.a2-team-grid .a2-team-shot{order:2}
+.a2-team-grid .a2-quals{order:1}
+.a2-qual{display:grid;grid-template-columns:76px minmax(0,1fr);column-gap:18px;align-items:start;padding:18px 0}
+.a2-qual-ic{width:76px;height:76px;display:block;margin-top:-4px}
+.a2-qual-ic svg{width:100%;height:100%;display:block}
+.a2-qual span{max-width:36ch}
+@media (max-width:1000px){.a2-team-grid .a2-team-shot{order:1}.a2-team-grid .a2-quals{order:2}}
+/* 21 · the certification objects stand taller in a wider column */
+.a2-sup{grid-template-columns:88px minmax(0,1fr);column-gap:20px}
+.a2-sup-ic{width:88px;height:88px;margin-top:-6px}
+
+/* 22 · the sphere gives up a little more of the body below the offices */
+.a2-globe{aspect-ratio:100/30}
+@media (max-width:1000px){.a2-globe{aspect-ratio:100/46}}
+/* 23 · map flags at a size that reads, labels beside them, a halo under
+   the type, nothing overlapping */
+.a2-map-flag{width:30px;height:20px;margin-left:-15px;border-radius:2px;box-shadow:0 0 0 1px rgba(6,21,106,.25),0 3px 8px rgba(6,21,106,.28)}
+.a2-net-stage .a2-globe-lab{font-size:12px;letter-spacing:.12em;padding:2px 6px;background:rgba(246,248,252,.85);border-radius:3px;-webkit-text-stroke:0;text-shadow:none;margin-top:-1px}
+.a2-net-stage .a2-globe-lab.l{translate:-100% 0}
+/* 24 · the closing visual: the rendered handshake, floating on the band */
+.a2-cta-viz.a2-hand-render{opacity:1;left:48%;display:grid;place-items:center;margin:0;padding:clamp(16px,3vh,40px) clamp(12px,2vw,32px)}
+.a2-cta-viz.a2-hand-render img{width:min(100%,760px);height:auto;display:block;border-radius:6px;
+  box-shadow:0 40px 80px -48px rgba(6,21,106,.55);animation:a2float 6s ease-in-out infinite}
+@keyframes a2float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media (prefers-reduced-motion:reduce){.a2-cta-viz.a2-hand-render img{animation:none}}
+@media (max-width:1000px){.a2-cta-viz.a2-hand-render{position:relative;left:auto;right:auto;top:auto;bottom:auto;-webkit-mask-image:none;mask-image:none;padding:0 0 24px}}
+
+/* 25 · the handshake render is not masked: the fade-in mask on .a2-cta-viz
+   belonged to the wireframe corridor it replaced */
+.a2-cta-viz.a2-hand-render{-webkit-mask-image:none;mask-image:none}
+
+/* 26 · the network map about a fifth larger (Bazil): the stage is taller,
+   and the map fits by height, so everything on it scales with it */
+.a2-net-stage{min-height:clamp(430px,33vw,540px);height:auto;aspect-ratio:auto}
+.a2-net{align-items:center}
+@media (max-width:1000px){.a2-net-stage{min-height:clamp(320px,60vw,420px)}}
+
+.tp-iso[data-k="handshake"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+
+/* 27 · the closing object: large, floating, on the right half */
+.a2-cta-viz.a2-hand-obj{opacity:1;left:50%;display:grid;place-items:center;-webkit-mask-image:none;mask-image:none;padding:clamp(10px,2vh,30px)}
+.a2-cta-viz.a2-hand-obj .tp-iso-w{width:min(100%,520px);aspect-ratio:1;display:block;animation:a2float 6s ease-in-out infinite}
+.a2-cta-viz.a2-hand-obj .tp-iso-w svg{width:100%;height:100%;display:block;overflow:visible}
+@media (prefers-reduced-motion:reduce){.a2-cta-viz.a2-hand-obj .tp-iso-w{animation:none}}
+@media (max-width:1000px){.a2-cta-viz.a2-hand-obj{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:0 0 24px}.a2-cta-viz.a2-hand-obj .tp-iso-w{width:min(100%,360px);margin:0 auto}}
+
+/* ═══ 8 SEP 2026 · THE HANDSHAKE, CHOREOGRAPHED (Bazil: "should just be hands
+   shaking", "fun and awesome"). 7s cycle. 0-14%: the two hands come in from
+   each side and meet. 20-42%: three pumps of the clasp with a burst of
+   sparks. Then settle and rest until the next round. */
+.tp-iso[data-k="handshake"] .tp-act{animation:none}
+.tp-iso[data-k="handshake"] .hs-side{transform-box:fill-box}
+.tp-iso[data-k="handshake"] .hs-left{animation:hsMeetL 7s cubic-bezier(.4,0,.2,1) infinite}
+.tp-iso[data-k="handshake"] .hs-right{animation:hsMeetR 7s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes hsMeetL{0%{transform:translateX(-5px)}14%,66%{transform:translateX(0)}78%,100%{transform:translateX(-5px)}}
+@keyframes hsMeetR{0%{transform:translateX(5px)}14%,66%{transform:translateX(0)}78%,100%{transform:translateX(5px)}}
+.tp-iso[data-k="handshake"] .hs-shake{transform-box:fill-box;transform-origin:50% 60%;animation:hsPump 7s ease-in-out infinite}
+@keyframes hsPump{0%,18%{transform:translateY(0) rotate(0)}21%{transform:translateY(-2.6px) rotate(-2.5deg)}25%{transform:translateY(1.2px) rotate(1.5deg)}29%{transform:translateY(-2.6px) rotate(-2.5deg)}33%{transform:translateY(1.2px) rotate(1.5deg)}37%{transform:translateY(-2.6px) rotate(-2.5deg)}43%,100%{transform:translateY(0) rotate(0)}}
+.tp-iso[data-k="handshake"] .hs-sp{transform-box:fill-box;transform-origin:50% 50%;opacity:0;animation:hsSpark 7s cubic-bezier(.2,.7,.2,1) infinite}
+@keyframes hsSpark{0%,19%{opacity:0;transform:translate(0,0) scale(.2)}22%{opacity:1;transform:translate(calc(var(--dx) * .35),calc(var(--dy) * .35)) scale(1)}40%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.5)}100%{opacity:0;transform:translate(0,0) scale(.2)}}
+.tp-iso[data-k="handshake"] .hs-sp.s0{--dx:-9px;--dy:-7px}.tp-iso[data-k="handshake"] .hs-sp.s1{--dx:8px;--dy:-9px}.tp-iso[data-k="handshake"] .hs-sp.s2{--dx:-4px;--dy:-13px}
+.tp-iso[data-k="handshake"] .hs-sp.s3{--dx:6px;--dy:-14px}.tp-iso[data-k="handshake"] .hs-sp.s4{--dx:-12px;--dy:-2px}.tp-iso[data-k="handshake"] .hs-sp.s5{--dx:11px;--dy:-3px}
+.tp-iso[data-k="handshake"] .hs-sp.s1,.tp-iso[data-k="handshake"] .hs-sp.s3{animation-delay:.16s}
+.tp-iso[data-k="handshake"] .hs-sp.s4,.tp-iso[data-k="handshake"] .hs-sp.s5{animation-delay:.32s}
+@media (prefers-reduced-motion:reduce){.tp-iso[data-k="handshake"] *{animation:none!important}}
+
+/* 28 · the close mixes the photograph with the object (Bazil: "create a
+   Higgsfield picture, real Tenthpin direction, or mix icon with picture").
+   The handshake photograph (generated, nano_banana_pro, Kuala Lumpur behind
+   the glass, art direction only) in a 4:3 frame at the right, fading into
+   the band at its foot; the handshake object stands across its lower-left
+   corner in the house palette and acts on its 7s cycle. */
+.a2-cta-viz.a2-hand-mix{opacity:1;left:47%;display:grid;place-items:center;-webkit-mask-image:none;mask-image:none;
+  padding:clamp(10px,2vh,30px) clamp(12px,2vw,32px) clamp(10px,2vh,30px) clamp(44px,4.5vw,76px)}
+.a2-hand-ph{position:relative;margin:0;width:min(100%,700px);aspect-ratio:4/3;display:block}
+.a2-hand-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%;border-radius:10px;display:block;
+  box-shadow:0 44px 90px -50px rgba(6,21,106,.5)}
+.a2-hand-ph::after{content:"";position:absolute;inset:0;border-radius:10px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(246,248,252,0) 58%,var(--pale) 100%)}
+.a2-hand-ph .tp-iso-w{position:absolute;left:-10%;bottom:-8%;width:42%;aspect-ratio:1;display:block;z-index:2;
+  filter:drop-shadow(0 20px 26px rgba(6,21,106,.2))}
+.a2-hand-ph .tp-iso-w svg{width:100%;height:100%;display:block;overflow:visible}
+@media (max-width:1000px){
+  .a2-cta-viz.a2-hand-mix{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:0 0 30px}
+  .a2-hand-ph{width:min(100%,540px);margin:0 auto;aspect-ratio:16/10}
+  .a2-hand-ph .tp-iso-w{left:-4%;bottom:-6%;width:40%}
+}
+
+/* 29 · the close as a process (Bazil, 8 Sep: "it shows how the process
+   works, those kind of processes are more important"). Four stations on a
+   dotted rail at the right of the band: numbered disc, object, title, one
+   line. A pulse runs the rail on a 6s loop and each disc rings as it passes.
+   The handshake photograph and object are unmounted. */
+.a2-cta-viz.a2-cta-flow{opacity:1;left:50%;display:grid;align-content:center;-webkit-mask-image:none;mask-image:none;
+  padding:clamp(10px,2vh,30px) 0 clamp(10px,2vh,30px) clamp(30px,3.2vw,60px)}
+.a2-flow{list-style:none;margin:0;padding:0;display:grid;position:relative;--fn:46px;--fob:76px;--fgap:22px}
+.a2-flow-st{display:grid;grid-template-columns:var(--fn) var(--fob) 1fr;column-gap:var(--fgap);align-items:center;position:relative;
+  padding:clamp(9px,1.5vh,16px) 0}
+.a2-flow-st::before{content:"";position:absolute;left:calc(var(--fn) / 2 - 1px);top:0;bottom:0;width:0;border-left:2px dotted rgba(5,32,245,.34);z-index:0}
+.a2-flow-st:first-child::before{top:50%}
+.a2-flow-st:last-child::before{bottom:50%}
+.a2-flow-n{position:relative;z-index:1;width:var(--fn);height:var(--fn);border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center}
+.a2-flow-n b{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;line-height:1}
+.a2-flow-n::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--elec);opacity:0;
+  animation:a2ring 6s ease-out infinite;animation-delay:calc(var(--i) * 1.5s + .35s)}
+@keyframes a2ring{0%{opacity:.7;transform:scale(.7)}22%{opacity:0;transform:scale(1.55)}100%{opacity:0;transform:scale(1.55)}}
+.a2-flow-ob{display:block;width:var(--fob);height:var(--fob)}
+.a2-flow-ob svg{width:100%;height:100%;display:block;overflow:visible}
+.a2-flow-ob .tp-iso .tp-act{animation-delay:calc(var(--i) * 1.5s + .4s)}
+.a2-flow-w{display:grid;gap:4px;max-width:34ch}
+.a2-flow-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
+.a2-flow-d{font-size:clamp(14px,1.05vw,15.5px);line-height:1.5;color:var(--soft)}
+.a2-flow-pulse{position:absolute;left:calc(var(--fn) / 2 - 5px);top:0;width:10px;height:10px;border-radius:50%;background:var(--elec);
+  box-shadow:0 0 0 4px rgba(5,32,245,.18);z-index:1;animation:a2pulse 6s linear infinite}
+@keyframes a2pulse{0%{top:calc(var(--fn) / 2 + 12px);opacity:0}6%{opacity:1}92%{opacity:1}100%{top:calc(100% - var(--fn) / 2 - 12px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.a2-flow-pulse,.a2-flow-n::after{animation:none;opacity:0}}
+@media (max-width:1000px){
+  .a2-cta-viz.a2-cta-flow{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:0 0 28px}
+  .a2-flow{--fn:40px;--fob:60px;--fgap:16px}
+  .a2-flow-n b{font-size:16px}
+}
+
+/* 30 · the close process in the shared capsule language (Bazil: "number and
+   icon in the same container", "icons that relate are better than the 3D
+   ones"): flat glyphs in the capsule, the rail under its disc */
+.a2-cap{display:inline-flex;align-items:center;gap:10px;height:48px;padding:3px 16px 3px 3px;border-radius:999px;background:#fff;
+  border:1px solid rgba(5,32,245,.22);box-shadow:0 10px 24px -16px rgba(6,21,106,.4);position:relative;z-index:1;justify-self:start}
+.a2-cap b{width:42px;height:42px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;line-height:1}
+.a2-cap i{display:grid;place-items:center;width:24px;height:24px;color:var(--elec)}
+.a2-cap i svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
+.a2-cap i svg circle{fill:currentColor;stroke:none}
+.a2-cap::after{content:"";position:absolute;left:-1px;top:-1px;width:48px;height:48px;border-radius:50%;border:2px solid var(--elec);opacity:0;
+  animation:a2ring 6s ease-out infinite;animation-delay:calc(var(--i) * 1.5s + .35s)}
+.a2-flow-st{grid-template-columns:auto 1fr;column-gap:20px;padding:clamp(9px,1.5vh,16px) 0}
+.a2-flow-st::before{left:23px}
+.a2-flow-pulse{left:18px;width:12px;height:12px}
+@keyframes a2pulse{0%{top:34px;opacity:0}6%{opacity:1}92%{opacity:1}100%{top:calc(100% - 34px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.a2-cap::after{animation:none;opacity:0}}
+@media (max-width:1000px){.a2-cap{height:44px}.a2-cap b{width:38px;height:38px;font-size:15px}.a2-flow-st::before{left:21px}.a2-flow-pulse{left:16px}}
+
+/* 31 · the network map 15% larger again (Bazil) */
+.a2-net-stage{min-height:clamp(495px,38vw,620px)}
+/* 32 · no curved corners (Bazil): the close capsules are square, ring off */
+.a2-cap,.a2-cap b{border-radius:0}
+.a2-cap::after{display:none}
+
+/* 33 · the phone stacks, RESTATED LAST (bug sweep, 9 Sep 2026). Later
+   unconditional rules had killed the earlier `@media (max-width:1000px)`
+   stacks: `.a2-net` stayed a 146/172px two-column grid so "Kuala Lumpur"
+   broke one character per line, and `.a2-team-grid` stayed two-column so the
+   team photograph shrank to 135px. Anything that changes these grids must
+   stay above this block. */
+@media (max-width:1000px){
+  .a2-net{grid-template-columns:1fr}
+  .a2-team-grid{grid-template-columns:1fr}
+  .a2-reasons{grid-template-columns:1fr}
+}
+
+
+/* 10 Sep 2026 (QA audit): readability floor. Every label, chip, eyebrow and
+   note whose final size sat under 11px now reads at 11px. Media overrides are
+   restated inside their own query so the desktop size is untouched. */
+.a2-cue,
+.a2-pillar em,
+.a2-city span,
+.a2-sup em,
+.a2-quote cite,
+.a2-portrait span{font-size:11px}
+@media (max-width:640px){.a2-globe-read,.a2-globe-key,.a2-globe-lab{font-size:11px}}
+
+/* 10 Sep 2026 (QA audit): phone restatements appended below every later
+   block (house rule from pass 27). The network stage kept its 495px desktop
+   minimum on a phone, and the hero title never took its mobile size. */
+@media (max-width:1000px){.a2-net-stage{min-height:clamp(320px,60vw,420px)}}
+@media (max-width:640px){.a2-hero h1{font-size:clamp(30px,8.6vw,40px)}}
+
+
+.tp-iso[data-k="handshake"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
+
+/* 27 · the closing object: large, floating, on the right half */
+.a2-cta-viz.a2-hand-obj{opacity:1;left:50%;display:grid;place-items:center;-webkit-mask-image:none;mask-image:none;padding:clamp(10px,2vh,30px)}
+.a2-cta-viz.a2-hand-obj .tp-iso-w{width:min(100%,520px);aspect-ratio:1;display:block;animation:a2float 6s ease-in-out infinite}
+.a2-cta-viz.a2-hand-obj .tp-iso-w svg{width:100%;height:100%;display:block;overflow:visible}
+@media (prefers-reduced-motion:reduce){.a2-cta-viz.a2-hand-obj .tp-iso-w{animation:none}}
+@media (max-width:1000px){.a2-cta-viz.a2-hand-obj{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:0 0 24px}.a2-cta-viz.a2-hand-obj .tp-iso-w{width:min(100%,360px);margin:0 auto}}
+
+/* ═══ 8 SEP 2026 · THE HANDSHAKE, CHOREOGRAPHED (Bazil: "should just be hands
+   shaking", "fun and awesome"). 7s cycle. 0-14%: the two hands come in from
+   each side and meet. 20-42%: three pumps of the clasp with a burst of
+   sparks. Then settle and rest until the next round. */
+.tp-iso[data-k="handshake"] .tp-act{animation:none}
+.tp-iso[data-k="handshake"] .hs-side{transform-box:fill-box}
+.tp-iso[data-k="handshake"] .hs-left{animation:hsMeetL 7s cubic-bezier(.4,0,.2,1) infinite}
+.tp-iso[data-k="handshake"] .hs-right{animation:hsMeetR 7s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes hsMeetL{0%{transform:translateX(-5px)}14%,66%{transform:translateX(0)}78%,100%{transform:translateX(-5px)}}
+@keyframes hsMeetR{0%{transform:translateX(5px)}14%,66%{transform:translateX(0)}78%,100%{transform:translateX(5px)}}
+.tp-iso[data-k="handshake"] .hs-shake{transform-box:fill-box;transform-origin:50% 60%;animation:hsPump 7s ease-in-out infinite}
+@keyframes hsPump{0%,18%{transform:translateY(0) rotate(0)}21%{transform:translateY(-2.6px) rotate(-2.5deg)}25%{transform:translateY(1.2px) rotate(1.5deg)}29%{transform:translateY(-2.6px) rotate(-2.5deg)}33%{transform:translateY(1.2px) rotate(1.5deg)}37%{transform:translateY(-2.6px) rotate(-2.5deg)}43%,100%{transform:translateY(0) rotate(0)}}
+.tp-iso[data-k="handshake"] .hs-sp{transform-box:fill-box;transform-origin:50% 50%;opacity:0;animation:hsSpark 7s cubic-bezier(.2,.7,.2,1) infinite}
+@keyframes hsSpark{0%,19%{opacity:0;transform:translate(0,0) scale(.2)}22%{opacity:1;transform:translate(calc(var(--dx) * .35),calc(var(--dy) * .35)) scale(1)}40%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.5)}100%{opacity:0;transform:translate(0,0) scale(.2)}}
+.tp-iso[data-k="handshake"] .hs-sp.s0{--dx:-9px;--dy:-7px}.tp-iso[data-k="handshake"] .hs-sp.s1{--dx:8px;--dy:-9px}.tp-iso[data-k="handshake"] .hs-sp.s2{--dx:-4px;--dy:-13px}
+.tp-iso[data-k="handshake"] .hs-sp.s3{--dx:6px;--dy:-14px}.tp-iso[data-k="handshake"] .hs-sp.s4{--dx:-12px;--dy:-2px}.tp-iso[data-k="handshake"] .hs-sp.s5{--dx:11px;--dy:-3px}
+.tp-iso[data-k="handshake"] .hs-sp.s1,.tp-iso[data-k="handshake"] .hs-sp.s3{animation-delay:.16s}
+.tp-iso[data-k="handshake"] .hs-sp.s4,.tp-iso[data-k="handshake"] .hs-sp.s5{animation-delay:.32s}
+@media (prefers-reduced-motion:reduce){.tp-iso[data-k="handshake"] *{animation:none!important}}
+
+/* 28 · the close mixes the photograph with the object (Bazil: "create a
+   Higgsfield picture, real Tenthpin direction, or mix icon with picture").
+   The handshake photograph (generated, nano_banana_pro, Kuala Lumpur behind
+   the glass, art direction only) in a 4:3 frame at the right, fading into
+   the band at its foot; the handshake object stands across its lower-left
+   corner in the house palette and acts on its 7s cycle. */
+.a2-cta-viz.a2-hand-mix{opacity:1;left:47%;display:grid;place-items:center;-webkit-mask-image:none;mask-image:none;
+  padding:clamp(10px,2vh,30px) clamp(12px,2vw,32px) clamp(10px,2vh,30px) clamp(44px,4.5vw,76px)}
+.a2-hand-ph{position:relative;margin:0;width:min(100%,700px);aspect-ratio:4/3;display:block}
+.a2-hand-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 50%;border-radius:10px;display:block;
+  box-shadow:0 44px 90px -50px rgba(6,21,106,.5)}
+.a2-hand-ph::after{content:"";position:absolute;inset:0;border-radius:10px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(246,248,252,0) 58%,var(--pale) 100%)}
+.a2-hand-ph .tp-iso-w{position:absolute;left:-10%;bottom:-8%;width:42%;aspect-ratio:1;display:block;z-index:2;
+  filter:drop-shadow(0 20px 26px rgba(6,21,106,.2))}
+.a2-hand-ph .tp-iso-w svg{width:100%;height:100%;display:block;overflow:visible}
+@media (max-width:1000px){
+  .a2-cta-viz.a2-hand-mix{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:0 0 30px}
+  .a2-hand-ph{width:min(100%,540px);margin:0 auto;aspect-ratio:16/10}
+  .a2-hand-ph .tp-iso-w{left:-4%;bottom:-6%;width:40%}
+}
+
+/* 29 · the close as a process (Bazil, 8 Sep: "it shows how the process
+   works, those kind of processes are more important"). Four stations on a
+   dotted rail at the right of the band: numbered disc, object, title, one
+   line. A pulse runs the rail on a 6s loop and each disc rings as it passes.
+   The handshake photograph and object are unmounted. */
+.a2-cta-viz.a2-cta-flow{opacity:1;left:50%;display:grid;align-content:center;-webkit-mask-image:none;mask-image:none;
+  padding:clamp(10px,2vh,30px) 0 clamp(10px,2vh,30px) clamp(30px,3.2vw,60px)}
+.a2-flow{list-style:none;margin:0;padding:0;display:grid;position:relative;--fn:46px;--fob:76px;--fgap:22px}
+.a2-flow-st{display:grid;grid-template-columns:var(--fn) var(--fob) 1fr;column-gap:var(--fgap);align-items:center;position:relative;
+  padding:clamp(9px,1.5vh,16px) 0}
+.a2-flow-st::before{content:"";position:absolute;left:calc(var(--fn) / 2 - 1px);top:0;bottom:0;width:0;border-left:2px dotted rgba(5,32,245,.34);z-index:0}
+.a2-flow-st:first-child::before{top:50%}
+.a2-flow-st:last-child::before{bottom:50%}
+.a2-flow-n{position:relative;z-index:1;width:var(--fn);height:var(--fn);border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center}
+.a2-flow-n b{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;line-height:1}
+.a2-flow-n::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--elec);opacity:0;
+  animation:a2ring 6s ease-out infinite;animation-delay:calc(var(--i) * 1.5s + .35s)}
+@keyframes a2ring{0%{opacity:.7;transform:scale(.7)}22%{opacity:0;transform:scale(1.55)}100%{opacity:0;transform:scale(1.55)}}
+.a2-flow-ob{display:block;width:var(--fob);height:var(--fob)}
+.a2-flow-ob svg{width:100%;height:100%;display:block;overflow:visible}
+.a2-flow-ob .tp-iso .tp-act{animation-delay:calc(var(--i) * 1.5s + .4s)}
+.a2-flow-w{display:grid;gap:4px;max-width:34ch}
+.a2-flow-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
+.a2-flow-d{font-size:clamp(14px,1.05vw,15.5px);line-height:1.5;color:var(--soft)}
+.a2-flow-pulse{position:absolute;left:calc(var(--fn) / 2 - 5px);top:0;width:10px;height:10px;border-radius:50%;background:var(--elec);
+  box-shadow:0 0 0 4px rgba(5,32,245,.18);z-index:1;animation:a2pulse 6s linear infinite}
+@keyframes a2pulse{0%{top:calc(var(--fn) / 2 + 12px);opacity:0}6%{opacity:1}92%{opacity:1}100%{top:calc(100% - var(--fn) / 2 - 12px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.a2-flow-pulse,.a2-flow-n::after{animation:none;opacity:0}}
+@media (max-width:1000px){
+  .a2-cta-viz.a2-cta-flow{position:relative;left:auto;right:auto;top:auto;bottom:auto;padding:0 0 28px}
+  .a2-flow{--fn:40px;--fob:60px;--fgap:16px}
+  .a2-flow-n b{font-size:16px}
+}
+
+/* 30 · the close process in the shared capsule language (Bazil: "number and
+   icon in the same container", "icons that relate are better than the 3D
+   ones"): flat glyphs in the capsule, the rail under its disc */
+.a2-cap{display:inline-flex;align-items:center;gap:10px;height:48px;padding:3px 16px 3px 3px;border-radius:999px;background:#fff;
+  border:1px solid rgba(5,32,245,.22);box-shadow:0 10px 24px -16px rgba(6,21,106,.4);position:relative;z-index:1;justify-self:start}
+.a2-cap b{width:42px;height:42px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;
+  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;line-height:1}
+.a2-cap i{display:grid;place-items:center;width:24px;height:24px;color:var(--elec)}
+.a2-cap i svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
+.a2-cap i svg circle{fill:currentColor;stroke:none}
+.a2-cap::after{content:"";position:absolute;left:-1px;top:-1px;width:48px;height:48px;border-radius:50%;border:2px solid var(--elec);opacity:0;
+  animation:a2ring 6s ease-out infinite;animation-delay:calc(var(--i) * 1.5s + .35s)}
+.a2-flow-st{grid-template-columns:auto 1fr;column-gap:20px;padding:clamp(9px,1.5vh,16px) 0}
+.a2-flow-st::before{left:23px}
+.a2-flow-pulse{left:18px;width:12px;height:12px}
+@keyframes a2pulse{0%{top:34px;opacity:0}6%{opacity:1}92%{opacity:1}100%{top:calc(100% - 34px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.a2-cap::after{animation:none;opacity:0}}
+@media (max-width:1000px){.a2-cap{height:44px}.a2-cap b{width:38px;height:38px;font-size:15px}.a2-flow-st::before{left:21px}.a2-flow-pulse{left:16px}}
+
+/* 31 · the network map 15% larger again (Bazil) */
+.a2-net-stage{min-height:clamp(495px,38vw,620px)}
+/* 32 · no curved corners (Bazil): the close capsules are square, ring off */
+.a2-cap,.a2-cap b{border-radius:0}
+.a2-cap::after{display:none}
+
+/* 33 · the phone stacks, RESTATED LAST (bug sweep, 9 Sep 2026). Later
+   unconditional rules had killed the earlier `@media (max-width:1000px)`
+   stacks: `.a2-net` stayed a 146/172px two-column grid so "Kuala Lumpur"
+   broke one character per line, and `.a2-team-grid` stayed two-column so the
+   team photograph shrank to 135px. Anything that changes these grids must
+   stay above this block. */
+@media (max-width:1000px){
+  .a2-net{grid-template-columns:1fr}
+  .a2-team-grid{grid-template-columns:1fr}
+  .a2-reasons{grid-template-columns:1fr}
+}
+
+
+/* 10 Sep 2026 (QA audit): readability floor. Every label, chip, eyebrow and
+   note whose final size sat under 11px now reads at 11px. Media overrides are
+   restated inside their own query so the desktop size is untouched. */
+.a2-cue,
+.a2-pillar em,
+.a2-city span,
+.a2-sup em,
+.a2-quote cite,
+.a2-portrait span{font-size:11px}
+@media (max-width:640px){.a2-globe-read,.a2-globe-key,.a2-globe-lab{font-size:11px}}
+
+/* 10 Sep 2026 (QA audit): phone restatements appended below every later
+   block (house rule from pass 27). The network stage kept its 495px desktop
+   minimum on a phone, and the hero title never took its mobile size. */
+@media (max-width:1000px){.a2-net-stage{min-height:clamp(320px,60vw,420px)}}
+@media (max-width:640px){.a2-hero h1{font-size:clamp(30px,8.6vw,40px)}}
+
+
+/* 10 Sep 2026 (QA audit): the header wordmark and the page content share one
+   left edge. The header ran on the shared --maxw/--gut while this page keeps
+   its own container, so the two edges disagreed by 26 to 46px at 1440. Same
+   pattern as home2.css rule 570. */
+body:has(.a2) .nav-in{max-width:1360px;padding:0 clamp(18px,3vw,52px)}
+
+/* 10 Sep 2026 (QA audit): the centred globe hero's h1 rule (0,2,1) outranked
+   the phone size, so the title held 40px on a 390px screen and wrapped the
+   blue phrase onto four lines. */
+@media (max-width:640px){.a2-hero.globe h1{font-size:clamp(30px,8.6vw,40px)}}
+
+/* 11 Sep 2026 (QA follow-up, phone pass): the eight office labels on the hero
+   sphere pile onto each other at 390 (Shenyang over Shanghai over Osaka). The
+   pings stay and the readout under the sphere names each office in turn; the
+   labels return from 641px. */
+@media (max-width:640px){.a2-hero .a2-globe-lab{display:none}}
+
+/* 15 Sep 2026 (one header on every page): the site container */
+.a2-in{max-width:1340px}
+body:has(.a2) .nav-in{max-width:1340px}
+
+/* 18 Sep 2026 · no line animation anywhere (Bazil: "no line animation
+   throughout the website"). Lines stay drawn; nothing grows, draws itself,
+   sweeps or runs along them. Mechanism dots in diagrams and on the globe
+   are kept pending his call. */
+.a2-flow-pulse{display:none;animation:none}
+.tp-iso[data-k="industry"] .tp-draw{animation:none;stroke-dasharray:none}
+
+/* ── 22 Sep 2026 (Bazil, live) ──────────────────────────────────────────────
+   40 · no zoom on hover and no floating shadow under a photograph */
+.a2-reason:hover .a2-reason-shot img,.a2-portrait:hover img{transform:none!important}
+.a2-reason-shot,.a2-reason-shot:hover,.a2-portrait,.a2-portrait:hover{box-shadow:none!important}
+/* 41 · the three reasons read in two lines each */
+.a2-reason-row p,.a2-reason p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* 42 · the close process loops (Bazil: "where's the looping process every 2-3
+   seconds"). One 12s clock, three seconds a station: the station in its turn
+   takes an electric edge and its words step forward. The rail is a solid
+   hairline, nothing runs along it, and no capsule casts a shadow. */
+.a2-flow-st::before{border-left:1.5px solid rgba(5,32,245,.3)}
+.a2-flow-pulse{display:none!important}
+.a2-cap{box-shadow:none;transition:none;animation:a2capOn 12s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i) * 3s)}
+.a2-cap i{animation:a2icoOn 12s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i) * 3s)}
+.a2-flow-t{animation:a2txtOn 12s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i) * 3s)}
+.a2-flow-w{animation:a2stepOn 12s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i) * 3s)}
+@keyframes a2capOn{0%,25%,100%{border-color:rgba(5,32,245,.22);background:#fff}3%,22%{border-color:#0520F5;background:#0520F5}}
+@keyframes a2icoOn{0%,25%,100%{color:#0520F5}3%,22%{color:#fff}}
+@keyframes a2txtOn{0%,25%,100%{color:var(--ink)}3%,22%{color:#0520F5}}
+@keyframes a2stepOn{0%,25%,100%{transform:none}3%,22%{transform:translateX(6px)}}
+@media (prefers-reduced-motion:reduce){.a2-cap,.a2-cap i,.a2-flow-t,.a2-flow-w{animation:none}}
+
+/* 43 · the hero world: the stage runs the full width of the window and the
+   disc nearly fills it (Bazil: "bigger world, take space left right") */
+.a2{overflow-x:clip}
+.a2-hero.globe .a2-globe{width:100vw;max-width:none;justify-self:center;aspect-ratio:100/36;max-height:700px}
+@media (max-width:1000px){.a2-hero.globe .a2-globe{aspect-ratio:100/48;max-height:none}}
+@media (max-width:640px){.a2-hero.globe .a2-globe{aspect-ratio:100/64}}
+/* 44 · the office map takes the width (Bazil: "take more horizontal space"):
+   a narrower words column and a stage that runs out to the window's right
+   edge. Desktop only, so the phone stack in block 33 is left alone. */
+@media (min-width:1001px){
+  .a2-net{grid-template-columns:minmax(0,38fr) minmax(0,62fr)}
+  .a2-net .a2-h{font-size:clamp(26px,2.45vw,38px)}
+  .a2-net-stage{margin-right:calc(-1 * (max(0px,(100vw - 1340px) / 2) + clamp(18px,3vw,52px)))}
+  /* the narrower column keeps every city on one line: the region label (mono,
+     and already said by the flag) goes, the name never breaks */
+  .a2-net .a2-city{grid-template-columns:44px minmax(0,1fr)}
+  .a2-net .a2-city b{white-space:nowrap;overflow-wrap:normal}
+  .a2-net .a2-city>span:last-child{display:none}
+}
+/* 45 · the house button face on About too: electric, Space Grotesk, no
+   shadow, no lift (it was the last mono navy button with a floating shadow) */
+.a2 .a2-cta,.a2 .a2-cta.lg{font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;background:#0520F5;box-shadow:none}
+.a2 .a2-cta:hover{transform:none;background:#041BD0;box-shadow:none}
+
+/* 24 Sep 2026, later still (phone pass): the globe is 100vw wide, and a 1fr
+   track grows to its widest item, so the title column was 390px on a 354px
+   content box and the centred copy sat 18px right of centre. The track is
+   minmax(0,1fr): the copy centres on the page, the globe still bleeds. */
+.a2-hero.globe{grid-template-columns:minmax(0,1fr)}
+.a2-hero.globe .a2-hero-copy{width:100%}
+/* phone pass, two more on this page: (1) the inspection photograph carried
+   min-height:220px through its 16/10 aspect ratio, which becomes a 352px
+   minimum width in a 308px column, so it overran the card to the right; the
+   height now follows the column. (2) the CTA step list had no gutter below
+   1000px, so the caps sat on the viewport edge and the words ran past it. */
+@media (max-width:1000px){
+  .a2-audit{min-height:0;aspect-ratio:4/3}
+  .a2-cta-viz.a2-cta-flow{padding:0 clamp(18px,3vw,52px) 28px}
+  .a2-flow-st{grid-template-columns:auto minmax(0,1fr)}
+}
+
+/* 24 Sep 2026, evening (Bazil: "make the background related, like working with
+   a partner"): the close carries one of their own frames, a partner talking a
+   client through the landscape. Solid paper over the copy, the photograph
+   coming through on the right under a pale wash, so the steps stay legible. */
+.a2-cta-band.a2-cta-photo{background:var(--pale)}
+.a2-cta-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.a2-cta-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 42%;display:block}
+.a2-cta-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(234,240,252,1) 0%,rgba(234,240,252,1) 42%,rgba(234,240,252,.9) 60%,rgba(234,240,252,.78) 100%)}
+.a2-cta-band.a2-cta-photo .a2-in,.a2-cta-band.a2-cta-photo .a2-cta-viz{position:relative;z-index:2}
+@media (max-width:1000px){
+  .a2-cta-bg::after{background:linear-gradient(180deg,rgba(234,240,252,1) 0%,rgba(234,240,252,.94) 55%,rgba(234,240,252,.84) 100%)}
+}
+/* the steps come down from the photograph into the left column, under the
+   copy and above the button, so no word sits on the picture; the photograph
+   owns the right half, fading into paper toward the copy. */
+.a2-cta-band.a2-cta-photo .a2-in{display:grid;grid-template-columns:minmax(0,50fr) minmax(0,50fr);gap:0 clamp(24px,4vw,64px);align-items:start}
+.a2-cta-band.a2-cta-photo .a2-in > *{grid-column:1;min-width:0}
+.a2-cta-photo .a2-cta-viz.a2-cta-flow{position:static;left:auto;right:auto;top:auto;bottom:auto;display:block;padding:0;margin-top:clamp(26px,3.6vh,40px);opacity:1;
+  -webkit-mask-image:none;mask-image:none}
+.a2-cta-photo .a2-flow{max-width:560px}
+.a2-cta-photo .a2-cta-bg img{object-position:72% 40%}
+.a2-cta-photo .a2-cta-bg::after{background:linear-gradient(90deg,rgba(234,240,252,1) 0%,rgba(234,240,252,1) 44%,rgba(234,240,252,.62) 56%,rgba(234,240,252,.1) 72%,rgba(234,240,252,.04) 100%)}
+@media (max-width:1000px){
+  .a2-cta-band.a2-cta-photo .a2-in{grid-template-columns:1fr}
+  .a2-cta-photo .a2-cta-bg::after{background:rgba(234,240,252,.9)}
+}
+.a2-cta-band.a2-cta-photo .a2-in > .a2-cta{justify-self:start}
+.a2-cta-photo .a2-cta-bg img{object-position:70% 34%}
+
+/* leadership: two portraits keep their three-column size and sit centred */
+@media (min-width:761px){.a2-portraits:has(> .a2-portrait:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr));max-width:66%;margin-inline:auto}}
+.a2-portrait span{white-space:normal}

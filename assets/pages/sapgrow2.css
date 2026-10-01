@@ -1,0 +1,409 @@
+/* ==========================================================================
+   sapgrow2.css · page-local styles for the /sapgrow2 service study
+   --------------------------------------------------------------------------
+   WHAT THIS IS
+   SAP Grow, built to the 27 Aug note as the most ACCESSIBLE page on the
+   site: a modern business editorial page, not SAP documentation. Six bands.
+
+   THE ONE HARD RULE · NO 3D
+   The note lists what this page must not do, and 3D is first on the list.
+   There is no scene module for /sapgrow2 and no canvas anywhere in this
+   sheet. Photography carries every band. That is also what separates it
+   from /rise-move2, which is the glass-dialect page.
+
+   THE DEVICE · FRAGMENTATION RESOLVING INTO ORDER
+   The note's closing idea: the page is about going from messy to organised,
+   so the LAYOUT tells that story before the copy does. --drift is a per-band
+   multiplier on a small rotation and a small offset. It is 1 at the problem
+   band, 0.45 through the method, and 0 from the timeline down, where every
+   edge lines up. Kept deliberately small (under a degree) so it reads as
+   composed rather than broken, and switched off entirely under
+   prefers-reduced-motion and on narrow screens.
+
+   HOW IT IS SCOPED
+   Every rule sits under .sg. tp.css and premium.css load underneath.
+
+   ORDER
+   00 tokens · 01 primitives · 02 hero · 03 problem · 04 turn ·
+   05 method · 06 timeline · 07 case · 08 CTA · 09 responsive ·
+   10 reduced motion
+   ========================================================================== */
+
+/* --- 00 · TOKENS --------------------------------------------------------- */
+.sg{
+  --ink:#0D1526;
+  --navy:#06156A;
+  --elec:#0520F5;
+  --soft:#4A5872;
+  --faint:#7B879D;
+  --paper:#FFFFFF;
+  --cool:#F4F7FC;
+  --tint:#EDF3FD;
+  --pale:#DCE7F8;
+  --hair:rgba(13,21,38,.09);
+  --hair2:rgba(13,21,38,.15);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --band:clamp(80px,12vh,168px);
+  --drift:0;   /* per-band, see the note above */
+  background:var(--paper);
+  color:var(--ink);
+  display:block;
+  overflow-x:clip;
+}
+
+/* --- 01 · PRIMITIVES ----------------------------------------------------- */
+.sg-band{padding:var(--band) 0;position:relative}
+.sg-band.cool{background:var(--cool)}
+.sg-band.tint{background:var(--tint)}
+.sg-in{max-width:1340px;margin:0 auto;padding:0 clamp(18px,3vw,52px);width:100%;position:relative}
+.sg-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.05;
+  font-size:clamp(29px,4vw,54px);margin:20px 0 0;max-width:20ch}
+/* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
+   prototype 3). Where the heading is now first in its column it no longer
+   needs the space the eyebrow used to sit in. */
+.sg-h:first-child,.sg h1:first-child{margin-top:0}
+.sg-h em{font-style:normal;color:var(--elec)}
+.sg-sub{color:var(--soft);font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.68;max-width:56ch;margin:22px 0 0}
+.sg-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--navy);color:#fff;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:17px 30px;border:0;border-radius:0;text-decoration:none;
+  box-shadow:0 16px 34px -20px rgba(6,21,106,.75);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s}
+.sg-cta:hover{transform:translateY(-2px);background:#0A1C80;box-shadow:0 22px 44px -20px rgba(6,21,106,.85)}
+.sg-cta.ghost{background:transparent;color:var(--navy);border:1px solid var(--hair2);box-shadow:none}
+.sg-cta.ghost:hover{border-color:var(--elec);color:var(--elec);background:rgba(5,32,245,.05)}
+.sg-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(26px,3.6vh,40px)}
+.sg-note{margin-top:16px;font-size:12.5px;line-height:1.55;color:var(--faint)}
+/* every photograph on the page goes through one frame treatment */
+.sg-shot{position:relative;margin:0;overflow:hidden;border-radius:0;background:var(--pale)}
+.sg-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* --- 02 · HERO · image-led, copy sitting on the photograph --------------
+   Band 1 of 6. Explicitly NOT the Rise-Move shape (type left, visual right):
+   one large bright photograph, with the copy in a white card resting on its
+   lower left, the way a magazine opener works. */
+.sg-hero{position:relative;min-height:92svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--pale)}
+.sg-hero-img{position:absolute;inset:0;z-index:0}
+.sg-hero-img img{width:100%;height:100%;object-fit:cover;object-position:62% 50%;display:block}
+/* a soft white wash at the lower left so the card sits on the picture
+   instead of being dropped on top of it */
+.sg-hero-img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.32) 34%,rgba(255,255,255,0) 62%)}
+.sg-hero-in{position:relative;z-index:2;width:100%;max-width:1340px;margin:0 auto;
+  padding:0 clamp(18px,3vw,52px) clamp(40px,7vh,96px)}
+.sg-hero-card{background:rgba(255,255,255,.95);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
+  border-radius:0;padding:clamp(28px,3.4vw,54px);max-width:min(640px,92%);
+  box-shadow:0 40px 80px -50px rgba(13,21,38,.55)}
+.sg-hero-card h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
+  font-size:clamp(30px,3.3vw,52px);margin:20px 0 0}
+.sg-hero-card h1 em{font-style:normal;color:var(--elec)}
+.sg-hero-card p{color:var(--soft);font-size:clamp(15px,1.15vw,16.5px);line-height:1.66;margin:18px 0 0;max-width:48ch}
+.sg-scroll{position:absolute;z-index:3;right:clamp(18px,3vw,52px);bottom:clamp(28px,5vh,64px);
+  width:44px;height:44px;border-radius:0;background:rgba(255,255,255,.9);display:grid;place-items:center;
+  color:var(--navy);box-shadow:0 12px 26px -16px rgba(13,21,38,.6)}
+.sg-scroll svg{width:16px;height:16px;animation:sgnudge 2.4s var(--ease) infinite}
+@keyframes sgnudge{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+
+/* --- 03 · PROBLEM · one big photograph, four statements ------------------
+   Band 2. --drift is at full strength here: the photograph tilts a hair, the
+   four statements step in and out, and the gutters are uneven. This is the
+   "messy" end of the page. No boxes: numbers and rules only, per the note. */
+.sg-prob{--drift:1}
+.sg-prob-grid{display:grid;grid-template-columns:60fr 40fr;gap:clamp(26px,4vw,66px);align-items:stretch;
+  margin-top:clamp(36px,5vh,64px)}
+.sg-prob-grid > *{min-width:0}
+.sg-prob-shot{min-height:clamp(400px,54vh,620px);transform:rotate(calc(var(--drift) * -0.6deg));
+  box-shadow:0 40px 80px -56px rgba(13,21,38,.5)}
+.sg-prob-shot img{object-position:50% 42%}
+.sg-pains{list-style:none;margin:0;padding:0}
+.sg-pain{padding:clamp(20px,2.6vh,30px) 0;border-top:1px solid var(--hair);
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(14px,2vw,26px);align-items:baseline}
+.sg-pain:last-child{border-bottom:1px solid var(--hair)}
+/* the stagger: each statement sits a little further in than the last, and
+   the drift multiplier switches it off further down the page */
+.sg-pain:nth-child(1){margin-left:calc(var(--drift) * 0px)}
+.sg-pain:nth-child(2){margin-left:calc(var(--drift) * 18px)}
+.sg-pain:nth-child(3){margin-left:calc(var(--drift) * 7px)}
+.sg-pain:nth-child(4){margin-left:calc(var(--drift) * 24px)}
+.sg-pain s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;
+  letter-spacing:.1em;color:var(--elec)}
+.sg-pain b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+  font-size:clamp(17px,1.5vw,22px);line-height:1.18}
+.sg-pain span{display:block;margin-top:8px;font-size:14px;line-height:1.6;color:var(--soft);max-width:34ch}
+
+/* --- 04 · TURN · the large-type moment between problem and method ------- */
+.sg-turn{background:var(--navy);color:#fff;padding:clamp(64px,10vh,132px) 0}
+.sg-turn p{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;
+  line-height:1.08;font-size:clamp(26px,4.4vw,62px);max-width:19ch}
+.sg-turn p em{font-style:normal;color:#7489FF}
+
+/* --- 05 · METHOD · sticky index, photography scrolling past it ----------
+   Band 3. --drift is halved: things are starting to line up. The index is
+   deliberately small and quiet, because the photographs are the subject
+   here; /rise-move2 does the opposite (small text column, pinned visual). */
+.sg-method{--drift:.45}
+.sg-run{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:clamp(26px,5vw,90px);
+  margin-top:clamp(36px,5vh,64px);align-items:start}
+.sg-run > *{min-width:0}
+.sg-index{position:sticky;top:calc(var(--sg-stick,110px) + 26px)}
+.sg-index-k{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--faint);display:block;margin-bottom:20px}
+.sg-index ol{list-style:none;margin:0;padding:0}
+.sg-index li{display:flex;align-items:center;gap:13px;padding:11px 0;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--faint);transition:color .45s var(--ease)}
+.sg-index li i{font-style:normal;width:9px;height:9px;border-radius:50%;flex:0 0 auto;
+  border:2px solid var(--hair2);background:var(--paper);transition:border-color .45s,background .45s,transform .45s var(--ease)}
+.sg-index li.on{color:var(--elec)}
+.sg-index li.on i{border-color:var(--elec);background:var(--elec);transform:scale(1.25)}
+.sg-steps{display:flex;flex-direction:column;gap:clamp(48px,9vh,120px)}
+.sg-step{scroll-margin-top:140px}
+.sg-step .sg-shot{aspect-ratio:16/10;background:var(--cool);
+  transform:translateX(calc(var(--drift) * var(--n,0) * 9px)) rotate(calc(var(--drift) * var(--r,0) * .4deg))}
+.sg-step .sg-shot img{object-position:50% 38%}
+.sg-step-lab{display:flex;align-items:baseline;gap:14px;margin-top:clamp(20px,2.8vh,32px)}
+.sg-step-lab s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;
+  letter-spacing:.12em;color:var(--elec)}
+.sg-step-lab em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.sg-step h3{margin:12px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;
+  font-size:clamp(21px,2.2vw,34px);line-height:1.14;max-width:20ch}
+.sg-step p{margin:14px 0 0;font-size:15px;line-height:1.66;color:var(--soft);max-width:52ch}
+
+/* --- 06 · TIMELINE · everything lines up from here down -----------------
+   Band 4. --drift is 0. The timeline is the main visual, and the
+   deliverables photograph beside it is what makes "deliverables" tangible. */
+.sg-time{--drift:0}
+.sg-rail{margin-top:clamp(40px,6vh,76px);position:relative}
+.sg-rail-line{position:absolute;left:0;right:0;top:34px;height:2px;background:var(--pale);border-radius:0}
+.sg-rail-line::after{content:"";position:absolute;left:0;top:0;bottom:0;width:100%;
+  background:linear-gradient(90deg,var(--elec),rgba(5,32,245,.28));border-radius:0}
+.sg-stops{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.6vw,24px)}
+.sg-stop b{display:block;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;
+  letter-spacing:.17em;text-transform:uppercase;color:var(--navy)}
+.sg-stop i{display:block;margin:15px 0 0;width:13px;height:13px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--elec);position:relative;z-index:2}
+.sg-stop ul{list-style:none;margin:18px 0 0;padding:0}
+.sg-stop li{font-size:13.5px;line-height:1.5;color:var(--soft);padding:5px 0}
+.sg-deliv{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,66px);align-items:center;
+  margin-top:clamp(48px,7vh,96px)}
+.sg-deliv > *{min-width:0}
+.sg-deliv-shot{aspect-ratio:3/2}
+/* the labels that make the outputs tangible: a dot on the object, a hairline
+   to the word. Positioned as percentages so they hold at any width. */
+.sg-tag{position:absolute;z-index:3;display:flex;align-items:center;gap:9px;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--navy);background:rgba(255,255,255,.94);
+  border-radius:0;padding:7px 12px;box-shadow:0 10px 22px -14px rgba(13,21,38,.6);white-space:nowrap}
+.sg-tag::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--elec);flex:0 0 auto}
+.sg-tag.t1{left:6%;top:12%}
+.sg-tag.t2{right:6%;top:26%}
+.sg-tag.t3{left:11%;bottom:16%}
+.sg-tag.t4{right:9%;bottom:9%}
+.sg-deliv-copy h3{margin:16px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;
+  letter-spacing:-.026em;font-size:clamp(20px,2vw,30px);line-height:1.16;max-width:18ch}
+
+/* --- 07 · CASE · the magazine spread ------------------------------------
+   Band 5. One wide image, then the business and the result side by side,
+   then one result statement across the foot. No three-card layout, per the
+   note, and no invented figures: the numeric outcomes are drawn as slots. */
+.sg-case{margin-top:clamp(38px,5.4vh,68px);border:1px solid var(--hair);border-radius:0;overflow:hidden;
+  background:var(--paper)}
+.sg-case-shot{aspect-ratio:21/9;border-radius:0}
+.sg-case-cols{display:grid;grid-template-columns:1fr 1fr}
+.sg-case-cols > *{min-width:0;padding:clamp(26px,3.2vw,50px)}
+.sg-case-cols > *:first-child{border-right:1px solid var(--hair)}
+.sg-case-cols em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.sg-case-row{padding:14px 0;border-bottom:1px solid var(--hair)}
+.sg-case-row:last-child{border-bottom:0;padding-bottom:0}
+.sg-case-row b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+  font-size:clamp(16px,1.35vw,19px);line-height:1.2}
+.sg-case-row span{display:block;margin-top:6px;font-size:13.5px;line-height:1.55;color:var(--soft)}
+.sg-gains{list-style:none;margin:18px 0 0;padding:0}
+.sg-gains li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline;padding:10px 0;
+  font-size:15px;line-height:1.5;color:var(--ink)}
+.sg-gains li s{text-decoration:none;color:var(--elec);font-weight:700}
+.sg-figs{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.sg-fig{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--faint);border:1px dashed var(--hair2);border-radius:0;padding:8px 11px}
+.sg-case-quote{border-top:1px solid var(--hair);padding:clamp(24px,3vw,44px);background:var(--cool)}
+.sg-case-quote p{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.026em;
+  font-size:clamp(19px,2.1vw,30px);line-height:1.2;max-width:30ch}
+.sg-case-quote cite{display:block;margin-top:14px;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;
+  font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
+
+/* --- 08 · CTA · half copy, half panoramic photograph ------------------- */
+.sg-close{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:clamp(340px,48vh,520px)}
+.sg-close > *{min-width:0}
+.sg-close-copy{background:var(--tint);display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(40px,6vw,96px) clamp(24px,4vw,72px)}
+.sg-close-copy h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
+  font-size:clamp(27px,3.4vw,46px);margin:18px 0 0;max-width:17ch}
+.sg-close-copy h2 em{font-style:normal;color:var(--elec)}
+.sg-close-copy p{margin:20px 0 0;font-size:clamp(15px,1.15vw,17px);line-height:1.66;color:var(--soft);max-width:44ch}
+.sg-close-shot{position:relative;overflow:hidden;background:var(--pale)}
+.sg-close-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 34%;display:block}
+
+/* --- 09 · RESPONSIVE · two tiers --------------------------------------- */
+@media (max-width:1000px){
+  /* the drift is a desktop composition device; on one column it would just
+     read as broken alignment */
+  .sg-prob,.sg-method{--drift:0}
+  .sg-hero{min-height:auto;padding-top:108px}
+  .sg-hero-img img{object-position:66% 50%}
+  .sg-hero-card{max-width:none}
+  .sg-hero-in{padding-bottom:clamp(28px,5vh,56px)}
+  .sg-scroll{display:none}
+  .sg-prob-grid{grid-template-columns:1fr;gap:clamp(24px,4vh,42px)}
+  .sg-prob-shot{aspect-ratio:auto;min-height:clamp(260px,42vh,380px)}
+  .sg-prob-shot::after{display:none}
+  .sg-run{grid-template-columns:1fr;gap:clamp(22px,3vh,34px)}
+  /* the index becomes a horizontal strip pinned under the header */
+  .sg-index{position:sticky;top:calc(var(--sg-stick,100px) + 2px);z-index:20;background:var(--paper);
+    padding:10px 0;border-bottom:1px solid var(--hair)}
+  .sg-index-k{display:none}
+  .sg-index ol{display:flex;gap:18px;overflow:auto;scrollbar-width:none;min-width:0}
+  .sg-index ol::-webkit-scrollbar{height:0}
+  .sg-index li{padding:4px 0;white-space:nowrap;flex:0 0 auto}
+  .sg-deliv{grid-template-columns:1fr;gap:clamp(22px,4vh,38px)}
+  .sg-case-shot{aspect-ratio:16/9}
+  .sg-case-cols{grid-template-columns:1fr}
+  .sg-case-cols > *:first-child{border-right:0;border-bottom:1px solid var(--hair)}
+  .sg-close{grid-template-columns:1fr}
+  .sg-close-shot{aspect-ratio:16/9}
+  /* the timeline turns vertical rather than shrinking to five unreadable columns */
+  .sg-rail-line{display:none}
+  .sg-stops{grid-template-columns:1fr;gap:0}
+  .sg-stop{display:grid;grid-template-columns:auto 1fr;gap:0 16px;align-items:start;
+    padding:16px 0;border-bottom:1px solid var(--hair)}
+  .sg-stop i{grid-column:1;grid-row:1 / span 2;margin:3px 0 0}
+  .sg-stop b{grid-column:2;grid-row:1}
+  .sg-stop ul{grid-column:2;grid-row:2;margin:8px 0 0}
+}
+@media (max-width:640px){
+  .sg{--band:clamp(54px,9vh,80px)}
+  .sg-hero-card{padding:24px 20px;border-radius:0}
+  .sg-tag{font-size:8px;padding:5px 9px}
+  .sg-tag.t2,.sg-tag.t4{display:none}
+}
+
+/* --- 10 · REDUCED MOTION ----------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  .sg{--drift:0}
+  .sg-prob,.sg-method{--drift:0}
+  .sg-scroll svg{animation:none}
+  .sg-index li,.sg-index li i{transition:none}
+}
+
+
+/* ═══ 4 SEP 2026 · PROTOTYPE 3 PASS · NO LINE DESIGN ═════════════════════
+   Client direction, repeated through the home review: no hairline rules
+   between content. Only single-sided dividers come off here; framed objects
+   (chips, cards, figures, panels) keep their border, because those are
+   objects rather than rules. */
+.sg-pain{border-top:0}
+.sg-case-row{border-bottom:0}
+.sg-case-quote{border-top:0}
+.sg .sg-pain{border-top:0;border-bottom:0}
+
+/* 7 Sep 2026 (Bazil: "why isn't the background of the header gone"): the
+   bar has no ground at rest on this route, as on Home and About. This sheet
+   loads only on this route, so the root selector cannot leak. premium.css
+   L73 sets fill and hairline with !important, hence the same here. */
+body:has(.sg) .nav.attop{background:transparent!important;border-bottom-color:transparent!important;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+body:has(.sg) .nav{transition:background .45s ease,border-color .45s ease}
+
+
+/* 10 Sep 2026 (QA audit): readability floor. Every label, chip, eyebrow and
+   note whose final size sat under 11px now reads at 11px. Media overrides are
+   restated inside their own query so the desktop size is untouched. */
+.sg-index-k,
+.sg-step-lab em,
+.sg-stop b,
+.sg-tag,
+.sg-case-cols em,
+.sg-fig,
+.sg-case-quote cite{font-size:11px}
+@media (max-width:640px){.sg-tag{font-size:11px}}
+
+
+/* 10 Sep 2026 (QA audit): the header wordmark and the page content share one
+   left edge. The header ran on the shared --maxw/--gut while this page keeps
+   its own container, so the two edges disagreed by 26 to 46px at 1440. Same
+   pattern as home2.css rule 570. */
+body:has(.sg) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
+
+/* 15 Sep 2026 (QA C08) · the split hero. Copy on white at the left, the
+   photograph at the right running past the container edge, the way the
+   S/4HANA and Life sciences heroes are built. No wash, no box, nothing laid
+   over the picture. The old full-bleed rules (.sg-hero-img, .sg-hero-in and
+   the panel or card) no longer match any markup. */
+.sg-hero.split{display:block;min-height:0;background:#fff;overflow:hidden;
+  padding:clamp(128px,15vh,180px) 0 clamp(56px,8vh,104px)}
+.sg-hero-grid{max-width:1340px;margin:0 auto;padding:0 clamp(18px,3vw,52px);
+  display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,2.6vw,44px);align-items:center}
+.sg-hero-grid > *{min-width:0}
+.sg-hero-copy{grid-column:1 / 6;position:relative;z-index:2}
+.sg-hero-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+  font-size:clamp(32px,3.4vw,56px);margin:0;max-width:18ch}
+.sg-hero-copy h1 em{font-style:normal;color:var(--elec)}
+.sg-hero-copy > p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:20px 0 0;max-width:46ch}
+.sg-hero-shot{grid-column:6 / 13;position:relative;margin:0;overflow:hidden;aspect-ratio:16/10;background:var(--pale,#EEF3FB);
+  margin-right:calc(-1 * clamp(18px,3vw,52px));width:calc(100% + clamp(40px,6vw,120px))}
+.sg-hero-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.sg-hero.split .sg-scroll{display:none}
+@media (max-width:1000px){
+  .sg-hero.split{padding:112px 0 clamp(40px,6vh,64px)}
+  .sg-hero-grid{grid-template-columns:1fr;gap:clamp(22px,4vh,38px)}
+  .sg-hero-copy{grid-column:1 / -1;order:1}
+  .sg-hero-shot{grid-column:1 / -1;order:2;width:calc(100% + clamp(18px,3vw,52px));margin-right:calc(-1 * clamp(18px,3vw,52px))}
+}
+@media (max-width:640px){
+  .sg-hero-copy h1{font-size:clamp(27px,7.4vw,44px)}
+}
+/* 15 Sep 2026 · Grow's two actions are wider than five tracks (about 508px of
+   buttons in a 480px column), so they stacked; its copy takes six tracks */
+@media (min-width:1001px){
+  .sg-hero-copy{grid-column:1 / 7}
+  .sg-hero-shot{grid-column:7 / 13}
+}
+
+/* 15 Sep 2026 (unbroken emphasis, house rule of 7 Sep): a blue phrase in a
+   title is one object and never splits across lines above 640px */
+.sg h1 em,.sg h2 em,.sg h3 em{white-space:nowrap}
+@media (max-width:640px){.sg h1 em,.sg h2 em,.sg h3 em{white-space:normal}}
+
+/* 24 Sep 2026, later still (phone pass): the sticky step rail ran 459px in a
+   354px column, so "4 Enable" sat off the right edge behind a hidden
+   scrollbar. Under 420px the four steps sit in a two-by-two grid: smaller
+   type, tighter dots, every step visible, nothing to swipe. */
+@media (max-width:420px){
+  .sg-index ol{display:grid;grid-template-columns:1fr 1fr;gap:2px 12px;overflow:visible}
+  .sg-index li{gap:8px;font-size:12px;padding:3px 0}
+  .sg-index li i{width:7px;height:7px}
+}
+
+/* 24 Sep 2026, evening (Bazil: "where's the visual for this"): the navy turn
+   band carries the hub's Grow drawing on its right half, on-navy colourway. */
+.sg-turn .sg-turn-in{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:clamp(28px,5vw,88px);align-items:center}
+.sg-turn .sg-turn-in > p{margin:0}
+.sg-turn-dg{justify-self:end;width:100%;max-width:540px}
+.sg-turn .sv-dg{display:block;width:100%;height:auto;overflow:visible}
+.sg-turn .dg-node{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.3);stroke-width:1.2}
+.sg-turn .dg-node.soft{fill:rgba(255,255,255,.08);stroke:rgba(255,255,255,.3)}
+.sg-turn .dg-node.on{fill:var(--elec);stroke:none}
+.sg-turn .dg-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:13.5px;fill:#fff}
+.sg-turn .dg-t.sm{font-size:12px}
+.sg-turn .dg-t.on{fill:#fff}
+.sg-turn .dg-lab{font-family:"Inter",sans-serif;font-weight:700;font-size:9px;letter-spacing:.14em;fill:rgba(255,255,255,.55)}
+.sg-turn .dg-lab.on{fill:rgba(255,255,255,.72)}
+.sg-turn .dg-line{fill:none;stroke:rgba(255,255,255,.38);stroke-width:1.6;stroke-dasharray:2 5;stroke-linecap:round}
+.sg-turn .dg-stroke{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round}
+.sg-turn .dg-flag{fill:#8C9EFF}
+.sg-turn .dg-dot{fill:#fff}
+@media (max-width:1000px){
+  .sg-turn .sg-turn-in{grid-template-columns:1fr;gap:26px}
+  .sg-turn-dg{justify-self:start;max-width:520px}
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Mercedes-Benz">
+<title>Mercedes-Benz</title>
+<g fill="currentColor">
+<path fill-rule="evenodd" d="M50 3.0a47.0 47.0 0 1 0 0 94.0a47.0 47.0 0 1 0 0 -94.0zm0 4.6a42.4 42.4 0 1 1 0 84.8a42.4 42.4 0 1 1 0 -84.8z"/>
+<polygon points="50.00,5.50 57.60,50.00 42.40,50.00"/>
+<polygon points="88.54,72.25 46.20,56.58 53.80,43.42"/>
+<polygon points="11.46,72.25 46.20,43.42 53.80,56.58"/>
+</g>
+</svg>

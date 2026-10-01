@@ -1,0 +1,218 @@
+/* ==========================================================================
+   index-v2.css · page-local styles for index-v2.html
+   Extracted verbatim from the page's inline <style> blocks. Rule order is
+   preserved exactly as it appeared in the document, so the cascade is unchanged:
+     1. #bmwsTpCss   (workspace top-bar residue, targets .nav-top / .wsw)
+     2. #ledgerCss   (anon logo row, case spine, faces band, method strip)
+     3. #dicoCss     (animated deadline icons)
+     4. loader       (#tpLoader, was inline in the body)
+     5. utilities    (idx-u-*, replacing former style="" attributes)
+   Loaded AFTER assets/tp.css. The admin-bar style block (#bmwsCss) stays inline
+   in the page inside the WORKSPACE-ONLY fence and is not duplicated here.
+   ========================================================================== */
+
+/* --- 1 · was <style id="bmwsTpCss"> ------------------------------------- */
+/* workspace bar, matching the IAQ pattern in Tenthpin blue */
+.nav-top{background:#0B1020!important;border-bottom:1px solid #1d2438!important}
+.nt-in{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;flex-wrap:wrap!important;padding:9px 22px!important;max-width:none!important;margin:0!important}
+.tb-mark{display:flex!important;flex-direction:column!important;line-height:1.3!important;white-space:nowrap!important;font-family:Inter,system-ui,sans-serif!important;font-size:13px!important;font-weight:700!important;color:#fff!important;letter-spacing:0!important;text-transform:none!important}
+.tb-mark small{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#7C87A6;font-weight:500}
+.wsw{display:flex!important;align-items:center!important;border:1px solid rgba(255,255,255,.22)!important;border-radius:11px!important;overflow:auto!important;max-width:100%!important;margin-left:auto!important;padding:3px!important;gap:3px!important;background:rgba(255,255,255,.04)!important}
+.wsw a{font-family:"Inter",sans-serif;font-weight:600!important;font-size:10px!important;letter-spacing:.08em!important;text-transform:uppercase!important;color:#C7D3EE!important;text-decoration:none!important;padding:7px 13px!important;border-radius:8px!important;border:0!important;white-space:nowrap!important;display:inline-flex!important;align-items:center!important;gap:7px!important;transition:background .25s,color .25s!important}
+.wsw a i{font-style:normal;color:#7C87A6;font-size:9px;font-weight:700}
+.wsw a:hover{background:rgba(255,255,255,.09)!important;color:#fff!important}
+.wsw a.on{background:#06156A!important;color:#fff!important;font-weight:700!important}
+.wsw a.on i{color:rgba(255,255,255,.72)}
+
+/* --- 2 · was <style id="ledgerCss"> ------------------------------------- */
+.logorow.anon{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.logorow.anon .logoslot{display:flex;flex-direction:column;gap:4px;border:1px solid rgba(16,22,38,.12);background:#fff;padding:14px 16px;align-items:flex-start}
+.logorow.anon .an-k{font:600 14.5px "Space Grotesk",sans-serif;color:#101626;letter-spacing:-.01em}
+.logorow.anon .logoslot span:last-child{font:500 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
+.anon-note{margin-top:12px;font-size:12.5px;color:#6B7185}
+/* case spine · full image at rest, info reveals over the image on hover (13 Aug) */
+.cspine{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:var(--s5,28px)}
+@media (min-width:1100px){.cspine{grid-template-columns:repeat(4,1fr);gap:16px}}
+/* base = stacked card, the small-screen fallback: info below the image */
+.cs-card{display:flex;flex-direction:column;border:1px solid rgba(16,22,38,.12);background:#fff;text-decoration:none;color:inherit;transition:border-color .3s,transform .3s}
+.cs-card:hover{border-color:#06156A;transform:translateY(-3px)}
+.cs-slot{aspect-ratio:16/9;background:repeating-linear-gradient(135deg,#EEF1F8 0 12px,#F7F9FD 12px 24px);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(16,22,38,.09)}
+.cs-slot i{font:700 9px "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#06156A;border:1px solid rgba(6,21,106,.35);padding:4px 9px;background:#fff;font-style:normal}
+.cs-b{padding:15px 17px 17px;display:flex;flex-direction:column;gap:7px;flex:1}
+.cs-lane{font:700 9.5px "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#0E7490}
+.cs-b h3{font:500 18px/1.25 "Space Grotesk",sans-serif;letter-spacing:-.015em;margin:0}
+.cs-b p{font-size:13px;color:#46536B;margin:0;line-height:1.55}
+.cs-out{margin-top:auto;padding-top:10px;border-top:1px dashed rgba(16,22,38,.14);font:600 10.5px "Inter",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#101626}
+.cs-out b{color:#06156A}
+.cs-go{font:700 10.5px "Inter",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#06156A;margin-top:8px}
+.cs-go b{display:inline-block;transition:transform .35s var(--e1)}
+.cs-card:hover .cs-go b{transform:translateX(4px)}
+/* from 820px the image IS the card and the info lives on top of it */
+@media (min-width:820px){
+  .cs-card{position:relative;overflow:hidden;background:#0B1020;transition:border-color .35s,transform .35s,box-shadow .35s}
+  .cs-card:hover,.cs-card:focus-visible{border-color:#06156A;transform:translateY(-4px);box-shadow:0 26px 52px -30px rgba(11,16,32,.5)}
+  .cs-card .cs-shot{aspect-ratio:3/4;border-bottom:0;flex:1}
+  .cs-card .cs-shot img{transition:transform .5s var(--e1)}
+  .cs-card:hover .cs-shot img,.cs-card:focus-visible .cs-shot img{transform:scale(1.05)}
+  /* the resting label keeps the card calm, then steps aside for the info */
+  .cs-card .cs-shot figcaption{transition:opacity .3s ease,transform .3s ease}
+  .cs-card:hover .cs-shot figcaption,.cs-card:focus-visible .cs-shot figcaption{opacity:0;transform:translateY(6px)}
+  /* navy scrim, the image stays readable behind it */
+  .cs-card::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .4s ease;
+    background:linear-gradient(185deg,rgba(9,14,28,.74) 0%,rgba(6,21,106,.48) 48%,rgba(9,14,28,.9) 100%)}
+  .cs-card:hover::after,.cs-card:focus-visible::after{opacity:1}
+  /* info covers the image: eyebrow and title at the top, outcome and cue at the bottom */
+  .cs-card .cs-b{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;gap:10px;padding:24px 24px 26px;pointer-events:none;
+    opacity:0;transform:translateY(14px);transition:opacity .4s ease,transform .45s var(--e1)}
+  .cs-card:hover .cs-b,.cs-card:focus-visible .cs-b{opacity:1;transform:none}
+  .cs-card .cs-lane{color:#8C9EFF}
+  .cs-card .cs-b h3{color:#fff;font-size:clamp(20px,1.7vw,24px);line-height:1.18}
+  .cs-card .cs-b p{color:rgba(238,242,251,.86);font-size:13.5px}
+  .cs-card .cs-out{margin-top:auto;border-top:0;padding-top:0;color:rgba(238,242,251,.72)}
+  .cs-card .cs-out b{color:#B9CCF2}
+  .cs-card .cs-out .oi{color:#fff}
+  .cs-card .cs-go{margin-top:12px;align-self:flex-start;color:#fff;border:1px solid rgba(255,255,255,.55);padding:12px 18px;background:rgba(11,16,32,.28)}
+}
+/* large screens without hover: keep the info resting on the image */
+@media (min-width:820px) and (hover:none){
+  .cs-card::after,.cs-card .cs-b{opacity:1;transform:none}
+  .cs-card .cs-shot figcaption{opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .cs-card,.cs-card .cs-shot img,.cs-card::after,.cs-card .cs-b,.cs-card .cs-shot figcaption,.cs-go b{transition:none}
+  .cs-card:hover,.cs-card:focus-visible{transform:none}
+  .cs-card:hover .cs-shot img,.cs-card:focus-visible .cs-shot img{transform:none}
+}
+/* industries · expanding panel gallery: one open sector, three narrow strips (13 Aug) */
+.indx{display:flex;gap:12px;height:clamp(420px,44vw,560px)}
+.ipan{position:relative;overflow:hidden;flex:1;min-width:0;background:#0B1020;border:1px solid rgba(16,22,38,.14);
+  text-decoration:none;color:inherit;cursor:pointer;transition:flex .55s var(--e1)}
+.ipan.on{flex:3.4}
+.ipan.idx-u-sc-green{--scL:#3ECF8E}.ipan.idx-u-sc-teal{--scL:#3FC6DE}.ipan.idx-u-sc-amber{--scL:#E8B84B}.ipan.idx-u-sc-blue{--scL:#8C9EFF}
+.ipan-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:saturate(.7) brightness(.52);transition:filter .55s ease,transform .7s var(--e1)}
+.ipan.on .ipan-bg{filter:saturate(.85) brightness(.8);transform:scale(1.02)}
+.ipan-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,16,32,.55),rgba(9,14,28,.72));transition:opacity .5s ease}
+.ipan.on .ipan-scrim{background:linear-gradient(92deg,rgba(9,14,28,.9) 0%,rgba(6,21,106,.55) 52%,rgba(9,14,28,.12) 100%)}
+.ipan-num{position:absolute;top:26px;left:22px;display:flex;flex-direction:column;gap:9px;white-space:nowrap;
+  font:700 15px "Inter",sans-serif;color:var(--scL,#8C9EFF)}
+.ipan-num i{width:22px;height:1.5px;background:rgba(255,255,255,.4)}
+.ipan-ico{position:absolute;top:24px;left:22px;display:flex;flex-direction:column;gap:9px;color:var(--scL,#8C9EFF)}
+.ipan-ico svg{width:30px;height:30px}
+.ipan-ico i{width:22px;height:1.5px;background:rgba(255,255,255,.4)}
+.ipan-lab{position:absolute;top:82px;left:22px;right:18px;font:700 10.5px/1.6 "Inter",sans-serif;
+  letter-spacing:.14em;text-transform:uppercase;color:#C7D3EE}
+.ipan.on .ipan-lab{color:var(--scL,#8C9EFF)}
+.ipan-body{position:absolute;left:22px;right:30px;bottom:28px;max-width:440px;opacity:0;transform:translateY(14px);
+  transition:opacity .35s ease .14s,transform .5s var(--e1) .14s;pointer-events:none}
+.ipan.on .ipan-body{opacity:1;transform:none;pointer-events:auto}
+.ipan-body h3{font:500 clamp(24px,2.5vw,36px)/1.12 "Space Grotesk",sans-serif;letter-spacing:-.02em;color:#fff;margin:0}
+.ipan-rule{display:block;width:34px;height:2px;background:var(--scL,#8C9EFF);margin:16px 0 14px}
+.ipan-body p{font-size:14px;line-height:1.6;color:rgba(238,242,251,.86);margin:0;max-width:360px}
+.ipan-go{display:inline-block;margin-top:20px;padding:12px 20px;border:1px solid rgba(255,255,255,.55);
+  background:rgba(11,16,32,.28);color:#fff;font:700 10.5px "Inter",sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.ipan-go b{display:inline-block;transition:transform .35s var(--e1)}
+.ipan.on:hover .ipan-go b{transform:translateX(4px)}
+.ipan-arrow{position:absolute;left:22px;bottom:26px;width:44px;height:44px;border:1px solid rgba(255,255,255,.5);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;transition:opacity .3s ease}
+.ipan-arrow svg{width:18px;height:18px}
+.ipan.on .ipan-arrow{opacity:0}
+@media (max-width:819px){
+  .indx{flex-direction:column;height:auto}
+  .ipan,.ipan.on{flex:none;min-height:320px}
+  .ipan .ipan-scrim{background:linear-gradient(92deg,rgba(9,14,28,.9) 0%,rgba(6,21,106,.55) 52%,rgba(9,14,28,.2) 100%)}
+  .ipan .ipan-bg{filter:saturate(.85) brightness(.8)}
+  .ipan .ipan-lab{color:var(--scL,#8C9EFF)}
+  .ipan .ipan-body{position:relative;left:0;right:0;bottom:0;margin:150px 22px 26px;opacity:1;transform:none;pointer-events:auto}
+  .ipan .ipan-arrow{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .ipan,.ipan-bg,.ipan-scrim,.ipan-body,.ipan-arrow,.ipan-go b{transition:none}
+  .ipan.on .ipan-bg{transform:none}
+}
+/* booking section · navy point-cloud backdrop (particle.html port, 13 Aug) */
+/* the section is full-bleed so the cloud reaches the viewport edges; the inner
+   .wrap keeps the content on the grid */
+#book{position:relative;overflow:hidden}
+#book .pcloud{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#book>.wrap{position:relative;z-index:1;padding-left:var(--gut);padding-right:var(--gut)}
+/* connect · LinkedIn and WeChat QR cards (Lin Li request, 7 Aug) */
+.qrrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.qrcard{border:1px solid rgba(16,22,38,.12);background:#fff;padding:26px 22px 22px;display:flex;flex-direction:column;
+  align-items:center;text-align:center;gap:5px;transition:border-color .3s,transform .3s}
+.qrcard:hover{border-color:#06156A;transform:translateY(-3px)}
+.qrcard img{width:min(190px,68%);aspect-ratio:1/1;object-fit:contain;margin-bottom:12px}
+.qrcard b{font:500 16.5px "Space Grotesk",sans-serif;letter-spacing:-.01em;color:#101626}
+.qrcard span{font:500 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
+/* faces band */
+.faces{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:var(--s5,28px)}
+.face{border:1px solid rgba(16,22,38,.12);background:#fff}
+.face .ph{aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#EEF1F8 0 12px,#F7F9FD 12px 24px);display:flex;align-items:center;justify-content:center}
+.face .ph i{font:700 9px "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#06156A;border:1px solid rgba(6,21,106,.35);padding:4px 9px;background:#fff;font-style:normal}
+.face .fb{padding:12px 14px 14px}
+.face .fb b{display:block;font:500 15.5px "Space Grotesk",sans-serif;letter-spacing:-.01em}
+.face .fb span{display:block;margin-top:3px;font:500 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
+/* method strip */
+.mstrip{display:flex;flex-wrap:wrap;gap:0;border:1px solid rgba(16,22,38,.12);background:#fff;margin-top:var(--s4,20px)}
+.mst{flex:1 1 150px;padding:13px 15px;border-right:1px solid rgba(16,22,38,.08);position:relative}
+.mst:last-child{border-right:0}
+.mst i{font:700 9.5px "Inter",sans-serif;letter-spacing:.1em;color:#06156A;font-style:normal}
+.mst b{display:block;font:500 15px "Space Grotesk",sans-serif;margin-top:3px}
+.mst span{display:block;font-size:12px;color:#46536B;margin-top:3px;line-height:1.5}
+.mst-note{margin-top:10px;font:500 10.5px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
+
+/* --- 3 · was <style id="dicoCss"> -------------------------------------- */
+.pbody .dico{display:block;width:40px;height:40px;color:var(--blue);margin-bottom:12px}
+.pbody .dico svg{width:100%;height:100%;overflow:visible}
+.d-clock .hand-h{transform-origin:20px 20px;animation:dch 6s linear infinite}
+.d-clock .hand-m{transform-origin:20px 20px;animation:dcm 2s linear infinite}
+@keyframes dch{to{transform:rotate(360deg)}}
+@keyframes dcm{to{transform:rotate(360deg)}}
+.d-doc .ln{stroke-dasharray:14;stroke-dashoffset:14;animation:dln 2.6s ease-in-out infinite}
+.d-doc .l2{animation-delay:.25s}.d-doc .l3{animation-delay:.5s}
+@keyframes dln{0%{stroke-dashoffset:14}45%{stroke-dashoffset:0}85%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:.25}}
+.d-ai .nd{animation:dnd 1.8s ease-in-out infinite}
+.d-ai .n2{animation-delay:.2s}.d-ai .n3{animation-delay:.4s}.d-ai .n4{animation-delay:.6s}
+@keyframes dnd{0%,100%{opacity:.25;r:1.2}50%{opacity:1;r:2.1}}
+/* life-sciences flask: bubbles rise off the fill line, same restraint as .d-ai */
+.d-flask .bb{animation:dbb 2.6s ease-in-out infinite}
+.d-flask .b2{animation-delay:.45s}.d-flask .b3{animation-delay:.9s}
+@keyframes dbb{0%{opacity:0;transform:translateY(2px)}35%{opacity:.85}100%{opacity:0;transform:translateY(-5px)}}
+@media (prefers-reduced-motion:reduce){.d-clock .hand-h,.d-clock .hand-m,.d-doc .ln,.d-ai .nd,.d-flask .bb{animation:none}.d-doc .ln{stroke-dashoffset:0}.d-flask .bb{opacity:.6;transform:none}}
+
+/* --- 4 · was the inline <style> inside <div id="tpLoader"> -------------- */
+#tpLoader{position:fixed;inset:0;z-index:99990;background:#F5F7FC;display:flex;align-items:center;justify-content:center;
+  transition:transform .72s cubic-bezier(.65,.05,.36,1);will-change:transform}
+#tpLoader.done{transform:translateY(-101%)}
+#tpLoader.gone{display:none}
+.tpl-frame{position:relative;width:min(420px,72vw);padding:46px 38px 40px;border:1px solid rgba(16,22,38,.16)}
+.tpl-frame:before,.tpl-frame:after,.tpl-frame b:before,.tpl-frame b:after{content:"";position:absolute;width:14px;height:14px;border:0 solid #101626}
+.tpl-frame:before{left:-1px;top:-1px;border-left-width:1.5px;border-top-width:1.5px}
+.tpl-frame:after{right:-1px;top:-1px;border-right-width:1.5px;border-top-width:1.5px}
+.tpl-frame b:before{left:-1px;bottom:-1px;border-left-width:1.5px;border-bottom-width:1.5px}
+.tpl-frame b:after{right:-1px;bottom:-1px;border-right-width:1.5px;border-bottom-width:1.5px}
+.tpl-line{position:absolute;left:0;top:-1px;height:1.5px;width:0;background:#06156A;transition:width .18s linear}
+.tpl-logo{position:relative;display:block;width:100%;height:auto}
+.tpl-logo .fill{position:absolute;inset:0;overflow:hidden;height:100%}
+.tpl-logo .fill img{filter:none}
+.tpl-mark{position:relative;display:block}
+.tpl-mark img{display:block;width:100%;height:auto;opacity:.16}
+.tpl-mark .ink{position:absolute;left:0;bottom:0;width:100%;overflow:hidden;height:0%}
+.tpl-mark .ink img{position:absolute;left:0;bottom:0;width:100%;opacity:1}
+.tpl-sub{display:flex;justify-content:space-between;align-items:baseline;margin-top:18px;
+  font:700 10px "Inter",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#6B7185}
+.tpl-ct{font:700 22px "Inter",sans-serif;letter-spacing:.02em;color:#101626}
+@media (prefers-reduced-motion:reduce){#tpLoader{display:none}}
+
+/* --- 5 · utilities · replace former style="" attributes ----------------- */
+/* Declared last so they win the equal-specificity ties an inline style used to
+   win outright (for example .mst-note{margin-top:10px} above). */
+.idx-u-mt3{margin-top:var(--s3)}
+.idx-u-mt4{margin-top:var(--s4)}
+.idx-u-mt5{margin-top:var(--s5)}
+.idx-u-mt6{margin-top:var(--s6)}
+.idx-u-mb4{margin-bottom:var(--s4)}
+.idx-u-sc-blue{--sc:#06156A}
+.idx-u-sc-teal{--sc:#0E7490}
+.idx-u-sc-green{--sc:#0E7A3C}
+.idx-u-sc-amber{--sc:#8A5F0E}

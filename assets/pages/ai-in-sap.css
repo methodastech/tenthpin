@@ -1,0 +1,9 @@
+/* ai-in-sap.html · page-local styles.
+   Loaded AFTER assets/tp.css. The page had no page-level inline <style> block
+   (only the workspace admin-bar style, which stays inline by convention), so
+   this file carries the utilities lifted from inline style="" attributes only.
+   .ais-u-mt0 must stay after tp.css: it overrides .gapgrid{margin-top:var(--s6)}. */
+
+.ais-u-mt0{margin-top:0}
+.ais-u-mt5{margin-top:var(--s5)}
+.ais-u-mt6{margin-top:var(--s6)}

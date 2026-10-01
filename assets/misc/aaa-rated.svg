@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64">
+<path d="M48 6 76 14 V32 C76 47 64 55 48 60 C32 55 20 47 20 32 V14 Z" fill="rgba(37,54,245,.06)" stroke="#1421B8" stroke-width="2"/>
+<text x="48" y="37" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="16" fill="#1421B8">AAA</text>
+<text x="48" y="48" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="6" fill="#1421B8" letter-spacing="1.6">RATED</text>
+</svg>

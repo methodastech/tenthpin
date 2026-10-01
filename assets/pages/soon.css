@@ -1,0 +1,10 @@
+/* ───────────────────────────────────────────────
+   PAGE-LOCAL CSS · soon.html
+   Loaded after assets/tp.css. Nothing here changes
+   the rendered result: these are the former inline
+   style="" declarations, lifted verbatim.
+   ─────────────────────────────────────────────── */
+
+/* Utilities replacing former inline style="" attributes */
+.soon-u-linkblue{color:var(--blue-bright)}
+.soon-u-mt5{margin-top:var(--s5)}

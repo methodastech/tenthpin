@@ -1,0 +1,240 @@
+/* ============================================================================
+   PREMIUM REFINEMENT LAYER · Tenthpin MC · Prototype 0 family · 8 Aug 2026
+   Loaded AFTER tp.css and the page stylesheet. Calm, layered, restrained:
+   deep premium blue, hairline surfaces, soft depth, refined type rhythm.
+   Light theme only: the dark band tokens in tp.css are left untouched.
+   ========================================================================== */
+
+:root{
+  --pr-hair:rgba(14,20,48,.09);
+  --pr-hair-2:rgba(14,20,48,.15);
+  --pr-blue:#06156A;
+  --pr-blue-deep:#040F4F;
+  --pr-shadow-rest:0 1px 2px rgba(14,20,48,.05),0 14px 34px -26px rgba(14,20,48,.22);
+  --pr-shadow-lift:0 2px 4px rgba(14,20,48,.06),0 30px 60px -34px rgba(6,21,106,.38);
+  --pr-ease:cubic-bezier(.22,.72,.16,1);
+
+  /* Warm counterpart to the blue, added 17 Aug per the 14 Aug ask for
+     "bluish and warm yellow" (00:28:42). Ochre rather than yellow: at
+     small sizes a true yellow greys out against white and stops reading
+     as a colour at all. It carries marks and rules only, never a fill
+     behind text and never a CTA, so the single blue CTA stays single.
+
+     The tokens themselves are DEFINED in tp.css layer 9, not here:
+     App.jsx disables this file on the home route, and the home hero
+     is the one surface that needs the warm most. This file only
+     consumes --warm, --warm-deep and --warm-tint. */
+}
+
+/* ---- type rhythm: confident headlines, readable ledes -------------------- */
+h1,h2,.big{letter-spacing:-.024em;}
+.lede{font-size:clamp(16.5px,1.45vw,19px)!important;line-height:1.68;color:#39415A;max-width:64ch;}
+p{line-height:1.66;}
+
+/* ---- eyebrows: the one place mono lives, with a rule --------------------- */
+.shead .k{display:inline-flex;align-items:center;gap:10px;}
+.shead .k::before{content:"";width:22px;height:1.5px;background:var(--pr-blue);display:inline-block;}
+
+/* ---- chips: hairline pills, not wireframe bullets ------------------------ */
+.chip{
+  border-radius:100px!important;
+  border:1px solid var(--pr-hair)!important;
+  background:#fff!important;
+  padding:9px 15px!important;
+  font-size:10px!important;
+  letter-spacing:.13em!important;
+  color:#43506E!important;
+  box-shadow:0 1px 2px rgba(14,20,48,.04);
+}
+.chip i,.chip::before{background:var(--pr-blue)!important;border-radius:50%;}
+
+/* ---- surfaces: radius + layered depth, hover restraint ------------------- */
+.card,.viz,.office{
+  border-radius:0!important; /* 10 Aug: boxes square, per client. Chips/tags/CTAs keep their pills */
+  border-color:var(--pr-hair)!important;
+  box-shadow:var(--pr-shadow-rest);
+  transition:border-color .45s,transform .55s var(--pr-ease),box-shadow .55s var(--pr-ease);
+}
+.card:hover,.viz:hover{
+  border-color:rgba(6,21,106,.28)!important;
+  transform:translateY(-4px);
+  box-shadow:var(--pr-shadow-lift);
+}
+.shot,.shot img{border-radius:0!important;}
+.shot{border:1px solid var(--pr-hair);box-shadow:var(--pr-shadow-rest);overflow:hidden;}
+
+/* ---- proof strip: a real credential band --------------------------------- */
+.proofstrip{background:#fff;border-top:1px solid var(--pr-hair);border-bottom:1px solid var(--pr-hair);}
+.proofstrip .in{padding-top:20px;padding-bottom:20px;}
+.pf{font-size:10px;letter-spacing:.14em;color:#5A6684;}
+.pf b{color:var(--pr-blue);}
+
+/* ---- nav: quiet glass, precise active state ------------------------------ */
+header.nav{
+  background:rgba(247,248,253,.78)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(1.25);
+  backdrop-filter:blur(14px) saturate(1.25);
+  border-bottom:1px solid var(--pr-hair)!important;
+}
+.navlinks a{color:#3A4258;}
+.navlinks a:hover{color:var(--pr-blue);}
+.navlinks a.here{color:var(--pr-blue);}
+.navlinks a.here::after{background:var(--pr-blue);height:2px;border-radius:2px;}
+
+/* ---- actions: one premium primary, one refined ghost --------------------- */
+.cta{
+  background:linear-gradient(180deg,#1E3A66 0%,#06156A 55%,#040F4F 100%)!important;
+  border-radius:10px;
+  box-shadow:0 14px 30px -14px rgba(6,21,106,.55),inset 0 1px 0 rgba(255,255,255,.14);
+  transition:transform .35s var(--pr-ease),box-shadow .35s var(--pr-ease),filter .35s;
+}
+.cta:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 18px 38px -16px rgba(6,21,106,.62),inset 0 1px 0 rgba(255,255,255,.16);}
+.btn-primary{border-radius:10px;}
+.btn-ghost{border-radius:10px;border-color:var(--pr-hair-2)!important;}
+.btn-ghost:hover{border-color:var(--pr-blue)!important;color:var(--pr-blue)!important;}
+
+/* (reveal-timing override removed: it stalled index.html's staggered hero intro) */
+
+/* ---- details ------------------------------------------------------------- */
+::selection{background:var(--pr-blue);color:#fff;}
+:focus-visible{outline:2px solid var(--pr-blue);outline-offset:3px;border-radius:4px;}
+.fcol a{transition:color .3s;}
+.fcol a:hover{color:var(--pr-blue);}
+hr{border:none;border-top:1px solid var(--pr-hair);}
+
+/* ---- hero chips: reclaim the pill treatment (tp.css L818 unboxes them with
+   !important; this file loads later at equal specificity, so the premium pill
+   wins on the light heroes; index-v2's dark video hero never loads this file) */
+.hero .chip{
+  background:#fff!important;
+  border:1px solid var(--pr-hair)!important;
+  padding:9px 15px!important;
+  border-radius:100px!important;
+  color:#43506E!important;
+  box-shadow:0 1px 2px rgba(14,20,48,.04);
+}
+.hero .chips{gap:10px!important;}
+
+/* ---- CMS event cards (event.html upcoming + summaries) ------------------- */
+.evgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:26px;}
+.evpast-head{margin-top:54px;}
+.evcard{background:#fff;border:1px solid var(--pr-hair);border-radius:0;padding:22px 24px;box-shadow:var(--pr-shadow-rest);transition:transform .55s var(--pr-ease),box-shadow .55s var(--pr-ease),border-color .45s;}
+.evcard:hover{transform:translateY(-4px);box-shadow:var(--pr-shadow-lift);border-color:rgba(6,21,106,.28);}
+.evcard-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.evcard h3{font-size:18px;letter-spacing:-.015em;margin:2px 0 6px;}
+.evcard .evwhere{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#5A6684;margin-bottom:8px;}
+.evcard p{font-size:13.5px;color:#39415A;}
+.evcard .evlink{display:inline-block;margin-top:12px;color:var(--pr-blue);font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.evcard.slot{border-style:dashed;background:rgba(255,255,255,.6);box-shadow:none;}
+.evphases{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px;border-top:1px solid var(--pr-hair);padding-top:14px;}
+.evph-k{font-family:"Inter",sans-serif;font-weight:600;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pr-blue);}
+.evph ul{margin:6px 0 0;padding-left:16px;}
+.evph li{font-size:12px;color:#39415A;margin-bottom:4px;}
+.nbody{margin:8px 0 4px;}
+.nbody p{font-size:13px;color:#39415A;margin-bottom:8px;}
+
+/* ---- solid white bar on /aboutus1 ---------------------------------------
+   The shared bar is translucent glass. Over that page's dark hero the dark
+   reads through it and the bar looks grey, so there it is painted solid
+   white. The class is set by the page component (src/pages/aboutus1). */
+body.au1-page header.nav{
+  background:#FFFFFF!important;
+  -webkit-backdrop-filter:none;
+  backdrop-filter:none;
+  border-bottom:1px solid rgba(16,22,38,.10)!important;
+}
+body.au1-page header.nav::after{opacity:0!important}
+
+/* ---- the warm accent, applied · 17 Aug ------------------------------------
+   The ask was a bluish and warm yellow palette kept professional, and the
+   same meeting warned against bombastic. So the warm never fills a shape
+   larger than a rule or a label, never sits behind text, and never touches
+   the CTA: the single blue call to action stays the only saturated block on
+   the page. The other warm surface is the hero service line, which lives in
+   tp.css layer 9 because this file is switched off on the home route.
+
+   The card kicker is the anchor, and it is set in tp.css layer 9 rather
+   than here: this file is disabled on the home route, and a warm kicker
+   that appeared on ten pages but not the eleventh would read as a bug.
+
+   Four warm surfaces were drafted and dropped on 17 Aug, recorded here so
+   they are not re-attempted:
+     .shead .k::before  the section-eyebrow rule this file has carried since
+                        8 Aug. No .shead anywhere contains a .k, so it has
+                        never rendered. Section heads are a bare h2.big.
+     .dark-band .eyebrow i   .eyebrow is not used by any page component.
+     .credline nth-child(6)  .cr-mark carries an <img> seal, so a background
+                        never shows, and the 6th of seven cells is 27701,
+                        not the AAA mark it was aimed at.
+     .cms-draft-ribbon  cms-render.js builds the ribbon with an inline
+                        cssText and no class, so no selector can reach it.
+                        Its #8A5A05 is already warm. */
+
+/* ── PROTOTYPE 3 · SQUARE EDGES ────────────────────────────────────────
+   27 Aug. The 10 Aug pass squared the boxes but left the CTAs and chips on
+   pills (see the comment at .card/.viz/.office above). The prototype-3
+   direction takes it the rest of the way: nothing with a corner is rounded.
+
+   Scoped to body.proto3, which App.jsx sets on /home2, /aboutus2,
+   /rise-move2 and /sapgrow2 only, so the live pages are untouched while the
+   direction is still a study. The page-local sheets square their own
+   components; this block only reaches the SHARED chrome those pages inherit
+   from tp.css and from the layers above.
+
+   Small round markers are deliberately left alone: a 5px dot on a rail is a
+   dot, not a rounded corner. */
+body.proto3 .cta,
+body.proto3 .cta.sm,
+body.proto3 .btn-primary,
+body.proto3 .btn-ghost,
+body.proto3 .chip,
+body.proto3 .hero .chip,
+body.proto3 .ucbtns button,
+body.proto3 .field input,
+body.proto3 .field textarea,
+body.proto3 .field select,
+body.proto3 .portal-lk,
+body.proto3 .burger i,
+body.proto3 .navlinks a.here::after{border-radius:0!important}
+body.proto3 :focus-visible{border-radius:0}
+
+/* 4 Sep 2026: the primary CTA is electric blue, no navy gradient */
+.cta{background:#0520F5;background-image:none;font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em}
+.cta:hover{background:#041BD0;filter:none}
+
+/* the premium layer sets the CTA gradient with !important, so the blue has to win the same way */
+.cta{background-image:none!important;background-color:#0520F5!important}
+.cta:hover{background-color:#041BD0!important}
+
+/* 7 Sep 2026: no underline anywhere in the nav (tp.css carries the pill) */
+.navlinks a.here::after,body.proto3 .navlinks a.here::after{display:none!important}
+.navlinks a.here{color:#040F4F}
+
+
+
+/* 10 Sep 2026 (QA audit): readability floor. Every label, chip, eyebrow and
+   note whose final size sat under 11px now reads at 11px. Media overrides are
+   restated inside their own query so the desktop size is untouched. */
+.chip,
+.pf,
+.evcard .evwhere,
+.evcard .evlink,
+.evph-k{font-size:11px}
+
+/* 10 Sep 2026 (QA audit): no rule before a section eyebrow (house rule: no
+   dashes, no decorative lines), and the phone step-down for the lede that the
+   !important above was defeating. */
+.shead .k::before{content:none}
+@media (max-width:640px){.lede,.hero .lede{font-size:15px!important;line-height:1.55!important}}
+
+/* 10 Sep 2026 (QA audit): the last labels under 11px. This sheet loads after
+   tp.css and the page sheet, so the floor is restated here. */
+.chip,.htag span,.htag span:first-child,.nk,.nmeta,.evcard .nk,.newslist .nk,.newslist .nmeta{font-size:11px}
+.chip{font-size:11px!important}
+
+/* Midnight + Cosmo: primary buttons on light surfaces are Midnight and lift to Cosmo on hover;
+   on dark bands they stay Cosmo */
+.cta:not(.ghost),.h2-cta:not(.ghost),.foot .fcol .fc-cta,.a2 .a2-cta:not(.ghost),.sv-cta:not(.ghost),.ls-cta:not(.ghost),.p3c-cta:not(.ghost){background-color:#06156A!important;border-color:#06156A}
+.cta:not(.ghost):hover,.h2-cta:not(.ghost):hover,.foot .fcol .fc-cta:hover,.a2 .a2-cta:not(.ghost):hover,.sv-cta:not(.ghost):hover,.ls-cta:not(.ghost):hover,.p3c-cta:not(.ghost):hover{background-color:#0520F5!important;border-color:#0520F5}
+.h2-close .h2-cta:not(.ghost),.sv-close .sv-cta:not(.ghost),.evband .cta:not(.ghost),.dark-band .cta:not(.ghost){background-color:#0520F5!important;border-color:#0520F5}
+.h2-close .h2-cta:not(.ghost):hover,.sv-close .sv-cta:not(.ghost):hover,.evband .cta:not(.ghost):hover,.dark-band .cta:not(.ghost):hover{background-color:#041BD0!important;border-color:#041BD0}

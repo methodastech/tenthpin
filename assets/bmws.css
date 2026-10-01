@@ -1,0 +1,55 @@
+/* The super admin bar, one look on every Brand Method surface. Linked, never
+   inlined: the moment a page keeps its own copy the bar drifts, which is how
+   Baik Khayr ended up with a 10px light bar while every other build ran a
+   13px dark one. Positioning (fixed or sticky) stays with each page.
+
+   20 Sep 2026, modern minimalist pass: the tab group lost its container and
+   its 00/01/02 numerals. 21 Sep: monochrome and sharp. No numerals, no accent colour, no radius,
+   no underlines or rules. The current page is a white block with ink text. Sentence-case
+   Instrument Sans on the tabs, mono for the numerals and the context label. */
+
+.bmws{background:#0A0B0E;color:#F2F2F3;line-height:1.6}
+.bmws-in{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:none;margin:0;gap:24px;flex-wrap:nowrap}
+
+/* left: the build on line one, whose bar this is on line two */
+.bmws-crumb{display:flex;flex-direction:column;gap:2px;line-height:1.2;white-space:nowrap;min-width:0;overflow:hidden}
+.bmws-crumb b{font-family:"Geist","Instrument Sans",Inter,system-ui,sans-serif;font-size:15px;font-weight:600;color:#fff;letter-spacing:-.012em;overflow:hidden;text-overflow:ellipsis}
+.bmws-crumb span{font-family:"Geist","Geist","Instrument Sans",Inter,system-ui,sans-serif;font-size:11px;font-weight:500;letter-spacing:0;text-transform:none;color:#7C7F88;overflow:hidden;text-overflow:ellipsis}
+
+/* right: numbered tabs. The page you are on is a filled block. No underlines, no rules, no borders. */
+.bmws-tabs{display:flex;align-items:center;gap:2px;border:0;background:none;padding:0;margin-left:auto;min-width:0;flex:0 1 auto;overflow:auto;scrollbar-width:none}
+.bmws-tabs::-webkit-scrollbar{height:0}
+.bmws-tabs a{font-family:"Geist","Instrument Sans",Inter,system-ui,sans-serif;font-size:13.5px;font-weight:500;letter-spacing:-.005em;color:#8C8F98;text-decoration:none;padding:8px 14px;border-radius:0;white-space:nowrap;display:inline-flex;align-items:baseline;gap:8px;transition:color .2s,background .2s}
+.bmws-tabs a i{display:none}
+.bmws-tabs a:hover{background:rgba(255,255,255,.08);color:#fff}
+.bmws-tabs a.on{background:#fff;color:#0A0C12;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.4)}
+.bmws-tabs a.rej{color:#55585F}
+.bmws-tabs a.rej:hover{color:#80838B}
+.bmws-tabs a.rej.on{background:rgba(255,255,255,.14);color:#B4B6BC}
+.bmws-tabs a em{font-style:normal;font-family:"Geist","Geist","Instrument Sans",Inter,system-ui,sans-serif;font-size:9px;letter-spacing:.06em;padding:2px 6px;border-radius:0;background:rgba(255,255,255,.08);color:#8C8F98;line-height:1.3}
+
+@media (max-width:1120px){
+  .bmws-crumb{max-width:230px}
+  .bmws-crumb b{font-size:13.5px}
+  .bmws-tabs a{font-size:12.5px;padding:7px 9px;gap:6px}
+  .bmws-in{padding:9px 14px;gap:16px}
+}
+@media (max-width:820px){.bmws-crumb span{display:none}}
+@media (max-width:640px){.bmws-crumb{display:none}}
+@media print{.bmws{display:none}}
+
+/* 23 Sep 2026 · restored. The bar is FIXED on every surface, and the one-line
+   script under the static bar markup (and the React bar's effect) pads the body
+   by its height. A restyle that drops this line while the padding stays leaves
+   the bar in flow AND the body padded, so the site header lands on top of it:
+   that is the exact fault from pass 28, 10 Sep. Change the layout and the
+   padding together or not at all. */
+.bmws{position:fixed;top:0;left:0;right:0;z-index:2147483000}
+
+/* 24 Sep 2026 · one row on every width. Each tab group is an inline BLOCK, so
+   on a phone its anchors wrapped inside it and the bar stacked into seven rows
+   (154px at 390): the site header, fitted to the bar's first measure, then
+   sat under it once the webfont landed and the rows re-flowed. A group is a
+   flex row that never wraps; the strip scrolls sideways instead. */
+.bmws-g{display:inline-flex;align-items:center;flex:none;white-space:nowrap}
+.bmws-tabs{flex:1 1 auto;flex-wrap:nowrap}

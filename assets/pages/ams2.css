@@ -1,0 +1,316 @@
+/* ==========================================================================
+   ams2.css · page-local styles for the /ams2 service study
+   --------------------------------------------------------------------------
+   WHAT THIS IS
+   AMS and run support, built to the 27 Aug note. This service is not about
+   transformation, migration or building from scratch. It is about stability,
+   responsiveness, continuity and named people, so the page is people-led and
+   relationship-led rather than capability-led. Five bands.
+
+   THE ONE THING THAT SEPARATES IT FROM EVERY OTHER PAGE · WARMTH
+   /home2, /aboutus2, /rise-move2, /sapgrow2 and /s4hana2 are all graded
+   cool-neutral. Every photograph on this page is graded WARM (5500K) and the
+   tinted band is a warm off-white rather than a pale blue. That single
+   decision does more to make AMS feel like a different page than any layout
+   change could, and it matches what the note asks the band to feel like:
+   calm, human, reassuring, not dramatic.
+
+   NO 3D, AND NO BAND REUSED FROM THE OTHER TWO PHOTOGRAPHIC PAGES
+     sapgrow2  full-bleed hero + bottom-left card · 60/40 problem · sticky
+               index · horizontal timeline · magazine case · 50/50 CTA
+     s4hana2   panoramic hero breaking the grid · five expanding panels ·
+               artefact collage · full-height frame + rows · proof strip
+     ams2      full-bleed hero with an INSET panel · image bleeding off the
+               left edge + a 2x3 label grid · a team photograph with a role
+               strip and a response flow · three journey panels · a
+               CONTAINED asymmetric CTA on a warm ground
+
+   SHARP EDGES throughout, per the 27 Aug direction.
+
+   ORDER
+   00 tokens · 01 primitives · 02 hero · 03 scope · 04 response model ·
+   05 journey · 06 CTA · 07 responsive · 08 reduced motion
+   ========================================================================== */
+
+/* --- 00 · TOKENS --------------------------------------------------------- */
+.am{
+  --ink:#0D1526;
+  --navy:#06156A;
+  --elec:#0520F5;
+  --soft:#4A5872;
+  --faint:#7B879D;
+  --paper:#FFFFFF;
+  /* the warm grounds: this is the only page in the set that is not cool */
+  --warm:#F8F6F2;
+  --warm2:#F1ECE5;
+  --hair:rgba(13,21,38,.10);
+  --hair2:rgba(13,21,38,.17);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --band:clamp(78px,11.5vh,160px);
+  --gut:clamp(18px,3vw,52px);
+  /* distance from the viewport edge to the inner edge of .am-in, which is
+     what a left-bleeding figure has to travel back across */
+  --edge:calc((100vw - min(100vw, 1320px)) / 2 + var(--gut));
+  background:var(--paper);
+  color:var(--ink);
+  display:block;
+  overflow-x:clip;
+}
+
+/* --- 01 · PRIMITIVES ----------------------------------------------------- */
+.am-band{padding:var(--band) 0;position:relative}
+.am-band.warm{background:var(--warm)}
+.am-in{max-width:1320px;margin:0 auto;padding:0 var(--gut);width:100%;position:relative}
+.am-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;line-height:1.08;
+  font-size:clamp(27px,3.6vw,48px);margin:20px 0 0;max-width:22ch}
+/* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
+   prototype 3). Where the heading is now first in its column it no longer
+   needs the space the eyebrow used to sit in. */
+.am-h:first-child,.am h1:first-child{margin-top:0}
+.am-h em{font-style:normal;color:var(--elec)}
+.am-sub{color:var(--soft);font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.7;max-width:58ch;margin:20px 0 0}
+.am-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--navy);color:#fff;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:17px 30px;border:0;border-radius:0;text-decoration:none;
+  transition:transform .35s var(--ease),background .35s}
+.am-cta:hover{transform:translateY(-2px);background:#0A1C80}
+.am-cta.ghost{background:transparent;color:var(--navy);border:1px solid var(--hair2)}
+.am-cta.ghost:hover{border-color:var(--elec);color:var(--elec);background:rgba(5,32,245,.05)}
+.am-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:clamp(24px,3.2vh,36px)}
+.am-note{margin-top:16px;font-size:12.5px;line-height:1.55;color:var(--faint)}
+.am-shot{position:relative;margin:0;overflow:hidden;background:var(--warm2)}
+.am-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* --- 02 · HERO · full-bleed photograph, inset content panel -------------
+   Band 1 of 5. sapgrow2 also opens on a photograph, so the difference has
+   to be real: there the copy sits in a compact card on the lower left; here
+   the panel is INSET inside the frame with air on all four sides, set on a
+   wide measure, and hairlined rather than shadowed. */
+.am-hero{position:relative;min-height:92svh;display:flex;align-items:center;overflow:hidden;background:var(--warm2)}
+.am-hero-img{position:absolute;inset:0;z-index:0}
+.am-hero-img img{width:100%;height:100%;object-fit:cover;object-position:50% 44%;display:block}
+/* a soft warm wash so the panel has something to sit on */
+.am-hero-img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(92deg,rgba(255,253,250,.86) 0%,rgba(255,253,250,.56) 42%,rgba(255,253,250,.12) 78%)}
+.am-hero-in{position:relative;z-index:2;width:100%;max-width:1320px;margin:0 auto;
+  padding:120px clamp(18px,3vw,52px) clamp(40px,6vh,72px)}
+.am-hero-panel{background:rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(12px) saturate(130%);backdrop-filter:blur(12px) saturate(130%);
+  border:1px solid var(--hair2);padding:clamp(30px,4vw,62px);max-width:min(760px,94%)}
+.am-hero-panel h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.08;
+  font-size:clamp(28px,3.2vw,48px);margin:20px 0 0;max-width:20ch}
+.am-hero-panel h1 em{font-style:normal;color:var(--elec)}
+.am-hero-panel p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:18px 0 0;max-width:52ch}
+.am-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:clamp(24px,3vh,34px);
+  padding-top:clamp(20px,2.6vh,28px);border-top:1px solid var(--hair)}
+.am-chip{display:inline-flex;align-items:center;gap:9px;font-family:"Inter",sans-serif;font-weight:600;
+  font-size:9.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--soft)}
+.am-chip::before{content:"";width:5px;height:5px;background:var(--elec);flex:0 0 auto}
+
+/* --- 03 · SCOPE · the image runs off the left edge ----------------------
+   Band 2. The photograph is not in a column, it bleeds off the viewport,
+   and the six scope items sit as a 2x3 grid of numbered rows rather than as
+   a single vertical list or a card wall. */
+.am-scope{display:grid;grid-template-columns:46fr 54fr;align-items:stretch;gap:clamp(28px,4.5vw,86px)}
+.am-scope > *{min-width:0}
+.am-scope-shot{position:relative;min-height:clamp(400px,58vh,600px);
+  margin-left:calc(-1 * var(--edge));width:calc(100% + var(--edge))}
+.am-scope-copy{padding-right:clamp(0px,3vw,52px)}
+.am-scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(20px,3vw,44px);
+  margin-top:clamp(28px,4vh,46px);border-top:1px solid var(--hair)}
+.am-item{padding:clamp(16px,2.2vh,22px) 0;border-bottom:1px solid var(--hair);
+  display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline}
+.am-item s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;color:var(--elec)}
+.am-item b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+  font-size:clamp(15.5px,1.3vw,18.5px);line-height:1.2}
+.am-item span{display:block;margin-top:6px;font-size:13px;line-height:1.55;color:var(--soft)}
+
+/* --- 04 · RESPONSE MODEL · the people, then the flow --------------------
+   Band 3, and the most important on the page: this is where trust is built.
+   One wide team photograph, a strip of named roles beneath it, and the
+   request flow as a plain horizontal sequence. No boxes anywhere. */
+.am-team-shot{position:relative;aspect-ratio:24/9;margin-top:clamp(34px,5vh,60px);overflow:hidden;background:var(--warm2)}
+.am-team-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.am-roles{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,36px);margin-top:clamp(24px,3.4vh,40px)}
+.am-role{padding-top:20px;border-top:2px solid var(--navy)}
+/* the portrait slot: real portraits are still owed, so this is drawn as a
+   deliberate placeholder rather than filled with stock. Compact and square,
+   so it does not repeat the tall 4:5 slots on /aboutus2. */
+.am-face{width:clamp(46px,4vw,58px);aspect-ratio:1;background:var(--warm2);border:1px solid var(--hair);
+  display:grid;place-items:center;color:rgba(6,21,106,.28);margin-bottom:15px}
+.am-face svg{width:56%;height:auto}
+.am-role b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+  font-size:clamp(16px,1.35vw,19px);line-height:1.2}
+.am-role span{display:block;margin-top:8px;font-size:13px;line-height:1.55;color:var(--soft)}
+/* the request flow: a sequence, not a diagram in a box */
+.am-flow{margin-top:clamp(38px,5.6vh,68px);padding-top:clamp(22px,3vh,32px);border-top:1px solid var(--hair2);
+  display:flex;align-items:center;gap:clamp(10px,1.8vw,26px);flex-wrap:wrap}
+.am-flow-k{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--faint);margin-right:6px}
+.am-step{display:flex;align-items:center;gap:clamp(10px,1.8vw,26px);
+  font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+  font-size:clamp(15px,1.4vw,21px);color:var(--navy)}
+.am-step::after{content:"\2192";color:var(--elec);font-weight:400;font-size:.9em}
+.am-step:last-child::after{content:""}
+
+/* --- 05 · JOURNEY · three panels, intense to organised to steady --------
+   Band 4. Three large frames on one row with the copy beneath each, which
+   is deliberately the inverse of the s4hana2 storyboard (five frames, copy
+   overlaid, expanding under the cursor). */
+.am-journey{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.4vw,34px);margin-top:clamp(36px,5vh,64px)}
+.am-leg > *{min-width:0}
+.am-leg-shot{aspect-ratio:6/5}
+.am-leg-k{display:flex;align-items:baseline;gap:12px;margin-top:clamp(18px,2.4vh,26px)}
+.am-leg-k s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;color:var(--elec)}
+.am-leg-k em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.am-leg h3{margin:12px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.024em;
+  font-size:clamp(18px,1.7vw,25px);line-height:1.18}
+.am-leg p{margin:11px 0 0;font-size:14px;line-height:1.62;color:var(--soft)}
+.am-leg small{display:block;margin-top:14px;padding-top:12px;border-top:1px solid var(--hair);
+  font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);line-height:1.6}
+
+/* --- 06 · CTA · contained, asymmetric, on the warm ground ---------------
+   Band 5. sapgrow2 closes on a full-bleed 50/50; this one is contained,
+   58/42, with the frame inset and the ground warm, so the page ends calmer
+   than it started rather than louder. */
+.am-close{background:var(--warm);padding:clamp(56px,9vh,120px) 0}
+.am-close-grid{display:grid;grid-template-columns:58fr 42fr;gap:clamp(28px,4.5vw,80px);align-items:center}
+.am-close-grid > *{min-width:0}
+.am-close h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.08;
+  font-size:clamp(27px,3.4vw,46px);margin:18px 0 0;max-width:17ch}
+.am-close h2 em{font-style:normal;color:var(--elec)}
+.am-close p{margin:20px 0 0;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:var(--soft);max-width:46ch}
+.am-close-shot{aspect-ratio:5/4}
+
+/* --- 07 · RESPONSIVE · two tiers ---------------------------------------- */
+@media (max-width:1000px){
+  .am-hero{min-height:auto}
+  .am-hero-img::after{background:linear-gradient(180deg,rgba(255,253,250,.5) 0%,rgba(255,253,250,.9) 46%)}
+  .am-hero-in{padding-top:108px}
+  .am-hero-panel{max-width:none;padding:26px 22px}
+  .am-scope{grid-template-columns:1fr;gap:clamp(24px,4vh,40px)}
+  /* the bleed only works beside a column; stacked it becomes a normal frame */
+  .am-scope-shot{min-height:0;aspect-ratio:16/10;margin-left:calc(-1 * var(--gut));
+    width:calc(100% + 2 * var(--gut))}
+  .am-scope-copy{padding-right:0}
+  .am-scope-grid{grid-template-columns:1fr}
+  .am-team-shot{aspect-ratio:16/9}
+  .am-roles{grid-template-columns:1fr 1fr;gap:22px}
+  .am-flow{gap:10px}
+  .am-step{gap:10px;font-size:15px}
+  .am-journey{grid-template-columns:1fr;gap:clamp(28px,4.5vh,48px)}
+  .am-leg-shot{aspect-ratio:16/9}
+  .am-close-grid{grid-template-columns:1fr;gap:clamp(24px,4vh,40px)}
+  .am-close-shot{aspect-ratio:16/9;order:-1}
+}
+@media (max-width:640px){
+  .am{--band:clamp(52px,8.5vh,78px)}
+  .am-hero-panel h1{font-size:clamp(25px,7vw,40px)}
+  .am-roles{grid-template-columns:1fr}
+  .am-role{padding-top:16px}
+  .am-flow-k{width:100%;margin-bottom:4px}
+}
+
+/* --- 08 · REDUCED MOTION ------------------------------------------------ */
+@media (prefers-reduced-motion:reduce){
+  .am-cta{transition:none}
+}
+
+
+/* ═══ 4 SEP 2026 · PROTOTYPE 3 PASS · NO LINE DESIGN ═════════════════════
+   Client direction, repeated through the home review: no hairline rules
+   between content. Only single-sided dividers come off here; framed objects
+   (chips, cards, figures, panels) keep their border, because those are
+   objects rather than rules. */
+.am-item{border-bottom:0}
+.am-chips{border-top:0}
+.am-scope-grid{border-top:0}
+.am-flow{border-top:0}
+
+/* 7 Sep 2026 (Bazil: "why isn't the background of the header gone"): the
+   bar has no ground at rest on this route, as on Home and About. This sheet
+   loads only on this route, so the root selector cannot leak. premium.css
+   L73 sets fill and hairline with !important, hence the same here. */
+body:has(.am) .nav.attop{background:transparent!important;border-bottom-color:transparent!important;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+body:has(.am) .nav{transition:background .45s ease,border-color .45s ease}
+
+
+/* 10 Sep 2026 (QA audit): readability floor. Every label, chip, eyebrow and
+   note whose final size sat under 11px now reads at 11px. Media overrides are
+   restated inside their own query so the desktop size is untouched. */
+.am-chip,
+.am-item s,
+.am-flow-k,
+.am-leg-k s,
+.am-leg-k em,
+.am-leg small{font-size:11px}
+
+/* 10 Sep 2026 (QA audit): .am-role span (0,1,1) beat .am-face (0,1,0), so the
+   role mark lost its grid centring and inherited the caption's 8px margin. */
+.am-role span.am-face{display:grid;place-items:center;margin-top:0}
+
+
+/* 10 Sep 2026 (QA audit): the header wordmark and the page content share one
+   left edge. The header ran on the shared --maxw/--gut while this page keeps
+   its own container, so the two edges disagreed by 26 to 46px at 1440. Same
+   pattern as home2.css rule 570. */
+body:has(.am) .nav-in{max-width:1320px;padding:0 clamp(18px,3vw,52px)}
+
+/* 15 Sep 2026 (QA C08) · the split hero. Copy on white at the left, the
+   photograph at the right running past the container edge, the way the
+   S/4HANA and Life sciences heroes are built. No wash, no box, nothing laid
+   over the picture. The old full-bleed rules (.am-hero-img, .am-hero-in and
+   the panel or card) no longer match any markup. */
+.am-hero.split{display:block;min-height:0;background:#fff;overflow:hidden;
+  padding:clamp(128px,15vh,180px) 0 clamp(56px,8vh,104px)}
+.am-hero-grid{max-width:1320px;margin:0 auto;padding:0 clamp(18px,3vw,52px);
+  display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,2.6vw,44px);align-items:center}
+.am-hero-grid > *{min-width:0}
+.am-hero-copy{grid-column:1 / 6;position:relative;z-index:2}
+.am-hero-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+  font-size:clamp(32px,3.4vw,56px);margin:0;max-width:18ch}
+.am-hero-copy h1 em{font-style:normal;color:var(--elec)}
+.am-hero-copy > p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:20px 0 0;max-width:46ch}
+.am-hero-shot{grid-column:6 / 13;position:relative;margin:0;overflow:hidden;aspect-ratio:16/10;background:var(--pale,#EEF3FB);
+  margin-right:calc(-1 * clamp(18px,3vw,52px));width:calc(100% + clamp(40px,6vw,120px))}
+.am-hero-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.am-hero.split .am-scroll{display:none}
+@media (max-width:1000px){
+  .am-hero.split{padding:112px 0 clamp(40px,6vh,64px)}
+  .am-hero-grid{grid-template-columns:1fr;gap:clamp(22px,4vh,38px)}
+  .am-hero-copy{grid-column:1 / -1;order:1}
+  .am-hero-shot{grid-column:1 / -1;order:2;width:calc(100% + clamp(18px,3vw,52px));margin-right:calc(-1 * clamp(18px,3vw,52px))}
+}
+@media (max-width:640px){
+  .am-hero-copy h1{font-size:clamp(27px,7.4vw,44px)}
+}
+
+/* 15 Sep 2026 (unbroken emphasis, house rule of 7 Sep): a blue phrase in a
+   title is one object and never splits across lines above 640px */
+.am h1 em,.am h2 em,.am h3 em{white-space:nowrap}
+@media (max-width:640px){.am h1 em,.am h2 em,.am h3 em{white-space:normal}}
+
+/* 15 Sep 2026 (one header on every page): the site container */
+.am-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
+.am-hero-grid{max-width:1340px}
+body:has(.am) .nav-in{max-width:1340px}
+
+/* 24 Sep 2026, later still (picture rule): the hero photograph is never shorter
+   than the words beside it. The grid stretches, the figure keeps its 16/10
+   floor and grows to the copy when the copy is taller (49px short at 1920). */
+@media (min-width:1001px){.am-hero-grid{align-items:stretch}.am-hero-shot{align-self:stretch}.am-hero-copy{align-self:center}}
+
+/* 24 Sep 2026, evening (Bazil: "a very bad animation visual, not wasting so
+   much space", "why is this visual like this"): the plate scene under the
+   model band's title is gone (see Ams2.jsx); the title and lede share a row;
+   the team frame and the third journey tile are their own people. */
+.am-split-text{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,3vw,48px);align-items:end}
+.am-split-text .am-h{margin:0}
+.am-split-text .am-sub{margin:0 0 .3em;max-width:46ch}
+.am-band .am-stage,.am-band [data-stack],.am-band canvas{display:none}
+.am-team-shot{margin-top:clamp(28px,4vh,44px)}
+@media (max-width:1000px){.am-split-text{grid-template-columns:1fr;gap:14px}}

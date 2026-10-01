@@ -1,0 +1,9 @@
+/* ───────────────────────────────────────────────
+   PAGE-LOCAL CSS · register.html
+   register.html is a meta-refresh stub and does not
+   load assets/tp.css, so this file carries only the
+   former inline body style, lifted verbatim.
+   ─────────────────────────────────────────────── */
+
+/* Utilities replacing former inline style="" attributes */
+.register-u-body{font:500 15px Inter,system-ui,sans-serif;color:#101626;background:#F5F7FC;display:flex;align-items:center;justify-content:center;min-height:100vh}

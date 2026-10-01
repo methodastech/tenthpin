@@ -1,0 +1,296 @@
+/* ==========================================================================
+   ai-sap2.css · page-local styles for the /ai-sap2 study
+   --------------------------------------------------------------------------
+   WHAT THIS IS
+   AI in SAP. Practical AI, real workflows, real business value. Not
+   futuristic, not conceptual, not scattered.
+
+   RERUN 27 AUG · THE CHAPTER LAYOUT
+   The previous build was calmer than the first but still ran too many
+   section types against each other: hero collage, dark 3-up grid, 2x2
+   mosaic, oversized statement, availability table, CTA. Six competing
+   systems. This rerun gives the page ONE reading rhythm instead, with each
+   band a clear chapter:
+
+     01 hero        a full-width photograph with one content card on it
+     02 what it does ONE horizontal split: a large frame and three stacked
+                    points, replacing the three equal columns
+     03 where       FOUR alternating image and text rows, replacing the
+                    mosaic. The alternation is the rhythm; nothing else in
+                    the band changes shape.
+     04 statement   a short centred pause
+     05 available   THREE plain columns, each a label, a small frame and
+                    three names. Not a matrix.
+     06 CTA         one text block, one image, nothing else
+
+   impact, then explanation, then application, then clarity, then the ask.
+
+   THREE IMAGE FORMATS, AND ONLY THREE
+     the hero photograph, full bleed
+     4:5   1000x1250  the split frame and the CTA frame
+     3:2   1200x800 and 900x600  every story row and every availability mark
+   Consistency is what stops a page like this feeling busy.
+
+   ONE SPACING SYSTEM
+     --gap-band  major band gap · --gap-head  heading to content
+     --gap-cap   image to caption · --gap-col  column gaps
+
+   ONE DARK BAND, kept deliberately. Band 02 is the page's only tonal change
+   and the client called that section the strongest of the previous build;
+   the STRUCTURE is what changed, from three equal columns to one split.
+
+   WHAT IS BANNED HERE: AI brains, glowing robots, hologram people, AI-chip
+   stock, 3D, dark cyberpunk imagery, card grids. No canvas on this route,
+   and no fabricated SAP interface: the UI crops are real screens already
+   photographed in the library.
+
+   SHARP EDGES throughout, per the 27 Aug direction.
+
+   ORDER
+   00 tokens · 01 primitives · 02 hero · 03 core split · 04 story rows ·
+   05 statement · 06 availability · 07 CTA · 08 responsive · 09 reduced motion
+   ========================================================================== */
+
+/* --- 00 · TOKENS --------------------------------------------------------- */
+.ai{
+  --ink:#0D1526;
+  --navy:#06156A;
+  --elec:#0520F5;
+  --soft:#4A5872;
+  --faint:#7B879D;
+  --paper:#FFFFFF;
+  --cool:#F4F7FC;
+  --pale:#E4ECF9;
+  --hair:rgba(13,21,38,.10);
+  --hair2:rgba(13,21,38,.17);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --gut:clamp(18px,3vw,52px);
+  --gap-band:clamp(96px,13vh,160px);
+  --gap-head:clamp(40px,5vh,56px);
+  --gap-cap:22px;
+  --gap-col:clamp(32px,3.4vw,64px);
+  background:var(--paper);
+  color:var(--ink);
+  display:block;
+  overflow-x:clip;
+}
+
+/* --- 01 · PRIMITIVES ----------------------------------------------------- */
+.ai-band{padding:var(--gap-band) 0;position:relative}
+.ai-band.cool{background:var(--cool)}
+.ai-in{max-width:1340px;margin:0 auto;padding:0 var(--gut);width:100%;position:relative}
+.ai-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
+  font-size:clamp(28px,3.6vw,50px);margin:20px 0 0;max-width:20ch}
+/* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
+   prototype 3). Where the heading is now first in its column it no longer
+   needs the space the eyebrow used to sit in. */
+.ai-h:first-child,.ai h1:first-child{margin-top:0}
+.ai-h em{font-style:normal;color:var(--elec)}
+.ai-sub{color:var(--soft);font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.68;max-width:56ch;margin:20px 0 0}
+.ai-cta{display:inline-flex;align-items:center;justify-content:center;background:var(--navy);color:#fff;
+  font-family:"Inter",sans-serif;font-weight:600;font-size:11.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  padding:17px 30px;border:0;border-radius:0;text-decoration:none;
+  transition:transform .35s var(--ease),background .35s}
+.ai-cta:hover{transform:translateY(-2px);background:#0A1C80}
+.ai-cta.ghost{background:var(--paper);color:var(--navy);border:1px solid var(--hair2)}
+.ai-cta.ghost:hover{border-color:var(--elec);color:var(--elec);background:#F2F6FF}
+.ai-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:clamp(28px,3.6vh,40px)}
+.ai-note{margin-top:var(--gap-cap);font-size:12.5px;line-height:1.55;color:var(--faint)}
+.ai-shot{position:relative;margin:0;overflow:hidden;background:var(--pale)}
+.ai-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* the two fixed ratios, named so a third cannot be invented by accident */
+.fmt-b{aspect-ratio:4/5}
+.fmt-c{aspect-ratio:3/2}
+
+/* --- 02 · HERO · one photograph, one card on it -------------------------
+   Chapter 1. The previous build opened on a three-image collage; the eye
+   had five things to land on before it reached the button. One image, one
+   card, and the card is wide rather than compact so the headline can run
+   at full size inside it. */
+.ai-hero{position:relative;min-height:88svh;display:flex;align-items:center;overflow:hidden;background:var(--pale)}
+.ai-hero-img{position:absolute;inset:0;z-index:0}
+.ai-hero-img img{width:100%;height:100%;object-fit:cover;object-position:56% 46%;display:block}
+/* a soft wash from the left so the card has a ground without hiding the room */
+.ai-hero-img::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(96deg,rgba(255,255,255,.9) 0%,rgba(255,255,255,.62) 40%,rgba(255,255,255,.08) 76%)}
+.ai-hero-in{position:relative;z-index:2;width:100%;max-width:1340px;margin:0 auto;
+  padding:120px var(--gut) clamp(40px,6vh,72px)}
+.ai-hero-card{background:rgba(255,255,255,.93);
+  -webkit-backdrop-filter:blur(12px) saturate(130%);backdrop-filter:blur(12px) saturate(130%);
+  border:1px solid var(--hair2);padding:clamp(30px,4vw,64px);max-width:min(760px,96%)}
+.ai-hero-card h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+  font-size:clamp(30px,3.4vw,52px);margin:20px 0 0;max-width:18ch}
+.ai-hero-card h1 em{font-style:normal;color:var(--elec)}
+.ai-hero-card p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:18px 0 0;max-width:54ch}
+
+/* --- 03 · CORE · one split, not three columns --------------------------
+   Chapter 2, and the page's only tonal change. Three equal image columns
+   became one large frame with the three points stacked beside it, which is
+   a calmer shape and gives the copy somewhere to sit. */
+.ai-core{background:var(--navy);color:#fff;padding:var(--gap-band) 0}
+.ai-core-grid{display:grid;grid-template-columns:44fr 56fr;gap:var(--gap-col);align-items:center}
+.ai-core-grid > *{min-width:0}
+.ai-core h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.07;
+  font-size:clamp(26px,3.2vw,44px);margin:20px 0 0;max-width:20ch}
+.ai-core h2 em{font-style:normal;color:#7489FF}
+.ai-core > .ai-in > .ai-core-grid > div > p{color:rgba(255,255,255,.68);
+  font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:18px 0 0;max-width:50ch}
+.ai-points{margin-top:var(--gap-head);border-top:1px solid rgba(255,255,255,.18)}
+.ai-point{padding:clamp(18px,2.6vh,26px) 0;border-bottom:1px solid rgba(255,255,255,.18);
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(14px,2vw,26px);align-items:baseline}
+.ai-point s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;
+  letter-spacing:.1em;color:#7489FF}
+.ai-point b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.024em;
+  font-size:clamp(17px,1.5vw,22px);line-height:1.2}
+.ai-point span{display:block;margin-top:8px;font-size:14px;line-height:1.6;color:rgba(255,255,255,.66);max-width:40ch}
+
+/* --- 04 · STORY ROWS · four of them, alternating -----------------------
+   Chapter 3. The 2x2 mosaic becomes four full-width rows that flip sides.
+   The alternation IS the rhythm, so nothing else in the band changes: one
+   ratio, one text shape, one gap. */
+.ai-rows{margin-top:var(--gap-head)}
+.ai-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-col);align-items:center;
+  padding:clamp(30px,5vh,62px) 0}
+.ai-row > *{min-width:0}
+.ai-row + .ai-row{border-top:1px solid var(--hair)}
+/* every second row puts the photograph on the right */
+.ai-row:nth-child(even) .ai-row-shot{order:2}
+.ai-row em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--elec)}
+.ai-row h3{margin:12px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;
+  font-size:clamp(22px,2.4vw,34px);line-height:1.12;max-width:18ch}
+.ai-row p{margin:14px 0 0;font-size:15px;line-height:1.68;color:var(--soft);max-width:46ch}
+
+/* --- 05 · STATEMENT · a pause between chapters ------------------------- */
+.ai-break{padding:clamp(64px,10vh,124px) 0}
+.ai-break p{margin:0 auto;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;
+  line-height:1.1;font-size:clamp(25px,3.6vw,54px);max-width:19ch;text-align:center}
+.ai-break em{font-style:normal;color:var(--elec)}
+
+/* --- 06 · AVAILABILITY · three plain columns --------------------------
+   Chapter 5. The matrix is gone. Three columns, each a label, a small
+   frame and three names, so the maturity levels read as three separate
+   things rather than as a spreadsheet. */
+.ai-avail{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap-col);margin-top:var(--gap-head)}
+.ai-col > *{min-width:0}
+.ai-col-k{padding-bottom:16px;border-bottom:2px solid var(--navy)}
+.ai-col.now .ai-col-k{border-bottom-color:var(--elec)}
+.ai-col-k b{display:block;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--navy)}
+.ai-col.now .ai-col-k b{color:var(--elec)}
+.ai-col-k span{display:block;margin-top:9px;font-size:12.5px;line-height:1.55;color:var(--faint)}
+.ai-col-shot{margin-top:var(--gap-cap)}
+.ai-col ul{list-style:none;margin:var(--gap-cap) 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+.ai-col li{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+  font-size:clamp(17px,1.5vw,22px);line-height:1.24;color:var(--ink)}
+
+/* --- 07 · CTA · one text block, one image ----------------------------- */
+.ai-close{padding:var(--gap-band) 0}
+.ai-close-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-col);align-items:center}
+.ai-close-grid > *{min-width:0}
+.ai-close h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.06;
+  font-size:clamp(27px,3.4vw,46px);margin:18px 0 0;max-width:16ch}
+.ai-close h2 em{font-style:normal;color:var(--elec)}
+.ai-close p{margin:18px 0 0;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:var(--soft);max-width:46ch}
+
+/* --- 08 · RESPONSIVE · two tiers --------------------------------------- */
+@media (max-width:1000px){
+  .ai{--gap-band:clamp(64px,9vh,96px)}
+  .ai-hero{min-height:auto}
+  .ai-hero-img::after{background:linear-gradient(180deg,rgba(255,255,255,.42) 0%,rgba(255,255,255,.92) 44%)}
+  .ai-hero-in{padding-top:112px}
+  .ai-hero-card{max-width:none;padding:26px 22px}
+  .ai-core-grid{grid-template-columns:1fr;gap:clamp(26px,4.5vh,42px)}
+  .ai-core-shot{aspect-ratio:16/10}
+  /* stacked, the alternation cannot read, so every row keeps one order */
+  .ai-row{grid-template-columns:1fr;gap:clamp(20px,3.4vh,30px);padding:clamp(26px,4vh,40px) 0}
+  .ai-row:nth-child(even) .ai-row-shot{order:0}
+  .ai-avail{grid-template-columns:1fr;gap:clamp(30px,5vh,48px)}
+  .ai-col-shot{max-width:340px}
+  .ai-close-grid{grid-template-columns:1fr}
+  .ai-close-shot{aspect-ratio:16/9;order:-1}
+}
+@media (max-width:640px){
+  .ai-hero-card h1{font-size:clamp(26px,7.2vw,42px)}
+  .ai-break p{text-align:left;font-size:clamp(23px,6.6vw,38px)}
+}
+
+/* --- 09 · REDUCED MOTION ------------------------------------------------ */
+@media (prefers-reduced-motion:reduce){
+  .ai-cta{transition:none}
+}
+
+
+/* ═══ 4 SEP 2026 · PROTOTYPE 3 PASS · NO LINE DESIGN ═════════════════════
+   Client direction, repeated through the home review: no hairline rules
+   between content. Only single-sided dividers come off here; framed objects
+   (chips, cards, figures, panels) keep their border, because those are
+   objects rather than rules. */
+.ai-point{border-bottom:0}
+.ai-row{border-top:0}
+.ai-points{border-top:0}
+.ai .ai-row{border-top:0;border-bottom:0}
+.ai .ai-point{border-bottom:0}
+
+/* 7 Sep 2026 (Bazil: "why isn't the background of the header gone"): the
+   bar has no ground at rest on this route, as on Home and About. This sheet
+   loads only on this route, so the root selector cannot leak. premium.css
+   L73 sets fill and hairline with !important, hence the same here. */
+body:has(.ai) .nav.attop{background:transparent!important;border-bottom-color:transparent!important;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+body:has(.ai) .nav{transition:background .45s ease,border-color .45s ease}
+
+
+/* 10 Sep 2026 (QA audit): readability floor. Every label, chip, eyebrow and
+   note whose final size sat under 11px now reads at 11px. Media overrides are
+   restated inside their own query so the desktop size is untouched. */
+.ai-point s,
+.ai-row em{font-size:11px}
+
+
+/* 10 Sep 2026 (QA audit): the header wordmark and the page content share one
+   left edge. The header ran on the shared --maxw/--gut while this page keeps
+   its own container, so the two edges disagreed by 26 to 46px at 1440. Same
+   pattern as home2.css rule 570. */
+body:has(.ai) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
+
+/* 15 Sep 2026 (QA C08) · the split hero. Copy on white at the left, the
+   photograph at the right running past the container edge, the way the
+   S/4HANA and Life sciences heroes are built. No wash, no box, nothing laid
+   over the picture. The old full-bleed rules (.ai-hero-img, .ai-hero-in and
+   the panel or card) no longer match any markup. */
+.ai-hero.split{display:block;min-height:0;background:#fff;overflow:hidden;
+  padding:clamp(128px,15vh,180px) 0 clamp(56px,8vh,104px)}
+.ai-hero-grid{max-width:1340px;margin:0 auto;padding:0 clamp(18px,3vw,52px);
+  display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,2.6vw,44px);align-items:center}
+.ai-hero-grid > *{min-width:0}
+.ai-hero-copy{grid-column:1 / 6;position:relative;z-index:2}
+.ai-hero-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+  font-size:clamp(32px,3.4vw,56px);margin:0;max-width:18ch}
+.ai-hero-copy h1 em{font-style:normal;color:var(--elec)}
+.ai-hero-copy > p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:20px 0 0;max-width:46ch}
+.ai-hero-shot{grid-column:6 / 13;position:relative;margin:0;overflow:hidden;aspect-ratio:16/10;background:var(--pale,#EEF3FB);
+  margin-right:calc(-1 * clamp(18px,3vw,52px));width:calc(100% + clamp(40px,6vw,120px))}
+.ai-hero-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ai-hero.split .ai-scroll{display:none}
+@media (max-width:1000px){
+  .ai-hero.split{padding:112px 0 clamp(40px,6vh,64px)}
+  .ai-hero-grid{grid-template-columns:1fr;gap:clamp(22px,4vh,38px)}
+  .ai-hero-copy{grid-column:1 / -1;order:1}
+  .ai-hero-shot{grid-column:1 / -1;order:2;width:calc(100% + clamp(18px,3vw,52px));margin-right:calc(-1 * clamp(18px,3vw,52px))}
+}
+@media (max-width:640px){
+  .ai-hero-copy h1{font-size:clamp(27px,7.4vw,44px)}
+}
+
+/* 15 Sep 2026 (unbroken emphasis, house rule of 7 Sep): a blue phrase in a
+   title is one object and never splits across lines above 640px */
+.ai h1 em,.ai h2 em,.ai h3 em{white-space:nowrap}
+@media (max-width:640px){.ai h1 em,.ai h2 em,.ai h3 em{white-space:normal}}
+/* 15 Sep 2026 · "disappears into the work" is one phrase and ran up to 138px
+   past its title in five tracks: the copy takes six, the measure is open */
+.ai-hero-copy h1{max-width:none}
+@media (min-width:1001px){
+  .ai-hero-copy{grid-column:1 / 7}
+  .ai-hero-shot{grid-column:7 / 13}
+}
+.ai-hero-copy h1{font-size:clamp(32px,3.4vw,52px)}
