@@ -3864,3 +3864,20 @@ a.h2-pick{text-decoration:none;color:inherit;cursor:pointer}
 .h2-evb-badge.is-gold b{font-weight:700;letter-spacing:.16em}
 .h2-evb-org img{height:clamp(40px,3.4vw,50px)}
 @media (max-width:900px){.h2-evb-org img{height:38px}}
+
+/* client logos in three rows (2 Oct 2026): the middle row runs the other way, each row at
+   its own pace so the columns never line up; hovering a row pauses it */
+.h2-marq.rows3{display:grid;row-gap:clamp(6px,1.2vh,14px)}
+.h2-marq.rows3 .logoslot{height:64px}
+.h2-marq.rows3 .logomarq .logomarq-half{animation-duration:72s}
+.h2-marq.rows3 .logomarq.rev .logomarq-half{animation-direction:reverse;animation-duration:80s}
+.h2-marq.rows3 .logomarq:nth-child(3) .logomarq-half{animation-duration:88s}
+.h2-marq.rows3 .logomarq:hover .logomarq-half{animation-play-state:paused}
+.h2-marq.rows3 .logo-img{max-height:40px}
+.h2-marq.rows3 img[src*="envision"],.h2-marq.rows3 img[src*="hengrui"],.h2-marq.rows3 img[src*="gensci"],.h2-marq.rows3 img[src*="khb"],.h2-marq.rows3 img[src*="wondfo"],.h2-marq.rows3 img[src*="cr-jiangzhong"],.h2-marq.rows3 img[src*="edding"],.h2-marq.rows3 img[src*="innovent"],.h2-marq.rows3 img[src*="fosun"]{max-height:48px}
+@media (max-width:760px){.h2-marq.rows3 .logoslot{height:52px}.h2-marq.rows3 .logo-img{max-height:30px}}
+.h2-marq.rows3 img[src*="bmw"],.h2-marq.rows3 img[src*="mercedes"],.h2-marq.rows3 img[src*="honda"]{max-height:52px}
+/* row spacing as on the reference: about 8.7% of the width between row centres */
+.h2-marq.rows3{row-gap:clamp(28px,4.3vw,92px)}
+@media (max-width:760px){.h2-marq.rows3{row-gap:22px}}
+.h2-marq.rows3 img[src*="tunetalk"]{max-height:54px}
