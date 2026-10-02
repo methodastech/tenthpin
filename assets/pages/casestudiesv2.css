@@ -50,7 +50,7 @@
 .cs2-band{padding:var(--gap-band) 0;position:relative}
 .cs2-band.cool{background:var(--cool)}
 .cs2-in{max-width:1340px;margin:0 auto;padding:0 var(--gut);width:100%;position:relative}
-.cs2-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
+.cs2-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
   font-size:clamp(27px,3.5vw,48px);margin:20px 0 0;max-width:20ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -79,7 +79,7 @@
 .cs2-hero{padding:clamp(130px,16vh,186px) 0 clamp(56px,8vh,92px)}
 .cs2-hero-grid{display:grid;grid-template-columns:44fr 56fr;gap:var(--gap-col);align-items:center}
 .cs2-hero-grid > *{min-width:0}
-.cs2-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.04;
+.cs2-hero h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.04;
   font-size:clamp(32px,4vw,62px);margin:22px 0 0;max-width:14ch}
 .cs2-hero h1 em{font-style:normal;color:var(--elec)}
 .cs2-hero .cs2-sub{max-width:46ch}
@@ -99,7 +99,7 @@
 .cs2-step em{font-style:normal;display:flex;align-items:center;gap:10px;font-family:"Inter",sans-serif;font-weight:600;
   font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--navy)}
 .cs2-step:not(:last-child) em::after{content:"\2192";color:var(--elec);font-weight:400;margin-left:auto;padding-right:6px}
-.cs2-step b{display:block;margin-top:12px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.cs2-step b{display:block;margin-top:12px;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.022em;font-size:clamp(16px,1.35vw,20px);line-height:1.2}
 .cs2-step span{display:block;margin-top:9px;font-size:13.5px;line-height:1.55;color:var(--soft);max-width:30ch}
 
@@ -122,7 +122,7 @@
 /* nothing matched: say so plainly and offer the way back */
 .cs2-empty{margin-top:var(--gap-head);border:1px dashed var(--hair2);padding:clamp(26px,4vh,44px);
   background:var(--cool)}
-.cs2-empty b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.cs2-empty b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(18px,1.8vw,24px)}
 .cs2-empty span{display:block;margin-top:10px;font-size:14.5px;line-height:1.6;color:var(--soft);max-width:52ch}
 
@@ -137,7 +137,7 @@
   font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.17em;
   text-transform:uppercase;padding:9px 14px}
 .cs2-body{padding:clamp(22px,2.6vw,32px);display:flex;flex-direction:column;flex:1}
-.cs2-body h3{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;line-height:1.14;
+.cs2-body h3{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.028em;line-height:1.14;
   font-size:clamp(20px,2vw,28px);max-width:20ch}
 .cs2-body p{margin-top:14px;font-size:14.5px;line-height:1.62;color:var(--soft);max-width:48ch}
 .cs2-sig{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}
@@ -158,7 +158,7 @@
 .cs2-item{border-top:2px solid var(--navy);padding:clamp(20px,2.4vh,26px) 0 0;display:flex;flex-direction:column}
 .cs2-item em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;
   letter-spacing:.17em;text-transform:uppercase;color:var(--elec)}
-.cs2-item b{display:block;margin-top:12px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.cs2-item b{display:block;margin-top:12px;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.024em;font-size:clamp(17px,1.55vw,22px);line-height:1.2}
 .cs2-item span{display:block;margin-top:10px;font-size:14px;line-height:1.6;color:var(--soft)}
 /* the clearance line needs air under the last row, not the note's default 20px */
@@ -172,7 +172,7 @@
   padding:clamp(16px,2.2vh,24px) 0;border-bottom:1px solid var(--hair)}
 .cs2-point s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;
   letter-spacing:.1em;color:var(--elec)}
-.cs2-point b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.cs2-point b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(17px,1.45vw,21px);line-height:1.2}
 .cs2-point span{display:block;margin-top:7px;font-size:14px;line-height:1.6;color:var(--soft);max-width:46ch}
 
@@ -229,7 +229,7 @@ body:has(.cs2) .nav{transition:background .45s ease,border-color .45s ease}
 .cs2-hero-wall{padding-bottom:0;overflow:hidden}
 .cs2-hero-wall .cs2-hero-grid{grid-template-columns:minmax(0,1fr);max-width:760px}
 .cs2-stat{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;column-gap:16px;margin:clamp(22px,3vh,34px) 0 0}
-.cs2-stat b{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.05em;line-height:.9;font-size:clamp(56px,6.4vw,96px);color:var(--elec)}
+.cs2-stat b{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.05em;line-height:.9;font-size:clamp(56px,6.4vw,96px);color:var(--elec)}
 .cs2-stat span{font-size:15px;line-height:1.5;color:var(--soft);max-width:24ch}
 .cs2-wall{margin-top:clamp(36px,5vh,60px);overflow:hidden;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
@@ -243,7 +243,7 @@ body:has(.cs2) .nav{transition:background .45s ease,border-color .45s ease}
 .cs2-wcard figure{margin:0;overflow:hidden;background:var(--pale)}
 .cs2-wcard img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
 .cs2-wcard em{display:block;margin-top:14px;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:var(--elec)}
-.cs2-wcard b{display:block;margin-top:6px;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;font-size:clamp(16px,1.3vw,19px);line-height:1.2;color:var(--navy)}
+.cs2-wcard b{display:block;margin-top:6px;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;font-size:clamp(16px,1.3vw,19px);line-height:1.2;color:var(--navy)}
 @media (prefers-reduced-motion:reduce){.cs2-wall-track{animation:none}}
 
 /* ═══ 8 SEP 2026 · THE ISOMETRIC SET ON CASE STUDIES (mirrored from servicesv2.css) ═══ */
@@ -427,7 +427,7 @@ body:has(.cs2) .nav{transition:background .45s ease,border-color .45s ease}
 
 /* 40 · type and buttons */
 .cs2-v3{--line:#E1E8F6;--stage:#F4F7FF;--gap-band:clamp(84px,11vh,136px);--gap-head:clamp(34px,4.4vh,50px)}
-.cs2-v3 .cs2-cta{font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
+.cs2-v3 .cs2-cta{font-family:"Montserrat",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
   background:var(--elec);padding:17px 30px;transition:background .3s ease}
 .cs2-v3 .cs2-cta:hover{transform:none;background:#041BD0}
 .cs2-v3 .cs2-cta.ghost{background:#fff;color:var(--navy);border:1px solid var(--hair2)}
@@ -436,7 +436,7 @@ body:has(.cs2) .nav{transition:background .45s ease,border-color .45s ease}
 .cs2-v3 .cs2-h em,.cs2-v3 h1 em{white-space:nowrap}
 .cs2-v3 .cs2-sub{margin:0;font-size:clamp(15px,1.12vw,17px);line-height:1.62}
 .cs2-v3 .cs2-note{font-family:"Inter",sans-serif;font-size:13px;margin-top:clamp(26px,3.4vh,38px)}
-.cs2-v3 .cs2-point s{font:600 15px/1 "Space Grotesk",sans-serif;letter-spacing:0}
+.cs2-v3 .cs2-point s{font:600 15px/1 "Montserrat",sans-serif;letter-spacing:0}
 .cs2-gl{width:1em;height:1em;display:block;flex:0 0 auto}
 .cs2-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .cs2-anchor{position:absolute;top:-130px}
@@ -487,7 +487,7 @@ body:has(.cs2) .nav{transition:background .45s ease,border-color .45s ease}
 .cs2-m .cs2-gl{font-size:15px;color:var(--elec)}
 button.cs2-m{cursor:pointer;transition:color .2s ease}
 button.cs2-m:hover{color:var(--elec)}
-.cs2-fc h3{margin:14px 0 0;min-height:2.4em;font:500 clamp(17px,1.32vw,19px)/1.2 "Space Grotesk",sans-serif;letter-spacing:-.02em;color:var(--navy);transition:color .3s ease}
+.cs2-fc h3{margin:14px 0 0;min-height:2.4em;font:500 clamp(17px,1.32vw,19px)/1.2 "Montserrat",sans-serif;letter-spacing:-.02em;color:var(--navy);transition:color .3s ease}
 .cs2-fc p{margin:8px 0 0;font:400 14px/1.55 "Inter",sans-serif;color:var(--soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .cs2-fc-f{margin-top:auto;padding-top:20px;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
 .cs2-v3 .cs2-cue{display:inline-flex;align-items:center;gap:8px;font:600 13px/1 "Inter",sans-serif;letter-spacing:0;text-transform:none;color:var(--elec);text-decoration:none}
@@ -512,7 +512,7 @@ button.cs2-m:hover{color:var(--elec)}
 .cs2-tab:last-child{margin-right:0}
 .cs2-tab-ic{display:grid;place-items:center;flex:0 0 auto;width:34px;height:34px;background:#fff;color:var(--elec);font-size:18px;transition:background .25s ease,color .25s ease}
 .cs2-tab-w{display:grid;gap:3px;min-width:0}
-.cs2-tab b{font:500 clamp(14px,1.08vw,16px)/1.2 "Space Grotesk",sans-serif;letter-spacing:-.01em;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cs2-tab b{font:500 clamp(14px,1.08vw,16px)/1.2 "Montserrat",sans-serif;letter-spacing:-.01em;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cs2-tab small{font:400 12.5px/1.2 "Inter",sans-serif;color:var(--soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cs2-tab:hover{background:#F4F8FF}
 .cs2-tab[aria-selected="true"]{background:#fff;border-bottom-color:#fff;box-shadow:inset 0 3px 0 var(--elec);z-index:2;position:relative}
@@ -530,7 +530,7 @@ button.cs2-m:hover{color:var(--elec)}
 .cs2-part:not(:last-child) .cs2-part-stage::after{content:"";position:absolute;top:calc(50% - .75px);left:calc(100% + 6px);width:calc(var(--fg) - 18px);height:1.5px;background:var(--elec);opacity:.55}
 .cs2-part:not(:last-child) .cs2-part-stage::before{content:"";position:absolute;top:calc(50% - 5px);left:calc(100% + var(--fg) - 13px);border-left:8px solid var(--elec);border-top:5px solid transparent;border-bottom:5px solid transparent;opacity:.55}
 .cs2-part-head{position:absolute;left:12px;top:12px;z-index:1;display:flex;align-items:center;gap:6px;height:34px;padding:0 10px 0 0;background:#fff;box-shadow:inset 0 0 0 1px #C9D8F6;transition:background .35s ease,box-shadow .35s ease}
-.cs2-part-head i{display:grid;place-items:center;width:34px;height:34px;color:var(--elec);font:600 15px/1 "Space Grotesk",sans-serif;font-style:normal;transition:color .35s ease}
+.cs2-part-head i{display:grid;place-items:center;width:34px;height:34px;color:var(--elec);font:600 15px/1 "Montserrat",sans-serif;font-style:normal;transition:color .35s ease}
 .cs2-part-head span{display:grid;place-items:center;width:20px;height:20px;color:var(--elec);transition:color .35s ease}
 .cs2-part-head svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:square;stroke-linejoin:miter}
 .cs2-part.on .cs2-part-stage{background-color:#E6EEFF;box-shadow:inset 0 3px 0 var(--elec),inset 0 0 0 1px #BCD0FA}
@@ -550,7 +550,7 @@ button.cs2-m:hover{color:var(--elec)}
 .cs2-fv .ga{fill:none;stroke:#B7C9F3;stroke-width:5}
 .cs2-fv .gz{fill:none;stroke:var(--elec);stroke-width:5}
 .cs2-fv .nd{fill:none;stroke:var(--navy);stroke-width:2.6;stroke-linecap:square}
-.cs2-part h3{margin:16px 0 0;font:500 clamp(17px,1.35vw,20px)/1.18 "Space Grotesk",sans-serif;letter-spacing:-.015em;color:var(--navy);transition:color .35s ease}
+.cs2-part h3{margin:16px 0 0;font:500 clamp(17px,1.35vw,20px)/1.18 "Montserrat",sans-serif;letter-spacing:-.015em;color:var(--navy);transition:color .35s ease}
 .cs2-part.on h3{color:var(--elec)}
 .cs2-part p{margin:5px 0 0;font:400 14px/1.5 "Inter",sans-serif;color:var(--soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 /* a scene rests COMPLETE; it acts once each time its part comes on */
@@ -593,7 +593,7 @@ button.cs2-m:hover{color:var(--elec)}
 @keyframes cs2Eg{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .cs2-read-k{display:flex;align-items:center;gap:7px;font:600 13px/1.2 "Inter",sans-serif;color:var(--elec)}
 .cs2-read-k i{font-style:normal;font-weight:400;color:var(--soft)}
-.cs2-read p{margin:7px 0 0;font:500 clamp(18px,1.6vw,23px)/1.3 "Space Grotesk",sans-serif;letter-spacing:-.015em;color:var(--navy)}
+.cs2-read p{margin:7px 0 0;font:500 clamp(18px,1.6vw,23px)/1.3 "Montserrat",sans-serif;letter-spacing:-.015em;color:var(--navy)}
 .cs2-read-nav{display:flex;align-items:center;gap:12px;flex:0 0 auto}
 .cs2-read-nav span{font:500 13px/1 "Inter",sans-serif;color:var(--soft);min-width:44px;text-align:center}
 .cs2-read-nav button{display:grid;place-items:center;width:40px;height:40px;padding:0;background:#fff;border:1px solid #D5DFF3;color:var(--navy);font-size:18px;cursor:pointer;transition:border-color .2s ease,color .2s ease}
@@ -637,7 +637,7 @@ button.cs2-m:hover{color:var(--elec)}
 .cs2-more:hover{text-decoration:underline}
 .cs2-status{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;margin-top:clamp(18px,2vw,24px);padding-top:clamp(16px,1.8vw,22px);min-height:34px;box-shadow:inset 0 1px 0 var(--line)}
 .cs2-status p{margin:0;font:400 14.5px/1.3 "Inter",sans-serif;color:var(--soft)}
-.cs2-status p b{font:600 20px/1 "Space Grotesk",sans-serif;color:var(--navy);margin-right:3px}
+.cs2-status p b{font:600 20px/1 "Montserrat",sans-serif;color:var(--navy);margin-right:3px}
 .cs2-pills{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
 .cs2-pill{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 8px 0 10px;border:1px solid rgba(5,32,245,.4);background:rgba(5,32,245,.08);color:var(--navy);font:500 13px/1 "Inter",sans-serif;cursor:pointer;animation:cs2Eg .3s ease both;transition:background .2s ease}
 .cs2-pill .cs2-gl{font-size:14px;color:var(--elec)}
@@ -659,7 +659,7 @@ button.cs2-m:hover{color:var(--elec)}
 .cs2-kind.story{background:var(--elec);border-color:var(--elec);color:#fff}
 .cs2-kind.story .cs2-gl{color:#fff}
 .cs2-card-b{padding:clamp(18px,1.6vw,24px) clamp(18px,1.6vw,24px) 0}
-.cs2-card h3{margin:12px 0 0;font:500 clamp(19px,1.5vw,22px)/1.2 "Space Grotesk",sans-serif;letter-spacing:-.02em;color:var(--navy);transition:color .3s ease}
+.cs2-card h3{margin:12px 0 0;font:500 clamp(19px,1.5vw,22px)/1.2 "Montserrat",sans-serif;letter-spacing:-.02em;color:var(--navy);transition:color .3s ease}
 .cs2-card:hover h3{color:var(--elec)}
 .cs2-card p{margin:8px 0 0;font:400 14.5px/1.55 "Inter",sans-serif;color:var(--soft);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .cs2-tags{display:flex;flex-wrap:wrap;gap:6px;padding:16px clamp(18px,1.6vw,24px) 0}

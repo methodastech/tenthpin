@@ -54,7 +54,7 @@
 .ls-band{padding:var(--gap-band) 0;position:relative}
 .ls-band.cool{background:var(--cool)}
 .ls-in{max-width:1340px;margin:0 auto;padding:0 var(--gut);width:100%;position:relative}
-.ls-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
+.ls-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
   font-size:clamp(27px,3.5vw,48px);margin:20px 0 0;max-width:20ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -84,7 +84,7 @@
   padding:clamp(16px,2.2vh,24px) 0;border-bottom:1px solid var(--hair)}
 .ls-row s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;
   letter-spacing:.1em;color:var(--elec)}
-.ls-row b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.ls-row b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(17px,1.45vw,21px);line-height:1.2}
 .ls-row span{display:block;margin-top:7px;font-size:14px;line-height:1.6;color:var(--soft);max-width:44ch}
 
@@ -92,7 +92,7 @@
 .ls-hero{padding:clamp(130px,16vh,186px) 0 clamp(56px,8vh,92px)}
 .ls-hero-grid{display:grid;grid-template-columns:42fr 58fr;gap:var(--gap-col);align-items:center}
 .ls-hero-grid > *{min-width:0}
-.ls-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.04;
+.ls-hero h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.04;
   font-size:clamp(32px,4vw,62px);margin:22px 0 0;max-width:13ch}
 .ls-hero h1 em{font-style:normal;color:var(--elec)}
 .ls-hero .ls-sub{max-width:44ch}
@@ -117,7 +117,7 @@
   background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.94) 42%)}
 .ls-tile-lab em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;
   letter-spacing:.17em;text-transform:uppercase;color:var(--elec)}
-.ls-tile-lab b{display:block;margin-top:8px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.ls-tile-lab b{display:block;margin-top:8px;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.024em;font-size:clamp(17px,1.6vw,23px);line-height:1.2}
 .ls-tile-lab span{display:block;margin-top:5px;font-size:13.5px;line-height:1.5;color:var(--soft)}
 
@@ -139,14 +139,14 @@
 
 /* --- 07 · SUPPLY · flipped, three large typographic callouts ------------ */
 .ls-callouts{margin-top:var(--gap-head);display:flex;flex-direction:column;gap:clamp(18px,2.6vh,28px)}
-.ls-callout b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;
+.ls-callout b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.03em;
   font-size:clamp(22px,2.4vw,34px);line-height:1.1;color:var(--navy)}
 .ls-callout span{display:block;margin-top:8px;font-size:14px;line-height:1.6;color:var(--soft);max-width:40ch}
 
 /* --- 08 · PROGRAMMES + METHOD · three panels, then one line ------------- */
 .ls-shapes{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap-col);margin-top:var(--gap-head)}
 .ls-shape > *{min-width:0}
-.ls-shape b{display:block;margin-top:var(--gap-cap);font-family:"Space Grotesk",sans-serif;font-weight:500;
+.ls-shape b{display:block;margin-top:var(--gap-cap);font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.024em;font-size:clamp(19px,1.8vw,26px);line-height:1.16}
 .ls-shape span{display:block;margin-top:8px;font-size:14px;line-height:1.6;color:var(--soft);max-width:34ch}
 .ls-method{margin-top:clamp(48px,7vh,90px);padding-top:clamp(26px,3.6vh,40px);border-top:1px solid var(--hair2)}
@@ -177,7 +177,7 @@
 .ls-record-head .ls-h{margin-left:auto;margin-right:auto}
 .ls-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap-col);margin-top:var(--gap-head);
   text-align:center}
-.ls-num b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.05em;
+.ls-num b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.05em;
   line-height:.9;font-size:clamp(46px,6.4vw,104px);color:var(--navy)}
 .ls-num span{display:block;margin-top:14px;font-size:13.5px;line-height:1.5;color:var(--soft);
   max-width:20ch;margin-left:auto;margin-right:auto}
@@ -189,7 +189,7 @@
 .ls-faq{margin-top:var(--gap-head);border-top:1px solid var(--hair2)}
 .ls-fq{border-bottom:1px solid var(--hair)}
 .ls-fq summary{list-style:none;cursor:pointer;padding:20px 44px 20px 0;position:relative;
-  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(15.5px,1.25vw,18px);letter-spacing:-.015em;
+  font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(15.5px,1.25vw,18px);letter-spacing:-.015em;
   transition:color .3s}
 .ls-fq summary::-webkit-details-marker{display:none}
 .ls-fq summary:hover{color:var(--elec)}
@@ -286,7 +286,7 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 
 /* a named link under a band: says where it goes, no chip, no rule */
 .ls-more{margin:clamp(22px,3vh,32px) 0 0}
-.ls-more a{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:16px;letter-spacing:-.01em;color:var(--navy);text-decoration:none}
+.ls-more a{font-family:"Montserrat",sans-serif;font-weight:500;font-size:16px;letter-spacing:-.01em;color:var(--navy);text-decoration:none}
 .ls-more a b{color:var(--elec);font-weight:500;margin-left:6px;display:inline-block;transition:transform .35s var(--ease)}
 .ls-more a:hover{color:var(--elec)}
 .ls-more a:hover b{transform:translateX(4px)}
@@ -302,7 +302,7 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .ind-herobg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(245,247,252,1) 0%,rgba(245,247,252,.97) 38%,rgba(245,247,252,.78) 58%,rgba(245,247,252,.55) 100%)}
 .hero.page .hero-inner.ind-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);gap:clamp(28px,4vw,72px);align-items:center;
   max-width:1340px;width:100%;margin:0 auto;padding:clamp(120px,15vh,176px) clamp(18px,3vw,52px) clamp(48px,7vh,80px)}
-.ind-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.04;font-size:clamp(32px,3.5vw,54px);margin:0}
+.ind-copy h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.04;font-size:clamp(32px,3.5vw,54px);margin:0}
 .ind-copy h1 em{font-style:normal;color:var(--elec)}
 .ind-copy .ls-sub{max-width:44ch}
 .ind-index{display:grid;gap:clamp(6px,1vh,12px)}
@@ -312,7 +312,7 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .ind-row:hover,.ind-row.on{background:rgba(255,255,255,.72);transform:translateX(6px)}
 .ind-row-ic{width:72px;height:72px;display:block}
 .ind-row-ic svg{width:100%;height:100%;display:block}
-.ind-row-t b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;font-size:clamp(22px,2.3vw,34px);line-height:1.05;color:#101626}
+.ind-row-t b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.03em;font-size:clamp(22px,2.3vw,34px);line-height:1.05;color:#101626}
 .ind-row-t span{display:block;margin-top:4px;font-size:13.5px;line-height:1.45;color:#5A6684}
 .ind-row i{font-style:normal;font-size:22px;color:#0520F5;opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s}
 .ind-row:hover i,.ind-row.on i{opacity:1;transform:none}
@@ -444,7 +444,7 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 @keyframes cvIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* type inside a diagram */
-.cv-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:26px;letter-spacing:-.02em;fill:var(--ink)}
+.cv-t{font-family:"Montserrat",sans-serif;font-weight:500;font-size:26px;letter-spacing:-.02em;fill:var(--ink)}
 .cv-t.sm{font-size:19px}
 .cv-t.on{fill:#fff}
 .cv-t.onNavy{fill:#fff}
@@ -515,9 +515,9 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
        industries.css, which the hub does not load: it loads this sheet.) */
 .ind-herobg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;opacity:0;transition:opacity .9s ease;z-index:1;pointer-events:none}
 .ind-herobg video.on{opacity:1}
-/* 2 · The buttons on the industry pages carry the house face (Space Grotesk
+/* 2 · The buttons on the industry pages carry the house face ("Montserrat"
        600 on electric, sentence case), not tracked capitals. */
-.ls-cta{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:14px;line-height:1;letter-spacing:.005em;text-transform:none;height:48px;padding:0 22px;background:var(--elec)}
+.ls-cta{font-family:"Montserrat",sans-serif;font-weight:600;font-size:14px;line-height:1;letter-spacing:.005em;text-transform:none;height:48px;padding:0 22px;background:var(--elec)}
 .ls-cta:hover{background:#1F55DB;transform:none}
 .ls-cta.ghost{background:transparent;color:var(--navy);border:1px solid var(--hair2)}
 .ls-cta.ghost:hover{background:#F2F6FF;border-color:var(--elec);color:var(--elec)}
@@ -576,7 +576,7 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .ind-tile-pic video.on{opacity:1}
 .ind-tile-t{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:12px;align-items:start;padding:14px 16px 16px}
 .ind-tile-t .ind-row-ic{width:44px;height:44px;grid-row:span 2}
-.ind-tile-t b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.025em;font-size:clamp(18px,1.45vw,22px);line-height:1.1;color:#101626}
+.ind-tile-t b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.025em;font-size:clamp(18px,1.45vw,22px);line-height:1.1;color:#101626}
 .ind-tile-t > span:last-child{display:block;margin-top:5px;font-size:13.5px;line-height:1.45;color:#5A6684}
 @media (max-width:1000px){
   .ind-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}

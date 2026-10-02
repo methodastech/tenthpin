@@ -56,7 +56,7 @@
 .sg-band.cool{background:var(--cool)}
 .sg-band.tint{background:var(--tint)}
 .sg-in{max-width:1340px;margin:0 auto;padding:0 clamp(18px,3vw,52px);width:100%;position:relative}
-.sg-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.05;
+.sg-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.05;
   font-size:clamp(29px,4vw,54px);margin:20px 0 0;max-width:20ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -95,7 +95,7 @@
   -webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
   border-radius:0;padding:clamp(28px,3.4vw,54px);max-width:min(640px,92%);
   box-shadow:0 40px 80px -50px rgba(13,21,38,.55)}
-.sg-hero-card h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
+.sg-hero-card h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
   font-size:clamp(30px,3.3vw,52px);margin:20px 0 0}
 .sg-hero-card h1 em{font-style:normal;color:var(--elec)}
 .sg-hero-card p{color:var(--soft);font-size:clamp(15px,1.15vw,16.5px);line-height:1.66;margin:18px 0 0;max-width:48ch}
@@ -128,13 +128,13 @@
 .sg-pain:nth-child(4){margin-left:calc(var(--drift) * 24px)}
 .sg-pain s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;
   letter-spacing:.1em;color:var(--elec)}
-.sg-pain b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.sg-pain b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(17px,1.5vw,22px);line-height:1.18}
 .sg-pain span{display:block;margin-top:8px;font-size:14px;line-height:1.6;color:var(--soft);max-width:34ch}
 
 /* --- 04 · TURN · the large-type moment between problem and method ------- */
 .sg-turn{background:var(--navy);color:#fff;padding:clamp(64px,10vh,132px) 0}
-.sg-turn p{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;
+.sg-turn p{margin:0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.036em;
   line-height:1.08;font-size:clamp(26px,4.4vw,62px);max-width:19ch}
 .sg-turn p em{font-style:normal;color:#7489FF}
 
@@ -167,7 +167,7 @@
   letter-spacing:.12em;color:var(--elec)}
 .sg-step-lab em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
-.sg-step h3{margin:12px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;
+.sg-step h3{margin:12px 0 0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.028em;
   font-size:clamp(21px,2.2vw,34px);line-height:1.14;max-width:20ch}
 .sg-step p{margin:14px 0 0;font-size:15px;line-height:1.66;color:var(--soft);max-width:52ch}
 
@@ -201,7 +201,7 @@
 .sg-tag.t2{right:6%;top:26%}
 .sg-tag.t3{left:11%;bottom:16%}
 .sg-tag.t4{right:9%;bottom:9%}
-.sg-deliv-copy h3{margin:16px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.sg-deliv-copy h3{margin:16px 0 0;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.026em;font-size:clamp(20px,2vw,30px);line-height:1.16;max-width:18ch}
 
 /* --- 07 · CASE · the magazine spread ------------------------------------
@@ -218,7 +218,7 @@
   letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
 .sg-case-row{padding:14px 0;border-bottom:1px solid var(--hair)}
 .sg-case-row:last-child{border-bottom:0;padding-bottom:0}
-.sg-case-row b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.sg-case-row b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(16px,1.35vw,19px);line-height:1.2}
 .sg-case-row span{display:block;margin-top:6px;font-size:13.5px;line-height:1.55;color:var(--soft)}
 .sg-gains{list-style:none;margin:18px 0 0;padding:0}
@@ -229,7 +229,7 @@
 .sg-fig{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.12em;
   text-transform:uppercase;color:var(--faint);border:1px dashed var(--hair2);border-radius:0;padding:8px 11px}
 .sg-case-quote{border-top:1px solid var(--hair);padding:clamp(24px,3vw,44px);background:var(--cool)}
-.sg-case-quote p{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.026em;
+.sg-case-quote p{margin:0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.026em;
   font-size:clamp(19px,2.1vw,30px);line-height:1.2;max-width:30ch}
 .sg-case-quote cite{display:block;margin-top:14px;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;
   font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint)}
@@ -239,7 +239,7 @@
 .sg-close > *{min-width:0}
 .sg-close-copy{background:var(--tint);display:flex;flex-direction:column;justify-content:center;
   padding:clamp(40px,6vw,96px) clamp(24px,4vw,72px)}
-.sg-close-copy h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
+.sg-close-copy h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
   font-size:clamp(27px,3.4vw,46px);margin:18px 0 0;max-width:17ch}
 .sg-close-copy h2 em{font-style:normal;color:var(--elec)}
 .sg-close-copy p{margin:20px 0 0;font-size:clamp(15px,1.15vw,17px);line-height:1.66;color:var(--soft);max-width:44ch}
@@ -346,7 +346,7 @@ body:has(.sg) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
   display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,2.6vw,44px);align-items:center}
 .sg-hero-grid > *{min-width:0}
 .sg-hero-copy{grid-column:1 / 6;position:relative;z-index:2}
-.sg-hero-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+.sg-hero-copy h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
   font-size:clamp(32px,3.4vw,56px);margin:0;max-width:18ch}
 .sg-hero-copy h1 em{font-style:normal;color:var(--elec)}
 .sg-hero-copy > p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:20px 0 0;max-width:46ch}
@@ -394,7 +394,7 @@ body:has(.sg) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .sg-turn .dg-node{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.3);stroke-width:1.2}
 .sg-turn .dg-node.soft{fill:rgba(255,255,255,.08);stroke:rgba(255,255,255,.3)}
 .sg-turn .dg-node.on{fill:var(--elec);stroke:none}
-.sg-turn .dg-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:13.5px;fill:#fff}
+.sg-turn .dg-t{font-family:"Montserrat",sans-serif;font-weight:500;font-size:13.5px;fill:#fff}
 .sg-turn .dg-t.sm{font-size:12px}
 .sg-turn .dg-t.on{fill:#fff}
 .sg-turn .dg-lab{font-family:"Inter",sans-serif;font-weight:700;font-size:9px;letter-spacing:.14em;fill:rgba(255,255,255,.55)}

@@ -79,7 +79,7 @@
 .ai-band{padding:var(--gap-band) 0;position:relative}
 .ai-band.cool{background:var(--cool)}
 .ai-in{max-width:1340px;margin:0 auto;padding:0 var(--gut);width:100%;position:relative}
-.ai-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
+.ai-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
   font-size:clamp(28px,3.6vw,50px);margin:20px 0 0;max-width:20ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -118,7 +118,7 @@
 .ai-hero-card{background:rgba(255,255,255,.93);
   -webkit-backdrop-filter:blur(12px) saturate(130%);backdrop-filter:blur(12px) saturate(130%);
   border:1px solid var(--hair2);padding:clamp(30px,4vw,64px);max-width:min(760px,96%)}
-.ai-hero-card h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+.ai-hero-card h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
   font-size:clamp(30px,3.4vw,52px);margin:20px 0 0;max-width:18ch}
 .ai-hero-card h1 em{font-style:normal;color:var(--elec)}
 .ai-hero-card p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:18px 0 0;max-width:54ch}
@@ -130,7 +130,7 @@
 .ai-core{background:var(--navy);color:#fff;padding:var(--gap-band) 0}
 .ai-core-grid{display:grid;grid-template-columns:44fr 56fr;gap:var(--gap-col);align-items:center}
 .ai-core-grid > *{min-width:0}
-.ai-core h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.07;
+.ai-core h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.07;
   font-size:clamp(26px,3.2vw,44px);margin:20px 0 0;max-width:20ch}
 .ai-core h2 em{font-style:normal;color:#7489FF}
 .ai-core > .ai-in > .ai-core-grid > div > p{color:rgba(255,255,255,.68);
@@ -140,7 +140,7 @@
   display:grid;grid-template-columns:auto 1fr;gap:clamp(14px,2vw,26px);align-items:baseline}
 .ai-point s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;
   letter-spacing:.1em;color:#7489FF}
-.ai-point b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.024em;
+.ai-point b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.024em;
   font-size:clamp(17px,1.5vw,22px);line-height:1.2}
 .ai-point span{display:block;margin-top:8px;font-size:14px;line-height:1.6;color:rgba(255,255,255,.66);max-width:40ch}
 
@@ -157,13 +157,13 @@
 .ai-row:nth-child(even) .ai-row-shot{order:2}
 .ai-row em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;color:var(--elec)}
-.ai-row h3{margin:12px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;
+.ai-row h3{margin:12px 0 0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.028em;
   font-size:clamp(22px,2.4vw,34px);line-height:1.12;max-width:18ch}
 .ai-row p{margin:14px 0 0;font-size:15px;line-height:1.68;color:var(--soft);max-width:46ch}
 
 /* --- 05 · STATEMENT · a pause between chapters ------------------------- */
 .ai-break{padding:clamp(64px,10vh,124px) 0}
-.ai-break p{margin:0 auto;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;
+.ai-break p{margin:0 auto;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.036em;
   line-height:1.1;font-size:clamp(25px,3.6vw,54px);max-width:19ch;text-align:center}
 .ai-break em{font-style:normal;color:var(--elec)}
 
@@ -181,14 +181,14 @@
 .ai-col-k span{display:block;margin-top:9px;font-size:12.5px;line-height:1.55;color:var(--faint)}
 .ai-col-shot{margin-top:var(--gap-cap)}
 .ai-col ul{list-style:none;margin:var(--gap-cap) 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
-.ai-col li{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.ai-col li{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(17px,1.5vw,22px);line-height:1.24;color:var(--ink)}
 
 /* --- 07 · CTA · one text block, one image ----------------------------- */
 .ai-close{padding:var(--gap-band) 0}
 .ai-close-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-col);align-items:center}
 .ai-close-grid > *{min-width:0}
-.ai-close h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.06;
+.ai-close h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.06;
   font-size:clamp(27px,3.4vw,46px);margin:18px 0 0;max-width:16ch}
 .ai-close h2 em{font-style:normal;color:var(--elec)}
 .ai-close p{margin:18px 0 0;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:var(--soft);max-width:46ch}
@@ -264,7 +264,7 @@ body:has(.ai) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
   display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,2.6vw,44px);align-items:center}
 .ai-hero-grid > *{min-width:0}
 .ai-hero-copy{grid-column:1 / 6;position:relative;z-index:2}
-.ai-hero-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+.ai-hero-copy h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
   font-size:clamp(32px,3.4vw,56px);margin:0;max-width:18ch}
 .ai-hero-copy h1 em{font-style:normal;color:var(--elec)}
 .ai-hero-copy > p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:20px 0 0;max-width:46ch}

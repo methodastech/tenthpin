@@ -1,11 +1,11 @@
 /* The Tenthpin site editor. 22 Sep 2026.
    House rules: white and pale, one electric blue, square corners, Inter for
-   reading and Space Grotesk for names, no mono, no shadows except the modal. */
+   reading and "Montserrat" for names, no mono, no shadows except the modal. */
 :root{
   --ink:#0D1526;--navy:#142644;--soft:#4A5872;--faint:#7B879D;--line:#E1E8F6;--line2:#CFDAEE;
   --pale:#F4F7FC;--tint:#EEF3FF;--elec:#2E6BFF;--elec2:#1F55D6;--ok:#11875A;--okbg:#E8F6EF;--warn:#9A6100;--warnbg:#FFF6E4;--bad:#C0283F;--badbg:#FDECEF;
   --top:60px;--nav:236px;--insp:368px;
-  --f:"Inter",system-ui,-apple-system,Segoe UI,sans-serif;--g:"Space Grotesk","Inter",sans-serif;
+  --f:"Inter",system-ui,-apple-system,Segoe UI,sans-serif;--g:"Montserrat","Inter",sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}

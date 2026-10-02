@@ -58,7 +58,7 @@
 .s4-band.cool{background:var(--cool)}
 .s4-band.tint{background:var(--tint)}
 .s4-in{max-width:1340px;margin:0 auto;padding:0 clamp(18px,3vw,52px);width:100%;position:relative}
-.s4-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.05;
+.s4-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.05;
   font-size:clamp(29px,4vw,54px);margin:20px 0 0;max-width:20ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -88,7 +88,7 @@
   display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,2.6vw,44px);align-items:center}
 .s4-hero-grid > *{min-width:0}
 .s4-hero-copy{grid-column:1 / 6;position:relative;z-index:2}
-.s4-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.03;
+.s4-hero h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.03;
   font-size:clamp(33px,3.5vw,58px);margin:22px 0 0}
 .s4-hero h1 em{font-style:normal;color:var(--elec)}
 .s4-hero .s4-sub{max-width:44ch}
@@ -126,7 +126,7 @@
 .s4-panel-b{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(18px,2vw,28px);color:#fff}
 .s4-panel-b s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;
   letter-spacing:.16em;color:#9FC0FF}
-.s4-panel-b b{display:block;margin-top:9px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.s4-panel-b b{display:block;margin-top:9px;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.022em;font-size:clamp(18px,1.6vw,24px);line-height:1.15}
 /* the supporting line is the reward for hovering, so it is collapsed at
    rest rather than truncated */
@@ -166,11 +166,11 @@
 .s4-assets{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,34px);
   margin-top:clamp(36px,5vh,62px);border-top:1px solid var(--hair)}
 .s4-asset{padding:24px 0 0}
-.s4-asset b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.s4-asset b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(16px,1.35vw,20px);line-height:1.2}
 .s4-asset span{display:block;margin-top:9px;font-size:13.5px;line-height:1.58;color:var(--soft)}
 /* the outcome, set large and unboxed */
-.s4-outcome{margin:clamp(44px,7vh,96px) 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.s4-outcome{margin:clamp(44px,7vh,96px) 0 0;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.032em;line-height:1.1;font-size:clamp(24px,3.2vw,46px);max-width:26ch}
 .s4-outcome em{font-style:normal;color:var(--elec)}
 
@@ -190,7 +190,7 @@
   padding:clamp(16px,2.2vh,24px) 0;border-bottom:1px solid var(--hair)}
 .s4-row s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;
   letter-spacing:.1em;color:var(--elec)}
-.s4-row b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.s4-row b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(17px,1.45vw,21px);line-height:1.2}
 .s4-row span{display:block;margin-top:7px;font-size:13.5px;line-height:1.58;color:var(--soft);max-width:46ch}
 
@@ -198,12 +198,12 @@
 .s4-proof{background:var(--navy);color:#fff;padding:clamp(38px,6vh,70px) 0}
 .s4-proof-in{max-width:1340px;margin:0 auto;padding:0 clamp(18px,3vw,52px);
   display:flex;align-items:center;justify-content:space-between;gap:clamp(20px,3vw,52px);flex-wrap:wrap}
-.s4-proof h2{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;
+.s4-proof h2{margin:0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.03em;
   font-size:clamp(21px,2.3vw,34px);line-height:1.14;max-width:16ch}
 .s4-creds{display:flex;align-items:center;gap:clamp(16px,2.6vw,44px);flex-wrap:wrap}
 .s4-cred{font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:rgba(255,255,255,.74)}
-.s4-cred b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;
+.s4-cred b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.03em;
   font-size:clamp(22px,2.2vw,32px);color:#fff;text-transform:none;margin-bottom:5px}
 
 /* --- 07 · CTA · copy above, a wide band across the bottom third -------- */
@@ -211,7 +211,7 @@
 .s4-close-copy{max-width:1340px;margin:0 auto;padding:clamp(58px,9vh,110px) clamp(18px,3vw,52px) clamp(44px,6vh,72px);
   display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,72px);align-items:end}
 .s4-close-copy > *{min-width:0}
-.s4-close-copy h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+.s4-close-copy h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
   font-size:clamp(28px,3.6vw,50px);margin:18px 0 0;max-width:17ch}
 .s4-close-copy h2 em{font-style:normal;color:var(--elec)}
 .s4-close-copy p{margin:20px 0 0;font-size:clamp(15px,1.15vw,17px);line-height:1.66;color:var(--soft);max-width:46ch}

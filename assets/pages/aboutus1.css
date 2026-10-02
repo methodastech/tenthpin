@@ -21,7 +21,7 @@
    ============================================================ */
 
 .au1 {
-  --font-display: "Space Grotesk";
+  --font-display: "Montserrat";
   --font-body: "Inter";
   --font-mono: "Inter";
 }
@@ -1879,7 +1879,7 @@
 .au1 .hero__phrase { grid-column: 1; white-space: normal }
 
 /* Type weight, 13 Aug. The study sets its display face at weight 200 all the
-   way through. The self-hosted Space Grotesk only ships 300 to 700, so every
+   way through. The self-hosted "Montserrat" only ships 300 to 700, so every
    heading on this page fell back to 300 while the rest of the site sets
    headings at 500 (tp.css h1,h2,h3) — same typeface, visibly lighter, and it
    read as a different font. Pulled to the house weight and tracking. This

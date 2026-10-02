@@ -54,7 +54,7 @@
 .rm-band.tint{background:var(--tint)}
 .rm-band.cool{background:var(--cool)}
 .rm-in{max-width:1360px;margin:0 auto;padding:0 clamp(18px,3vw,52px);width:100%;position:relative}
-.rm-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.04;
+.rm-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.04;
   font-size:clamp(30px,4.2vw,58px);margin:20px 0 0;max-width:19ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -89,7 +89,7 @@
   padding:clamp(132px,16vh,184px) clamp(18px,3vw,52px) clamp(64px,9vh,108px);
   max-width:1360px;margin:0 auto;overflow:hidden}
 .rm-hero-copy{grid-column:1 / 6;min-width:0;position:relative;z-index:2}
-.rm-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.02;
+.rm-hero h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.02;
   font-size:clamp(34px,3.5vw,58px);margin:22px 0 0}
 .rm-hero h1 em{font-style:normal;color:var(--elec)}
 .rm-hero .rm-sub{max-width:42ch}
@@ -117,7 +117,7 @@
 .rm-risk:hover{border-color:rgba(5,32,245,.36);transform:translateY(-3px);background:#fff}
 .rm-risk em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;
   letter-spacing:.16em;text-transform:uppercase;color:var(--elec)}
-.rm-risk b{display:block;margin-top:12px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.rm-risk b{display:block;margin-top:12px;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.022em;font-size:clamp(18px,1.6vw,23px);line-height:1.16}
 .rm-risk p{margin:11px 0 0;font-size:14px;line-height:1.6;color:var(--soft)}
 
@@ -151,13 +151,13 @@
 .rm-step.on{opacity:1}
 /* a large numeral instead of a dot on a rail: the whole point of the
    redesign is that the two pages should not share the same marker */
-.rm-step-n{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.05em;line-height:.86;
+.rm-step-n{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.05em;line-height:.86;
   font-size:clamp(38px,4.8vw,84px);color:var(--pale);transition:color .55s var(--ease)}
 .rm-step.on .rm-step-n{color:var(--elec)}
 .rm-step em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;color:var(--faint);transition:color .5s}
 .rm-step.on em{color:var(--elec)}
-.rm-step b{display:block;margin-top:12px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.rm-step b{display:block;margin-top:12px;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.026em;font-size:clamp(21px,2.2vw,34px);line-height:1.12}
 .rm-step p{margin:14px 0 0;font-size:15px;line-height:1.62;color:var(--soft);max-width:38ch}
 
@@ -181,7 +181,7 @@
   text-transform:uppercase;color:var(--faint);transition:color .35s}
 .rm-stop-dot{margin:8px 0 0;width:15px;height:15px;border-radius:50%;background:var(--paper);
   border:2px solid var(--hair2);position:relative;z-index:2;transition:border-color .35s,background .35s,transform .4s var(--ease)}
-.rm-stop-n{margin-top:13px;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.rm-stop-n{margin-top:13px;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(14px,1.2vw,18px);line-height:1.2;color:var(--soft);transition:color .35s}
 .rm-stop.done .rm-stop-dot{border-color:var(--elec);background:var(--elec)}
 .rm-stop.done .rm-stop-t{color:var(--soft)}
@@ -199,7 +199,7 @@
 .rm-cut-panel > *{min-width:0}
 .rm-cut-when{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.15em;
   text-transform:uppercase;color:var(--elec);white-space:nowrap;padding-top:6px}
-.rm-cut-panel h3{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.024em;
+.rm-cut-panel h3{margin:0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.024em;
   font-size:clamp(20px,1.9vw,28px);line-height:1.16}
 .rm-cut-panel p{margin:12px 0 0;font-size:15px;line-height:1.62;color:var(--soft);max-width:56ch}
 /* the pre-weekend marker: the rehearsals that make the weekend boring */
@@ -235,7 +235,7 @@
   padding:17px 0;border-bottom:1px solid var(--hair)}
 .rm-leave-i s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;
   color:var(--elec);line-height:1.5}
-.rm-leave-i b{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.rm-leave-i b{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(16px,1.35vw,19px);line-height:1.2}
 .rm-leave-i span{display:block;margin-top:5px;font-size:13.5px;line-height:1.55;color:var(--soft)}
 
@@ -390,7 +390,7 @@ body:has(.rm) .nav-in{max-width:1340px}
 .ls-stage{padding:clamp(18px,2.4vh,26px) 0 0;position:relative}
 .ls-stage em{font-style:normal;display:flex;align-items:center;gap:10px;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--elec)}
 .ls-stage em s{text-decoration:none;font-weight:700}
-.ls-stage b{display:block;margin-top:10px;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;font-size:clamp(16px,1.3vw,19px);line-height:1.2;color:var(--ink)}
+.ls-stage b{display:block;margin-top:10px;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;font-size:clamp(16px,1.3vw,19px);line-height:1.2;color:var(--ink)}
 .ls-stage span{display:block;margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--soft);max-width:26ch}
 .ls-strip-dg{margin-top:clamp(10px,1.4vh,18px);gap:0 clamp(10px,1.4vw,22px)}
 .ls-strip-dg .ls-stage{padding:10px 8px 0;text-align:center}

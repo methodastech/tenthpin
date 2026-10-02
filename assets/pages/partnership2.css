@@ -57,7 +57,7 @@
 .pt-band{padding:var(--gap-band) 0;position:relative}
 .pt-band.cool{background:var(--cool)}
 .pt-in{max-width:1340px;margin:0 auto;padding:0 var(--gut);width:100%;position:relative}
-.pt-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
+.pt-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.06;
   font-size:clamp(27px,3.5vw,48px);margin:20px 0 0;max-width:20ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -86,14 +86,14 @@
   border-bottom:1px solid var(--hair)}
 .pt-hero-grid{display:grid;grid-template-columns:46fr 54fr;gap:var(--gap-col);align-items:center}
 .pt-hero-grid > *{min-width:0}
-.pt-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.05;
+.pt-hero h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.036em;line-height:1.05;
   font-size:clamp(31px,3.8vw,58px);margin:22px 0 0;max-width:15ch}
 .pt-hero h1 em{font-style:normal;color:var(--elec)}
 .pt-hero .pt-sub{max-width:46ch}
 /* the two hero facts, hairlined rather than boxed */
 .pt-hero-facts{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-col);
   margin-top:clamp(28px,4vh,44px);padding-top:clamp(20px,2.8vh,28px);border-top:1px solid var(--hair2)}
-.pt-hero-facts b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.pt-hero-facts b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:15.5px}
 .pt-hero-facts span{display:block;margin-top:6px;font-size:13px;line-height:1.55;color:var(--soft)}
 
@@ -153,7 +153,7 @@
 .pt-cell.img .pt-shot{height:100%;min-height:clamp(240px,32vh,340px)}
 .pt-cell em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;
   letter-spacing:.17em;text-transform:uppercase;color:var(--elec)}
-.pt-cell h3{margin:12px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.026em;
+.pt-cell h3{margin:12px 0 0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.026em;
   font-size:clamp(19px,1.9vw,27px);line-height:1.15;max-width:16ch}
 .pt-cell p{margin:12px 0 0;font-size:14.5px;line-height:1.64;color:var(--soft);max-width:40ch}
 
@@ -169,7 +169,7 @@
   margin:var(--gap-head) auto 0;max-width:880px}
 .pt-node{border:1px solid var(--hair2);background:var(--paper);padding:clamp(14px,1.8vh,20px) clamp(18px,2.4vw,30px);
   text-align:center;min-width:0}
-.pt-node b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.pt-node b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(14.5px,1.25vw,17.5px);line-height:1.25}
 .pt-node span{display:block;margin-top:4px;font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;
   font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
@@ -195,7 +195,7 @@
   padding:clamp(36px,5.4vh,64px) 0}
 .pt-proof-in{max-width:1340px;margin:0 auto;padding:0 var(--gut);
   display:flex;align-items:center;gap:clamp(24px,3.4vw,60px);flex-wrap:wrap}
-.pt-proof h2{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.026em;
+.pt-proof h2{margin:0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.026em;
   font-size:clamp(19px,1.9vw,27px);line-height:1.16;max-width:13ch}
 .pt-badges{display:flex;align-items:center;gap:clamp(20px,3vw,48px);flex-wrap:wrap;margin-left:auto}
 .pt-badge{display:flex;align-items:center;gap:12px}
@@ -205,7 +205,7 @@
 
 /* --- 07 · CTA · the one dark band ---------------------------------------- */
 .pt-close{background:var(--navy);color:#fff;padding:clamp(64px,9vh,120px) 0}
-.pt-close h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.06;
+.pt-close h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.06;
   font-size:clamp(27px,3.4vw,46px);margin:18px 0 0;max-width:17ch}
 .pt-close h2 em{font-style:normal;color:#7489FF}
 .pt-close p{margin:18px 0 0;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:rgba(255,255,255,.7);max-width:52ch}
@@ -308,17 +308,17 @@ body:has(.pt) .nav{transition:background .45s ease,border-color .45s ease}
 .pt-net-pulse{stroke:var(--elec);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:.16 1;animation:ptNet 3s cubic-bezier(.45,0,.4,1) infinite}
 @keyframes ptNet{0%{stroke-dashoffset:1.16;opacity:0}10%{opacity:1}85%{opacity:1}100%{stroke-dashoffset:-.16;opacity:0}}
 .pt-net-core{fill:var(--elec)}
-.pt-net-core-t{font-family:"Space Grotesk",sans-serif;font-size:17px;font-weight:500;fill:#fff}
+.pt-net-core-t{font-family:"Montserrat",sans-serif;font-size:17px;font-weight:500;fill:#fff}
 .pt-net-core-s{font-family:"Inter",sans-serif;font-weight:600;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;fill:rgba(255,255,255,.8)}
 .pt-net-node circle{fill:#fff;stroke:var(--elec);stroke-width:2.2}
-.pt-net-b{font-family:"Space Grotesk",sans-serif;font-size:17px;font-weight:500;fill:var(--navy)}
+.pt-net-b{font-family:"Montserrat",sans-serif;font-size:17px;font-weight:500;fill:var(--navy)}
 .pt-net-t{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;fill:var(--soft)}
 /* 5 · the credentials at a size that reads */
 .pt-badges{gap:clamp(22px,3vw,48px)}
 .pt-badge img{height:64px;width:auto;max-width:150px;object-fit:contain}
-.pt-badge span{font-family:"Space Grotesk",sans-serif;font-size:14.5px;letter-spacing:-.01em;text-transform:none;color:var(--navy)}
+.pt-badge span{font-family:"Montserrat",sans-serif;font-size:14.5px;letter-spacing:-.01em;text-transform:none;color:var(--navy)}
 /* 6 · the close: one primary, a text link */
-.pt-link{display:inline-flex;align-items:center;color:#fff;text-decoration:none;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:15px;opacity:.85;margin-left:22px}
+.pt-link{display:inline-flex;align-items:center;color:#fff;text-decoration:none;font-family:"Montserrat",sans-serif;font-weight:500;font-size:15px;opacity:.85;margin-left:22px}
 .pt-link:hover{opacity:1}
 @media (prefers-reduced-motion:reduce){.pt-spoke-pulse,.pt-net-pulse{animation:none;opacity:0}}
 @media (max-width:760px){.pt-net{min-width:0}.pt-net-b{font-size:15px}}
@@ -484,7 +484,7 @@ body:has(.pt) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .pt-groups.v2{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto auto auto auto;gap:0 clamp(24px,3vw,48px)}
 .pt-groups.v2 .pt-group{display:grid;grid-row:1 / span 4;grid-template-rows:subgrid;align-content:start}
 .pt-groups.v2 .pt-group-ic{width:92px;height:92px;margin:0 0 18px -6px}
-.pt-groups.v2 .pt-group-k{display:block;padding:0;border:0;border-radius:0;background:none;font:500 clamp(19px,1.5vw,22px)/1.2 "Space Grotesk",sans-serif;letter-spacing:-.02em;text-transform:none;color:var(--navy)}
+.pt-groups.v2 .pt-group-k{display:block;padding:0;border:0;border-radius:0;background:none;font:500 clamp(19px,1.5vw,22px)/1.2 "Montserrat",sans-serif;letter-spacing:-.02em;text-transform:none;color:var(--navy)}
 .pt-groups.v2 .pt-group p{margin:8px 0 0;padding:0;border:0;font-size:14.5px;line-height:1.55;max-width:30ch}
 .pt-groups.v2 .pt-logos{flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 22px;padding-top:26px}
 .pt-groups.v2 .pt-logo{min-height:30px}
@@ -500,7 +500,7 @@ body:has(.pt) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .pt-nd{display:grid;justify-items:center;align-content:center;gap:12px;min-height:112px;padding:18px 12px;background:#fff;border:1px solid #D5DFF3;color:var(--navy);
   font-family:"Inter",sans-serif;text-align:center;cursor:pointer;border-radius:0;transition:border-color .3s ease,background .3s ease}
 .pt-nd.n{grid-column:3;grid-row:1}.pt-nd.e{grid-column:5;grid-row:3}.pt-nd.s{grid-column:3;grid-row:5}.pt-nd.w{grid-column:1;grid-row:3}
-.pt-nd b{font:500 clamp(14.5px,1.12vw,16.5px)/1.2 "Space Grotesk",sans-serif;letter-spacing:-.01em}
+.pt-nd b{font:500 clamp(14.5px,1.12vw,16.5px)/1.2 "Montserrat",sans-serif;letter-spacing:-.01em}
 .pt-nd-logos{display:flex;align-items:center;justify-content:center;gap:12px;height:26px}
 .pt-nd-logos img{height:16px;width:auto;max-width:46px;object-fit:contain;display:block}
 .pt-nd-logos{gap:9px}
@@ -513,7 +513,7 @@ body:has(.pt) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .pt-nd:focus-visible{outline:2px solid var(--elec);outline-offset:2px}
 .pt-core2{grid-column:3;grid-row:3;display:grid;justify-items:center;gap:8px;padding:24px 14px;background:var(--elec);color:#fff;text-align:center}
 .pt-core2 img{height:34px;width:auto;padding:6px 10px;background:#fff;display:block}
-.pt-core2 b{font:500 clamp(17px,1.4vw,20px)/1.15 "Space Grotesk",sans-serif;letter-spacing:-.015em}
+.pt-core2 b{font:500 clamp(17px,1.4vw,20px)/1.15 "Montserrat",sans-serif;letter-spacing:-.015em}
 .pt-core2 span{font:500 12.5px/1.2 "Inter",sans-serif;color:rgba(255,255,255,.84)}
 /* a link: a hairline at rest; the one in turn carries light TOWARDS the core
    and says what passes */
@@ -546,7 +546,7 @@ body:has(.pt) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .pt-rd-in{animation:ptRd .45s cubic-bezier(.2,.7,.2,1) both}
 @keyframes ptRd{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .pt-rd-k{display:block;font:600 13px/1.3 "Inter",sans-serif;color:var(--elec)}
-.pt-rd h3{margin:10px 0 0;font:500 clamp(24px,2.2vw,32px)/1.1 "Space Grotesk",sans-serif;letter-spacing:-.025em;color:var(--navy)}
+.pt-rd h3{margin:10px 0 0;font:500 clamp(24px,2.2vw,32px)/1.1 "Montserrat",sans-serif;letter-spacing:-.025em;color:var(--navy)}
 .pt-rd p{margin:12px 0 0;font:400 clamp(15px,1.1vw,16.5px)/1.6 "Inter",sans-serif;color:var(--soft);max-width:36ch}
 .pt-rd-logos{display:flex;align-items:center;flex-wrap:wrap;gap:14px 26px;margin-top:24px}
 .pt-rd-logos img{height:28px;width:auto;max-width:120px;object-fit:contain;display:block}
@@ -564,7 +564,7 @@ body:has(.pt) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .pt-proof.v2 .pt-badges{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(18px,2.4vw,36px);margin:clamp(24px,3vh,36px) 0 0;align-items:start}
 .pt-proof.v2 .pt-badge{display:grid;gap:14px;justify-items:start;align-content:start}
 .pt-proof.v2 .pt-badge img{height:60px;width:auto;max-width:100%;object-fit:contain;object-position:left center}
-.pt-proof.v2 .pt-badge span{font:500 14.5px/1.35 "Space Grotesk",sans-serif;color:var(--navy)}
+.pt-proof.v2 .pt-badge span{font:500 14.5px/1.35 "Montserrat",sans-serif;color:var(--navy)}
 /* 56 · no zoom on hover (Bazil) */
 .pt-sat:hover{transform:translate(-50%,-50%)!important;box-shadow:none!important}
 /* 57 · tablet and phone, restated last */
@@ -600,7 +600,7 @@ body:has(.pt) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .pt-outcard-b{padding-top:clamp(16px,1.6vw,22px)}
 .pt-outcard .pt-cell-ic{display:block;width:clamp(56px,4.6vw,68px);height:auto}
 .pt-outcard .pt-cell-ic svg{width:100%;height:auto;display:block}
-.pt-outcard h3{margin:10px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.026em;
+.pt-outcard h3{margin:10px 0 0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.026em;
   font-size:clamp(19px,1.5vw,23px);line-height:1.2;color:var(--navy)}
 .pt-outcard p{margin:9px 0 0;font-size:14.5px;line-height:1.64;color:var(--soft);max-width:44ch}
 

@@ -57,7 +57,7 @@
 .evx-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .evx-meta{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;font:600 13.5px/1.4 "Inter",sans-serif;color:var(--p3-elec,#0520F5)}
 .evx-meta span+span{color:var(--p3-soft,#4A5872);font-weight:500}
-.evx-copy h3{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;line-height:1.14;font-size:clamp(22px,2.05vw,31px);margin:12px 0 0;color:#0D1526;text-wrap:balance}
+.evx-copy h3{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;line-height:1.14;font-size:clamp(22px,2.05vw,31px);margin:12px 0 0;color:#0D1526;text-wrap:balance}
 .evx-role{display:inline-flex;align-items:center;gap:9px;margin:14px 0 0;font:600 13px/1.4 "Inter",sans-serif;color:var(--p3-navy,#06156A)}
 .evx-role::before{content:"";width:6px;height:6px;background:var(--p3-elec,#0520F5);flex:0 0 auto}
 .evx-sum{margin:12px 0 0;font-size:16px;line-height:1.62;color:var(--p3-soft,#4A5872);max-width:46ch;text-wrap:pretty}
@@ -66,7 +66,7 @@
 .evx-pts li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;background:var(--p3-elec,#0520F5)}
 .evx-up{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(28px,4vh,48px)}
 .evx-upcard{background:var(--p3-cool,#F4F7FC);padding:clamp(20px,2vw,28px)}
-.evx-upcard h3{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:21px;line-height:1.2;margin:10px 0 0}
+.evx-upcard h3{font-family:"Montserrat",sans-serif;font-weight:500;font-size:21px;line-height:1.2;margin:10px 0 0}
 .evx-go{display:inline-flex;gap:6px;margin-top:14px;font:600 14px "Inter",sans-serif;color:var(--p3-elec,#0520F5);text-decoration:none}
 .evx-close{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px clamp(28px,4vw,72px);align-items:end;background:var(--p3-cool,#F4F7FC);padding:clamp(28px,4vw,60px)}
 .evx-close .lede{margin:14px 0 0;max-width:52ch}
@@ -120,7 +120,7 @@
 .evx-agenda b{font:600 13px/1.5 "Inter",sans-serif;color:#0520F5;font-variant-numeric:tabular-nums}
 .evx-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;margin-top:20px}
 .evx-links .evx-go{margin-top:0}
-.evx-links .evx-go:first-child{background:#06156A;color:#fff;padding:12px 18px;font-family:"Space Grotesk",sans-serif;letter-spacing:.02em;transition:background .2s}
+.evx-links .evx-go:first-child{background:#06156A;color:#fff;padding:12px 18px;font-family:"Montserrat",sans-serif;letter-spacing:.02em;transition:background .2s}
 .evx-links .evx-go:first-child:hover{background:#0520F5}
 .evx-links .evx-go.alt:hover,.evx-go:hover b{transform:translateX(2px)}
 .evx-go b{transition:transform .2s}

@@ -63,7 +63,7 @@
 
 /* --- 01 · PRIMITIVES ----------------------------------------------------- */
 .sv-in{width:min(1400px,100%);margin:0 auto;padding:0 var(--gut)}
-.sv-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;line-height:1.12;
+.sv-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.028em;line-height:1.12;
   font-size:clamp(27px,3.2vw,46px);margin:12px 0 0;max-width:900px}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -103,7 +103,7 @@
              linear-gradient(0deg,rgba(255,255,255,.5) 0%,transparent 16%)}
 .sv-hero-fig .sv-stage{position:absolute;left:-8%;right:0;bottom:-2%;height:60%;z-index:2}
 .sv-hero-copy{position:relative;z-index:3;width:min(560px,46%);padding:clamp(28px,5vh,56px) 0}
-.sv-hero-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
+.sv-hero-copy h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
   font-size:clamp(38px,4.4vw,64px);margin:14px 0 0}
 .sv-hero-copy h1 em{font-style:normal;color:var(--elec)}
 .sv-sub{font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.65;color:var(--soft);max-width:480px;margin:18px 0 26px}
@@ -129,7 +129,7 @@
 .sv-route em{display:block;margin:24px 28px 0;font-style:normal;
   font-family:"Inter",sans-serif;font-weight:600;font-size:9px;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--elec)}
-.sv-route > b{display:block;margin:9px 28px 0;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.sv-route > b{display:block;margin:9px 28px 0;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.015em;line-height:1.25;font-size:clamp(18px,1.7vw,24px)}
 .sv-ben{list-style:none;margin:14px 28px 0;padding:0;display:grid;gap:8px}
 .sv-ben li{display:flex;align-items:flex-start;gap:9px;font-size:14.5px;line-height:1.45;color:var(--soft)}
@@ -142,7 +142,7 @@
   overflow:hidden;background:var(--paper);box-shadow:var(--shadow)}
 .sv-table{width:100%;border-collapse:collapse}
 .sv-table th,.sv-table td{text-align:left;vertical-align:middle;padding:19px 22px}
-.sv-table thead th{background:var(--navy);color:#fff;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.sv-table thead th{background:var(--navy);color:#fff;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.01em;font-size:16.5px;border-left:1px solid rgba(255,255,255,.12)}
 .sv-table thead th:first-child{border-left:0}
 .sv-table tbody th{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.13em;
@@ -169,7 +169,7 @@
 .sv-feat.rev .sv-feat-shot{order:3}
 .sv-feat.rev .sv-feat-body{order:2}
 .sv-feat.rev .sv-feat-viz{order:1}
-.sv-feat h3{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;line-height:1.16;
+.sv-feat h3{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;line-height:1.16;
   font-size:clamp(22px,2.4vw,32px);margin:12px 0 0}
 .sv-feat h3 em{font-style:normal;color:var(--elec)}
 .sv-feat p{font-size:15.5px;line-height:1.65;color:var(--soft);max-width:470px;margin:12px 0 0}
@@ -216,7 +216,7 @@ a.sv-nd:hover .sv-ic{color:var(--elec)}
 .sv-lvic{flex:none;color:#8FB3FF}
 .sv-lvic .sv-ic{width:26px;height:26px}
 .sv-lvtx{min-width:0}
-.sv-livebox b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.sv-livebox b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:20px}
 .sv-livebox .sv-lvtx span{display:block;margin-top:5px;font-size:13px;line-height:1.45;color:rgba(255,255,255,.66)}
 .sv-aft{display:flex;flex-direction:column;justify-content:center;gap:15px}
@@ -245,7 +245,7 @@ a.sv-nd:hover .sv-ic{color:var(--elec)}
   mask-image:linear-gradient(90deg,transparent,#000 42%)}
 .sv-close-grid{position:relative;z-index:1;display:grid;align-items:center;gap:clamp(24px,4vw,64px);
   grid-template-columns:minmax(0,1.05fr) auto;padding-right:clamp(44px,22vw,420px)}
-.sv-close h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.026em;line-height:1.14;
+.sv-close h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.026em;line-height:1.14;
   font-size:clamp(27px,3vw,42px);margin:12px 0 0;max-width:560px}
 .sv-close h2 em{font-style:normal;color:#8FB3FF}
 .sv-close p{font-size:15.5px;line-height:1.65;color:rgba(255,255,255,.7);max-width:460px;margin:12px 0 0}
@@ -357,7 +357,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-rsel-ic{position:absolute;left:50%;top:calc(-1 * clamp(120px,11vw,168px));translate:-50% 0;
   width:clamp(104px,9.6vw,148px);height:clamp(104px,9.6vw,148px);display:block}
 .sv-rsel-ic svg{width:100%;height:100%;display:block}
-.sv-rsel b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;font-size:clamp(16px,1.35vw,20px);line-height:1.15;color:var(--navy)}
+.sv-rsel b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;font-size:clamp(16px,1.35vw,20px);line-height:1.15;color:var(--navy)}
 .sv-rsel > span{display:block;margin-top:7px;font-size:13px;line-height:1.5;color:var(--soft);max-width:22ch}
 .sv-rsel.r1 .tp-act{animation-delay:1.3s}.sv-rsel.r2 .tp-act{animation-delay:2.6s}
 /* the node under each object, on the rail */
@@ -445,7 +445,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-cap{display:inline-flex;align-items:center;gap:10px;height:48px;padding:3px 16px 3px 3px;border-radius:999px;background:#fff;
   border:1px solid rgba(5,32,245,.22);box-shadow:0 10px 24px -16px rgba(6,21,106,.4);position:relative;z-index:1}
 .sv-cap b{width:42px;height:42px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;line-height:1}
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:17px;line-height:1}
 .sv-cap i{display:grid;place-items:center;width:24px;height:24px;color:var(--elec)}
 .sv-cap i .sv-ic{width:22px;height:22px}
 
@@ -456,7 +456,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-proc-st:first-child::before{top:50%}
 .sv-proc-st:last-child::before{bottom:50%}
 .sv-proc-w{display:grid;gap:3px;max-width:36ch}
-.sv-proc-w > b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.3vw,20px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
+.sv-proc-w > b{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.3vw,20px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
 .sv-proc-w > span{font-size:clamp(13.5px,1vw,15px);line-height:1.5;color:var(--soft)}
 .sv-proc .sv-cap::after{content:"";position:absolute;left:-1px;top:-1px;width:48px;height:48px;border-radius:50%;border:2px solid var(--elec);opacity:0;
   animation:svRing 7s ease-out infinite;animation-delay:calc(var(--i) * 1.4s + .3s)}
@@ -484,7 +484,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-th-svc i .sv-ic{width:19px;height:19px}
 .sv-th-svc b{font-weight:500;font-size:17px;line-height:1.15}
 .sv-th-svc > span{font-size:12.5px;color:rgba(255,255,255,.62);margin-top:2px}
-.sv-table-v2 tbody th{font-family:"Space Grotesk",sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+.sv-table-v2 tbody th{font-family:"Montserrat",sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
 .sv-table-v2 .sv-th-lab{display:flex;align-items:center;gap:11px}
 .sv-table-v2 .sv-th-lab i{display:grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--pale);color:var(--elec);flex:none}
 .sv-table-v2 .sv-th-lab i .sv-ic{width:16px;height:16px}
@@ -501,7 +501,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-nd{padding:16px 18px;font-size:15px;gap:12px}
 .sv-nd .sv-ic{width:18px;height:18px}
 .sv-map-caps{margin-bottom:22px;align-items:start}
-.sv-map-cap{display:grid;grid-template-columns:auto 1fr;column-gap:9px;align-items:center;font-family:"Space Grotesk",sans-serif;font-size:14.5px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+.sv-map-cap{display:grid;grid-template-columns:auto 1fr;column-gap:9px;align-items:center;font-family:"Montserrat",sans-serif;font-size:14.5px;font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
 .sv-map-cap b{grid-row:1 / span 2;width:26px;height:26px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;font-size:12.5px;font-weight:600}
 .sv-map-cap em{font-style:normal;font-family:Inter,system-ui,sans-serif;font-size:12.5px;font-weight:400;color:var(--soft)}
 .sv-cn::before{content:"";position:absolute;right:-1px;top:-5px;width:0;height:0;border-left:7px solid var(--elec);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent;opacity:.85}
@@ -565,7 +565,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .dg-bar.hot{fill:rgba(5,32,245,.38)}
 .dg-node{fill:#fff;stroke:rgba(5,32,245,.26);stroke-width:1.2}
 .dg-node.on{fill:var(--elec);stroke:none}
-.dg-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:13.5px;fill:var(--ink)}
+.dg-t{font-family:"Montserrat",sans-serif;font-weight:500;font-size:13.5px;fill:var(--ink)}
 .dg-t.on{fill:#fff}
 .dg-lab{font-family:"Inter",sans-serif;font-weight:600;font-weight:700;font-size:9px;letter-spacing:.14em;fill:var(--faint)}
 .dg-dot{fill:var(--elec)}
@@ -598,7 +598,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-who{display:grid;grid-template-columns:26px 1fr;column-gap:16px;align-items:start;padding:14px 0;color:#fff;text-decoration:none}
 .sv-who i{display:grid;place-items:center;width:26px;height:26px;color:#8FB3FF;margin-top:1px}
 .sv-who i .sv-ic{width:22px;height:22px}
-.sv-who b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.015em;line-height:1.2;transition:color .25s var(--ease)}
+.sv-who b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.015em;line-height:1.2;transition:color .25s var(--ease)}
 .sv-who em{display:block;margin-top:6px;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8FB3FF}
 .sv-who em u{text-decoration:none;display:inline-block;transition:transform .25s var(--ease)}
 .sv-who:hover b{color:#8FB3FF}
@@ -641,7 +641,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-svc-l{display:grid;grid-template-columns:52px 1fr;column-gap:18px;align-items:start}
 .sv-svc-ic{display:grid;place-items:center;width:52px;height:52px;color:var(--elec)}
 .sv-svc-ic .sv-icd{width:34px;height:34px}
-.sv-svc-n{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(21px,1.7vw,27px);letter-spacing:-.022em;line-height:1.12;color:var(--ink);text-decoration:none}
+.sv-svc-n{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(21px,1.7vw,27px);letter-spacing:-.022em;line-height:1.12;color:var(--ink);text-decoration:none}
 .sv-svc-n:hover{color:var(--elec)}
 .sv-svc p{margin:8px 0 0;font-size:15.5px;line-height:1.6;color:var(--soft);max-width:44ch}
 .sv-svc-who{display:block;margin-top:10px;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
@@ -651,7 +651,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-steps li:last-child{padding-right:0}
 .sv-steps li:not(:last-child)::after{content:"";position:absolute;right:8px;top:50%;width:18px;height:0;border-top:1.5px solid rgba(5,32,245,.35)}
 .sv-steps li:not(:last-child)::before{content:"";position:absolute;right:6px;top:calc(50% - 3.5px);border-left:5px solid var(--elec);border-top:3.5px solid transparent;border-bottom:3.5px solid transparent;opacity:.8}
-.sv-steps b{width:26px;height:26px;background:var(--elec);color:#fff;display:grid;place-items:center;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:12.5px;flex:none}
+.sv-steps b{width:26px;height:26px;background:var(--elec);color:#fff;display:grid;place-items:center;font-family:"Montserrat",sans-serif;font-weight:600;font-size:12.5px;flex:none}
 .sv-steps span{font-size:14.5px;font-weight:500;letter-spacing:-.01em;color:var(--ink);white-space:nowrap}
 .sv-svc-cue{grid-column:2;margin:0}
 @media (max-width:1000px){
@@ -710,7 +710,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-svc-hd{display:grid;grid-template-columns:52px 64px minmax(0,1fr) auto;column-gap:18px;align-items:center;
   padding:18px clamp(20px,2.2vw,32px);background:rgba(5,32,245,.055)}
 .sv-svc-no{width:52px;height:52px;background:var(--elec);color:#fff;display:grid;place-items:center;
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em}
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em}
 .sv-svc.v3 .sv-svc-obj{width:64px;height:64px;margin:0}
 .sv-svc-ttl{display:grid;gap:4px;min-width:0}
 .sv-svc.v3 .sv-svc-n{font-size:clamp(20px,1.5vw,25px)}
@@ -719,7 +719,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-svc-bd{display:grid;grid-template-columns:minmax(0,34fr) minmax(0,66fr);column-gap:clamp(28px,3.6vw,64px);align-items:start;
   padding:clamp(22px,2.6vh,34px) clamp(20px,2.2vw,32px) clamp(18px,2.2vh,28px)}
 .sv-svc-lb{display:block;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--elec);line-height:1;margin-bottom:14px}
-.sv-svc-what p{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.25vw,20px);letter-spacing:-.015em;line-height:1.35;color:var(--ink);max-width:26ch}
+.sv-svc-what p{margin:0;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.25vw,20px);letter-spacing:-.015em;line-height:1.35;color:var(--ink);max-width:26ch}
 .sv-svc-how{min-width:0}
 .sv-svc-how .sv-dg.wide{display:block;width:100%;max-width:none}
 .sv-svc-ft{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:baseline;
@@ -766,9 +766,9 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-lead{position:relative;height:1px;background:rgba(5,32,245,.42);transform:translateY(-6%);animation:svLeadOn 7s ease-in-out infinite;animation-delay:calc(var(--i) * 1.4s)}
 .sv-lead i{position:absolute;right:-3px;top:-3px;width:7px;height:7px;background:var(--elec)}
 .sv-layer-w{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:14px;align-items:start;padding-left:14px}
-.sv-layer-n{width:30px;height:30px;background:var(--elec);color:#fff;display:grid;place-items:center;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:13.5px;font-style:normal;margin-top:1px}
+.sv-layer-n{width:30px;height:30px;background:var(--elec);color:#fff;display:grid;place-items:center;font-family:"Montserrat",sans-serif;font-weight:600;font-size:13.5px;font-style:normal;margin-top:1px}
 .sv-layer-w > div{display:grid;gap:4px;max-width:38ch}
-.sv-layer-w > div > b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
+.sv-layer-w > div > b{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
 .sv-layer-w > div > span{font-size:clamp(13.5px,1vw,15px);line-height:1.5;color:var(--soft)}
 @keyframes svLift{0%,12%,100%{transform:translateY(0)}5%{transform:translateY(-5px)}}
 @keyframes svLeadOn{0%,12%,100%{background:rgba(5,32,245,.42)}5%{background:rgba(5,32,245,.9)}}
@@ -821,7 +821,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
    "not 01 but 1 2 3", "icon should be bigger"): the numeral is set large in
    electric with no block behind it, and the object is half again as big */
 .sv-svc-no{width:auto;height:auto;background:none;color:var(--elec);
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:34px;line-height:1;letter-spacing:-.03em;
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:34px;line-height:1;letter-spacing:-.03em;
   display:block;text-align:center}
 .sv-svc-hd{grid-template-columns:34px 96px minmax(0,1fr) auto;column-gap:20px}
 .sv-svc.v3 .sv-svc-obj{width:96px;height:96px}
@@ -889,9 +889,9 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 .sv-stk-labs{list-style:none;margin:0;padding:0;position:relative}
 .skb{position:absolute;left:0;right:0;transform:translateY(-50%);display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:14px;align-items:start;cursor:default;outline:0}
 .skb-n{width:32px;height:32px;display:grid;place-items:center;border:1px solid #CFDBF6;background:#fff;color:var(--elec);
-  font:600 14px/1 "Space Grotesk",sans-serif;font-style:normal;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease)}
+  font:600 14px/1 "Montserrat",sans-serif;font-style:normal;transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease)}
 .skb > div{display:grid;gap:3px;max-width:36ch}
-.skb > div > b{font:500 clamp(17px,1.35vw,21px)/1.15 "Space Grotesk",sans-serif;letter-spacing:-.02em;color:var(--ink);transition:color .35s var(--ease)}
+.skb > div > b{font:500 clamp(17px,1.35vw,21px)/1.15 "Montserrat",sans-serif;letter-spacing:-.02em;color:var(--ink);transition:color .35s var(--ease)}
 .skb > div > span{font-size:clamp(13.5px,1vw,15px);line-height:1.5;color:var(--soft)}
 
 /* the drawing */
@@ -955,7 +955,7 @@ body:has(.sv) .nav{transition:background .45s ease,border-color .45s ease}
 @keyframes skLabInM{from{opacity:0}to{opacity:1}}
 
 /* the CTA in the house button face, not a mono label */
-.sv-hero-sel .sv-cta{font:600 14px/1 "Space Grotesk",sans-serif;letter-spacing:.02em;text-transform:uppercase}
+.sv-hero-sel .sv-cta{font:600 14px/1 "Montserrat",sans-serif;letter-spacing:.02em;text-transform:uppercase}
 
 /* 22 Sep 2026 · no zoom on hover (Bazil) */
 .sv-route:hover .sv-route-shot img{transform:none!important}

@@ -60,7 +60,7 @@
 .a2-band.cool{background:var(--cool)}
 .a2-band.pale{background:var(--pale)}
 .a2-in{max-width:1360px;margin:0 auto;padding:0 clamp(18px,3vw,52px);width:100%;position:relative}
-.a2-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.02;
+.a2-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.02;
   font-size:clamp(31px,4.5vw,64px);margin:20px 0 0;max-width:16ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -100,7 +100,7 @@
   padding:clamp(140px,17vh,196px) clamp(18px,3vw,52px) clamp(72px,10vh,120px);
   max-width:1360px;margin:0 auto;overflow:hidden}
 .a2-hero-copy{position:relative;z-index:2;min-width:0}
-.a2-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.038em;line-height:1.0;
+.a2-hero h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.038em;line-height:1.0;
   font-size:clamp(38px,4.6vw,76px);margin:24px 0 0}
 .a2-hero h1 span{display:block}
 .a2-hero h1 em{font-style:normal;color:var(--elec)}
@@ -132,7 +132,7 @@
 .a2-pillar:hover{border-color:transparent}
 .a2-pillar:hover::after{width:100%}
 .a2-pillar-stage{height:clamp(150px,17vh,208px);margin:clamp(18px,2.4vh,30px) 0 clamp(20px,3vh,38px)}
-.a2-pillar b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;
+.a2-pillar b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.028em;
   font-size:clamp(24px,2.4vw,36px);line-height:1.08}
 .a2-pillar p{margin:14px 0 0;font-size:15px;line-height:1.62;color:var(--soft);max-width:26ch}
 .a2-pillar em{font-style:normal;position:absolute;right:0;top:18px;font-family:"Inter",sans-serif;font-weight:600;
@@ -150,7 +150,7 @@
   border-top:1px solid var(--hair)}
 .a2-city{padding:13px 0;border-bottom:1px solid var(--hair);display:flex;align-items:baseline;gap:10px;min-width:0}
 .a2-city b{min-width:0;overflow-wrap:anywhere}
-.a2-city b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:15.5px;letter-spacing:-.015em}
+.a2-city b{font-family:"Montserrat",sans-serif;font-weight:500;font-size:15.5px;letter-spacing:-.015em}
 .a2-city span{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
   color:var(--faint);margin-left:auto}
 
@@ -169,9 +169,9 @@
   -webkit-mask-image:radial-gradient(circle at 30% 50%,#000,transparent 78%);
   mask-image:radial-gradient(circle at 30% 50%,#000,transparent 78%)}
 .a2-feat-copy{position:relative;z-index:2}
-.a2-feat-copy p.a2-num{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.05em;line-height:.88;
+.a2-feat-copy p.a2-num{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.05em;line-height:.88;
   font-size:clamp(64px,9.5vw,152px);color:var(--navy);margin:0}
-.a2-feat-copy b{display:block;margin-top:16px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.a2-feat-copy b{display:block;margin-top:16px;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.022em;font-size:clamp(19px,1.8vw,26px);line-height:1.16}
 .a2-feat-copy p{margin:14px 0 0;font-size:15px;line-height:1.62;color:var(--soft);max-width:40ch}
 .a2-feat-stage{position:relative;z-index:1;aspect-ratio:1/.82;min-height:220px}
@@ -180,7 +180,7 @@
 .a2-sup:hover{border-color:rgba(5,32,245,.34);transform:translateY(-3px)}
 .a2-sup em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;
   letter-spacing:.16em;text-transform:uppercase;color:var(--elec)}
-.a2-sup b{display:block;margin-top:11px;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.a2-sup b{display:block;margin-top:11px;font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.022em;font-size:clamp(17px,1.5vw,21px);line-height:1.18}
 .a2-sup p{margin:11px 0 0;font-size:13.5px;line-height:1.6;color:var(--soft)}
 .a2-sups{grid-column:1 / -1;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,26px)}
@@ -197,13 +197,13 @@
 .a2-quals{display:flex;flex-direction:column;justify-content:center}
 .a2-qual{padding:22px 0;border-top:1px solid var(--hair)}
 .a2-qual:last-child{border-bottom:1px solid var(--hair)}
-.a2-qual b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.a2-qual b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(17px,1.5vw,21px);line-height:1.18}
 .a2-qual span{display:block;margin-top:8px;font-size:13.5px;line-height:1.6;color:var(--soft)}
 /* the one pull statement on the page, set large enough to be a stop */
 .a2-quote{margin:clamp(38px,5.5vh,68px) 0 0;padding:0;border-left:2px solid var(--elec);padding-left:clamp(20px,2.6vw,38px);
   max-width:min(760px,62%)}
-.a2-quote p{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;
+.a2-quote p{margin:0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.028em;
   font-size:clamp(21px,2.4vw,36px);line-height:1.16}
 .a2-quote cite{display:block;margin-top:16px;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;
   font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
@@ -218,7 +218,7 @@
              linear-gradient(180deg,var(--rule) 1px,transparent 1px) 0 0 / 100% 34px}
 .a2-portrait svg{position:absolute;left:50%;top:42%;width:clamp(46px,5vw,66px);height:auto;
   transform:translate(-50%,-50%);color:rgba(6,21,106,.16)}
-.a2-portrait b{position:relative;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.a2-portrait b{position:relative;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(15.5px,1.3vw,18px);line-height:1.2}
 .a2-portrait span{position:relative;display:block;margin-top:6px;font-family:"Inter",sans-serif;font-weight:600;
   font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
@@ -233,7 +233,7 @@
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 30%);
   mask-image:linear-gradient(90deg,transparent 0,#000 30%)}
 .a2-cta-band .a2-in{z-index:2}
-.a2-cta-band h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
+.a2-cta-band h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.04;
   font-size:clamp(30px,4.2vw,60px);margin:20px 0 0;max-width:16ch}
 .a2-cta-band h2 em{font-style:normal;color:var(--elec)}
 .a2-cta-band p{margin:22px 0 0;font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.64;color:var(--soft);max-width:44ch}
@@ -478,7 +478,7 @@ body:has(.a2) .nav{transition:background .45s var(--ease,ease),border-color .45s
   width:clamp(84px,7.4vw,112px);height:clamp(84px,7.4vw,112px);display:block;
   filter:drop-shadow(0 8px 18px rgba(9,14,30,.45))}
 .a2-reason-ic svg{width:100%;height:100%;display:block}
-.a2-reason b{display:block;margin-top:clamp(20px,2.6vh,30px);font-family:"Space Grotesk",sans-serif;font-weight:500;
+.a2-reason b{display:block;margin-top:clamp(20px,2.6vh,30px);font-family:"Montserrat",sans-serif;font-weight:500;
   letter-spacing:-.028em;font-size:clamp(24px,2.1vw,32px);line-height:1.1;color:var(--navy)}
 .a2-reason p{margin:12px auto 0;font-size:15px;line-height:1.62;color:var(--soft);max-width:30ch}
 .a2-reason:nth-child(2) .tp-act{animation-delay:1.2s}
@@ -672,7 +672,7 @@ body:has(.a2) .foot-base{border-top:0}
 .a2-flow-st:first-child::before{top:50%}
 .a2-flow-st:last-child::before{bottom:50%}
 .a2-flow-n{position:relative;z-index:1;width:var(--fn);height:var(--fn);border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center}
-.a2-flow-n b{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;line-height:1}
+.a2-flow-n b{font-family:"Montserrat",sans-serif;font-weight:600;font-size:18px;line-height:1}
 .a2-flow-n::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--elec);opacity:0;
   animation:a2ring 6s ease-out infinite;animation-delay:calc(var(--i) * 1.5s + .35s)}
 @keyframes a2ring{0%{opacity:.7;transform:scale(.7)}22%{opacity:0;transform:scale(1.55)}100%{opacity:0;transform:scale(1.55)}}
@@ -680,7 +680,7 @@ body:has(.a2) .foot-base{border-top:0}
 .a2-flow-ob svg{width:100%;height:100%;display:block;overflow:visible}
 .a2-flow-ob .tp-iso .tp-act{animation-delay:calc(var(--i) * 1.5s + .4s)}
 .a2-flow-w{display:grid;gap:4px;max-width:34ch}
-.a2-flow-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
+.a2-flow-t{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
 .a2-flow-d{font-size:clamp(14px,1.05vw,15.5px);line-height:1.5;color:var(--soft)}
 .a2-flow-pulse{position:absolute;left:calc(var(--fn) / 2 - 5px);top:0;width:10px;height:10px;border-radius:50%;background:var(--elec);
   box-shadow:0 0 0 4px rgba(5,32,245,.18);z-index:1;animation:a2pulse 6s linear infinite}
@@ -698,7 +698,7 @@ body:has(.a2) .foot-base{border-top:0}
 .a2-cap{display:inline-flex;align-items:center;gap:10px;height:48px;padding:3px 16px 3px 3px;border-radius:999px;background:#fff;
   border:1px solid rgba(5,32,245,.22);box-shadow:0 10px 24px -16px rgba(6,21,106,.4);position:relative;z-index:1;justify-self:start}
 .a2-cap b{width:42px;height:42px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;line-height:1}
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:17px;line-height:1}
 .a2-cap i{display:grid;place-items:center;width:24px;height:24px;color:var(--elec)}
 .a2-cap i svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
 .a2-cap i svg circle{fill:currentColor;stroke:none}
@@ -813,7 +813,7 @@ body:has(.a2) .foot-base{border-top:0}
 .a2-flow-st:first-child::before{top:50%}
 .a2-flow-st:last-child::before{bottom:50%}
 .a2-flow-n{position:relative;z-index:1;width:var(--fn);height:var(--fn);border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center}
-.a2-flow-n b{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:18px;line-height:1}
+.a2-flow-n b{font-family:"Montserrat",sans-serif;font-weight:600;font-size:18px;line-height:1}
 .a2-flow-n::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--elec);opacity:0;
   animation:a2ring 6s ease-out infinite;animation-delay:calc(var(--i) * 1.5s + .35s)}
 @keyframes a2ring{0%{opacity:.7;transform:scale(.7)}22%{opacity:0;transform:scale(1.55)}100%{opacity:0;transform:scale(1.55)}}
@@ -821,7 +821,7 @@ body:has(.a2) .foot-base{border-top:0}
 .a2-flow-ob svg{width:100%;height:100%;display:block;overflow:visible}
 .a2-flow-ob .tp-iso .tp-act{animation-delay:calc(var(--i) * 1.5s + .4s)}
 .a2-flow-w{display:grid;gap:4px;max-width:34ch}
-.a2-flow-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
+.a2-flow-t{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.15;color:var(--ink)}
 .a2-flow-d{font-size:clamp(14px,1.05vw,15.5px);line-height:1.5;color:var(--soft)}
 .a2-flow-pulse{position:absolute;left:calc(var(--fn) / 2 - 5px);top:0;width:10px;height:10px;border-radius:50%;background:var(--elec);
   box-shadow:0 0 0 4px rgba(5,32,245,.18);z-index:1;animation:a2pulse 6s linear infinite}
@@ -839,7 +839,7 @@ body:has(.a2) .foot-base{border-top:0}
 .a2-cap{display:inline-flex;align-items:center;gap:10px;height:48px;padding:3px 16px 3px 3px;border-radius:999px;background:#fff;
   border:1px solid rgba(5,32,245,.22);box-shadow:0 10px 24px -16px rgba(6,21,106,.4);position:relative;z-index:1;justify-self:start}
 .a2-cap b{width:42px;height:42px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:17px;line-height:1}
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:17px;line-height:1}
 .a2-cap i{display:grid;place-items:center;width:24px;height:24px;color:var(--elec)}
 .a2-cap i svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;display:block}
 .a2-cap i svg circle{fill:currentColor;stroke:none}
@@ -958,9 +958,9 @@ body:has(.a2) .nav-in{max-width:1340px}
   .a2-net .a2-city b{white-space:nowrap;overflow-wrap:normal}
   .a2-net .a2-city>span:last-child{display:none}
 }
-/* 45 · the house button face on About too: electric, Space Grotesk, no
+/* 45 · the house button face on About too: electric, "Montserrat", no
    shadow, no lift (it was the last mono navy button with a floating shadow) */
-.a2 .a2-cta,.a2 .a2-cta.lg{font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;background:#0520F5;box-shadow:none}
+.a2 .a2-cta,.a2 .a2-cta.lg{font-family:"Montserrat",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;background:#0520F5;box-shadow:none}
 .a2 .a2-cta:hover{transform:none;background:#041BD0;box-shadow:none}
 
 /* 24 Sep 2026, later still (phone pass): the globe is 100vw wide, and a 1fr

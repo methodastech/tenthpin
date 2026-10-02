@@ -199,7 +199,7 @@ body.proto3 .navlinks a.here::after{border-radius:0!important}
 body.proto3 :focus-visible{border-radius:0}
 
 /* 4 Sep 2026: the primary CTA is electric blue, no navy gradient */
-.cta{background:#0520F5;background-image:none;font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em}
+.cta{background:#0520F5;background-image:none;font-family:"Montserrat",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em}
 .cta:hover{background:#041BD0;filter:none}
 
 /* the premium layer sets the CTA gradient with !important, so the blue has to win the same way */

@@ -61,7 +61,7 @@
 .am-band{padding:var(--band) 0;position:relative}
 .am-band.warm{background:var(--warm)}
 .am-in{max-width:1320px;margin:0 auto;padding:0 var(--gut);width:100%;position:relative}
-.am-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;line-height:1.08;
+.am-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.03em;line-height:1.08;
   font-size:clamp(27px,3.6vw,48px);margin:20px 0 0;max-width:22ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -97,7 +97,7 @@
 .am-hero-panel{background:rgba(255,255,255,.9);
   -webkit-backdrop-filter:blur(12px) saturate(130%);backdrop-filter:blur(12px) saturate(130%);
   border:1px solid var(--hair2);padding:clamp(30px,4vw,62px);max-width:min(760px,94%)}
-.am-hero-panel h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.08;
+.am-hero-panel h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.08;
   font-size:clamp(28px,3.2vw,48px);margin:20px 0 0;max-width:20ch}
 .am-hero-panel h1 em{font-style:normal;color:var(--elec)}
 .am-hero-panel p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:18px 0 0;max-width:52ch}
@@ -122,7 +122,7 @@
   display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:baseline}
 .am-item s{text-decoration:none;font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;
   letter-spacing:.1em;color:var(--elec)}
-.am-item b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.am-item b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(15.5px,1.3vw,18.5px);line-height:1.2}
 .am-item span{display:block;margin-top:6px;font-size:13px;line-height:1.55;color:var(--soft)}
 
@@ -140,7 +140,7 @@
 .am-face{width:clamp(46px,4vw,58px);aspect-ratio:1;background:var(--warm2);border:1px solid var(--hair);
   display:grid;place-items:center;color:rgba(6,21,106,.28);margin-bottom:15px}
 .am-face svg{width:56%;height:auto}
-.am-role b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.am-role b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(16px,1.35vw,19px);line-height:1.2}
 .am-role span{display:block;margin-top:8px;font-size:13px;line-height:1.55;color:var(--soft)}
 /* the request flow: a sequence, not a diagram in a box */
@@ -149,7 +149,7 @@
 .am-flow-k{font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.2em;
   text-transform:uppercase;color:var(--faint);margin-right:6px}
 .am-step{display:flex;align-items:center;gap:clamp(10px,1.8vw,26px);
-  font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+  font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(15px,1.4vw,21px);color:var(--navy)}
 .am-step::after{content:"\2192";color:var(--elec);font-weight:400;font-size:.9em}
 .am-step:last-child::after{content:""}
@@ -166,7 +166,7 @@
   letter-spacing:.1em;color:var(--elec)}
 .am-leg-k em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
-.am-leg h3{margin:12px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.024em;
+.am-leg h3{margin:12px 0 0;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.024em;
   font-size:clamp(18px,1.7vw,25px);line-height:1.18}
 .am-leg p{margin:11px 0 0;font-size:14px;line-height:1.62;color:var(--soft)}
 .am-leg small{display:block;margin-top:14px;padding-top:12px;border-top:1px solid var(--hair);
@@ -180,7 +180,7 @@
 .am-close{background:var(--warm);padding:clamp(56px,9vh,120px) 0}
 .am-close-grid{display:grid;grid-template-columns:58fr 42fr;gap:clamp(28px,4.5vw,80px);align-items:center}
 .am-close-grid > *{min-width:0}
-.am-close h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.08;
+.am-close h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.032em;line-height:1.08;
   font-size:clamp(27px,3.4vw,46px);margin:18px 0 0;max-width:17ch}
 .am-close h2 em{font-style:normal;color:var(--elec)}
 .am-close p{margin:20px 0 0;font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:var(--soft);max-width:46ch}
@@ -271,7 +271,7 @@ body:has(.am) .nav-in{max-width:1320px;padding:0 clamp(18px,3vw,52px)}
   display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(20px,2.6vw,44px);align-items:center}
 .am-hero-grid > *{min-width:0}
 .am-hero-copy{grid-column:1 / 6;position:relative;z-index:2}
-.am-hero-copy h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
+.am-hero-copy h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.034em;line-height:1.05;
   font-size:clamp(32px,3.4vw,56px);margin:0;max-width:18ch}
 .am-hero-copy h1 em{font-style:normal;color:var(--elec)}
 .am-hero-copy > p{color:var(--soft);font-size:clamp(15px,1.15vw,17px);line-height:1.7;margin:20px 0 0;max-width:46ch}

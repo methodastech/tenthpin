@@ -27,7 +27,7 @@
 /* --- 2 · was <style id="ledgerCss"> ------------------------------------- */
 .logorow.anon{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
 .logorow.anon .logoslot{display:flex;flex-direction:column;gap:4px;border:1px solid rgba(16,22,38,.12);background:#fff;padding:14px 16px;align-items:flex-start}
-.logorow.anon .an-k{font:600 14.5px "Space Grotesk",sans-serif;color:#101626;letter-spacing:-.01em}
+.logorow.anon .an-k{font:600 14.5px "Montserrat",sans-serif;color:#101626;letter-spacing:-.01em}
 .logorow.anon .logoslot span:last-child{font:500 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
 .anon-note{margin-top:12px;font-size:12.5px;color:#6B7185}
 /* case spine · full image at rest, info reveals over the image on hover (13 Aug) */
@@ -40,7 +40,7 @@
 .cs-slot i{font:700 9px "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#06156A;border:1px solid rgba(6,21,106,.35);padding:4px 9px;background:#fff;font-style:normal}
 .cs-b{padding:15px 17px 17px;display:flex;flex-direction:column;gap:7px;flex:1}
 .cs-lane{font:700 9.5px "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#0E7490}
-.cs-b h3{font:500 18px/1.25 "Space Grotesk",sans-serif;letter-spacing:-.015em;margin:0}
+.cs-b h3{font:500 18px/1.25 "Montserrat",sans-serif;letter-spacing:-.015em;margin:0}
 .cs-b p{font-size:13px;color:#46536B;margin:0;line-height:1.55}
 .cs-out{margin-top:auto;padding-top:10px;border-top:1px dashed rgba(16,22,38,.14);font:600 10.5px "Inter",sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#101626}
 .cs-out b{color:#06156A}
@@ -106,7 +106,7 @@
 .ipan-body{position:absolute;left:22px;right:30px;bottom:28px;max-width:440px;opacity:0;transform:translateY(14px);
   transition:opacity .35s ease .14s,transform .5s var(--e1) .14s;pointer-events:none}
 .ipan.on .ipan-body{opacity:1;transform:none;pointer-events:auto}
-.ipan-body h3{font:500 clamp(24px,2.5vw,36px)/1.12 "Space Grotesk",sans-serif;letter-spacing:-.02em;color:#fff;margin:0}
+.ipan-body h3{font:500 clamp(24px,2.5vw,36px)/1.12 "Montserrat",sans-serif;letter-spacing:-.02em;color:#fff;margin:0}
 .ipan-rule{display:block;width:34px;height:2px;background:var(--scL,#8C9EFF);margin:16px 0 14px}
 .ipan-body p{font-size:14px;line-height:1.6;color:rgba(238,242,251,.86);margin:0;max-width:360px}
 .ipan-go{display:inline-block;margin-top:20px;padding:12px 20px;border:1px solid rgba(255,255,255,.55);
@@ -142,7 +142,7 @@
   align-items:center;text-align:center;gap:5px;transition:border-color .3s,transform .3s}
 .qrcard:hover{border-color:#06156A;transform:translateY(-3px)}
 .qrcard img{width:min(190px,68%);aspect-ratio:1/1;object-fit:contain;margin-bottom:12px}
-.qrcard b{font:500 16.5px "Space Grotesk",sans-serif;letter-spacing:-.01em;color:#101626}
+.qrcard b{font:500 16.5px "Montserrat",sans-serif;letter-spacing:-.01em;color:#101626}
 .qrcard span{font:500 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
 /* faces band */
 .faces{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:var(--s5,28px)}
@@ -150,14 +150,14 @@
 .face .ph{aspect-ratio:4/5;background:repeating-linear-gradient(135deg,#EEF1F8 0 12px,#F7F9FD 12px 24px);display:flex;align-items:center;justify-content:center}
 .face .ph i{font:700 9px "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#06156A;border:1px solid rgba(6,21,106,.35);padding:4px 9px;background:#fff;font-style:normal}
 .face .fb{padding:12px 14px 14px}
-.face .fb b{display:block;font:500 15.5px "Space Grotesk",sans-serif;letter-spacing:-.01em}
+.face .fb b{display:block;font:500 15.5px "Montserrat",sans-serif;letter-spacing:-.01em}
 .face .fb span{display:block;margin-top:3px;font:500 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
 /* method strip */
 .mstrip{display:flex;flex-wrap:wrap;gap:0;border:1px solid rgba(16,22,38,.12);background:#fff;margin-top:var(--s4,20px)}
 .mst{flex:1 1 150px;padding:13px 15px;border-right:1px solid rgba(16,22,38,.08);position:relative}
 .mst:last-child{border-right:0}
 .mst i{font:700 9.5px "Inter",sans-serif;letter-spacing:.1em;color:#06156A;font-style:normal}
-.mst b{display:block;font:500 15px "Space Grotesk",sans-serif;margin-top:3px}
+.mst b{display:block;font:500 15px "Montserrat",sans-serif;margin-top:3px}
 .mst span{display:block;font-size:12px;color:#46536B;margin-top:3px;line-height:1.5}
 .mst-note{margin-top:10px;font:500 10.5px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
 

@@ -53,7 +53,7 @@
 .h2-in{max-width:1400px;margin:0 auto;padding:0 clamp(16px,2.6vw,44px);width:100%;position:relative}
 /* One message per band: the heading is allowed to be large because it is
    usually the only thing standing in the band head. */
-.h2-h{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;line-height:1.03;
+.h2-h{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.03em;line-height:1.03;
   font-size:clamp(30px,4.4vw,62px);margin:16px 0 0;max-width:18ch}
 /* the section eyebrow was removed 4 Sep (client direction: no eyebrows in
    prototype 3). Where the heading is now first in its column it no longer
@@ -91,7 +91,7 @@
   background:var(--paper);overflow:hidden}
 .h2-hero-copy{position:relative;z-index:3;
   padding:132px clamp(24px,4vw,72px) 72px clamp(16px,calc((100vw - 1400px) / 2 + 2.6vw),120px)}
-.h2-hero h1{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.035em;line-height:1.02;
+.h2-hero h1{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.035em;line-height:1.02;
   font-size:clamp(34px,3.6vw,60px);margin:22px 0 0}
 .h2-hero h1 span{display:block}
 .h2-hero h1 em{font-style:normal;color:var(--elec)}
@@ -116,13 +116,13 @@
    client logos) on this. Compressed to a single screen-third. */
 .h2-trust{padding:clamp(46px,6vh,74px) 0 clamp(30px,4vh,44px);border-top:1px solid var(--hair);background:var(--paper)}
 .h2-trust-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:clamp(26px,4vw,64px);align-items:end}
-.h2-trust h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.028em;line-height:1.06;
+.h2-trust h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.028em;line-height:1.06;
   font-size:clamp(24px,2.9vw,40px);margin:14px 0 0;max-width:15ch}
 .h2-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,30px)}
 .h2-fact{position:relative;padding-left:16px}
 .h2-fact::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:2px;background:var(--pale2)}
 .h2-fact:first-child::before{background:var(--elec)}
-.h2-fact b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.03em;
+.h2-fact b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.03em;
   font-size:clamp(30px,3.4vw,50px);line-height:1;color:var(--navy)}
 .h2-fact span{display:block;margin-top:9px;font-size:12.5px;line-height:1.5;color:var(--faint);max-width:19ch}
 /* the marquee reuses the tp.css .logomarq / .logoslot pair and re-grounds it */
@@ -152,7 +152,7 @@
   transform:scaleY(0);transform-origin:top;transition:transform .4s var(--ease)}
 .h2-cap:hover,.h2-cap:focus-visible{background:var(--pale);padding-left:30px;outline:0}
 .h2-cap:hover::before,.h2-cap:focus-visible::before{transform:scaleY(1)}
-.h2-cap b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(18px,1.5vw,22px);
+.h2-cap b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(18px,1.5vw,22px);
   letter-spacing:-.02em;line-height:1.2}
 .h2-cap span{display:block;margin-top:7px;font-size:14px;line-height:1.55;color:var(--soft);max-width:40ch}
 .h2-cap i{position:absolute;right:20px;top:24px;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;
@@ -174,7 +174,7 @@
 .h2-stop em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--faint);transition:color .4s}
 .h2-stop.on em{color:var(--elec)}
-.h2-stop b{display:block;margin-top:10px;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.h2-stop b{display:block;margin-top:10px;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(17px,1.5vw,23px);line-height:1.18}
 .h2-stop span{display:block;margin-top:8px;font-size:13.5px;line-height:1.55;color:var(--soft);max-width:26ch}
 
@@ -186,11 +186,11 @@
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 46%);
   mask-image:linear-gradient(90deg,transparent 0,#000 46%)}
 .h2-scale .h2-in{z-index:2}
-.h2-scale h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.045em;line-height:.92;
+.h2-scale h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.045em;line-height:.92;
   font-size:var(--huge);margin:0;text-transform:uppercase}
 .h2-scale h2 span{display:block}
 .h2-scale h2 span:nth-child(2){color:#7489FF}
-.h2-scale p{margin:clamp(22px,3vh,40px) 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.h2-scale p{margin:clamp(22px,3vh,40px) 0 0;font-family:"Montserrat",sans-serif;font-weight:500;
   font-size:clamp(19px,2.1vw,30px);letter-spacing:-.02em;color:rgba(255,255,255,.72)}
 
 /* --- 07 · PROOF · one feature, two supports -----------------------------
@@ -215,7 +215,7 @@
 .h2-story-r em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.17em;
   text-transform:uppercase;color:var(--faint)}
 .h2-story-r p{margin:8px 0 0;font-size:15px;line-height:1.55;color:var(--ink)}
-.h2-story-r.out p{color:var(--elec);font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:19px;letter-spacing:-.02em}
+.h2-story-r.out p{color:var(--elec);font-family:"Montserrat",sans-serif;font-weight:500;font-size:19px;letter-spacing:-.02em}
 .h2-proof-more{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,30px);margin-top:clamp(20px,2.6vh,32px)}
 .h2-case{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;padding:18px;border:1px solid var(--hair);
   border-radius:0;background:var(--paper);text-decoration:none;color:inherit;
@@ -226,7 +226,7 @@
 .h2-case:hover img{transform:scale(1.06)}
 .h2-case em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.15em;
   text-transform:uppercase;color:var(--elec)}
-.h2-case b{display:block;margin-top:8px;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(16px,1.3vw,19px);
+.h2-case b{display:block;margin-top:8px;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(16px,1.3vw,19px);
   letter-spacing:-.02em;line-height:1.22}
 .h2-case span{display:block;margin-top:7px;font-size:13px;line-height:1.5;color:var(--soft)}
 
@@ -246,7 +246,7 @@
   border-radius:0;padding:11px 15px;max-width:calc(100% - 28px);
   box-shadow:0 10px 26px -18px rgba(13,21,38,.6);transition:transform .45s var(--ease)}
 .h2-tile:hover .h2-tile-lab{transform:translateY(-3px)}
-.h2-tile-lab b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:16px;letter-spacing:-.02em;line-height:1.2}
+.h2-tile-lab b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:16px;letter-spacing:-.02em;line-height:1.2}
 .h2-tile-lab span{display:block;margin-top:4px;font-size:12.5px;line-height:1.45;color:var(--soft)}
 .h2-tile.lead{grid-column:1 / 8;grid-row:1 / 3}
 .h2-tile.lead .h2-tile-lab{left:18px;bottom:18px;padding:15px 19px}
@@ -268,7 +268,7 @@
   border-top:1px solid var(--hair2);padding-top:22px}
 .h2-ai-step em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.17em;
   text-transform:uppercase;color:var(--elec)}
-.h2-ai-step b{display:block;margin-top:9px;font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.02em;
+.h2-ai-step b{display:block;margin-top:9px;font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.02em;
   font-size:clamp(16px,1.35vw,20px);line-height:1.2}
 .h2-ai-step span{display:block;margin-top:7px;font-size:13.5px;line-height:1.55;color:var(--soft);max-width:28ch}
 
@@ -277,7 +277,7 @@
 .h2-people-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;display:block}
 .h2-roster{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,28px);margin-top:clamp(20px,2.8vh,34px)}
 .h2-person{padding:22px 0 0;border-top:2px solid var(--navy)}
-.h2-person b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.4vw,21px);letter-spacing:-.02em}
+.h2-person b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.4vw,21px);letter-spacing:-.02em}
 .h2-person em{font-style:normal;display:block;margin-top:7px;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;
   font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
 .h2-person span{display:block;margin-top:11px;font-size:13.5px;line-height:1.55;color:var(--soft)}
@@ -290,7 +290,7 @@
 .h2-pick:hover{border-color:rgba(5,32,245,.42);transform:translateY(-3px);box-shadow:0 24px 46px -32px rgba(13,21,38,.55)}
 .h2-pick em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--elec)}
-.h2-pick b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(19px,1.6vw,24px);letter-spacing:-.022em;line-height:1.18}
+.h2-pick b{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(19px,1.6vw,24px);letter-spacing:-.022em;line-height:1.18}
 .h2-pick p{margin:0;font-size:14px;line-height:1.58;color:var(--soft)}
 .h2-pick-t{margin-top:auto;padding-top:16px;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;
   letter-spacing:.13em;text-transform:uppercase;color:var(--faint)}
@@ -299,7 +299,7 @@
 .h2-faq{margin-top:clamp(40px,6vh,74px);border-top:1px solid var(--hair)}
 .h2-fq{border-bottom:1px solid var(--hair)}
 .h2-fq summary{list-style:none;cursor:pointer;padding:20px 44px 20px 0;position:relative;
-  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(15.5px,1.25vw,18px);letter-spacing:-.015em;
+  font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(15.5px,1.25vw,18px);letter-spacing:-.015em;
   transition:color .3s}
 .h2-fq summary::-webkit-details-marker{display:none}
 .h2-fq summary:hover{color:var(--elec)}
@@ -315,14 +315,14 @@
 .h2-globe-stage{aspect-ratio:1/.66;min-height:280px;position:relative}
 .h2-cities{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--hair);border:1px solid var(--hair)}
 .h2-city{background:var(--paper);padding:22px 20px}
-.h2-city b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(16px,1.3vw,20px);letter-spacing:-.02em}
+.h2-city b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(16px,1.3vw,20px);letter-spacing:-.02em}
 .h2-city span{display:block;margin-top:6px;font-size:12.5px;line-height:1.5;color:var(--faint)}
 .h2-close{position:relative;background:var(--navy);color:#fff;padding:clamp(64px,9vh,118px) 0;overflow:hidden;isolation:isolate}
 .h2-close-viz{position:absolute;left:34%;right:0;top:0;bottom:0;z-index:0;opacity:.55;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44%);
   mask-image:linear-gradient(90deg,transparent 0,#000 44%)}
 .h2-close .h2-in{z-index:2}
-.h2-close h2{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.035em;line-height:1.02;
+.h2-close h2{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.035em;line-height:1.02;
   font-size:clamp(30px,4.4vw,60px);margin:16px 0 0;max-width:17ch}
 .h2-close p{margin:20px 0 0;font-size:clamp(15.5px,1.25vw,18px);line-height:1.62;color:rgba(255,255,255,.72);max-width:52ch}
 .h2-close .h2-cta{background:#fff;color:var(--navy)}
@@ -515,7 +515,7 @@
 .h2-scale-keys{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair2)}
 .h2-scale-keys li{padding:18px 0;border-bottom:1px solid var(--hair2)}
 .h2-scale-keys em{display:block;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--elec)}
-.h2-scale-keys b{display:block;margin-top:7px;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.25;color:var(--navy)}
+.h2-scale-keys b{display:block;margin-top:7px;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.35vw,21px);letter-spacing:-.02em;line-height:1.25;color:var(--navy)}
 .h2-scale p{color:var(--soft);margin-top:clamp(28px,4vh,52px)}
 
 /* proof: premium feature */
@@ -615,7 +615,7 @@ body:has(.h2) .nav-in{max-width:var(--h2-w);padding:0 var(--h2-gut)}
 .h2-capcap{position:absolute;left:0;bottom:0;z-index:3;max-width:34ch;transition:opacity .26s ease,transform .26s ease}
 .h2-capcap.sw{opacity:0;transform:translateY(6px)}
 .h2-capcap i{display:block;font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.16em;color:var(--elec)}
-.h2-capcap b{display:block;margin-top:6px;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(18px,1.5vw,23px);letter-spacing:-.02em;color:var(--navy)}
+.h2-capcap b{display:block;margin-top:6px;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(18px,1.5vw,23px);letter-spacing:-.02em;color:var(--navy)}
 .h2-capcap span{display:block;margin-top:5px;font-size:13.5px;line-height:1.5;color:var(--soft)}
 .h2-cap.lit{background:var(--pale)}
 .h2-cap.lit .h2-cap-ic{background:var(--elec);border-color:var(--elec);color:#fff}
@@ -624,7 +624,7 @@ figure.h2-cap-ic,figure.h2-person-ic,figure.h2-stop-n{margin:0}
 @media (max-width:640px){.h2-capmorph{height:320px}}
 
 /* 4 Sep 2026: primary CTA in the heading face, electric blue (Prototype 3) */
-.h2-cta{font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;background:var(--elec);box-shadow:0 18px 36px -18px rgba(5,32,245,.7)}
+.h2-cta{font-family:"Montserrat",sans-serif;font-size:14px;font-weight:600;letter-spacing:.04em;background:var(--elec);box-shadow:0 18px 36px -18px rgba(5,32,245,.7)}
 .h2-cta:hover{background:#041BD0;box-shadow:0 22px 44px -18px rgba(5,32,245,.8)}
 .h2-cta.ghost{background:transparent;box-shadow:none}
 .h2-close .h2-cta{background:#fff;color:var(--navy);box-shadow:none}
@@ -883,11 +883,11 @@ body:has(.h2) .foot .in{max-width:var(--h2-w);padding-left:var(--h2-gut);padding
 .h2-cityshot{overflow:hidden}
 .h2-cityshot:hover img{transform:scale(1.045)}
 .h2-cityshot figcaption{padding:16px 0 0}
-.h2-cityshot figcaption b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;
+.h2-cityshot figcaption b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;
   font-size:clamp(18px,1.5vw,23px);letter-spacing:-.022em;color:var(--navy)}
 .h2-cityshot figcaption span{display:block;margin-top:5px;font-size:13.5px;color:var(--soft)}
 .h2-cityfoot{margin:clamp(22px,3vh,36px) 0 0;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-.h2-cityfoot b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:17px;color:var(--navy)}
+.h2-cityfoot b{font-family:"Montserrat",sans-serif;font-weight:500;font-size:17px;color:var(--navy)}
 .h2-cityfoot span{font-size:13.5px;color:var(--soft)}
 @media (max-width:900px){.h2-globe-grid{grid-template-columns:1fr}}
 
@@ -948,7 +948,7 @@ body:has(.h2) .foot .in{max-width:var(--h2-w);padding-left:var(--h2-gut);padding
 .h2-eg-lb{font-family:"Inter",sans-serif;font-weight:600;font-size:12px;font-weight:700;letter-spacing:.17em;fill:var(--elec)}
 .h2-eg-lb.in{fill:var(--faint)}
 .h2-eg-cap{font-family:Inter,system-ui,sans-serif;font-size:14px;fill:var(--soft)}
-.h2-eg-cap.in{font-family:"Space Grotesk",sans-serif;font-size:15px;font-weight:500;fill:#fff;letter-spacing:.01em}
+.h2-eg-cap.in{font-family:"Montserrat",sans-serif;font-size:15px;font-weight:500;fill:#fff;letter-spacing:.01em}
 
 /* the records */
 .h2-eg-rec rect{fill:#fff;stroke:var(--hair2);stroke-width:1.4}
@@ -998,7 +998,7 @@ body:has(.h2) .foot .in{max-width:var(--h2-w);padding-left:var(--h2-gut);padding
 .h2-eg-out.o0 .h2-eg-chip{animation:h2egChip 2s var(--ease) infinite}
 .h2-eg-out.o1 .h2-eg-chip{animation:h2egChip 2s var(--ease) infinite .1s}
 .h2-eg-out.o2 .h2-eg-chip{animation:h2egChip 2s var(--ease) infinite .2s}
-.h2-eg-chiptx{font-family:"Space Grotesk",sans-serif;font-size:16px;font-weight:500;fill:var(--navy)}
+.h2-eg-chiptx{font-family:"Montserrat",sans-serif;font-size:16px;font-weight:500;fill:var(--navy)}
 @media (prefers-reduced-motion:reduce){
   .h2-eg-rec,.h2-eg-pkt,.h2-eg-ring,.h2-eg-ring2,.h2-eg-grid circle,.h2-eg-hex,.h2-eg-chip{animation:none;opacity:1}
   .h2-eg-pkt{opacity:0}}
@@ -1276,7 +1276,7 @@ body:has(.h2) .cta,body:has(.h2) .cta:hover{box-shadow:none!important}
 .h2-eng-col{display:grid;gap:0;align-content:center}
 .h2-eng-lb{font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.17em;
   text-transform:uppercase;color:var(--elec);margin-bottom:9px}
-.h2-eng-col b{font-family:"Space Grotesk",sans-serif;font-weight:500;letter-spacing:-.022em;
+.h2-eng-col b{font-family:"Montserrat",sans-serif;font-weight:500;letter-spacing:-.022em;
   font-size:clamp(17px,1.45vw,21px);line-height:1.2;color:var(--navy)}
 .h2-eng-col p{margin:8px 0 0;font-size:14px;line-height:1.55;color:var(--soft);max-width:30ch}
 .h2-eng-col.b .h2-eng-lb{margin-top:26px}
@@ -1316,12 +1316,12 @@ body:has(.h2) .cta,body:has(.h2) .cta:hover{box-shadow:none!important}
 @keyframes h2engGrid{0%,70%,100%{opacity:.16}22%{opacity:.55}}
 .h2-eng-hex{fill:var(--elec);transform-origin:120px 120px;animation:h2engCore 2s var(--ease) infinite}
 @keyframes h2engCore{0%,72%,100%{transform:scale(1)}26%{transform:scale(1.05)}}
-.h2-eng-core-tx{font-family:"Space Grotesk",sans-serif;font-size:19px;font-weight:500;fill:#fff}
+.h2-eng-core-tx{font-family:"Montserrat",sans-serif;font-size:19px;font-weight:500;fill:#fff}
 
 /* the work that leaves */
 .h2-eng-out{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:8px}
 .h2-eng-out li{padding:11px 15px;border-radius:5px;background:var(--pale);font-size:14.5px;
-  font-family:"Space Grotesk",sans-serif;font-weight:500;color:var(--navy);
+  font-family:"Montserrat",sans-serif;font-weight:500;color:var(--navy);
   animation:h2engOut 2s var(--ease) infinite}
 .h2-eng-out li.o1{animation-delay:.1s}
 .h2-eng-out li.o2{animation-delay:.2s}
@@ -1577,10 +1577,10 @@ body:has(.h2) .nav.solid,body:has(.h2) .nav{border-bottom-color:transparent!impo
   -webkit-mask-image:url(/assets/media/people-boardroom-screenmask.png);mask-image:url(/assets/media/people-boardroom-screenmask.png);
   -webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .h2-screen{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0;background:#F4F7FD;color:#040F4F;
-  font-family:"Space Grotesk",sans-serif;overflow:hidden}
+  font-family:"Montserrat",sans-serif;overflow:hidden}
 .h2-screen-in{position:absolute;inset:0;padding:64px 70px}
 .h2-screen-eb{display:flex;align-items:center;gap:22px;font-family:"Inter",sans-serif;font-weight:600;font-size:28px;letter-spacing:.14em;text-transform:uppercase;color:#0520F5;font-weight:700}
-.h2-screen-eb b{font-family:"Space Grotesk",sans-serif;font-size:34px;letter-spacing:-.01em;text-transform:none;color:#06156A;font-weight:700}
+.h2-screen-eb b{font-family:"Montserrat",sans-serif;font-size:34px;letter-spacing:-.01em;text-transform:none;color:#06156A;font-weight:700}
 .h2-screen h3{margin:18px 0 0;font-size:66px;line-height:1.02;letter-spacing:-.025em;font-weight:500;color:#040F4F}
 .h2-screen-track{position:relative;margin-top:54px;height:14px;background:#DCE5F7;border-radius:7px}
 .h2-screen-track i{position:absolute;left:0;top:0;bottom:0;width:58%;background:linear-gradient(90deg,#0520F5,#06156A);border-radius:7px}
@@ -1597,7 +1597,7 @@ body:has(.h2) .nav.solid,body:has(.h2) .nav{border-bottom-color:transparent!impo
 .h2-screen-ph li b{display:block;margin:16px 10px 0 30px;font-size:31px;line-height:1.2;font-weight:400;letter-spacing:0;color:#4C5A76;text-align:left}
 .h2-screen-ft{position:absolute;left:70px;right:70px;bottom:54px;display:flex;justify-content:space-between;align-items:flex-end;
   font-family:"Inter",sans-serif;font-weight:600;font-size:26px;letter-spacing:.1em;text-transform:uppercase;color:#4C5A76}
-.h2-screen-ft b{font-family:"Space Grotesk",sans-serif;font-size:34px;letter-spacing:-.01em;text-transform:none;color:#06156A;font-weight:500}
+.h2-screen-ft b{font-family:"Montserrat",sans-serif;font-size:34px;letter-spacing:-.01em;text-transform:none;color:#06156A;font-weight:500}
 
 /* 56 · 6 Sep 2026: seven office tiles (client-confirmed list). Four across
    from tablet width up so the row breaks 4 + 3 rather than 3 + 3 + 1. */
@@ -1649,12 +1649,12 @@ body:has(.h2) .nav.solid,body:has(.h2) .nav{border-bottom-color:transparent!impo
 .h2-story{padding-left:0;padding-top:0;justify-content:center;gap:clamp(24px,3.2vh,38px)}
 .h2-story::before,.h2-story::after,.h2-story-r::before,.h2-story-r:first-child::before{content:none}
 .h2-story-r,.h2-story-r:first-child{padding:0;display:grid;grid-template-columns:54px minmax(0,1fr);column-gap:18px;align-items:start}
-.h2-story-r i{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:400;font-size:32px;line-height:1;letter-spacing:-.04em;color:var(--faint);opacity:.55;padding-top:3px}
+.h2-story-r i{font-style:normal;font-family:"Montserrat",sans-serif;font-weight:400;font-size:32px;line-height:1;letter-spacing:-.04em;color:var(--faint);opacity:.55;padding-top:3px}
 .h2-story-r em{font-size:11px;letter-spacing:.18em;color:var(--faint)}
 .h2-story-r p{margin:8px 0 0;font-size:clamp(16px,1.2vw,18px);line-height:1.5;color:var(--ink);max-width:36ch}
 .h2-story-r.out i{color:var(--elec);opacity:1}
 .h2-story-r.out em{color:var(--elec)}
-.h2-story-r.out p{margin-top:6px;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(28px,2.4vw,40px);line-height:1.08;letter-spacing:-.035em;color:var(--navy);max-width:16ch}
+.h2-story-r.out p{margin-top:6px;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(28px,2.4vw,40px);line-height:1.08;letter-spacing:-.035em;color:var(--navy);max-width:16ch}
 @media (max-width:640px){.h2-story-r,.h2-story-r:first-child{grid-template-columns:44px 1fr;column-gap:12px}.h2-story-r i{font-size:26px}}
 
 /* 60 · 6 Sep 2026 (Bazil, pass 2): no plate behind the glyph. The sector
@@ -1675,7 +1675,7 @@ body:has(.h2) .nav.solid,body:has(.h2) .nav{border-bottom-color:transparent!impo
 .h2-eng.v2{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1.05fr) auto minmax(0,1fr);column-gap:0;align-items:start}
 .h2-eng.v2 .h2-eng-col{display:grid;align-content:start;gap:0}
 .h2-eng-step{display:flex;align-items:center;gap:12px;height:44px;margin-bottom:22px}
-.h2-eng-step i{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--elec);color:#fff;font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:20px;letter-spacing:-.02em;animation:h2stepPing 2s var(--ease) infinite}
+.h2-eng-step i{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--elec);color:#fff;font-style:normal;font-family:"Montserrat",sans-serif;font-weight:600;font-size:20px;letter-spacing:-.02em;animation:h2stepPing 2s var(--ease) infinite}
 .h2-eng-col.b2 .h2-eng-step i{animation-delay:.5s}.h2-eng-col.b .h2-eng-step i{animation-delay:1s}.h2-eng-col.c .h2-eng-step i{animation-delay:1.5s}
 @keyframes h2stepPing{0%{box-shadow:0 0 0 0 rgba(5,32,245,.36);transform:scale(1)}8%{transform:scale(1.1)}40%,100%{box-shadow:0 0 0 16px rgba(5,32,245,0);transform:scale(1)}}
 .h2-eng-step em{font-style:normal;font-family:"Inter",sans-serif;font-weight:600;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--navy)}
@@ -1685,7 +1685,7 @@ body:has(.h2) .nav.solid,body:has(.h2) .nav{border-bottom-color:transparent!impo
 .h2-eng.v2 .h2-eng-link.l2 b{animation-delay:.5s}.h2-eng.v2 .h2-eng-link.l3 b{animation-delay:1s}
 @keyframes h2flowPk{0%{left:-8px;opacity:0}4%{opacity:1}21%{opacity:1}25%{left:calc(100% - 2px);opacity:0}100%{left:calc(100% - 2px);opacity:0}}
 .h2-eng.v2 .h2-eng-art{height:196px;display:grid;align-content:center;margin-bottom:22px}
-.h2-eng.v2 .h2-eng-col b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.3vw,21px);letter-spacing:-.022em;line-height:1.2;color:var(--navy)}
+.h2-eng.v2 .h2-eng-col b{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.3vw,21px);letter-spacing:-.022em;line-height:1.2;color:var(--navy)}
 .h2-eng.v2 .h2-eng-col p{margin:8px 0 0;font-size:14.5px;line-height:1.55;color:var(--soft);max-width:30ch}
 /* stage 2 · the context, three cards stepping into the engine */
 .h2-eng-ctx{position:relative;height:152px;width:min(100%,250px)}
@@ -1781,7 +1781,7 @@ body:has(.h2) .nav.attop::after{opacity:1}
 @media (max-width:1000px){.h2-stop-n,.h2-stop .h2-stop-n{top:-6px;left:0;width:60px;height:60px}.h2-stop{padding-left:76px}}
 /* 69 · FAQ: a title, an index and an object per question */
 .h2-faq-head{display:grid;gap:10px;margin-bottom:clamp(14px,2vh,22px)}
-.h2-faq-head h3{margin:0;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(22px,2vw,30px);letter-spacing:-.025em;line-height:1.15;color:var(--navy)}
+.h2-faq-head h3{margin:0;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(22px,2vw,30px);letter-spacing:-.025em;line-height:1.15;color:var(--navy)}
 .h2-fq summary{display:grid;grid-template-columns:54px 36px minmax(0,1fr);align-items:center;column-gap:12px;padding:14px 44px 14px 0}
 .h2-fq-ic{width:54px;height:54px;display:block}
 .h2-fq-ic svg{width:100%;height:100%;fill:none;stroke:none;overflow:visible}
@@ -1810,7 +1810,7 @@ body:has(.h2) .nav.attop::after{opacity:1}
 .h2-meet-in.v2{display:grid;gap:16px}
 .h2-meet-in.v2 .h2-mt-panel{gap:0}
 .h2-meet-in.v2 .h2-mt-panel figcaption{margin-top:12px}
-.h2-meet-in.v2 .h2-mt-panel figcaption b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:16px;letter-spacing:-.01em;color:#fff}
+.h2-meet-in.v2 .h2-mt-panel figcaption b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:16px;letter-spacing:-.01em;color:#fff}
 .h2-meet-in.v2 .h2-mt-panel figcaption span{display:block;margin-top:4px;font-size:13px;line-height:1.5;color:rgba(255,255,255,.62)}
 .h2-meet-in.v2 .h2-mt-card{margin-top:8px;padding:20px 22px 22px;border:1px solid rgba(255,255,255,.16);border-radius:4px;background:rgba(255,255,255,.04);box-shadow:none}
 .h2-meet-in.v2 .h2-mt-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 18px;margin:12px 0 0;padding:0;list-style:none}
@@ -1925,12 +1925,12 @@ body:has(.h2) .nav.attop::after{opacity:1}
 .h2-eng-frame-lb{position:absolute;left:28px;top:-11px;padding:3px 10px;background:var(--pale);border-radius:4px;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--elec)}
 .h2-eng-line{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;position:relative;z-index:1}
 .h2-eng-line li{position:relative;display:grid;grid-template-columns:44px 28px minmax(0,1fr);column-gap:12px;align-items:center;padding-right:56px}
-.h2-eng-line li .h2-eng-n{width:44px;height:44px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:19px;animation:h2engPing 8s var(--ease) infinite}
+.h2-eng-line li .h2-eng-n{width:44px;height:44px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;font-style:normal;font-family:"Montserrat",sans-serif;font-weight:600;font-size:19px;animation:h2engPing 8s var(--ease) infinite}
 .h2-eng-line .s2 .h2-eng-n{animation-delay:1.12s}.h2-eng-line .s3 .h2-eng-n{animation-delay:2.24s}.h2-eng-line .s4 .h2-eng-n{animation-delay:3.36s}
 @keyframes h2engPing{0%{box-shadow:0 0 0 0 rgba(5,32,245,.4)}7%{box-shadow:0 0 0 14px rgba(5,32,245,0)}100%{box-shadow:0 0 0 14px rgba(5,32,245,0)}}
 .h2-eng-ic{display:grid;place-items:center;width:28px;height:28px;color:var(--elec)}
 .h2-eng-ic svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.h2-eng-tx b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:17px;letter-spacing:-.015em;color:var(--navy);line-height:1.15}
+.h2-eng-tx b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:17px;letter-spacing:-.015em;color:var(--navy);line-height:1.15}
 .h2-eng-tx span{display:block;margin-top:3px;font-size:12.5px;line-height:1.4;color:var(--soft)}
 .h2-eng-line li:not(:last-child)::after{content:"";position:absolute;right:14px;top:21px;width:30px;height:2px;background:var(--hair2)}
 .h2-eng-line li:not(:last-child)::before{content:"";position:absolute;right:12px;top:17.5px;width:7px;height:7px;border-top:2px solid var(--hair2);border-right:2px solid var(--hair2);transform:rotate(45deg)}
@@ -1943,7 +1943,7 @@ body:has(.h2) .nav.attop::after{opacity:1}
 .h2-eng-pulse{position:absolute;z-index:2;width:10px;height:10px;border-radius:50%;background:var(--elec);box-shadow:0 0 0 4px rgba(5,32,245,.18);left:calc(36px + 17px);top:73px;animation:h2engLoop 8s linear infinite}
 @keyframes h2engLoop{0%{left:calc(36px + 17px);top:73px}42%{left:calc(36px + 17px + 3 * ((100% - 72px) / 4));top:73px}50%{left:calc(36px + 17px + 3 * ((100% - 72px) / 4));top:calc(100% - 33px)}92%{left:calc(36px + 17px);top:calc(100% - 33px)}100%{left:calc(36px + 17px);top:73px}}
 .h2-eng-notes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,2.4vw,40px);margin-top:clamp(28px,4vh,48px);padding:0 36px}
-.h2-eng-notes b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(17px,1.3vw,21px);letter-spacing:-.022em;line-height:1.2;color:var(--navy)}
+.h2-eng-notes b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(17px,1.3vw,21px);letter-spacing:-.022em;line-height:1.2;color:var(--navy)}
 .h2-eng-notes p{margin:8px 0 0;font-size:14.5px;line-height:1.55;color:var(--soft);max-width:30ch}
 @media (prefers-reduced-motion:reduce){.h2-eng-pulse,.h2-eng-line li .h2-eng-n{animation:none}}
 @media (max-width:1000px){
@@ -2191,11 +2191,11 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-eng-note i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--elec);margin-right:10px;vertical-align:1px}
 .h2-eng-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--g);position:relative;z-index:1}
 .h2-eng-flow li{position:relative;display:grid;gap:16px;align-content:start}
-.h2-eng-flow .h2-eng-n{width:52px;height:52px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:22px;animation:h2engPing 8s var(--ease) infinite}
+.h2-eng-flow .h2-eng-n{width:52px;height:52px;border-radius:50%;background:var(--elec);color:#fff;display:grid;place-items:center;font-style:normal;font-family:"Montserrat",sans-serif;font-weight:600;font-size:22px;animation:h2engPing 8s var(--ease) infinite}
 .h2-eng-flow .s2 .h2-eng-n{animation-delay:1.12s}.h2-eng-flow .s3 .h2-eng-n{animation-delay:2.24s}.h2-eng-flow .s4 .h2-eng-n{animation-delay:3.36s}
 .h2-eng-flow li:not(:last-child)::after{content:"";position:absolute;top:25px;left:calc(52px + 10px);right:calc(-1 * var(--g) + 10px);height:2px;background:var(--hair2)}
 .h2-eng-flow li:not(:last-child)::before{content:"";position:absolute;top:21.5px;right:calc(-1 * var(--g) + 10px);width:8px;height:8px;border-top:2px solid var(--hair2);border-right:2px solid var(--hair2);transform:rotate(45deg)}
-.h2-eng-flow h3{margin:6px 0 0;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(21px,1.6vw,27px);letter-spacing:-.02em;line-height:1.15;color:var(--navy)}
+.h2-eng-flow h3{margin:6px 0 0;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(21px,1.6vw,27px);letter-spacing:-.02em;line-height:1.15;color:var(--navy)}
 .h2-eng-flow p{margin:0;font-size:15px;line-height:1.55;color:var(--soft);max-width:30ch}
 .h2-eng-flow .h2-eng-st{margin-top:2px;font-size:12px}
 .h2-eng.v4 .h2-eng-demo{height:74px;margin-top:6px}
@@ -2258,7 +2258,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-meet-in.v3 .h2-mt-panel figcaption{margin-top:14px;display:grid;grid-template-columns:24px minmax(0,1fr);column-gap:12px;align-items:start}
 .h2-meet-in.v3 .h2-mt-ic{width:24px;height:24px;background:none;color:#8C9EFF;display:grid;place-items:center}
 .h2-meet-in.v3 .h2-mt-ic svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.h2-meet-in.v3 .h2-mt-panel figcaption b{display:block;font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:17px;letter-spacing:-.01em;color:#fff}
+.h2-meet-in.v3 .h2-mt-panel figcaption b{display:block;font-family:"Montserrat",sans-serif;font-weight:500;font-size:17px;letter-spacing:-.01em;color:#fff}
 .h2-meet-in.v3 .h2-mt-panel figcaption span span{display:block;margin-top:4px;font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.62)}
 .h2-mt-leave{position:relative;margin-top:14px;padding-top:22px}
 .h2-mt-leave::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.14)}
@@ -2420,7 +2420,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-cn-p{stroke:var(--elec);stroke-width:3;stroke-linecap:round;stroke-dasharray:.2 1;animation:h2cnPulse 3.5s cubic-bezier(.45,0,.4,1) infinite}
 @keyframes h2cnPulse{0%{stroke-dashoffset:1.2;opacity:0}10%{opacity:1}85%{opacity:1}100%{stroke-dashoffset:-.2;opacity:0}}
 .h2-cn-core{fill:#fff;stroke:rgba(5,32,245,.35);stroke-width:1.6;filter:drop-shadow(0 18px 40px rgba(6,21,106,.14))}
-.h2-cn-core-t{font-family:"Space Grotesk",sans-serif;font-size:18px;font-weight:500;fill:var(--navy)}
+.h2-cn-core-t{font-family:"Montserrat",sans-serif;font-size:18px;font-weight:500;fill:var(--navy)}
 .h2-cn-node circle{fill:#fff;stroke:rgba(5,32,245,.28);stroke-width:1.6;transition:stroke .35s,filter .35s;filter:drop-shadow(0 10px 22px rgba(6,21,106,.1))}
 .h2-cn-node.lit circle{stroke:var(--elec);stroke-width:2.4;filter:drop-shadow(0 14px 30px rgba(5,32,245,.28))}
 .h2-cn-node .tp-iso{overflow:visible}
@@ -2451,7 +2451,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-faq{display:grid;grid-template-columns:clamp(160px,18vw,260px) minmax(0,1fr);column-gap:clamp(20px,3vw,48px);align-items:start}
 .h2-faq > *:not(.h2-faq-q){grid-column:2}
 .h2-faq-q{grid-column:1;grid-row:1 / span 20;position:sticky;top:120px;display:grid;place-items:center;aspect-ratio:1;
-  font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(150px,16vw,240px);line-height:1;color:var(--elec);
+  font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(150px,16vw,240px);line-height:1;color:var(--elec);
   background:radial-gradient(circle,rgba(5,32,245,.14) 1.6px,transparent 1.8px) 0 0/12px 12px;border-radius:50%}
 .h2-faq-q span{transform:translateY(-4%)}
 @media (max-width:900px){.h2-faq{grid-template-columns:1fr}.h2-faq-q{display:none}}
@@ -2486,7 +2486,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 #tpLoader .tpl-foot{position:absolute;left:50%;top:calc(46% + clamp(40px,5vw,70px));transform:translateX(-50%);
   display:flex;align-items:baseline;gap:clamp(18px,3vw,40px);white-space:nowrap}
 #tpLoader .tpl-sub{font-family:"Inter",sans-serif;font-weight:600;font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:#5A6684}
-#tpLoader .tpl-ct{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:clamp(22px,2.2vw,30px);letter-spacing:-.02em;color:#0520F5;font-variant-numeric:tabular-nums}
+#tpLoader .tpl-ct{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(22px,2.2vw,30px);letter-spacing:-.02em;color:#0520F5;font-variant-numeric:tabular-nums}
 
 .tp-iso[data-k="handshake"] .tp-act{animation:tpAcLift 7s ease-in-out infinite}
 
@@ -2528,7 +2528,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-mt-fl svg{width:40px;height:40px;fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;display:block}
 .h2-mt-fl svg circle{fill:var(--elec);stroke:none}
 .h2-mt-lb b,.h2-mt-hour b,.h2-mt-bus b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--elec);color:#fff;
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:0;margin-right:10px;vertical-align:middle;position:relative;top:-1px}
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:11.5px;letter-spacing:0;margin-right:10px;vertical-align:middle;position:relative;top:-1px}
 
 /* 132 · AI band: number and icon in one capsule, the connectors dotted and
    electric with a head, the pass label sitting on the line, the pulse with
@@ -2603,7 +2603,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-capviz .h2-capcap{position:static;margin-top:6px;max-width:46ch}
 
 /* type inside a diagram */
-.cv-t{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:26px;letter-spacing:-.02em;fill:var(--ink)}
+.cv-t{font-family:"Montserrat",sans-serif;font-weight:500;font-size:26px;letter-spacing:-.02em;fill:var(--ink)}
 .cv-t.sm{font-size:19px}
 .cv-t.on{fill:#fff}
 .cv-t.onNavy{fill:#fff}
@@ -2696,7 +2696,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
    a bit closer"). The guide between rows is shorter. */
 .h2-story-r em{display:flex;align-items:center;gap:8px}
 .h2-story-r em b{display:inline-grid;place-items:center;width:19px;height:19px;background:var(--elec);color:#fff;
-  font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:11px;letter-spacing:0;line-height:1}
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:11px;letter-spacing:0;line-height:1}
 .h2-story-r em{margin-bottom:2px}
 .h2-story-r:not(:last-child)::before{top:30px;height:calc(100% + var(--sg) - 22px)}
 
@@ -2838,7 +2838,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
    from one scale (10, 14, 18, 24, 30). No curves, no partial edges. */
 .h2-meet-in.h2-mt2{display:flex;flex-direction:column;align-items:center;width:min(100%,560px);gap:0}
 .h2-mt2-cap{display:inline-flex;align-items:center;gap:10px;font-family:"Inter",sans-serif;font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.68);white-space:nowrap}
-.h2-mt2-cap b{display:inline-grid;place-items:center;width:22px;height:22px;background:var(--elec);color:#fff;font:700 12px/1 "Space Grotesk",sans-serif;border-radius:0}
+.h2-mt2-cap b{display:inline-grid;place-items:center;width:22px;height:22px;background:var(--elec);color:#fff;font:700 12px/1 "Montserrat",sans-serif;border-radius:0}
 .h2-mt2-row{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;width:100%;margin-top:18px}
 .h2-mt2-panel{margin:0}
 .h2-mt2-screen{position:relative;aspect-ratio:16/10;overflow:hidden;background:rgba(255,255,255,.06)}
@@ -2847,7 +2847,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-mt2-panel figcaption{margin-top:14px;display:grid;justify-items:center;text-align:center;row-gap:4px;min-height:78px}
 .h2-mt2-panel figcaption i{display:block;width:20px;height:20px;color:var(--elec)}
 .h2-mt2-panel figcaption i svg,.h2-mt2-box li i svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-.h2-mt2-panel figcaption b{font-family:"Space Grotesk",sans-serif;font-weight:500;font-size:16px;letter-spacing:-.01em;color:#fff}
+.h2-mt2-panel figcaption b{font-family:"Montserrat",sans-serif;font-weight:500;font-size:16px;letter-spacing:-.01em;color:#fff}
 .h2-mt2-panel figcaption span{font-size:13px;line-height:1.45;color:rgba(255,255,255,.62);max-width:24ch}
 /* the bracket: a tick down from each caption, one bar between the two frame
    centres, one stem from the bar's middle into step 2 */
@@ -3155,7 +3155,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-jrn .h2-rail{background:var(--elec);--jr:74px}
 .h2-jrn .tp-iso-sh{display:none}
 .h2-jrn .h2-stop em{display:flex;align-items:baseline;gap:9px;font:600 14px/1.3 "Inter",sans-serif;letter-spacing:.01em;text-transform:none;color:var(--elec)}
-.h2-jrn .h2-stop em .h2-stop-no{font-style:normal;font-family:"Space Grotesk",sans-serif;font-weight:600}
+.h2-jrn .h2-stop em .h2-stop-no{font-style:normal;font-family:"Montserrat",sans-serif;font-weight:600}
 .h2-jrn .h2-stop small strong{display:block;font:600 12.5px/1.4 "Inter",sans-serif;letter-spacing:.01em;text-transform:none;opacity:1}
 @media (min-width:1001px){
   .h2-jrn .h2-stops{grid-template-rows:repeat(4,auto);row-gap:0}
@@ -3185,14 +3185,14 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-ai5-flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--g);grid-template-rows:repeat(3,auto)}
 .h2-ai5-flow li{position:relative;display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0;margin:0;padding:0}
 .h2-ai5-head{display:flex;align-items:center;gap:12px;height:44px}
-.h2-ai5-head i{display:grid;place-items:center;width:44px;height:44px;background:var(--elec);color:#fff;font:600 18px/1 "Space Grotesk",sans-serif;font-style:normal}
+.h2-ai5-head i{display:grid;place-items:center;width:44px;height:44px;background:var(--elec);color:#fff;font:600 18px/1 "Montserrat",sans-serif;font-style:normal}
 .h2-ai5-head span{display:grid;place-items:center;width:30px;height:30px;color:var(--elec)}
 .h2-ai5-head svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter}
 /* the arrow to the next station, and what it carries written above it */
 .h2-ai5-flow li:not(:last-child)::after{content:"";position:absolute;top:21px;left:102px;right:calc(-1 * var(--g) + 14px);height:1.5px;background:var(--elec)}
 .h2-ai5-flow li:not(:last-child)::before{content:"";position:absolute;top:16.5px;right:calc(-1 * var(--g) + 6px);border-left:9px solid var(--elec);border-top:5.5px solid transparent;border-bottom:5.5px solid transparent}
 .h2-ai5-pass{position:absolute;top:-4px;left:102px;right:calc(-1 * var(--g) + 6px);text-align:center;font:500 13px/1 "Inter",sans-serif;font-style:normal;color:var(--elec);white-space:nowrap}
-.h2-ai5-flow h3{margin:24px 0 0;font:500 clamp(20px,1.6vw,26px)/1.2 "Space Grotesk",sans-serif;letter-spacing:-.01em;color:var(--navy)}
+.h2-ai5-flow h3{margin:24px 0 0;font:500 clamp(20px,1.6vw,26px)/1.2 "Montserrat",sans-serif;letter-spacing:-.01em;color:var(--navy)}
 .h2-ai5-flow p{margin:10px 0 0;font:400 15px/1.6 "Inter",sans-serif;color:var(--soft);max-width:30ch}
 /* the return: a bracket from station 4 back to station 1, the arrow at 1 */
 .h2-ai5-loop{position:relative;height:30px;margin:clamp(24px,2.6vw,34px) 0 0 21.25px;
@@ -3486,7 +3486,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
   opacity:0;transition:opacity .6s ease .55s}
 #tpLoader.go .tpl-foot{opacity:1}
 #tpLoader .tpl-sub{font:500 clamp(11.5px,1vw,13px)/1 "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#5A6684}
-#tpLoader .tpl-ct{font:500 clamp(18px,1.7vw,24px)/1 "Space Grotesk",sans-serif;letter-spacing:-.01em;color:#0520F5;font-variant-numeric:tabular-nums}
+#tpLoader .tpl-ct{font:500 clamp(18px,1.7vw,24px)/1 "Montserrat",sans-serif;letter-spacing:-.01em;color:#0520F5;font-variant-numeric:tabular-nums}
 @media (prefers-reduced-motion:reduce){#tpLoader{display:none}}
 
 /* ── 19 Sep 2026 · the AI band as premium cards (.h2-ai6) ────────────────
@@ -3502,11 +3502,11 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .ai6-stage{position:relative;aspect-ratio:240/170;background:#F4F7FF;
   background-image:radial-gradient(rgba(5,32,245,.13) 1px,transparent 1.3px);background-size:14px 14px;border-bottom:1px solid #E7EDF8}
 .ai6-head{position:absolute;left:16px;top:16px;display:flex;align-items:center;gap:8px;height:38px;padding:0 12px 0 0;background:var(--elec);z-index:1}
-.ai6-head i{display:grid;place-items:center;width:38px;height:38px;color:#fff;font:600 16px/1 "Space Grotesk",sans-serif;font-style:normal}
+.ai6-head i{display:grid;place-items:center;width:38px;height:38px;color:#fff;font:600 16px/1 "Montserrat",sans-serif;font-style:normal}
 .ai6-head span{display:grid;place-items:center;width:22px;height:22px;color:#fff}
 .ai6-head svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:square}
 .ai6-viz{position:absolute;left:6%;right:6%;bottom:6%;width:88%;height:auto;overflow:visible}
-.ai6-c h3{margin:clamp(22px,2vw,28px) clamp(22px,2vw,30px) 0;font:500 clamp(21px,1.7vw,26px)/1.15 "Space Grotesk",sans-serif;letter-spacing:-.015em;color:var(--navy)}
+.ai6-c h3{margin:clamp(22px,2vw,28px) clamp(22px,2vw,30px) 0;font:500 clamp(21px,1.7vw,26px)/1.15 "Montserrat",sans-serif;letter-spacing:-.015em;color:var(--navy)}
 .ai6-c p{margin:12px clamp(22px,2vw,30px) 0;font:400 15px/1.62 "Inter",sans-serif;color:var(--soft)}
 /* the arrow between cards, level with the middle of the stage */
 .ai6-c:not(:last-child)::after{content:"";position:absolute;top:calc(35% - 1px);left:calc(100% + 12px);width:calc(var(--g) - 24px);height:1.5px;background:var(--elec);opacity:.9}
@@ -3575,7 +3575,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
 .h2-pv2-roles{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(28px,4vw,72px);row-gap:28px;margin:0}
 .h2-pv2-roles .h2-person{display:grid;grid-template-columns:56px minmax(0,1fr);column-gap:18px;row-gap:6px;align-items:start;padding:0;margin:0}
 .h2-pv2-roles .h2-person-ic{grid-row:span 2;width:56px;height:56px;margin:0}
-.h2-pv2-roles .h2-person b{grid-column:2;font:500 clamp(18px,1.4vw,21px)/1.2 "Space Grotesk",sans-serif;letter-spacing:-.01em;color:var(--navy)}
+.h2-pv2-roles .h2-person b{grid-column:2;font:500 clamp(18px,1.4vw,21px)/1.2 "Montserrat",sans-serif;letter-spacing:-.01em;color:var(--navy)}
 .h2-pv2-roles .h2-person span{grid-column:2;font:400 15px/1.6 "Inter",sans-serif;color:var(--soft);max-width:34ch}
 @media (max-width:1000px){
   .h2-pv2-top{grid-template-columns:1fr;row-gap:16px}
@@ -3620,7 +3620,7 @@ body:has(.h2) .nav.attop::after{opacity:1;height:160%;background:linear-gradient
   border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;
   font:600 13px/1 "Inter",sans-serif;letter-spacing:.01em}
 .h2-mt2-cap b{display:inline-grid;place-items:center;width:26px;height:26px;margin:0;background:var(--elec,#0520F5);color:#fff;
-  font:600 13px/1 "Space Grotesk",sans-serif}
+  font:600 13px/1 "Montserrat",sans-serif}
 .h2-mt2-box > .h2-mt2-cap{background:#0A1C7A;padding:5px 14px 5px 5px}
 
 /* one flow of movement down the path every three seconds: in from the two
@@ -3815,14 +3815,14 @@ a.h2-pick{text-decoration:none;color:inherit;cursor:pointer}
 .h2-evb-kick span{display:inline-flex;align-items:center;gap:10px;font:600 12px/1.3 "Inter",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8C9EFF}
 .h2-evb-kick span::before{content:"";width:8px;height:8px;background:#5B7BFF;animation:h2EvbPulse 2.4s ease-out infinite}
 .h2-evb-kick b{padding:5px 11px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.08);font:600 12px/1.2 "Inter",sans-serif;color:#fff}
-.h2-evb-h{margin:18px 0 0;font:600 clamp(36px,4.6vw,68px)/1.02 "Space Grotesk",sans-serif;letter-spacing:-.025em;color:#fff;text-wrap:balance}
+.h2-evb-h{margin:18px 0 0;font:600 clamp(36px,4.6vw,68px)/1.02 "Montserrat",sans-serif;letter-spacing:-.025em;color:#fff;text-wrap:balance}
 .h2-evb-h em{display:block;margin-top:14px;font-size:.5em;font-style:normal;font-weight:500;line-height:1.15;letter-spacing:-.01em;color:#8C9EFF}
 .h2-evb-h::after{content:"";display:block;width:120px;height:3px;margin-top:26px;background:linear-gradient(90deg,#5B7BFF,rgba(91,123,255,0))}
 .h2-evb-meta{list-style:none;display:flex;flex-wrap:wrap;gap:10px 28px;margin:22px 0 0;padding:0}
 .h2-evb-meta li{display:inline-flex;align-items:center;gap:10px;font:500 15.5px/1.4 "Inter",sans-serif;color:rgba(255,255,255,.88)}
 .h2-evb-meta li::before{content:"";width:6px;height:6px;background:#5B7BFF}
 .h2-evb-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px;margin-top:32px}
-.h2-evb-go{display:inline-flex;align-items:center;gap:8px;padding:16px 24px;background:#fff;color:#06156A;text-decoration:none;font:600 15px/1 "Space Grotesk",sans-serif;letter-spacing:.02em;transition:background .2s,color .2s}
+.h2-evb-go{display:inline-flex;align-items:center;gap:8px;padding:16px 24px;background:#fff;color:#06156A;text-decoration:none;font:600 15px/1 "Montserrat",sans-serif;letter-spacing:.02em;transition:background .2s,color .2s}
 .h2-evb-go b{transition:transform .2s}
 .h2-evb-go:hover{background:#0520F5;color:#fff}
 .h2-evb-go:hover b{transform:translateX(3px)}
@@ -3833,7 +3833,7 @@ a.h2-pick{text-decoration:none;color:inherit;cursor:pointer}
 .h2-evb-badge{display:flex;flex-direction:column;align-items:flex-end;gap:14px}
 .h2-evb-badge img{display:block;width:clamp(170px,15vw,230px);height:auto}
 .h2-evb-rule{display:block;width:clamp(170px,15vw,230px);height:2px;background:rgba(255,255,255,.7)}
-.h2-evb-badge b{font:600 clamp(16px,1.6vw,22px)/1.2 "Space Grotesk",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#fff;text-align:right}
+.h2-evb-badge b{font:600 clamp(16px,1.6vw,22px)/1.2 "Montserrat",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#fff;text-align:right}
 .h2-evb-next{width:min(100%,340px);padding:18px 20px 8px;background:rgba(3,12,69,.55);border:1px solid rgba(255,255,255,.2);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .h2-evb-next p{margin:0 0 6px;font:600 11px/1.3 "Inter",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#C5CEFF}
 .h2-evb-next ul{list-style:none;margin:0;padding:0}

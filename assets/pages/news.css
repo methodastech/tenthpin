@@ -11,7 +11,7 @@
 a.newsitem:hover{border-color:#06156A;transform:translateY(-3px)}
 .newsitem .nk{font:700 9.5px "Inter",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#06156A}
 .newsitem.slot .nk{color:#6B7185}
-.newsitem h3{font:500 19px/1.3 "Space Grotesk",sans-serif;letter-spacing:-.015em;margin:0}
+.newsitem h3{font:500 19px/1.3 "Montserrat",sans-serif;letter-spacing:-.015em;margin:0}
 .newsitem p{font-size:13.5px;color:#46536B;line-height:1.6;margin:0}
 .newsitem .nmeta{margin-top:auto;padding-top:10px;border-top:1px dashed rgba(16,22,38,.14);font:600 10px "Inter",sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6B7185}
 .newsitem.slot{background:repeating-linear-gradient(135deg,#FBFCFE 0 14px,#F4F6FB 14px 28px)}

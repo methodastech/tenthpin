@@ -26,7 +26,7 @@
   font-family:"Inter",sans-serif;font-weight:600;font-size:10px;font-weight:700;letter-spacing:.12em;line-height:1.2}
 .abtc-art{width:clamp(52px,4.6vw,88px);height:clamp(52px,4.6vw,88px);image-rendering:pixelated;opacity:.85;flex:none}
 .abtc-title{margin-top:auto;margin-bottom:clamp(16px,3vh,34px);
-  font-family:"Space Grotesk";font-weight:500;letter-spacing:-.02em;line-height:1.06;
+  font-family:"Montserrat";font-weight:500;letter-spacing:-.02em;line-height:1.06;
   font-size:clamp(1.35rem,2.3vw,2.4rem);color:var(--ink);
   opacity:calc((var(--t) - .12) * 2.2)}
 .abtc-toggle{all:unset;text-align:left;font:inherit;letter-spacing:inherit;color:inherit;cursor:default}
@@ -38,7 +38,7 @@
   font-family:"Inter",sans-serif;font-weight:600;font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
 .abtc-p{font-size:clamp(.9rem,.98vw,1.02rem);line-height:1.6;color:var(--soft);max-width:36ch}
 .abtc-spine{position:absolute;left:clamp(16px,1.6vw,30px);bottom:clamp(24px,4vh,52px);
-  font-family:"Space Grotesk";font-weight:500;letter-spacing:-.01em;color:var(--ink);
+  font-family:"Montserrat";font-weight:500;letter-spacing:-.01em;color:var(--ink);
   font-size:clamp(.95rem,1.1vw,1.25rem);opacity:calc(1 - var(--t) * 3);
   white-space:nowrap;max-width:calc(100% - 2 * clamp(16px,1.6vw,30px));overflow:hidden;text-overflow:ellipsis}
 @media (max-width:900px),(prefers-reduced-motion:reduce){
