@@ -3881,3 +3881,5 @@ a.h2-pick{text-decoration:none;color:inherit;cursor:pointer}
 .h2-marq.rows3{row-gap:clamp(28px,4.3vw,92px)}
 @media (max-width:760px){.h2-marq.rows3{row-gap:22px}}
 .h2-marq.rows3 img[src*="tunetalk"]{max-height:54px}
+/* revised logos (3 Oct 2026) whose marks are small inside their artwork */
+.h2-marq.rows3 img[src*="ascletis"],.h2-marq.rows3 img[src*="cspc"],.h2-marq.rows3 img[src*="mercedes-benz"],.h2-marq.rows3 img[src*="hengrui"]{max-height:52px}
