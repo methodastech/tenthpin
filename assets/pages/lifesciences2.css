@@ -647,3 +647,10 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .ls-marq.row1 .logoslot{height:72px}
 .ls-marq.row1 .logo-img{max-height:42px}
 @media (max-width:760px){.ls-marq.row1 .logoslot{height:56px}.ls-marq.row1 .logo-img{max-height:32px}}
+/* equal visual size (5 Oct 2026), as on the home page */
+.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){width:auto;height:76px}
+.ls-marq.row1 .logo-img,.ls-marq.row1 img[src*="/strip/"]{height:72px;max-height:none;width:auto;max-width:none}
+@media (max-width:760px){.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:56px}.ls-marq.row1 .logo-img,.ls-marq.row1 img[src*="/strip/"]{height:52px}}
+.h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]),.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:88px}
+.h2-marq.row1 img[src*="/strip/"],.ls-marq.row1 img[src*="/strip/"]{height:84px}
+@media (max-width:760px){.h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]),.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:62px}.h2-marq.row1 img[src*="/strip/"],.ls-marq.row1 img[src*="/strip/"]{height:58px}}

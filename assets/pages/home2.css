@@ -3891,3 +3891,11 @@ a.h2-pick{text-decoration:none;color:inherit;cursor:pointer}
 .h2-marq.row1 .logo-img{max-height:42px}
 .h2-marq.row1 img[src*="bmw"],.h2-marq.row1 img[src*="tunetalk"],.h2-marq.row1 img[src*="ascletis"],.h2-marq.row1 img[src*="cspc"],.h2-marq.row1 img[src*="hengrui"],.h2-marq.row1 img[src*="envision"],.h2-marq.row1 img[src*="gensci"],.h2-marq.row1 img[src*="khb"],.h2-marq.row1 img[src*="wondfo"],.h2-marq.row1 img[src*="cr-jiangzhong"],.h2-marq.row1 img[src*="edding"],.h2-marq.row1 img[src*="innovent"],.h2-marq.row1 img[src*="cp-group"],.h2-marq.row1 img[src*="bmc"],.h2-marq.row1 img[src*="zhongsheng"]{max-height:52px}
 @media (max-width:760px){.h2-marq.row1 .logoslot{height:56px}.h2-marq.row1 .logo-img{max-height:32px}}
+/* equal visual size (5 Oct 2026): every logo is pre-sized to the same ink area on a 200px
+   canvas (assets/clients/strip/), so one height fits all and the per-logo tweaks are off */
+.h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]){width:auto;height:76px}
+.h2-marq.row1 .logo-img,.h2-marq.row1 img[src*="/strip/"]{height:72px;max-height:none;width:auto;max-width:none}
+@media (max-width:760px){.h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]){height:56px}.h2-marq.row1 .logo-img,.h2-marq.row1 img[src*="/strip/"]{height:52px}}
+.h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]),.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:88px}
+.h2-marq.row1 img[src*="/strip/"],.ls-marq.row1 img[src*="/strip/"]{height:84px}
+@media (max-width:760px){.h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]),.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:62px}.h2-marq.row1 img[src*="/strip/"],.ls-marq.row1 img[src*="/strip/"]{height:58px}}
