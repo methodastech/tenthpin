@@ -641,3 +641,9 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 @media (prefers-reduced-motion:reduce){.ls-marq .logomarq-half{animation:none}.ls-marq .logomarq-half[aria-hidden]{display:none}.ls-marq .logomarq{flex-wrap:wrap;width:auto}}
 .ls-marq img[src*="ford"],.ls-marq img[src*="bmw"],.ls-marq img[src*="mercedes"],.ls-marq img[src*="honda"],.ls-marq img[src*="seg"],.ls-marq img[src*="jomoo"],.ls-marq img[src*="gentherm"],.ls-marq img[src*="hengtong"],.ls-marq img[src*="transsion"]{max-height:48px}
 .ls-marq img[src*="ascletis"],.ls-marq img[src*="cspc"],.ls-marq img[src*="mercedes-benz"],.ls-marq img[src*="hengrui"]{max-height:52px}
+/* one row (3 Oct 2026), as on the home page: every client in a single slow loop */
+.ls-marq.row1 .logomarq-half{animation-duration:110s}
+.ls-marq.row1:hover .logomarq-half{animation-play-state:paused}
+.ls-marq.row1 .logoslot{height:72px}
+.ls-marq.row1 .logo-img{max-height:42px}
+@media (max-width:760px){.ls-marq.row1 .logoslot{height:56px}.ls-marq.row1 .logo-img{max-height:32px}}

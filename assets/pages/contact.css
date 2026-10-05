@@ -261,3 +261,5 @@
 .p3c .offcard .off-mail svg{flex:0 0 18px;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
 .p3c a.offcard.mail:hover .off-mail span,.p3c a.offcard.mail:focus-visible .off-mail span{text-decoration:underline;text-underline-offset:3px}
 @media (max-width:1000px){.p3c .offcard .off-mail{font-size:13.5px;margin:12px 0 14px}}
+/* FormSubmit honeypot (5 Oct 2026): off-screen, out of the tab order, hidden from screen readers */
+.hp-field{position:absolute!important;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden}
