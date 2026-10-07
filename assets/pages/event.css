@@ -132,3 +132,6 @@
 .evx-upcard{display:flex;flex-direction:column}
 .evx-upcard .evx-upbody{flex:1}
 .evx-upcard .evx-links{margin-top:auto;padding-top:20px}
+@media (max-width:760px){.evx-list{gap:44px}.evx{gap:18px}}
+/* phones: the pair under the lead photo sits in one row, so no empty second row */
+@media (max-width:760px){.evx-pics.n3 .evx-more{grid-template-rows:auto}}

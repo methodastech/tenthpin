@@ -654,3 +654,40 @@ body:has(.ls) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]),.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:88px}
 .h2-marq.row1 img[src*="/strip/"],.ls-marq.row1 img[src*="/strip/"]{height:84px}
 @media (max-width:760px){.h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]),.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:62px}.h2-marq.row1 img[src*="/strip/"],.ls-marq.row1 img[src*="/strip/"]{height:58px}}
+
+/* 7 Oct 2026 (phone): the four record figures sit in one row instead of a
+   tall single column, smaller, with the note under them centred to match.
+   Shared by all four industry pages. */
+@media (max-width:760px){
+  .ls-nums{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+  .ls-num b{font-size:clamp(22px,6.9vw,27px);letter-spacing:-.04em}
+  .ls-num span{font-size:11px;line-height:1.35;margin-top:6px}
+  .ls-nums + .ls-note{text-align:center}
+}
+
+/* 7 Oct 2026 (phone): the three programme shapes become a swipe slider with
+   dots (lib/phoneSlider.js wires the dots); the next card peeks in so the
+   swipe is obvious. Wider screens keep the grid and never see the dots. */
+.tp-dots{display:none}
+@media (max-width:760px){
+  .ls-shapes{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;
+    margin-left:calc(-1 * var(--gut));margin-right:calc(-1 * var(--gut));padding:0 var(--gut);scroll-padding:0 var(--gut)}
+  .ls-shapes::-webkit-scrollbar{display:none}
+  .ls-shape{flex:0 0 84%;scroll-snap-align:start}
+  .tp-dots{display:flex;justify-content:center;margin-top:14px}
+  .tp-dot{width:26px;height:26px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer}
+  .tp-dot::before{content:"";width:8px;height:8px;border-radius:4px;background:rgba(6,21,106,.22);transition:width .25s ease,background .25s ease}
+  .tp-dot.on::before{width:22px;background:var(--navy,#06156A)}
+  /* the three proof photos under the record: one row of small squares */
+  .ls-proof{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:28px}
+  .ls-proof .ls-shot{aspect-ratio:1}
+}
+
+/* 7 Oct 2026 (phone, "looks weird"): the hero photo and the next section's photo
+   sat one under the other with about 110px of blank between them. On phones the
+   next section now opens with its heading and text, its photo after them, and
+   the hero ends with a normal gap. Shared by all four industry pages. */
+@media (max-width:760px){
+  .ls-hero{padding-bottom:40px}
+  .ls-why > figure.ls-shot{order:2}
+}

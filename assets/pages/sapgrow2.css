@@ -407,3 +407,6 @@ body:has(.sg) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
   .sg-turn .sg-turn-in{grid-template-columns:1fr;gap:26px}
   .sg-turn-dg{justify-self:start;max-width:520px}
 }
+
+/* 7 Oct 2026: on phones and tablets the hero photo sits inside the page margins (as on RISE), not bleeding off the right edge */
+@media (max-width:1000px){.sg-hero-shot{width:auto;margin-right:0}}

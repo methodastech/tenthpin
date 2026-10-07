@@ -625,3 +625,51 @@ body:has(.pt) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 }
 
 .pt-badge > span{white-space:pre-line}
+
+/* 7 Oct 2026 (phone looked cluttered): each partner group becomes one tidy row.
+   Small object on the left; name, line and logos aligned on the right; a
+   hairline between groups; every logo on the same height. */
+@media (max-width:700px){
+  .pt-groups.v2{gap:0}
+  .pt-groups.v2 .pt-group{display:grid;grid-template-columns:52px minmax(0,1fr);grid-template-rows:none;column-gap:18px;align-items:start;padding:24px 0;border-top:1px solid var(--hair)}
+  .pt-groups.v2 .pt-group:last-child{border-bottom:1px solid var(--hair)}
+  .pt-groups.v2 .pt-group-ic{grid-column:1;grid-row:1 / span 3;width:52px;height:52px;margin:0}
+  .pt-groups.v2 .pt-group-k{grid-column:2;font-size:18px}
+  .pt-groups.v2 .pt-group p{grid-column:2;margin-top:4px;font-size:14px;line-height:1.5;max-width:none}
+  .pt-groups.v2 .pt-logos{grid-column:2;flex-wrap:wrap;align-items:center;gap:10px 22px;padding-top:14px}
+  .pt-groups.v2 .pt-logo{min-height:26px}
+  .pt-groups.v2 .pt-logo img{max-height:22px;max-width:104px}
+}
+
+/* 7 Oct 2026 (phone looked left-sided): on tablets and phones the certification
+   strip is centred, heading, badge and label, and a short last row sits in the
+   middle rather than hugging the left */
+@media (max-width:1000px){
+  .pt-proof.v2 h2{text-align:center}
+  .pt-proof.v2 .pt-badges{display:flex;flex-wrap:wrap;justify-content:center;gap:28px 18px}
+  .pt-proof.v2 .pt-badge{flex:0 0 calc((100% - 36px) / 3);justify-items:center;text-align:center}
+  .pt-proof.v2 .pt-badge img{object-position:center}
+}
+@media (max-width:700px){
+  .pt-proof.v2 .pt-badge{flex-basis:calc((100% - 18px) / 2)}
+}
+/* ...and calmer: equal tiles, every logo inside the same box, quieter labels */
+@media (max-width:1000px){
+  .pt-proof.v2 .pt-badges{gap:12px}
+  .pt-proof.v2 .pt-badge{flex-basis:calc((100% - 24px) / 3);gap:12px;padding:20px 12px 18px;border:1px solid var(--hair);background:#fff}
+  .pt-proof.v2 .pt-badge img{height:46px;max-width:72%}
+  .pt-proof.v2 .pt-badge span{font-size:12.5px;line-height:1.4;color:var(--soft,#4A5872)}
+}
+@media (max-width:700px){
+  .pt-proof.v2 .pt-badge{flex-basis:calc((100% - 12px) / 2)}
+}
+
+/* 7 Oct 2026 (phone): the four outcome cards are a swipe slider with dots,
+   instead of four tall photo cards stacked; the next card peeks in */
+@media (max-width:760px){
+  .pt-out.v2{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;
+    margin-left:calc(-1 * var(--gut,18px));margin-right:calc(-1 * var(--gut,18px));padding:0 var(--gut,18px);scroll-padding:0 var(--gut,18px)}
+  .pt-out.v2::-webkit-scrollbar{display:none}
+  .pt-out.v2 .pt-outcard{flex:0 0 84%;scroll-snap-align:start}
+  .pt-outcard .pt-cell-ic{width:48px}
+}

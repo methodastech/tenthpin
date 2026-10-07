@@ -294,3 +294,7 @@ body:has(.ai) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
   .ai-hero-shot{grid-column:7 / 13}
 }
 .ai-hero-copy h1{font-size:clamp(32px,3.4vw,52px)}
+@media (max-width:760px){.ai-break{padding:44px 0}}
+
+/* 7 Oct 2026: on phones and tablets the hero photo sits inside the page margins (as on RISE), not bleeding off the right edge */
+@media (max-width:1000px){.ai-hero-shot{width:auto;margin-right:0}}

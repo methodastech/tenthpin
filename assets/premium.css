@@ -238,3 +238,9 @@ body.proto3 :focus-visible{border-radius:0}
 .cta:not(.ghost):hover,.h2-cta:not(.ghost):hover,.foot .fcol .fc-cta:hover,.a2 .a2-cta:not(.ghost):hover,.sv-cta:not(.ghost):hover,.ls-cta:not(.ghost):hover,.p3c-cta:not(.ghost):hover{background-color:#0520F5!important;border-color:#0520F5}
 .h2-close .h2-cta:not(.ghost),.sv-close .sv-cta:not(.ghost),.evband .cta:not(.ghost),.dark-band .cta:not(.ghost){background-color:#0520F5!important;border-color:#0520F5}
 .h2-close .h2-cta:not(.ghost):hover,.sv-close .sv-cta:not(.ghost):hover,.evband .cta:not(.ghost):hover,.dark-band .cta:not(.ghost):hover{background-color:#041BD0!important;border-color:#041BD0}
+/* phone section spacing (7 Oct 2026): every page uses the 44px the Contact page already uses,
+   so two sections meet with ~90px between them instead of 160-200px */
+@media (max-width:760px){
+  html body .a2,html body .am,html body .h2,html body .rm,html body .s4,html body .sg,html body .p3c{--band:44px}
+  html body .ai,html body .ls,html body .pt,html body .sv,html body .cs2-v3{--gap-band:44px}
+}

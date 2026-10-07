@@ -2940,3 +2940,43 @@ body.proto3 .foot .in{max-width:1340px;padding-left:clamp(18px,3vw,52px);padding
 .foot .fcol a.fc-reach{color:var(--ink,#040F4F);font-weight:600}
 .foot .fcol a.fc-reach::after{content:" \2192";font-weight:400}
 .foot .fcol a.fc-reach:hover{color:var(--elec,#0520F5)}
+/* ICP licence number (6 Oct 2026): centred under the footer base on every page */
+.foot-icp{margin:clamp(18px,2.4vh,28px) 0 0;padding:clamp(14px,1.8vh,20px) 0 4px;border-top:1px solid var(--line);text-align:center;font:500 12.5px/1.5 "Inter",system-ui,sans-serif;letter-spacing:.02em}
+.foot-icp a{color:var(--faint);text-decoration:none}
+.foot-icp a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+/* 6 Oct 2026: the ICP line is now the last thing in the footer; a short margin under it */
+.foot{padding-bottom:clamp(22px,3vh,32px)}
+/* phone footer (7 Oct 2026): the module graphic sits close to the links above and the small
+   print below; the small print is centred in three short lines, over the centred ICP line */
+@media (max-width:760px){
+  footer.foot .foot-base{margin-top:208px;justify-content:center;text-align:center;align-items:center;gap:8px 16px;padding-top:20px}
+  footer.foot .foot-base>*{flex:0 0 auto}
+  footer.foot .foot-base>span:first-child{flex-basis:100%}
+}
+@media (max-width:760px){footer.foot .foot-base{display:flex;flex-wrap:wrap}footer.foot .foot-base .foot-portal{justify-self:center;grid-column:auto}}
+@media (max-width:760px){footer.foot .foot-base{margin-top:206px}}
+
+/* 7 Oct 2026 (phone, "too much space"): the footer opened with 24% of the screen height
+   (about 200px) of empty space, sized for desktop; on phones the drawing sits above the
+   copyright line instead, so the top needs only a normal gap */
+@media (max-width:760px){footer.foot{padding-top:56px}}
+
+/* 7 Oct 2026: on phones and tablets the footer drawing is three stacked process rails
+   (the nine SAP flows in their three groups), so it needs more room above the base bar */
+@media (max-width:999px){footer.foot .foot-base{margin-top:540px}}
+@media (min-width:700px) and (max-width:999px){footer.foot .foot-base{margin-top:600px}}
+/* the process drawing sits in its own band now, so it rises above the soft wash (::before)
+   that was laid over the old graphic; the text columns (.in, z-index 2) stay on top */
+footer.foot #footCanvas{z-index:1;pointer-events:none}
+
+/* 7 Oct 2026: slider dots, shared by every phone slider (lib/phoneSlider.js);
+   hidden on wider screens, where the cards stay a grid */
+.tp-dots{display:none}
+@media (max-width:760px){
+  .tp-dots{display:flex;justify-content:center;margin-top:14px}
+  .tp-dot{width:26px;height:26px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer}
+  .tp-dot::before{content:"";width:8px;height:8px;border-radius:4px;background:rgba(6,21,106,.22);transition:width .25s ease,background .25s ease}
+  .tp-dot.on::before{width:22px;background:#06156A}
+}
+/* 7 Oct 2026: a phone shows one process row (service-centric), so it needs far less room */
+@media (max-width:699px){footer.foot .foot-base{margin-top:250px}}

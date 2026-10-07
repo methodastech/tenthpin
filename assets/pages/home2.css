@@ -1574,7 +1574,7 @@ body:has(.h2) .nav.solid,body:has(.h2) .nav{border-bottom-color:transparent!impo
    mask painted from the photograph, so the accurate timeline sits behind
    them the way the old one did */
 .h2-screen-mask{position:absolute;left:1312px;top:66px;width:688px;height:549px;
-  -webkit-mask-image:url(/assets/media/people-boardroom-screenmask.png);mask-image:url(/assets/media/people-boardroom-screenmask.png);
+  -webkit-mask-image:url(/assets/media/people-boardroom-screenmask.webp);mask-image:url(/assets/media/people-boardroom-screenmask.webp);
   -webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .h2-screen{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0;background:#F4F7FD;color:#040F4F;
   font-family:"Montserrat",sans-serif;overflow:hidden}
@@ -1822,7 +1822,7 @@ body:has(.h2) .nav.attop::after{opacity:1}
    towers and the screen are both in. */
 .h2-people-shot{aspect-ratio:2.25}
 .h2-people-ov.kl{width:2880px;height:1222px}
-.h2-people-ov.kl .h2-screen-mask{left:2061px;top:149px;width:715px;height:514px;-webkit-mask-image:url(/assets/media/team-daylight-screenmask.png);mask-image:url(/assets/media/team-daylight-screenmask.png)}
+.h2-people-ov.kl .h2-screen-mask{left:2061px;top:149px;width:715px;height:514px;-webkit-mask-image:url(/assets/media/team-daylight-screenmask.webp);mask-image:url(/assets/media/team-daylight-screenmask.webp)}
 @media (max-width:1000px){.h2-people-shot{aspect-ratio:16/10}}
 
 /* 74 · fixes from the 7 Sep captures */
@@ -3899,3 +3899,27 @@ a.h2-pick{text-decoration:none;color:inherit;cursor:pointer}
 .h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]),.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:88px}
 .h2-marq.row1 img[src*="/strip/"],.ls-marq.row1 img[src*="/strip/"]{height:84px}
 @media (max-width:760px){.h2-marq.row1 .logoslot,.h2-marq.row1 .logoslot:has(img[src*="/strip/"]),.ls-marq.row1 .logoslot,.ls-marq.row1 .logoslot:has(img[src*="/strip/"]){height:62px}.h2-marq.row1 img[src*="/strip/"],.ls-marq.row1 img[src*="/strip/"]{height:58px}}
+/* 6 Oct 2026 (client): no scene number in the hero caption, only the industry name */
+.h2-hero-cap i{display:none}
+
+/* 7 Oct 2026: on phones and tablets the process drawing sits right above the base bar,
+   so the home page keeps the hairline the other pages have there */
+@media (max-width:999px){body:has(.h2) .foot-base{border-top:1px solid var(--line)}}
+
+/* 7 Oct 2026 (phone): "Not sure where to begin?" becomes a swipe slider with
+   dots; the next card peeks in so the swipe is obvious */
+@media (max-width:760px){
+  .h2-picks{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;
+    margin-left:calc(-1 * var(--h2-gut,18px));margin-right:calc(-1 * var(--h2-gut,18px));padding:0 var(--h2-gut,18px);scroll-padding:0 var(--h2-gut,18px)}
+  .h2-picks::-webkit-scrollbar{display:none}
+  .h2-pick{flex:0 0 84%;scroll-snap-align:start}
+}
+
+/* 7 Oct 2026 (phone): "8 offices, one team" is a swipe slider with dots too,
+   instead of eight full-width photos one under another */
+@media (max-width:760px){
+  .h2-globe-grid{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;
+    margin-left:calc(-1 * var(--h2-gut,18px));margin-right:calc(-1 * var(--h2-gut,18px));padding:0 var(--h2-gut,18px);scroll-padding:0 var(--h2-gut,18px)}
+  .h2-globe-grid::-webkit-scrollbar{display:none}
+  .h2-globe-grid .h2-cityshot{flex:0 0 84%;scroll-snap-align:start;margin:0}
+}

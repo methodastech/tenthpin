@@ -34,7 +34,7 @@ window.TP_CONTENT = {
       "time": "09:00 to 15:00 MYT",
       "orgName": "SAP",
       "orgLogo": "/assets/sap/sap-logo.svg",
-      "badge": "/assets/sap/sap-gold-partner-official.png",
+      "badge": "/assets/sap/sap-gold-partner-official.webp",
       "badgeAlt": "SAP Gold Partner",
       "role": "Gold Sponsor",
       "summary": "SAP's one-day Malaysia event on cloud ERP, business AI and trusted business data: practical strategies, customer best practices and the latest SAP innovations for growing businesses, building toward what SAP calls the Autonomous Enterprise. Organised by SAP.",
@@ -46,7 +46,7 @@ window.TP_CONTENT = {
       "linkText": "Register with SAP",
       "link2": "",
       "linkText2": "",
-      "img": "ev-sap-connect-day-my-2026.jpg",
+      "img": "ev-sap-connect-day-my-2026.webp",
       "alt": "SAP Connect Day Malaysia speaker card: Lee Foo Sang, Director, Tenthpin Management Consultants, 15 October 2026, EQ Kuala Lumpur",
       "phases": {
         "before": [],
@@ -70,7 +70,7 @@ window.TP_CONTENT = {
       "linkText": "SVCA members: request to attend",
       "link2": "",
       "linkText2": "",
-      "img": "ev-svca-lunch-learn-2026.jpg",
+      "img": "ev-svca-lunch-learn-2026.webp",
       "alt": "SVCA session poster: Standardizing Value Creation Across the Portfolio, 20 October 2026, 12:00 to 14:00 SGT, The Work Project, Asia Square Tower 2, Singapore",
       "phases": {
         "before": [],
@@ -94,7 +94,7 @@ window.TP_CONTENT = {
       "linkText": "Register",
       "link2": "https://singapore-events.com/Tenthpin/SG_28Oct2026/edm.html",
       "linkText2": "Event page",
-      "img": "ev-sg-manufacturing-seminar-2026.jpg",
+      "img": "ev-sg-manufacturing-seminar-2026.webp",
       "alt": "Seminar poster: SAP GROW for Smarter Manufacturing, 28 October 2026, 9:30 AM to 1:00 PM, SMU Yong Pung How School of Law, Singapore",
       "phases": {
         "before": [],
@@ -185,6 +185,10 @@ window.TP_CONTENT = {
     }
   ],
   "zh": {
+    "Evidence built with the system, not after it.": "证据随系统同步建立，而不是事后补。",
+    "Automation within Business Operations, not beside it.": "自动化融入业务运营，而不是游离其外。",
+    "Business Transformation with SAP RISE, Capability Activation with SAP GROW.": "以 SAP RISE 推动业务转型，以 SAP GROW 激活业务能力。",
+    "Advance with AI functionalities to simplify decision making.": "借助 AI 功能，让决策更简单。",
     ". We reply within one working day.": "。我们会在一个工作日内回复。",
     "1 Understand": "1 理解",
     "1 · Business continuity": "1 · 业务连续性",

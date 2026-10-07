@@ -314,3 +314,13 @@ body:has(.am) .nav-in{max-width:1340px}
 .am-band .am-stage,.am-band [data-stack],.am-band canvas{display:none}
 .am-team-shot{margin-top:clamp(28px,4vh,44px)}
 @media (max-width:1000px){.am-split-text{grid-template-columns:1fr;gap:14px}}
+
+/* 7 Oct 2026: on phones and tablets the hero photo sits inside the page margins (as on RISE), not bleeding off the right edge */
+@media (max-width:1000px){.am-hero-shot{width:auto;margin-right:0}}
+
+/* 7 Oct 2026: AMS joins the rest of the site's cool grounds. The warm cream
+   (#F8F6F2 / #F1ECE5) made it the one page that looked off-brand. The token
+   names stay so every rule above picks the new colours up. */
+.am{--warm:#F4F7FC;--warm2:#E4ECF9}
+.am-hero-img::after{background:linear-gradient(92deg,rgba(255,255,255,.86) 0%,rgba(255,255,255,.56) 42%,rgba(255,255,255,.12) 78%)}
+@media (max-width:1000px){.am-hero-img::after{background:linear-gradient(180deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.9) 46%)}}

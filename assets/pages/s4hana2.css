@@ -323,3 +323,15 @@ body:has(.s4) .nav-in{max-width:1340px;padding:0 clamp(18px,3vw,52px)}
 .s4-proof .s4-cred{color:rgba(255,255,255,.76)}
 .s4-proof .s4-cred b{color:#fff}
 @media (max-width:1000px){.s4-split-text{grid-template-columns:1fr;gap:14px}}
+
+/* phones: the per-photo desktop placement (.s4-kit .f-doc etc.) outranked the stacked layout above, leaving the collage scattered */
+@media (max-width:1000px){.s4-kit .f-screen,.s4-kit .f-doc,.s4-kit .f-pack{left:auto;top:auto;width:auto}.s4-kit .f-doc,.s4-kit .f-pack{aspect-ratio:4/3}}
+@media (max-width:640px){.s4-kit{grid-template-columns:1fr 1fr}}
+
+/* 7 Oct 2026: on phones and tablets the hero photo sits inside the page margins (as on RISE), not bleeding off the right edge */
+@media (max-width:1000px){.s4-hero-shot{width:auto;margin-right:0}}
+
+/* 7 Oct 2026: the closing photo is the KL planning team (s4-close); centre it,
+   and on phones give it a 3:2 frame so the people are not cut at the edges */
+.s4-close-shot img{object-position:50% 45%}
+@media (max-width:760px){.s4-close-shot{aspect-ratio:3/2}}
