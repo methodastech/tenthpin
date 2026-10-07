@@ -3923,3 +3923,11 @@ a.h2-pick{text-decoration:none;color:inherit;cursor:pointer}
   .h2-globe-grid::-webkit-scrollbar{display:none}
   .h2-globe-grid .h2-cityshot{flex:0 0 84%;scroll-snap-align:start;margin:0}
 }
+
+/* 7 Oct 2026 (phone, "icon not aligned with text"): later desktop rules (top:-54px, 104px)
+   outranked the phone placement, so each stage object floated 54px above its label, into the
+   step before. On tablets and phones the object now sits beside its label and title. */
+@media (max-width:1000px){
+  .h2-stop-n,.h2-stop .h2-stop-n,.h2-stop.on .h2-stop-n{top:-16px;left:-6px;width:80px;height:80px}
+  .h2-stop{padding-left:88px}
+}

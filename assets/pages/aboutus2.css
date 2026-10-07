@@ -1015,3 +1015,13 @@ body:has(.a2) .nav-in{max-width:1340px}
 .a2-portrait span{white-space:normal}
 /* three leaders: the row uses the full content width */
 @media (min-width:761px){.a2-portraits:has(> .a2-portrait:nth-child(3):last-child){max-width:none}}
+
+/* 7 Oct 2026 (phone, "face got covered"): on tablets and phones the photograph no longer sits
+   behind the four steps under a wash; it opens the band as its own picture, face clear, and
+   the heading, steps and button follow on the plain ground */
+@media (max-width:1000px){
+  .a2-cta-photo .a2-cta-bg{position:relative;inset:auto;display:block;aspect-ratio:3/2;margin:calc(-1 * var(--band,44px)) 0 var(--band,44px)}
+  .a2-cta-photo .a2-cta-bg::after{content:none}
+  .a2-cta-photo .a2-cta-bg img{object-position:65% 30%}
+}
+@media (max-width:1000px){.a2-cta-band.a2-cta-photo{padding-top:0}.a2-cta-photo .a2-cta-bg{margin:0 0 36px}}
